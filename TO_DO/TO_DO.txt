@@ -1,0 +1,12 @@
+
+1.03 START PROJECT CUB3D :)
+[x] read project subject
+[x] create github CUB3D project
+[x] create TO_DO folder with TO_DO list 
+[x] create main, .h, add  MAkefile, libft
+[x] add map from subject
+[] Start reading about Raycasting
+	[] https://www.youtube.com/watch?v=NbSee-XM7WA
+	[] Lode's Computer Graphics Tutorial: https://lodev.org/cgtutor/raycasting.html
+	[] Raycasting II: Floor and Ceiling: https://lodev.org/cgtutor/raycasting2.html 
+	[] Raycasting III: Sprites: https://lodev.org/cgtutor/raycasting3.html 
