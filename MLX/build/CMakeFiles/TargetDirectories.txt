@@ -1,0 +1,7 @@
+/home/dtolmaco/Desktop/cub3D/MLX42/build/CMakeFiles/mlx42.dir
+/home/dtolmaco/Desktop/cub3D/MLX42/build/CMakeFiles/edit_cache.dir
+/home/dtolmaco/Desktop/cub3D/MLX42/build/CMakeFiles/rebuild_cache.dir
+/home/dtolmaco/Desktop/cub3D/MLX42/build/CMakeFiles/list_install_components.dir
+/home/dtolmaco/Desktop/cub3D/MLX42/build/CMakeFiles/install.dir
+/home/dtolmaco/Desktop/cub3D/MLX42/build/CMakeFiles/install/local.dir
+/home/dtolmaco/Desktop/cub3D/MLX42/build/CMakeFiles/install/strip.dir
