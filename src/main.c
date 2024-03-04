@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/04 15:06:14 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:28:47 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	calculate(t_game* game)
 						{1,0,0,0,1},\
 						{1,2,0,0,1},\
 						{1,1,1,1,1}};
-	mlx_image_t *image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	for (double i = 0, w = 300; i < w; i++)
+	game->image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	for (double i = 0, w = WINDOW_WIDTH; i < w; i++)
 	{
-		int			mapX = 1, mapY = 1;
-		double		planeX = 0, planeY = 0;
+		int			mapX = (int)game->player_x, mapY = (int)game->player_y;
+		double		planeX = 0, planeY = 0.66;
 		double		dirX = 0, dirY = 1;
 		double	cameraX = 2 * i / (double)w - 1;
 		double	rayDirX = dirX + planeX * cameraX;
@@ -106,10 +106,10 @@ void	calculate(t_game* game)
 		//printf("texX:%d\n", texX);
 		for (int j = drawStart; j < drawEnd; j++)
 		{
-			mlx_put_pixel(image, i, j, 0x36CC89FF);
+			mlx_put_pixel(game->image, i, j, 0x36CC89FF);
 		}
 	}
-	mlx_image_to_window(game->mlx, image, 0, 0);
+	mlx_image_to_window(game->mlx, game->image, 0, 0);
 }
 
 static void ft_error(void)
@@ -130,9 +130,18 @@ static void ft_hook(void* param)
 void	key_press(mlx_key_data_t keydata, void *param)
 {
 	t_game* game = param;
-	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_S)
 	{
-		game->player_y -= 2;
+		game->player_y -= 0.1;
+		if (game->image)
+			mlx_delete_image(game->mlx, game->image);
+		calculate(game);
+	}
+	else if (keydata.key == MLX_KEY_W)
+	{
+		game->player_y += 0.1;
+		if (game->image)
+			mlx_delete_image(game->mlx, game->image);
 		calculate(game);
 	}
 }
@@ -143,6 +152,7 @@ int32_t	main(void)
 
 	game.player_x = 1.5;
 	game.player_y = 1.5;
+	game.image = NULL;
 	game.mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
 	if (!game.mlx)
 		ft_error();

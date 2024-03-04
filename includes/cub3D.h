@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/04 14:14:23 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:10:52 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 typedef struct s_game
 {
 	mlx_t*	mlx;
+	mlx_image_t *image;
 	double	player_x;
 	double	player_y;
 }	t_game;
