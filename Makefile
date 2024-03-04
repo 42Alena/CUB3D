@@ -1,10 +1,9 @@
 NAME  = cub3D
 CC  = cc
-CFLAGS  = -Wall -Wextra -Werror -g -I./include -I$(LIBMLX)/include
+CFLAGS  = -Wall -Wextra -Werror -I./include -I$(LIBMLX)/include
 LIBMLX := ./lib_mlx42
 LIBFT := ./libft
 LIBS := $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-
 SOURCES_M  := \
     ./src/main.c\
 

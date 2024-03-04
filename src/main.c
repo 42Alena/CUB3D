@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/04 12:23:38 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/04 14:17:39 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
 #define IMAGE_HEIGHT 64
 #include <math.h>
 
-void	calculate(mlx_t* mlx)
+void	calculate(t_game* game)
 {
 	char	map[50][50] = {{1,1,1,1,1},\
 						{1,0,0,0,1},\
 						{1,0,0,0,1},\
 						{1,2,0,0,1},\
 						{1,1,1,1,1}};
-	double		posX = 1.5, posY = 1.5;
-	int			mapX = 1, mapY = 1;
-	double		planeX = 0, planeY = 0;
-	double		dirX = 0, dirY = 1;
-	mlx_image_t *image = mlx_new_image(mlx, 2000, 1000);
-	mlx_image_to_window(mlx, image, 0, 0);
-	for (double i = 0, w = 1; i < w; i++)
+	printf("here\n");
+	mlx_image_t *image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_image_to_window(game->mlx, image, 0, 0);
+	for (double i = 0, w = 300; i < w; i++)
 	{
+		int			mapX = 1, mapY = 1;
+		double		planeX = 0, planeY = 0;
+		double		dirX = 0, dirY = 1;
 		double	cameraX = 2 * i / (double)w - 1;
 		double rayDirX = dirX + planeX * cameraX;
 		double	rayDirY = dirY + planeY * cameraX;
@@ -45,22 +45,22 @@ void	calculate(mlx_t* mlx)
 		if (rayDirX < 0)
 		{
 			stepX = -1;
-			sideDistX = (posX - mapX) * deltaDistX;
+			sideDistX = (game->player_x - mapX) * deltaDistX;
 		}
 		else
 		{
 			stepX = 1;
-			sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+			sideDistX = (mapX + 1.0 - game->player_x) * deltaDistX;
 		}
 		if (rayDirY < 0)
 		{
 			stepY = -1;
-			sideDistY = (posY - mapY) * deltaDistY;
+			sideDistY = (game->player_y - mapY) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+			sideDistY = (mapY + 1.0 - game->player_y) * deltaDistY;
 		}
 		int hit = 0, side;
 		while (hit == 0)
@@ -69,14 +69,12 @@ void	calculate(mlx_t* mlx)
 			{
 				sideDistX += deltaDistX;
 				mapX += stepX;
-				printf("mapX:%d\n", mapX);
 				side = 0;
 			}
 			else
 			{
 				sideDistY += deltaDistY;
 				mapY += stepY;
-				printf("mapY:%d sideY:%f\n", mapY, sideDistY);
 				side = 1;
 			}
 			if (map[mapX][mapY] == 1) hit = 1;
@@ -97,21 +95,20 @@ void	calculate(mlx_t* mlx)
 		printf("drawStart:%d drawEnd:%d\n", drawStart, drawEnd);
 		double wallX; //where exactly the wall was hit
 		if (side == 0)
-			wallX = posY + perpWallDist * rayDirY;
+			wallX = game->player_y + perpWallDist * rayDirY;
 		else
-			wallX = posX + perpWallDist * rayDirX;
+			wallX = game->player_x + perpWallDist * rayDirX;
 		wallX -= floor((wallX));
-		printf("wallX:%f\n", wallX);
+		//printf("wallX:%f\n", wallX);
 		int texX = (int)(IMAGE_WIDTH * wallX);
 		if(side == 0 && rayDirX > 0)
 			texX = IMAGE_WIDTH - texX - 1;
 		if(side == 1 && rayDirY < 0)
 			texX = IMAGE_WIDTH - texX - 1;
-		printf("texX:%d\n", texX);
+		//printf("texX:%d\n", texX);
 		for (int j = drawStart; j < drawEnd; j++)
 		{
-			mlx_put_pixel(image, i, j, 0xFF0000FF);
-			printf("pixel\n");
+			mlx_put_pixel(image, WINDOW_WIDTH / 2 + i, j, 0x00FF00FF);
 		}
 	}
 }
@@ -124,19 +121,33 @@ static void ft_error(void)
 
 static void ft_hook(void* param)
 {
-	mlx_t* mlx = param;
-	if (mlx_is_key_down(param, MLX_KEY_UP))
-		calculate(mlx);
+	t_game* game = param;
+	// if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
+	// 	calculate(game->mlx);
+	(void)game;
+}
+
+void	key_press(mlx_key_data_t keydata, void *param)
+{
+	t_game* game = param;
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+		calculate(game);
+	// else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+	// 	calculate(game);
 }
 
 int32_t	main(void)
 {
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
-	if (!mlx)
-		ft_error();
+	t_game game;
 
-	mlx_loop_hook(mlx, ft_hook, mlx);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	game.mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
+	if (!game.mlx)
+		ft_error();
+	game.player_x = 1.5;
+	game.player_y = 1.5;
+	mlx_key_hook(game.mlx, key_press, &game);
+	mlx_loop_hook(game.mlx, ft_hook, &game);
+	mlx_loop(game.mlx);
+	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }
