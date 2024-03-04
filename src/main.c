@@ -6,19 +6,66 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/04 15:28:47 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:17:46 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 960
-#define IMAGE_WIDTH 64
-#define IMAGE_HEIGHT 64
-#include <math.h>
+// int lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
+// printf("height:%d\n", lineHeight);
+// int drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
+// if (drawStart < 0)
+// 	drawStart = 0;
+// int drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
+// if(drawEnd >= WINDOW_HEIGHT)
+// 	drawEnd = WINDOW_HEIGHT - 1;
+// printf("drawStart:%d drawEnd:%d\n", drawStart, drawEnd);
+// for (int j = drawStart; j < drawEnd; j++)
+// {
+// 	mlx_put_pixel(game->image, i, j, 0x36CC89FF);
+// }
 
+// double wallX; //where exactly the wall was hit
+// 		if (side == 0)
+// 			wallX = game->player_y + perpWallDist * rayDirY;
+// 		else
+// 			wallX = game->player_x + perpWallDist * rayDirX;
+// 		wallX -= floor((wallX));
+// 		int texX = (int)(IMAGE_WIDTH * wallX);
+// 		if(side == 0 && rayDirX > 0)
+// 			texX = IMAGE_WIDTH - texX - 1;
+// 		if(side == 1 && rayDirY < 0)
+// 			texX = IMAGE_WIDTH - texX - 1;
+
+double	distance(int side, double sideDistX, double sideDistY, double deltaDistX, double deltaDistY)
+{
+	if (side == 0)
+		return (sideDistX - deltaDistX);
+	else
+		return (sideDistY - deltaDistY);
+}
+
+void	draw_wall(t_game *game, double perpWallDist, int i, int color)
+{
+	int	lineHeight;
+	int	drawStart;
+	int	drawEnd;
+	
+	lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
+	printf("height:%d\n", lineHeight);
+	drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
+	if (drawStart < 0)
+		drawStart = 0;
+	drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
+	if(drawEnd >= WINDOW_HEIGHT)
+		drawEnd = WINDOW_HEIGHT - 1;
+	for (int j = drawStart; j < drawEnd; j++)
+		mlx_put_pixel(game->image, i, j, 0x36CC89FF);
+	(void)color;
+}
+//0x36CC89FF
 void	calculate(t_game* game)
 {
 	char	map[50][50] = {{1,1,1,1,1},\
@@ -27,14 +74,14 @@ void	calculate(t_game* game)
 						{1,2,0,0,1},\
 						{1,1,1,1,1}};
 	game->image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	int color = rand () % 0x100000000;
 	for (double i = 0, w = WINDOW_WIDTH; i < w; i++)
 	{
-		int			mapX = (int)game->player_x, mapY = (int)game->player_y;
-		double		planeX = 0, planeY = 0.66;
-		double		dirX = 0, dirY = 1;
+		int			mapX = (int)game->player_x;
+		int			mapY = (int)game->player_y;
 		double	cameraX = 2 * i / (double)w - 1;
-		double	rayDirX = dirX + planeX * cameraX;
-		double	rayDirY = dirY + planeY * cameraX;
+		double	rayDirX = game->dir_x + game->plane_x * cameraX;
+		double	rayDirY = game->dir_y + game->plane_y * cameraX;
 		double	deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
 		double	deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
 		double	stepX, stepY;
@@ -77,37 +124,9 @@ void	calculate(t_game* game)
 			}
 			if (map[mapX][mapY] == 1) hit = 1;
 		}
-		if (side == 0)
-			perpWallDist = sideDistX - deltaDistX;
-		else
-			perpWallDist = sideDistY - deltaDistY;
+		perpWallDist = distance(side, sideDistX, sideDistY, deltaDistX, deltaDistY);
 		printf("distance:%f\n", perpWallDist);
-		int lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
-		printf("height:%d\n", lineHeight);
-		int drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		int drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
-		if(drawEnd >= WINDOW_HEIGHT)
-			drawEnd = WINDOW_HEIGHT - 1;
-		printf("drawStart:%d drawEnd:%d\n", drawStart, drawEnd);
-		double wallX; //where exactly the wall was hit
-		if (side == 0)
-			wallX = game->player_y + perpWallDist * rayDirY;
-		else
-			wallX = game->player_x + perpWallDist * rayDirX;
-		wallX -= floor((wallX));
-		//printf("wallX:%f\n", wallX);
-		int texX = (int)(IMAGE_WIDTH * wallX);
-		if(side == 0 && rayDirX > 0)
-			texX = IMAGE_WIDTH - texX - 1;
-		if(side == 1 && rayDirY < 0)
-			texX = IMAGE_WIDTH - texX - 1;
-		//printf("texX:%d\n", texX);
-		for (int j = drawStart; j < drawEnd; j++)
-		{
-			mlx_put_pixel(game->image, i, j, 0x36CC89FF);
-		}
+		draw_wall(game, perpWallDist, i, color);
 	}
 	mlx_image_to_window(game->mlx, game->image, 0, 0);
 }
@@ -132,14 +151,40 @@ void	key_press(mlx_key_data_t keydata, void *param)
 	t_game* game = param;
 	if (keydata.key == MLX_KEY_S)
 	{
-		game->player_y -= 0.1;
+		game->player_y -= game->dir_y * MOVE_SPEED;
+		game->player_x -= game->dir_x * MOVE_SPEED;
 		if (game->image)
 			mlx_delete_image(game->mlx, game->image);
 		calculate(game);
 	}
 	else if (keydata.key == MLX_KEY_W)
 	{
-		game->player_y += 0.1;
+		game->player_y += game->dir_y * MOVE_SPEED;
+		game->player_x += game->dir_x * MOVE_SPEED;
+		if (game->image)
+			mlx_delete_image(game->mlx, game->image);
+		calculate(game);
+	}
+	else if (keydata.key == MLX_KEY_D)
+    {
+		double oldDirX = game->dir_x;
+		game->dir_x = game->dir_x * cos(-ROTATION_SPEED) - game->dir_y * sin(-ROTATION_SPEED);
+		game->dir_y = oldDirX * sin(-ROTATION_SPEED) + game->dir_y * cos(-ROTATION_SPEED);
+		double oldPlaneX = game->plane_x;
+		game->plane_x = game->plane_x * cos(-ROTATION_SPEED) - game->plane_y * sin(-ROTATION_SPEED);
+		game->plane_y = oldPlaneX * sin(-ROTATION_SPEED) + game->plane_y * cos(-ROTATION_SPEED);
+		if (game->image)
+			mlx_delete_image(game->mlx, game->image);
+		calculate(game);
+	}
+    else if (keydata.key == MLX_KEY_A)
+    {
+		double oldDirX = game->dir_x;
+		game->dir_x = game->dir_x * cos(ROTATION_SPEED) - game->dir_y * sin(ROTATION_SPEED);
+		game->dir_y = oldDirX * sin(ROTATION_SPEED) + game->dir_y * cos(ROTATION_SPEED);
+		double oldPlaneX = game->plane_x;
+		game->plane_x = game->plane_x * cos(ROTATION_SPEED) - game->plane_y * sin(ROTATION_SPEED);
+		game->plane_y = oldPlaneX * sin(ROTATION_SPEED) + game->plane_y * cos(ROTATION_SPEED);
 		if (game->image)
 			mlx_delete_image(game->mlx, game->image);
 		calculate(game);
@@ -152,8 +197,12 @@ int32_t	main(void)
 
 	game.player_x = 1.5;
 	game.player_y = 1.5;
+	game.dir_x = -1;
+	game.dir_y = 0;
+	game.plane_x = 0;
+	game.plane_y = 0.66;
 	game.image = NULL;
-	game.mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
+	game.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
 	if (!game.mlx)
 		ft_error();
 	mlx_key_hook(game.mlx, key_press, &game);
