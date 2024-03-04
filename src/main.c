@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/04 14:17:39 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:06:14 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,18 @@ void	calculate(t_game* game)
 						{1,0,0,0,1},\
 						{1,2,0,0,1},\
 						{1,1,1,1,1}};
-	printf("here\n");
 	mlx_image_t *image = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	mlx_image_to_window(game->mlx, image, 0, 0);
 	for (double i = 0, w = 300; i < w; i++)
 	{
 		int			mapX = 1, mapY = 1;
 		double		planeX = 0, planeY = 0;
 		double		dirX = 0, dirY = 1;
 		double	cameraX = 2 * i / (double)w - 1;
-		double rayDirX = dirX + planeX * cameraX;
+		double	rayDirX = dirX + planeX * cameraX;
 		double	rayDirY = dirY + planeY * cameraX;
-		double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
-    	double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
-		double stepX, stepY;
+		double	deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
+		double	deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
+		double	stepX, stepY;
 		double	sideDistX, sideDistY;
 		double	perpWallDist;
 		if (rayDirX < 0)
@@ -108,9 +106,10 @@ void	calculate(t_game* game)
 		//printf("texX:%d\n", texX);
 		for (int j = drawStart; j < drawEnd; j++)
 		{
-			mlx_put_pixel(image, WINDOW_WIDTH / 2 + i, j, 0x00FF00FF);
+			mlx_put_pixel(image, i, j, 0x36CC89FF);
 		}
 	}
+	mlx_image_to_window(game->mlx, image, 0, 0);
 }
 
 static void ft_error(void)
@@ -124,27 +123,29 @@ static void ft_hook(void* param)
 	t_game* game = param;
 	// if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
 	// 	calculate(game->mlx);
+	//calculate(game);
 	(void)game;
 }
 
 void	key_press(mlx_key_data_t keydata, void *param)
 {
 	t_game* game = param;
-	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+	{
+		game->player_y -= 2;
 		calculate(game);
-	// else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-	// 	calculate(game);
+	}
 }
 
 int32_t	main(void)
 {
 	t_game game;
 
+	game.player_x = 1.5;
+	game.player_y = 1.5;
 	game.mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
 	if (!game.mlx)
 		ft_error();
-	game.player_x = 1.5;
-	game.player_y = 1.5;
 	mlx_key_hook(game.mlx, key_press, &game);
 	mlx_loop_hook(game.mlx, ft_hook, &game);
 	mlx_loop(game.mlx);
