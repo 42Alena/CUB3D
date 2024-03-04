@@ -26,6 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <vector>
 #include <iostream>
 
+
 /*
 g++ *.cpp -lSDL -O3 -W -Wall -ansi -pedantic
 g++ *.cpp -lSDL
@@ -40,45 +41,26 @@ g++ *.cpp -lSDL
 
 int worldMap[mapWidth][mapHeight]=
 {
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+  {1,1,1,1,1},
+  {1,0,0,0,1},
+  {1,0,0,0,1},
+  {1,0,0,0,1},
+  {1,1,1,1,1},
 };
 
 int main(int /*argc*/, char */*argv*/[])
 {
-  double posX = 22, posY = 12;  //x and y start position
-  double dirX = -1, dirY = 0; //initial direction vector
-  double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
+  double posX = 1.5, posY = 2.5;  //x and y start position
+  double dirX = 0, dirY = 1; //initial direction vector
+  double planeX = 0, planeY = 0; //the 2d raycaster version of camera plane
 
   double time = 0; //time of current frame
   double oldTime = 0; //time of previous frame
 
-    for(int x = 0; x < 1; x++)
+    for(int x = 0, w = 1; x < w; x++)
     {
       //calculate ray position and direction
-      double cameraX = 2 * x / (double)0 - 1; //x-coordinate in camera space
+      double cameraX = 2 * x / (double)w - 1; //x-coordinate in camera space
       double rayDirX = dirX + planeX * cameraX;
       double rayDirY = dirY + planeY * cameraX;
       //which box of the map we're in
@@ -133,8 +115,10 @@ int main(int /*argc*/, char */*argv*/[])
         sideDistY = (mapY + 1.0 - posY) * deltaDistY;
       }
       //perform DDA
+	  std::cout << sideDistY << std::endl;
       while(hit == 0)
       {
+		std::cout << hit << std::endl;
         //jump to next map square, either in x-direction, or in y-direction
         if(sideDistX < sideDistY)
         {
@@ -145,11 +129,15 @@ int main(int /*argc*/, char */*argv*/[])
         else
         {
           sideDistY += deltaDistY;
+		  std::cout << sideDistY << std::endl;
           mapY += stepY;
           side = 1;
         }
         //Check if ray has hit a wall
         if(worldMap[mapX][mapY] > 0) hit = 1;
       }
+	  if(side == 0) perpWallDist = (sideDistX - deltaDistX);
+      else          perpWallDist = (sideDistY - deltaDistY);
+	  std::cout << "Distance to the wall: " << perpWallDist << std::endl;
   }
 }

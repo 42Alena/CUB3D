@@ -3,50 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/04 07:34:10 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:23:38 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 
-// static void ft_error(void)
-// {
-// 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-// 	exit(EXIT_FAILURE);
-// }
-
-// static void ft_hook(void* param)
-// {
-// 	const mlx_t* mlx = param;
-
-// 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-// }
+#define WINDOW_WIDTH 1920
+#define WINDOW_HEIGHT 960
+#define IMAGE_WIDTH 64
+#define IMAGE_HEIGHT 64
 #include <math.h>
-int32_t	main(void)
+
+void	calculate(mlx_t* mlx)
 {
 	char	map[50][50] = {{1,1,1,1,1},\
 						{1,0,0,0,1},\
 						{1,0,0,0,1},\
 						{1,2,0,0,1},\
 						{1,1,1,1,1}};
-	double		posX = 1.5, posY = 1.8;
+	double		posX = 1.5, posY = 1.5;
 	int			mapX = 1, mapY = 1;
-	double		planeX = 0, planeY = 0.1;
-	double		dirX = 0, dirY = -1;
+	double		planeX = 0, planeY = 0;
+	double		dirX = 0, dirY = 1;
+	mlx_image_t *image = mlx_new_image(mlx, 2000, 1000);
+	mlx_image_to_window(mlx, image, 0, 0);
 	for (double i = 0, w = 1; i < w; i++)
 	{
-		double	cameraX = 2 * i / w - 1;
+		double	cameraX = 2 * i / (double)w - 1;
 		double rayDirX = dirX + planeX * cameraX;
 		double	rayDirY = dirY + planeY * cameraX;
 		double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
     	double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
-		printf("%f camera %f raydirY %f deltaY\n", cameraX, rayDirY, deltaDistY);
 		double stepX, stepY;
 		double	sideDistX, sideDistY;
+		double	perpWallDist;
 		if (rayDirX < 0)
 		{
 			stepX = -1;
@@ -67,11 +62,9 @@ int32_t	main(void)
 			stepY = 1;
 			sideDistY = (mapY + 1.0 - posY) * deltaDistY;
 		}
-		printf("sideX:%f, sideY:%f\n", sideDistX, sideDistY);
 		int hit = 0, side;
 		while (hit == 0)
 		{
-			//jump to next map square, either in x-direction, or in y-direction
 			if (sideDistX < sideDistY)
 			{
 				sideDistX += deltaDistX;
@@ -86,24 +79,64 @@ int32_t	main(void)
 				printf("mapY:%d sideY:%f\n", mapY, sideDistY);
 				side = 1;
 			}
-			//Check if ray has hit a wall
 			if (map[mapX][mapY] == 1) hit = 1;
-			printf("%d\n", hit);
+		}
+		if (side == 0)
+			perpWallDist = sideDistX - deltaDistX;
+		else
+			perpWallDist = sideDistY - deltaDistY;
+		printf("distance:%f\n", perpWallDist);
+		int lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
+		printf("height:%d\n", lineHeight);
+		int drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
+		if (drawStart < 0)
+			drawStart = 0;
+		int drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
+		if(drawEnd >= WINDOW_HEIGHT)
+			drawEnd = WINDOW_HEIGHT - 1;
+		printf("drawStart:%d drawEnd:%d\n", drawStart, drawEnd);
+		double wallX; //where exactly the wall was hit
+		if (side == 0)
+			wallX = posY + perpWallDist * rayDirY;
+		else
+			wallX = posX + perpWallDist * rayDirX;
+		wallX -= floor((wallX));
+		printf("wallX:%f\n", wallX);
+		int texX = (int)(IMAGE_WIDTH * wallX);
+		if(side == 0 && rayDirX > 0)
+			texX = IMAGE_WIDTH - texX - 1;
+		if(side == 1 && rayDirY < 0)
+			texX = IMAGE_WIDTH - texX - 1;
+		printf("texX:%d\n", texX);
+		for (int j = drawStart; j < drawEnd; j++)
+		{
+			mlx_put_pixel(image, i, j, 0xFF0000FF);
+			printf("pixel\n");
 		}
 	}
-	return (EXIT_SUCCESS);
 }
 
-// mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
-// if (!mlx)
-// 	ft_error();
-// mlx_image_t* img = mlx_new_image(mlx, 1920, 960);
+static void ft_error(void)
+{
+	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+	exit(EXIT_FAILURE);
+}
 
-// // Set the channels of each pixel in our image to the maximum byte value of 255. 
-// ft_memset(img->pixels, 200, img->width * img->height * 4);
+static void ft_hook(void* param)
+{
+	mlx_t* mlx = param;
+	if (mlx_is_key_down(param, MLX_KEY_UP))
+		calculate(mlx);
+}
 
-// // Draw the image at coordinate (0, 0).
-// mlx_image_to_window(mlx, img, 0, 0);
-// mlx_loop_hook(mlx, ft_hook, mlx);
-// mlx_loop(mlx);
-// mlx_terminate(mlx);
+int32_t	main(void)
+{
+	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "CUB3D", true);
+	if (!mlx)
+		ft_error();
+
+	mlx_loop_hook(mlx, ft_hook, mlx);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
+	return (EXIT_SUCCESS);
+}
