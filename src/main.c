@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/03 17:24:11 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/04 07:34:10 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "MLX42/MLX42.h"
-#define WIDTH 1920
-#define HEIGHT 960
 
 // static void ft_error(void)
 // {
