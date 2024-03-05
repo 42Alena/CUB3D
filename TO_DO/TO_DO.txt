@@ -1,11 +1,12 @@
 
 06.03
-[ ] Textured raycasting
+[ ] raycasting with XMP42 textures
 
 05.03
 [x] map correctly parsed and saved
 [x] split DDA algoritmh
 [x] render real map
+[x] raycasting with generated textures
 
 04.03
 [x] Basic untextured raycasting :))))))))))
