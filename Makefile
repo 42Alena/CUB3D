@@ -6,13 +6,13 @@ LIBFT := ./libft
 LIBGNL := ./lib_gnl
 LIBS := $(LIBFT)/libft.a $(LIBGNL)/libgnl.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SOURCES_M  := \
-	./src/calculate.c\
 	./src/error.c\
 	./src/game.c\
 	./src/key_press.c\
     ./src/main.c\
 	./src/map_check.c\
 	./src/map_save.c\
+	./src/raycasting.c
 
 OBJECTS := $(SOURCES_M:.c=.o)
 

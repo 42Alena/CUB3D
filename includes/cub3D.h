@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/05 12:24:30 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:23:52 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
-// #define NULL ((void*)0)
 
 //GAME
 # define WINDOW_WIDTH 1920
@@ -55,34 +53,59 @@ typedef struct s_map
 	char *ceiling_color;
 }	t_map;
 
-typedef struct s_game
+typedef struct s_ray
 {
-	mlx_t		*mlx;
-	mlx_image_t	*image;
-	char		**map;
-	t_map		map_info;
-	t_bool		playable;
-	int			player_count;
-	char		player_direction;
+	int			mapX;
+	int			mapY;
+	double		cameraX;
+	double		stepX;
+	double		stepY;
+	double		sideDistX;
+	double		sideDistY;
+	double		rayDirX;
+	double		rayDirY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		perpWallDist;
+	int			hit;
+	int			side;
+	int			line_height;
+	double		draw_start;
+	double		draw_end;
+	double		wall_x;
+	int			tex_x;
+	double		step;
+}	t_ray;
+
+typedef struct s_player
+{
 	double		player_x;
 	double		player_y;
 	double		dir_x;
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+}	t_player;
+
+typedef struct s_game
+{
+	mlx_t		*mlx;
+	mlx_image_t	*image;
+	char		**map;
+	int			texture[8][IMAGE_HEIGHT * IMAGE_WIDTH];
+	t_map		map_info;
+	t_player 	player;
+	t_ray		ray;
 }	t_game;
 
 
 //main
 
-//calculate.c
-double	distance(int side, double sideDistX, double sideDistY, double deltaDistX, double deltaDistY);
-void	calculate(t_game* game);
+//raycasting.c
+void	raycasting(t_game *game);
 
 //game.c
-void	ft_hook(void* param);
-void init_game_struct(t_game *game);
-void	game_init(t_game *game);
+void	init_game_struct(t_game *game);
 
 //error.c
 void	ft_error(t_game *game, char *error_msg);
@@ -91,34 +114,14 @@ void	ft_error(t_game *game, char *error_msg);
 void	key_press(mlx_key_data_t keydata, void *param);
 
 //map_check
-int	check_input(int argc, char **argv);
-void print_map(t_game *game);
-// void	check_map_walls(t_game *game);
-// void	check_characters(t_game *game, char c, int x, int y);
-// void	check_maps_characters(t_game *game);
+int		check_input(int argc, char **argv);
+void	print_map(t_game *game);
 
 //map_save.c
-void map_init(t_game *game);
+void	map_init(t_game *game);
 void	map_read(t_game *game, char *filename);
 void	check_maps_cols_rows(t_game *game, int fd);
 void	check_map(t_game *game, char *filename);
 
 #endif
 
-// void	draw_wall(t_game *game, int perpWallDist, int i)
-// {
-// 	int lineHeight;
-// 	int drawStart;
-// 	int drawEnd;
-	
-// 	lineHeight = (int)(WINDOW_HEIGHT / perpWallDist);
-// 	printf("height:%d\n", lineHeight);
-// 	drawStart = -lineHeight / 2 + WINDOW_HEIGHT / 2;
-// 	if (drawStart < 0)
-// 		drawStart = 0;
-// 	drawEnd = lineHeight / 2 + WINDOW_HEIGHT / 2;
-// 	if(drawEnd >= WINDOW_HEIGHT)
-// 		drawEnd = WINDOW_HEIGHT - 1;
-// 	for (int j = drawStart; j < drawEnd; j++)
-// 		mlx_put_pixel(game->image, i, j, 0x36CC89FF);
-// }

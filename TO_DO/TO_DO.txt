@@ -1,10 +1,16 @@
 
+06.03
+[ ] Textured raycasting
+
 05.03
+[x] map correctly parsed and saved
+[x] split DDA algoritmh
+[x] render real map
 
 04.03
-[] new Makefile
-[]  working algorithm and visulisation
-[]	start with check  and save input
+[x] Basic untextured raycasting :))))))))))
+[x] player movement up and down
+[x] player rotation
 
 03.03
 [x]  start programming (implementation Raycasting)
