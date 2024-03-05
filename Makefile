@@ -3,14 +3,21 @@ CC  = cc
 CFLAGS  = -Wall -Wextra -Werror -I./include -I$(LIBMLX)/include
 LIBMLX := ./lib_mlx42
 LIBFT := ./libft
-LIBS := $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBGNL := ./lib_gnl
+LIBS := $(LIBFT)/libft.a $(LIBGNL)/libgnl.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SOURCES_M  := \
+	./src/calculate.c\
+	./src/error.c\
+	./src/game.c\
+	./src/key_press.c\
     ./src/main.c\
+	./src/map_check.c\
+	./src/map_save.c\
 
 OBJECTS := $(SOURCES_M:.c=.o)
 
-$(NAME): $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a $(OBJECTS)
-		$(CC) $(OBJECTS) $(LIBS) -o $(NAME)
+$(NAME): $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a $(LIBGNL)/libgnl.a  $(OBJECTS)
+		$(CC) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a  -o $(NAME)
 
 all: $(NAME)
 
@@ -20,8 +27,10 @@ clean:
 fclean: clean
 		$(RM) $(NAME)  $(NAME)
 		@make -C $(LIBFT) fclean
+		@make -C $(LIBGNL) fclean
 		@rm -rf ./lib_mlx42/build/
 
+re: fclean all
 
 $(LIBMLX):
 		echo "Downloading MLX42 library..."; \
@@ -36,10 +45,14 @@ $(LIBFT)/libft.a:
 		@echo "Compiling libft..."
 		@make -C $(LIBFT)
 
+  
+
+$(LIBGNL)/libgnl.a:
+	@echo "Compiling libgnl..."
+	@make -C $(LIBGNL)
+
 norm :
 	@norminette ./include/cub3D.h $(SOURCES) 
-  
-re: fclean all
 
 .PHONY: all clean fclean re bonus
 

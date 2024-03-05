@@ -1,5 +1,10 @@
+
+05.03
+
 04.03
 [] new Makefile
+[]  working algorithm and visulisation
+[]	start with check  and save input
 
 03.03
 [x]  start programming (implementation Raycasting)
