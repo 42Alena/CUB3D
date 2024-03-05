@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/05 13:23:52 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:31:33 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+	mlx_texture_t	*wall;
 	char		**map;
 	int			texture[8][IMAGE_HEIGHT * IMAGE_WIDTH];
 	t_map		map_info;

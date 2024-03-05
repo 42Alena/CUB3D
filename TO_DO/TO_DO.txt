@@ -1,6 +1,7 @@
 
 06.03
 [ ] raycasting with XMP42 textures
+[ ] write custom mlx_put_pixel
 
 05.03
 [x] map correctly parsed and saved

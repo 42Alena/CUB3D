@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/05 15:05:22 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:37:43 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void init_game_struct(t_game *game)
 			game->texture[7][IMAGE_WIDTH * y + x] = 128 + 256 * 128 + 65536 * 128; //flat grey texture
 		}
 	}
+	game->wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/33.png");
 	game->player.player_x = 2.5;
 	game->player.player_y = 2.5;
 	game->player.dir_x = -1;

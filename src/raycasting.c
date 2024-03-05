@@ -6,11 +6,20 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/05 15:20:31 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:53:04 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+unsigned int	my_mlx_put_pixel(mlx_image_t *img, unsigned int x, unsigned int y, unsigned int colour)
+{
+	unsigned int	*pixel;
+
+	pixel = (unsigned int *)&img->pixels[(x + y * img->width) * sizeof(unsigned int)];
+	*pixel = colour;
+	return (*pixel);
+}
 
 void	distance_and_height(t_game *game)
 {
@@ -105,6 +114,31 @@ int get_rgba(int r, int g, int b, int a)
     return (r << 24 | g << 16 | b << 8 | a);
 }
 
+unsigned int	my_mlx_get_colour(mlx_texture_t *img, unsigned int x, unsigned int y)
+{
+	unsigned int	*colour;
+
+	colour = (unsigned int *)(img->pixels + ((x + y * img->width) * sizeof(unsigned int)));
+	return (*colour);
+}
+
+// void	draw(t_game *game, int i)
+// {
+// 	int 		texY;
+
+// 	double texPos = (game->ray.draw_start - WINDOW_HEIGHT / 2\
+// 	+ game->ray.line_height / 2) * game->ray.step;
+// 	for(int y = game->ray.draw_start; y < game->ray.draw_end; y++)
+// 	{
+// 		texY = (int)texPos;
+// 		if (texY >= (int) game->wall->height)
+// 			texY = IMAGE_HEIGHT - 1;
+// 		texPos += game->ray.step;
+// 		my_mlx_put_pixel(game->image, i, y, \
+// 		my_mlx_get_colour(game->wall, game->ray.tex_x, texY));
+// 	}
+// }
+
 void	draw(t_game *game, int i)
 {
 	int 		texY;
@@ -141,5 +175,6 @@ void	raycasting(t_game* game)
 		calculate_start_end(game);
 		draw(game, i);
 	}
+	//mlx_texture_t
 	mlx_image_to_window(game->mlx, game->image, 0, 0);
 }
