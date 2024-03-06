@@ -1,6 +1,6 @@
 
 06.03
-[ ] raycasting with XMP42 textures
+[x] raycasting with png images :)))))))))
 [ ] write custom mlx_put_pixel
 
 05.03

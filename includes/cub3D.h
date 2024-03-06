@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/05 18:31:33 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:01:32 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 //GAME
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 960
-# define IMAGE_WIDTH 64
-# define IMAGE_HEIGHT 64
-# define MOVE_SPEED 0.2
+# define IMAGE_WIDTH 1024
+# define IMAGE_HEIGHT 1024
+# define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.1
 
 
@@ -89,14 +89,13 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	mlx_t		*mlx;
-	mlx_image_t	*image;
-	mlx_texture_t	*wall;
-	char		**map;
-	int			texture[8][IMAGE_HEIGHT * IMAGE_WIDTH];
-	t_map		map_info;
-	t_player 	player;
-	t_ray		ray;
+	mlx_t			*mlx;
+	mlx_image_t		*image;
+	u_int32_t		*wall_tex;
+	char			**map;
+	t_map			map_info;
+	t_player		player;
+	t_ray			ray;
 }	t_game;
 
 

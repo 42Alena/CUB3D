@@ -6,32 +6,42 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/05 18:37:43 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:58:29 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+static uint32_t	*get_color(mlx_texture_t *texture)
+{
+	int				i;
+	unsigned int	pos;
+	uint8_t			rgb[4];
+	uint32_t		*colors;
+
+	i = 0;
+	colors = malloc(sizeof(uint32_t) * (texture->width + 1)
+			* (texture->height + 1));
+	pos = 0;
+	while (pos < texture->width * texture->height * texture->bytes_per_pixel)
+	{
+		rgb[0] = texture->pixels[pos];
+		rgb[1] = texture->pixels[pos + 1];
+		rgb[2] = texture->pixels[pos + 2];
+		rgb[3] = texture->pixels[pos + 3];
+		colors[i] = (rgb[0] << 24) + (rgb[1] << 16) + (rgb[2] << 8) + rgb[3];
+		pos += texture->bytes_per_pixel;
+		i++;
+	}
+	return (colors);
+}
+
 void init_game_struct(t_game *game)
 {
-	for (int x = 0; x < IMAGE_WIDTH; x++)
-	{
-		for (int y = 0; y < IMAGE_HEIGHT; y++)
-		{
-			int xorcolor = (x * 256 / IMAGE_WIDTH) ^ (y * 256 / IMAGE_HEIGHT);
-			int ycolor = y * 256 / IMAGE_HEIGHT;
-			int xycolor = y * 128 / IMAGE_HEIGHT + x * 128 / IMAGE_WIDTH;
-			game->texture[0][IMAGE_WIDTH * y + x] = 65536 * 254 * (x != y && x != IMAGE_WIDTH - y);
-			game->texture[1][IMAGE_WIDTH * y + x] = xycolor + 256 * xycolor + 65536 * xycolor; //sloped greyscale
-			game->texture[2][IMAGE_WIDTH * y + x] = 256 * xycolor + 65536 * xycolor; //sloped yellow gradient
-			game->texture[3][IMAGE_WIDTH * y + x] = xorcolor + 256 * xorcolor + 65536 * xorcolor; //xor greyscale
-			game->texture[4][IMAGE_WIDTH * y + x] = 256 * xorcolor; //xor green
-			game->texture[5][IMAGE_WIDTH * y + x] = 65536 * 192 * (x % 16 && y % 16); //red bricks
-			game->texture[6][IMAGE_WIDTH * y + x] = 65536 * ycolor; //red gradient
-			game->texture[7][IMAGE_WIDTH * y + x] = 128 + 256 * 128 + 65536 * 128; //flat grey texture
-		}
-	}
-	game->wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/33.png");
+	mlx_texture_t *wall;
+
+	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/space1024.png");
+	game->wall_tex = get_color(wall);
 	game->player.player_x = 2.5;
 	game->player.player_y = 2.5;
 	game->player.dir_x = -1;
