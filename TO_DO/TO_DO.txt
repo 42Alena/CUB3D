@@ -1,10 +1,23 @@
 
+07.03
+[] find main GAME_CONCEPT/IDEA 
+
 06.03
+[] start thinkig about main GAME_CONCEPT/IDEA
 [x] raycasting with png images :)))))))))
 [ ] write custom mlx_put_pixel
+[ ] Map from subject with  upper information with textures and  colors:
+	[] parse input in TEXTURES (NO,SO,WE,EA)|COLORS|MAP
+	[] save information in struct
+	[] check if colors for cieling and floor are correct
+	[] convert colors for cieling and floor
 
 05.03
-[x] map correctly parsed and saved
+[x] added  get_next_line library to project and Makefile
+[x] organize programm function in separate files.c 
+[x] check  programm input 
+[x] check input file 
+[x] correctly save only MAP, without information with textures and  colors  
 [x] split DDA algoritmh
 [x] render real map
 [x] raycasting with generated textures

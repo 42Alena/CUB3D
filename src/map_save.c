@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_save.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/05 13:44:57 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:39:17 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ void map_init(t_game *game)
 	int		j;
 	
 	i = -1;
-	game->map = (char **)malloc(game->map_info.rows * sizeof(char *));
-	if (game->map == NULL)
+	game->map.saved_map = (char **)malloc(game->map.rows * sizeof(char *));
+	if (game->map.saved_map == NULL)
 		ft_error (game, "Map: memory allocation faled");
-    while (++i < game->map_info.rows) 
+    while (++i < game->map.rows) 
 	{
-        game->map[i] = (char *)malloc(game->map_info.cols * sizeof(char));
-		if (!game->map[i])
+        game->map.saved_map[i] = (char *)malloc(game->map.cols * sizeof(char));
+		if (!game->map.saved_map[i])
 		{
 			j = -1;
             while (++j < i)
-                free(game->map[j]);
-            free(game->map);
+                free(game->map.saved_map[j]);
+            free(game->map.saved_map);
 			ft_error (game, "Map: memory allocation faled");
 		}
 	}
-	game->map[i] = NULL;
+	game->map.saved_map[i] = NULL;
 }
 
 void	map_read(t_game *game, char *filename)
@@ -56,40 +56,45 @@ void	map_read(t_game *game, char *filename)
 			break ;
 		while (line[x] && line[x] != '\n')
 		{
-			game->map[y][x] = line[x];
+			game->map.saved_map[y][x] = line[x];
 			x++;
 		}
-        game->map[y][x] = '\0';
+        game->map.saved_map[y][x] = '\0';
 		free(line);
 		y++;
 	}
 	close(fd);
 }
 
+/* 
+check_maps_cols_rows(t_game *game, int fd) is partial function 
+from void	check_map(t_game *game, char *filename) 
 //save info before map in structure, not in map
 //save max as for num rows
-//save max as for num cols
+//save max as for num cols */
 void	check_maps_cols_rows(t_game *game, int fd)
 {
 	char	*line;
-	int		len;
+	int		max_len;
 
+	line = NULL;
+	max_len = 0;
 	while (TRUE)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		len = ft_strlen(line);
+		max_len = ft_strlen(line);
 		if (line == 0)
 			break ;
-		if (line[len - 1] == '\n')
-			len--;
+		if (line[max_len - 1] == '\n')
+			max_len--;
 		free(line);
-		if (game->map_info.cols < len)
-			game->map_info.cols = len;
-		game->map_info.rows += 1;
+		if (game->map.cols < max_len)
+			game->map.cols = max_len;
+		game->map.rows += 1;
 	}
-	if (game->map_info.cols == 0 && game->map_info.rows == 0)
+	if (game->map.cols == 0 && game->map.rows == 0)
 		ft_error(game, "Map is empty");
 }
 
@@ -106,13 +111,13 @@ void	check_map(t_game *game, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
-	game->map_info.cols = 0;
-	game->map_info.rows = 0;
+	game->map.cols = 0;
+	game->map.rows = 0;
 	if (fd == -1)
 		ft_error(game, "Failure of opening map");
 	check_maps_cols_rows(game, fd);
-	printf ("rows: %d, cols: %d\n", game->map_info.rows, game->map_info.cols);
-	if (game->map_info.rows < 3)
+	printf ("rows: %d, cols: %d\n", game->map.rows, game->map.cols);
+	if (game->map.rows < 3)
 		ft_error(game, "Map is not valid");
 	close(fd);
 }
