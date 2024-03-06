@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/06 12:50:10 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:05:15 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	hit_wall(t_game* game)
 			game->ray.side = 1;
 		}
 		if (game->ray.mapY < 0 || game->ray.mapX < 0 ||\
-		game->map[game->ray.mapX][game->ray.mapY] == '1')
+		game->map.saved_map[game->ray.mapX][game->ray.mapY] == '1')
 			game->ray.hit = 1;
 	}
 }
@@ -100,26 +100,86 @@ void	calculate_start_end(t_game *game)
 	game->ray.step = 1.0 * IMAGE_HEIGHT / game->ray.line_height;
 }
 
-int get_rgba(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-
 void	draw(t_game *game, int x)
 {
 	int 		texY;
 	double		texPos;
 	uint32_t	color;
-	
+	u_int32_t	*texture;
+
+	if(game->ray.side == 0 && game->ray.rayDirX > 0)
+		texture = game->wall_tex3;
+    else if(game->ray.side == 0 && game->ray.rayDirX < 0)
+		texture = game->wall_tex2;
+    else if(game->ray.side == 1 && game->ray.rayDirY > 0)
+		texture = game->wall_tex;
+    else
+		texture = game->wall_tex4;
 	texPos = (game->ray.draw_start - WINDOW_HEIGHT / 2\
 	+ game->ray.line_height / 2) * game->ray.step;
 	for(int y = game->ray.draw_start; y < game->ray.draw_end; y++)
 	{
 		texY = (int)texPos;
 		texPos += game->ray.step;
-		color = game->wall_tex[IMAGE_HEIGHT * texY + game->ray.tex_x];
+		color = texture[IMAGE_HEIGHT * texY + game->ray.tex_x];
 		mlx_put_pixel(game->image, x, y, color);
 	}
+}
+
+void	calculate_floor_ceiling(t_game *game, t_floor *floor)
+{
+	
+	if(game->ray.side == 0 && game->ray.rayDirX > 0)
+	{
+		floor->floorXWall = game->ray.mapX;
+		floor->floorYWall = game->ray.mapY + game->ray.wall_x;
+	}
+	else if(game->ray.side == 0 && game->ray.rayDirX < 0)
+	{
+		floor->floorXWall = game->ray.mapX + 1.0;
+		floor->floorYWall = game->ray.mapY + game->ray.wall_x;
+	}
+	else if(game->ray.side == 1 && game->ray.rayDirY > 0)
+	{
+		floor->floorXWall = game->ray.mapX + game->ray.wall_x;
+		floor->floorYWall = game->ray.mapY;
+	}
+	else
+	{
+		floor->floorXWall = game->ray.mapX + game->ray.wall_x;
+		floor->floorYWall = game->ray.mapY + 1.0;
+	}
+	floor->distWall = game->ray.perpWallDist;
+	floor->distPlayer = 0.0;
+}
+
+void	draw_floor_ceiling(t_game *game, int x)
+{
+	t_floor		floor;
+	uint32_t	color;
+
+	calculate_floor_ceiling(game, &floor);
+	for(int y = game->ray.draw_end + 1; y < WINDOW_HEIGHT; y++)
+    {
+		floor.currentDist = WINDOW_HEIGHT / (2.0 * y - WINDOW_HEIGHT);
+
+		floor.weight = (floor.currentDist - floor.distPlayer)\
+		/ (floor.distWall - floor.distPlayer);
+
+		floor.currentFloorX = floor.weight * floor.floorXWall + (1.0 - floor.weight) * game->player.player_x;
+		floor.currentFloorY = floor.weight * floor.floorYWall + (1.0 - floor.weight) * game->player.player_y;
+
+		floor.floorTexX = ((int)floor.currentFloorX * IMAGE_WIDTH) % IMAGE_WIDTH;
+		floor.floorTexY = ((int)floor.currentFloorY * IMAGE_HEIGHT) % IMAGE_HEIGHT;
+
+		//floor
+		color = game->wall_tex3[IMAGE_WIDTH * floor.floorTexY + floor.floorTexX];
+		mlx_put_pixel(game->image, x, y, color);
+		//ceiling
+		color = game->wall_tex[IMAGE_WIDTH * floor.floorTexY + floor.floorTexX];
+		mlx_put_pixel(game->image, x, WINDOW_HEIGHT - y, color);
+     }
+
 }
 
 void	raycasting(t_game* game)
@@ -137,6 +197,7 @@ void	raycasting(t_game* game)
 		printf("distance:%f\n", game->ray.perpWallDist);
 		calculate_start_end(game);
 		draw(game, x);
+		draw_floor_ceiling(game, x);
 		x++;
 	}
 	mlx_image_to_window(game->mlx, game->image, 0, 0);

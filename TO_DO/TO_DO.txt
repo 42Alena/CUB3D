@@ -4,6 +4,9 @@
 
 06.03
 [] start thinkig about main GAME_CONCEPT/IDEA
+[x] high resolution images 1024 pixels
+[x] N, S, E, W images logic
+[x] Ceiling and floor images
 [x] raycasting with png images :)))))))))
 [ ] write custom mlx_put_pixel
 [ ] Map from subject with  upper information with textures and  colors:

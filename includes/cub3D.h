@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/06 13:01:32 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:04:39 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,32 @@ typedef enum e_bool
 	TRUE = 1
 }	t_bool;
 
+typedef struct s_floor
+{
+	double	distWall;
+	double	distPlayer;
+	double	currentDist;
+	double	floorXWall;
+	double	floorYWall;
+	double	currentFloorX;
+	double	currentFloorY;
+	double	weight;
+	int 	floorTexX;
+	int		floorTexY;
+
+} t_floor;
+
 typedef struct s_map
 {
-	int	cols;
-	int	rows;
-	char *no_texture;
-	char *so_texture;
-	char *we_texture;
-	char *ea_texture;
-	char *floor_color;
-	char *ceiling_color;
+	char	**saved_map;
+	int		cols;
+	int		rows;
+	char 	*no_texture;
+	char 	*so_texture;
+	char 	*we_texture;
+	char 	*ea_texture;
+	char 	*floor_color;
+	char 	*ceiling_color;
 }	t_map;
 
 typedef struct s_ray
@@ -92,8 +108,10 @@ typedef struct s_game
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	u_int32_t		*wall_tex;
-	char			**map;
-	t_map			map_info;
+	u_int32_t		*wall_tex2;
+	u_int32_t		*wall_tex3;
+	u_int32_t		*wall_tex4;
+	t_map			map;
 	t_player		player;
 	t_ray			ray;
 }	t_game;
