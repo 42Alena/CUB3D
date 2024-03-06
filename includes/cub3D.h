@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/06 16:04:39 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:45:42 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define WINDOW_HEIGHT 960
 # define IMAGE_WIDTH 1024
 # define IMAGE_HEIGHT 1024
+# define FLOOR_WIDTH 512
+# define FLOOR_HEIGHT 512
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.1
 
@@ -111,6 +113,8 @@ typedef struct s_game
 	u_int32_t		*wall_tex2;
 	u_int32_t		*wall_tex3;
 	u_int32_t		*wall_tex4;
+	u_int32_t		*floor;
+	u_int32_t		*ceiling;
 	t_map			map;
 	t_player		player;
 	t_ray			ray;

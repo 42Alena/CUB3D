@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/06 15:44:39 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:16:54 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@ void init_game_struct(t_game *game)
 
 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/space1024.png");
 	game->wall_tex = get_color(wall);
-	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/mars1024.png");
+	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/window.png");
 	game->wall_tex2 = get_color(wall);
 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/neptun1024.png");
 	game->wall_tex3 = get_color(wall);
 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/galaxy1024.png");
 	game->wall_tex4 = get_color(wall);
+	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/floor.png");
+	game->floor = get_color(wall);
+	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/ceiling.png");
+	game->ceiling = get_color(wall);
 	game->player.player_x = 2.5;
 	game->player.player_y = 2.5;
 	game->player.dir_x = -1;

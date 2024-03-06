@@ -1,9 +1,12 @@
 
 07.03
+[] find better pictures
+[] fix wall collision
 [] find main GAME_CONCEPT/IDEA 
 
 06.03
-[] start thinkig about main GAME_CONCEPT/IDEA
+[x] start thinking about main GAME_CONCEPT/IDEA
+[x] basic wall collision
 [x] high resolution images 1024 pixels
 [x] N, S, E, W images logic
 [x] Ceiling and floor images

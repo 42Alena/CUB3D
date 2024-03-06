@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/05 13:19:07 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 18:56:17 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,20 @@
 void	key_press(mlx_key_data_t keydata, void *param)
 {
 	t_game* game = param;
+	double		check_x;
+	double		check_y;
+
 	if (keydata.key == MLX_KEY_S)
 	{
+		check_y = game->player.player_y - game->player.dir_y * MOVE_SPEED;
+		check_x = game->player.player_x - game->player.dir_x * MOVE_SPEED;
+		if (game->map.saved_map[(int)check_x][(int)check_y] == '1')
+		{
+			double difference_x = fabs((int)check_x - check_x);
+			double difference_y = fabs((int)check_y - check_y);
+			if (difference_x < 0.3 || difference_y < 0.3)
+				return ;
+		}
 		game->player.player_y -= game->player.dir_y * MOVE_SPEED;
 		game->player.player_x -= game->player.dir_x * MOVE_SPEED;
 		if (game->image)
@@ -25,6 +37,15 @@ void	key_press(mlx_key_data_t keydata, void *param)
 	}
 	else if (keydata.key == MLX_KEY_W)
 	{
+		check_y = game->player.player_y + game->player.dir_y * MOVE_SPEED;
+		check_x = game->player.player_x + game->player.dir_x * MOVE_SPEED;
+		if (game->map.saved_map[(int)check_x][(int)check_y] == '1')
+		{
+			double difference_x = fabs((int)check_x - check_x);
+			double difference_y = fabs((int)check_y - check_y);
+			if (difference_x < 0.3 || difference_y < 0.3)
+				return ;
+		}
 		game->player.player_y += game->player.dir_y * MOVE_SPEED;
 		game->player.player_x += game->player.dir_x * MOVE_SPEED;
 		if (game->image)

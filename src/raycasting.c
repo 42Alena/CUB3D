@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/06 16:05:15 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:47:03 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,32 +100,6 @@ void	calculate_start_end(t_game *game)
 	game->ray.step = 1.0 * IMAGE_HEIGHT / game->ray.line_height;
 }
 
-void	draw(t_game *game, int x)
-{
-	int 		texY;
-	double		texPos;
-	uint32_t	color;
-	u_int32_t	*texture;
-
-	if(game->ray.side == 0 && game->ray.rayDirX > 0)
-		texture = game->wall_tex3;
-    else if(game->ray.side == 0 && game->ray.rayDirX < 0)
-		texture = game->wall_tex2;
-    else if(game->ray.side == 1 && game->ray.rayDirY > 0)
-		texture = game->wall_tex;
-    else
-		texture = game->wall_tex4;
-	texPos = (game->ray.draw_start - WINDOW_HEIGHT / 2\
-	+ game->ray.line_height / 2) * game->ray.step;
-	for(int y = game->ray.draw_start; y < game->ray.draw_end; y++)
-	{
-		texY = (int)texPos;
-		texPos += game->ray.step;
-		color = texture[IMAGE_HEIGHT * texY + game->ray.tex_x];
-		mlx_put_pixel(game->image, x, y, color);
-	}
-}
-
 void	calculate_floor_ceiling(t_game *game, t_floor *floor)
 {
 	
@@ -160,26 +134,46 @@ void	draw_floor_ceiling(t_game *game, int x)
 
 	calculate_floor_ceiling(game, &floor);
 	for(int y = game->ray.draw_end + 1; y < WINDOW_HEIGHT; y++)
-    {
+	{
 		floor.currentDist = WINDOW_HEIGHT / (2.0 * y - WINDOW_HEIGHT);
-
 		floor.weight = (floor.currentDist - floor.distPlayer)\
 		/ (floor.distWall - floor.distPlayer);
-
 		floor.currentFloorX = floor.weight * floor.floorXWall + (1.0 - floor.weight) * game->player.player_x;
 		floor.currentFloorY = floor.weight * floor.floorYWall + (1.0 - floor.weight) * game->player.player_y;
-
-		floor.floorTexX = ((int)floor.currentFloorX * IMAGE_WIDTH) % IMAGE_WIDTH;
-		floor.floorTexY = ((int)floor.currentFloorY * IMAGE_HEIGHT) % IMAGE_HEIGHT;
-
-		//floor
-		color = game->wall_tex3[IMAGE_WIDTH * floor.floorTexY + floor.floorTexX];
+		floor.floorTexX = (int)(floor.currentFloorX * FLOOR_WIDTH) % FLOOR_WIDTH;
+		floor.floorTexY = (int)(floor.currentFloorY * FLOOR_HEIGHT) % FLOOR_HEIGHT;
+		color = game->floor[FLOOR_WIDTH * floor.floorTexY + floor.floorTexX];
 		mlx_put_pixel(game->image, x, y, color);
-		//ceiling
-		color = game->wall_tex[IMAGE_WIDTH * floor.floorTexY + floor.floorTexX];
+		color = game->ceiling[FLOOR_WIDTH * floor.floorTexY + floor.floorTexX];
 		mlx_put_pixel(game->image, x, WINDOW_HEIGHT - y, color);
-     }
+	}
 
+}
+
+void	draw(t_game *game, int x)
+{
+	int 		texY;
+	double		texPos;
+	uint32_t	color;
+	u_int32_t	*texture;
+
+	if(game->ray.side == 0 && game->ray.rayDirX > 0)
+		texture = game->wall_tex3;
+    else if(game->ray.side == 0 && game->ray.rayDirX < 0)
+		texture = game->wall_tex2;
+    else if(game->ray.side == 1 && game->ray.rayDirY > 0)
+		texture = game->wall_tex;
+    else
+		texture = game->wall_tex4;
+	texPos = (game->ray.draw_start - WINDOW_HEIGHT / 2\
+	+ game->ray.line_height / 2) * game->ray.step;
+	for(int y = game->ray.draw_start; y < game->ray.draw_end; y++)
+	{
+		texY = (int)texPos;
+		texPos += game->ray.step;
+		color = texture[IMAGE_HEIGHT * texY + game->ray.tex_x];
+		mlx_put_pixel(game->image, x, y, color);
+	}
 }
 
 void	raycasting(t_game* game)
