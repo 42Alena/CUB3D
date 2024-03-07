@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 17:46:16 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:00:17 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ typedef struct s_game
 	u_int32_t		*wall_tex4;
 	u_int32_t		*floor;
 	u_int32_t		*ceiling;
+	mlx_image_t		*main_menu;
+	int				is_menu;
 	t_mouse			mouse;
 	t_map			map;
 	t_player		player;

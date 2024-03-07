@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 17:47:05 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:01:27 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,17 @@ void	minimap(t_game *game)
 void ft_hook(void *param)
 {
 	t_game* game = param;
-	if (game->image)
-		mlx_delete_image(game->mlx, game->image);
-	raycasting(game);
-	minimap(game);
-	if (game->mouse.mouse_x > WINDOW_WIDTH - 50)
-		rotation(game, ROTATION_SPEED / 2);
-	else if (game->mouse.mouse_x < WINDOW_WIDTH - WINDOW_WIDTH + 50)
-		rotation(game, -ROTATION_SPEED / 2);
-	(void)game;
+	if (!game->is_menu)
+	{
+		if (game->image)
+			mlx_delete_image(game->mlx, game->image);
+		raycasting(game);
+		minimap(game);
+		if (game->mouse.mouse_x > WINDOW_WIDTH - 50)
+			rotation(game, ROTATION_SPEED / 2);
+		else if (game->mouse.mouse_x < WINDOW_WIDTH - WINDOW_WIDTH + 50)
+			rotation(game, -ROTATION_SPEED / 2);
+	}
 }
 
 void	mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
@@ -40,8 +42,12 @@ void	mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param
 	t_game	*game;
 
 	game = param;
-	printf("button:%d action:%d modifier:%d\n", button, action, mods);
-	(void)game;
+	if (button == 0 && action == 0)
+	{
+		game->is_menu = FALSE;
+		mlx_delete_image(game->mlx, game->main_menu);
+	}
+	(void)mods;
 }
 
 void	cursor(double xpos, double ypos, void *param)

@@ -6,13 +6,13 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 17:40:11 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:11:17 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void init_map_structure(t_game *game)
+void	init_map_structure(t_game *game)
 {
 	game->map.saved_map = NULL;
 	game->map.cols = 0;
@@ -25,7 +25,7 @@ void init_map_structure(t_game *game)
 	game->map.ceiling_color = 0;
 }
 
-void init_player_structure(t_game *game)
+void	init_player_structure(t_game *game)
 {
 	////// version for tests
 	game->player.player_x = 2.5;
@@ -46,32 +46,44 @@ void init_player_structure(t_game *game)
 }
 
 
-void init_game_struct(t_game *game)
+void	init_game_struct(t_game *game)
 {
-	mlx_texture_t *wall;
+	mlx_texture_t	*wall;
 
 	init_map_structure(game);
 	init_player_structure(game);
 	wall = mlx_load_png("./textures/ceiling.png");
 	game->wall_tex = get_color(wall);
+	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/wall3.png");
 	game->wall_tex2 = get_color(wall);
+	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/door.png");
 	game->wall_tex = get_color(wall);
+	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/windowspace.png");
 	game->wall_tex3 = get_color(wall);
+	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/wall2.png");
 	game->wall_tex4 = get_color(wall);
+	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/floor.png");
 	game->floor = get_color(wall);
+	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/ceiling.png");
 	game->ceiling = get_color(wall);
+	mlx_delete_texture(wall);
 	game->image = NULL;
+	game->is_menu = TRUE;
 	game->mouse.mouse_x = WINDOW_WIDTH / 2;
 	game->mouse.mouse_y = WINDOW_HEIGHT / 2;
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error(game, "Could not initialize MLX");
+	xpm_t *xpm42 = mlx_load_xpm42("./textures/ship.xpm42");
+	game->main_menu = mlx_texture_to_image(game->mlx, &xpm42->texture);
+	mlx_image_to_window(game->mlx, game->main_menu, 0, 0);
+	mlx_delete_xpm42(xpm42);
 }
 
 

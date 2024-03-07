@@ -9,12 +9,12 @@ BEFORE PUSH:
 [] find main GAME_CONCEPT/IDEA 
 [] find better pictures
 [] EXIT without memory leaks
-[] Create menu
 [] Add music
 [] write custom mlx_put_pixel
 [] figure out how to draw a minimap
 [] Display door and open it (animation?)
 [] memory leak when turning player near the wall
+[x] Added main menu image (click with mouse to close it)
 [x] improve mouse rotation (rotate even when mouse is not moving)
 [x] rotate player with mouse
 [x] moved textures to new folder
