@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 19:22:05 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:46:07 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	init_game_struct(t_game *game)
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error(game, "Could not initialize MLX");
-	xpm_t *xpm42 = mlx_load_xpm42("./textures/ship.xpm42");
+	xpm_t *xpm42 = mlx_load_xpm42("./textures/menu.xpm42");
 	game->main_menu = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_image_to_window(game->mlx, game->main_menu, 0, 0);
 	mlx_delete_xpm42(xpm42);
