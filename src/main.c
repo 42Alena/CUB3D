@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/06 15:53:15 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:09:33 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 void ft_hook(void* param)
 {
 	t_game* game = param;
-	// if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
-	// 	calculate(game->mlx);
-	//calculate(game);
-	(void)game;
+	if (game->image)
+		mlx_delete_image(game->mlx, game->image);
+	raycasting(game);
+	for (int y = 0; y < WINDOW_HEIGHT / 5; y++)
+	{
+		for (int x = 0; x < WINDOW_WIDTH / 5; x++)
+			mlx_put_pixel(game->image, x, y, 0xFFFFA500);
+	}
 }
 
 int	main(int argc, char **argv)

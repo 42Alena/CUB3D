@@ -1,7 +1,16 @@
 
 07.03
 [] find better pictures
-[] fix wall collision
+[] EXIT without memory leaks
+[ ] write custom mlx_put_pixel
+[] create minimap
+[x] A,D keys to go left and right
+[x] -> and <- move the view
+[x] split key_press
+[x] ESC key
+[x] fix wall collision
+[] memory leak when turning player near the wall
+[] try to implement sprites
 [] find main GAME_CONCEPT/IDEA 
 
 06.03
@@ -11,7 +20,6 @@
 [x] N, S, E, W images logic
 [x] Ceiling and floor images
 [x] raycasting with png images :)))))))))
-[ ] write custom mlx_put_pixel
 [ ] Map from subject with  upper information with textures and  colors:
 	[] parse input in TEXTURES (NO,SO,WE,EA)|COLORS|MAP
 	[] save information in struct
