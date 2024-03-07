@@ -6,13 +6,12 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:38:59 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 16:28:30 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:19:18 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-#include "../includes/cub3D.h"
 
 //////////////////////////PRINTs FOR TEST MAPS//////////////////////
 //TODO: move/delete before push 
@@ -109,7 +108,7 @@ void	check_maps_characters(t_game *game)
 	y = 0;
 	player_count = 0;
 	
-	//	//TODO:check_map_walls(game);
+	//TODO:check_map_walls(game);
 
     while (y < game->map.rows)
 	{
@@ -121,11 +120,16 @@ void	check_maps_characters(t_game *game)
 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 			{
 				player_count += 1;
-				if (player_count >= 1)
+				//TODO: save player
+				//save_player_structure(t_game *game, char player_pos_dir
+				game->player.pos_x = x;
+				game->player.pos_y = y;
+				if (player_count > 1)
 					ft_error(game, "Map's requirements: set player direction to N,S,E or W");
 			}
             x++;
         }
         y++;
     }
+
 }

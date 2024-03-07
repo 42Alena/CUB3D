@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/07 14:06:35 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:22:05 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	distance_and_height(t_game *game)
 
 void	init_ray(t_game *game, int i, int w)
 {
-	game->ray.mapX = (int)game->player.player_x;
-	game->ray.mapY = (int)game->player.player_y;
+	game->ray.mapX = (int)game->player.pos_x;
+	game->ray.mapY = (int)game->player.pos_y;
 	game->ray.cameraX = 2 * i / (double)w - 1;
 	game->ray.rayDirX = game->player.dir_x + game->player.plane_x * game->ray.cameraX;
 	game->ray.rayDirY = game->player.dir_y + game->player.plane_y * game->ray.cameraX;
@@ -37,22 +37,22 @@ void	calculate_step(t_game *game)
 	if (game->ray.rayDirX < 0)
 	{
 		game->ray.stepX = -1;
-		game->ray.sideDistX = (game->player.player_x - game->ray.mapX) * game->ray.deltaDistX;
+		game->ray.sideDistX = (game->player.pos_x - game->ray.mapX) * game->ray.deltaDistX;
 	}
 	else
 	{
 		game->ray.stepX = 1;
-		game->ray.sideDistX = (game->ray.mapX + 1.0 - game->player.player_x) * game->ray.deltaDistX;
+		game->ray.sideDistX = (game->ray.mapX + 1.0 - game->player.pos_x) * game->ray.deltaDistX;
 	}
 	if (game->ray.rayDirY < 0)
 	{
 		game->ray.stepY = -1;
-		game->ray.sideDistY = (game->player.player_y - game->ray.mapY) * game->ray.deltaDistY;
+		game->ray.sideDistY = (game->player.pos_y - game->ray.mapY) * game->ray.deltaDistY;
 	}
 	else
 	{
 		game->ray.stepY = 1;
-		game->ray.sideDistY = (game->ray.mapY + 1.0 - game->player.player_y) * game->ray.deltaDistY;
+		game->ray.sideDistY = (game->ray.mapY + 1.0 - game->player.pos_y) * game->ray.deltaDistY;
 	}
 }
 
@@ -88,9 +88,9 @@ void	calculate_start_end(t_game *game)
 	if(game->ray.draw_end >= WINDOW_HEIGHT)
 		game->ray.draw_end = WINDOW_HEIGHT - 1;
 	if (game->ray.side == 0)
-		game->ray.wall_x = game->player.player_y + game->ray.perpWallDist * game->ray.rayDirY;
+		game->ray.wall_x = game->player.pos_y + game->ray.perpWallDist * game->ray.rayDirY;
 	else
-		game->ray.wall_x = game->player.player_x + game->ray.perpWallDist * game->ray.rayDirX;
+		game->ray.wall_x = game->player.pos_x + game->ray.perpWallDist * game->ray.rayDirX;
 	game->ray.wall_x -= floor((game->ray.wall_x));
 	game->ray.tex_x = (int)(IMAGE_WIDTH * game->ray.wall_x);
 	if(game->ray.side == 0 && game->ray.rayDirX > 0)
@@ -138,8 +138,8 @@ void	draw_floor_ceiling(t_game *game, int x)
 		floor.currentDist = WINDOW_HEIGHT / (2.0 * y - WINDOW_HEIGHT);
 		floor.weight = (floor.currentDist - floor.distPlayer)\
 		/ (floor.distWall - floor.distPlayer);
-		floor.currentFloorX = floor.weight * floor.floorXWall + (1.0 - floor.weight) * game->player.player_x;
-		floor.currentFloorY = floor.weight * floor.floorYWall + (1.0 - floor.weight) * game->player.player_y;
+		floor.currentFloorX = floor.weight * floor.floorXWall + (1.0 - floor.weight) * game->player.pos_x;
+		floor.currentFloorY = floor.weight * floor.floorYWall + (1.0 - floor.weight) * game->player.pos_y;
 		floor.floorTexX = (int)(floor.currentFloorX * FLOOR_WIDTH) % FLOOR_WIDTH;
 		floor.floorTexY = (int)(floor.currentFloorY * FLOOR_HEIGHT) % FLOOR_HEIGHT;
 		color = game->floor[FLOOR_WIDTH * floor.floorTexY + floor.floorTexX];

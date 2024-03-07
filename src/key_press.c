@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 17:46:30 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:22:05 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	rotation(t_game *game, double rot_speed)
 
 int	distance_to_wall(t_game *game, double check_x, double check_y)
 {
-	if (game->map.saved_map[(int)check_x][(int)game->player.player_y] == '1'\
-	|| game->map.saved_map[(int)game->player.player_x][(int)check_y] == '1')
+	if (game->map.saved_map[(int)check_x][(int)game->player.pos_y] == '1'\
+	|| game->map.saved_map[(int)game->player.pos_x][(int)check_y] == '1')
 		return (FALSE);
 	return (TRUE);
 }
@@ -40,23 +40,23 @@ int	check_collision(t_game *game, int direction)
 
 	if (direction == DOWN)
 	{
-		check_y = game->player.player_y - game->player.dir_y * MOVE_SPEED;
-		check_x = game->player.player_x - game->player.dir_x * MOVE_SPEED;
+		check_y = game->player.pos_y - game->player.dir_y * MOVE_SPEED;
+		check_x = game->player.pos_x - game->player.dir_x * MOVE_SPEED;
 	}
 	if (direction == UP)
 	{
-		check_y = game->player.player_y + game->player.dir_y * MOVE_SPEED;
-		check_x = game->player.player_x + game->player.dir_x * MOVE_SPEED;
+		check_y = game->player.pos_y + game->player.dir_y * MOVE_SPEED;
+		check_x = game->player.pos_x + game->player.dir_x * MOVE_SPEED;
 	}
 	if (direction == LEFT)
 	{
-		check_y = game->player.player_y + game->player.dir_x * MOVE_SPEED;
-		check_x = game->player.player_x - game->player.dir_y * MOVE_SPEED;
+		check_y = game->player.pos_y + game->player.dir_x * MOVE_SPEED;
+		check_x = game->player.pos_x - game->player.dir_y * MOVE_SPEED;
 	}
 	if (direction == RIGHT)
 	{
-		check_y = game->player.player_y - game->player.dir_x * MOVE_SPEED;
-		check_x = game->player.player_x + game->player.dir_y * MOVE_SPEED;
+		check_y = game->player.pos_y - game->player.dir_x * MOVE_SPEED;
+		check_x = game->player.pos_x + game->player.dir_y * MOVE_SPEED;
 	}
 	return (distance_to_wall(game, check_x, check_y));
 }
@@ -67,23 +67,23 @@ void	move(t_game *game, int direction)
 		return ;
 	if (direction == DOWN)
 	{
-		game->player.player_y -= game->player.dir_y * MOVE_SPEED;
-		game->player.player_x -= game->player.dir_x * MOVE_SPEED;
+		game->player.pos_y -= game->player.dir_y * MOVE_SPEED;
+		game->player.pos_x -= game->player.dir_x * MOVE_SPEED;
 	}
 	if (direction == UP)
 	{
-		game->player.player_y += game->player.dir_y * MOVE_SPEED;
-		game->player.player_x += game->player.dir_x * MOVE_SPEED;
+		game->player.pos_y += game->player.dir_y * MOVE_SPEED;
+		game->player.pos_x += game->player.dir_x * MOVE_SPEED;
 	}
 	if (direction == LEFT)
 	{
-		game->player.player_y += game->player.dir_x * MOVE_SPEED;
-		game->player.player_x -= game->player.dir_y * MOVE_SPEED;
+		game->player.pos_y += game->player.dir_x * MOVE_SPEED;
+		game->player.pos_x -= game->player.dir_y * MOVE_SPEED;
 	}
 	if (direction == RIGHT)
 	{
-		game->player.player_y -= game->player.dir_x * MOVE_SPEED;
-		game->player.player_x += game->player.dir_y * MOVE_SPEED;
+		game->player.pos_y -= game->player.dir_x * MOVE_SPEED;
+		game->player.pos_x += game->player.dir_y * MOVE_SPEED;
 	}
 }
 

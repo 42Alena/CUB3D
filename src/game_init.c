@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 19:11:17 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:22:05 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	init_map_structure(t_game *game)
 void	init_player_structure(t_game *game)
 {
 	////// version for tests
-	game->player.player_x = 2.5;
-	game->player.player_y = 2.5;
+	game->player.pos_x = 2.5;
+	game->player.pos_y = 2.5;
 	game->player.dir_x = 0;
 	game->player.dir_y = 1;
 	game->player.plane_x = -0.66;
@@ -37,8 +37,8 @@ void	init_player_structure(t_game *game)
 	/////////
 
 	//version original
-	// game->player.player_x = 0;
-	// game->player.player_y = 0;
+	// game->player.pos_x = 0;
+	// game->player.pos_y = 0;
 	// game->player.dir_x = 0;
 	// game->player.dir_y = 0;
 	// game->player.plane_x = 0;
