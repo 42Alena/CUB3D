@@ -6,33 +6,23 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 12:29:09 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:46:30 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-# define LEFT 0
-# define RIGHT 1
-# define UP 2
-# define DOWN 3
 
-
-
-void	rotation(t_game *game, int direction)
+void	rotation(t_game *game, double rot_speed)
 {
 	double	oldDirX;
 	double	oldPlaneX;
-	double	speed;
 
-	speed = ROTATION_SPEED;
-	if (direction == RIGHT)
-		speed = -ROTATION_SPEED;
 	oldDirX = game->player.dir_x;
-	game->player.dir_x = game->player.dir_x * cos(speed) - game->player.dir_y * sin(speed);
-	game->player.dir_y = oldDirX * sin(speed) + game->player.dir_y * cos(speed);
+	game->player.dir_x = game->player.dir_x * cos(rot_speed) - game->player.dir_y * sin(rot_speed);
+	game->player.dir_y = oldDirX * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
 	oldPlaneX = game->player.plane_x;
-	game->player.plane_x = game->player.plane_x * cos(speed) - game->player.plane_y * sin(speed);
-	game->player.plane_y = oldPlaneX * sin(speed) + game->player.plane_y * cos(speed);
+	game->player.plane_x = game->player.plane_x * cos(rot_speed) - game->player.plane_y * sin(rot_speed);
+	game->player.plane_y = oldPlaneX * sin(rot_speed) + game->player.plane_y * cos(rot_speed);
 }
 
 int	distance_to_wall(t_game *game, double check_x, double check_y)
@@ -111,9 +101,9 @@ void	key_press(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_A)
 		move(game, LEFT);
 	else if (keydata.key == MLX_KEY_RIGHT)
-		rotation(game, RIGHT);
+		rotation(game, ROTATION_SPEED);
 	else if (keydata.key == MLX_KEY_LEFT)
-		rotation(game, LEFT);
+		rotation(game, -ROTATION_SPEED);
 	else if (keydata.key == MLX_KEY_ESCAPE)
 		exit(1);
 }

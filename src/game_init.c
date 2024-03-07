@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 15:29:34 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:40:11 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void init_player_structure(t_game *game)
 	game->player.player_x = 2.5;
 	game->player.player_y = 2.5;
 	game->player.dir_x = 0;
-	game->player.dir_y = -1;
+	game->player.dir_y = 1;
 	game->player.plane_x = -0.66;
 	game->player.plane_y = 0;
 	/////////
@@ -56,6 +56,8 @@ void init_game_struct(t_game *game)
 	game->wall_tex = get_color(wall);
 	wall = mlx_load_png("./textures/wall3.png");
 	game->wall_tex2 = get_color(wall);
+	wall = mlx_load_png("./textures/door.png");
+	game->wall_tex = get_color(wall);
 	wall = mlx_load_png("./textures/windowspace.png");
 	game->wall_tex3 = get_color(wall);
 	wall = mlx_load_png("./textures/wall2.png");
@@ -65,6 +67,8 @@ void init_game_struct(t_game *game)
 	wall = mlx_load_png("./textures/ceiling.png");
 	game->ceiling = get_color(wall);
 	game->image = NULL;
+	game->mouse.mouse_x = WINDOW_WIDTH / 2;
+	game->mouse.mouse_y = WINDOW_HEIGHT / 2;
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error(game, "Could not initialize MLX");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 16:24:24 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:46:16 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,13 @@
 # define IMAGE_HEIGHT 1024
 # define FLOOR_WIDTH 512
 # define FLOOR_HEIGHT 512
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.05
 # define ROTATION_SPEED 0.1
+# define LEFT 0
+# define RIGHT 1
+# define UP 2
+# define DOWN 3
+
 
 
 typedef enum e_bool
@@ -105,6 +110,13 @@ typedef struct s_player
 	double		plane_y;
 }	t_player;
 
+typedef struct s_mouse
+{
+	double	mouse_x;
+	double	mouse_y;
+}	t_mouse;
+
+
 typedef struct s_game
 {
 	mlx_t			*mlx;
@@ -115,6 +127,7 @@ typedef struct s_game
 	u_int32_t		*wall_tex4;
 	u_int32_t		*floor;
 	u_int32_t		*ceiling;
+	t_mouse			mouse;
 	t_map			map;
 	t_player		player;
 	t_ray			ray;
@@ -125,6 +138,9 @@ typedef struct s_game
 
 //raycasting.c
 void	raycasting(t_game *game);
+
+//minimap
+void	minimap(t_game *game);
 
 //raycasting.c
 void	distance_and_height(t_game *game);
@@ -141,8 +157,8 @@ void	raycasting(t_game* game);
 uint32_t	*get_color(mlx_texture_t *texture);
 
 // game_init.c 
-void init_map_structure(t_game *game);
-void init_player_structure(t_game *game);
+void	init_map_structure(t_game *game);
+void	init_player_structure(t_game *game);
 void	init_game_struct(t_game *game);
 
 //error.c
@@ -150,6 +166,7 @@ void	ft_error(t_game *game, char *error_msg);
 
 //key_press
 void	key_press(mlx_key_data_t keydata, void *param);
+void	rotation(t_game *game, double rot_speed);
 
 //map_check
 

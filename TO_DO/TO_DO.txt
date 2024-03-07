@@ -2,22 +2,30 @@ BEFORE PUSH:
 [] delete .git for MLX42. For evaluation: MLX42 must be also pushed to intra
 
 07.03
+[] try to implement sprites
+[] find main GAME_CONCEPT/IDEA 
+[] memory leak when turning player near the wall
+[] try to implement sprites
+[] find main GAME_CONCEPT/IDEA 
+[] find better pictures
+[] EXIT without memory leaks
+[] Create menu
+[] Add music
+[] write custom mlx_put_pixel
+[] figure out how to draw a minimap
+[] Display door and open it (animation?)
+[] memory leak when turning player near the wall
+[x] improve mouse rotation (rotate even when mouse is not moving)
+[x] rotate player with mouse
 [x] moved textures to new folder
 [x] changed absolute path to relative path to textures.png inf init_game_struct()
 [x] libft must compile with cc, not gcc
 [x] moved all init_ft to new created init_game.c
-[] find better pictures
-[] EXIT without memory leaks
-[ ] write custom mlx_put_pixel
-[] create minimap
 [x] A,D keys to go left and right
 [x] -> and <- move the view
 [x] split key_press
 [x] ESC key
 [x] fix wall collision
-[] memory leak when turning player near the wall
-[] try to implement sprites
-[] find main GAME_CONCEPT/IDEA 
 
 06.03
 [x] start thinking about main GAME_CONCEPT/IDEA
