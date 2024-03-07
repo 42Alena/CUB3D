@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 14:13:24 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:24:24 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void	raycasting(t_game* game);
 
 //game.c
 uint32_t	*get_color(mlx_texture_t *texture);
+
 // game_init.c 
 void init_map_structure(t_game *game);
 void init_player_structure(t_game *game);
@@ -151,8 +152,15 @@ void	ft_error(t_game *game, char *error_msg);
 void	key_press(mlx_key_data_t keydata, void *param);
 
 //map_check
+
+//////TO TEST
+void print_map_pos_x_y(t_game *game);
+void print_map(t_game *game);
+///END_TO TEST////////////////
+
 int		check_input(int argc, char **argv);
 void	print_map(t_game *game);
+void	check_maps_characters(t_game *game);
 
 //map_save.c
 t_bool	save_player_structure(t_game *game, char player_pos_dir);

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 13:52:47 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:27:45 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int	main(int argc, char **argv)
 	init_game_struct(&game);
 	check_map(&game, argv[1]);
 	map_read(&game, argv[1]);
+	check_maps_characters(&game);
 
 	/////////////Alena
 	///to test map. Delete if not need
 	//print_map(&game);
 	//TODO:
-	//check_maps_characters(&game);
+	//check walls
 	////////////////////////////////
 
 	mlx_key_hook(game.mlx, key_press, &game);

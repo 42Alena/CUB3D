@@ -2,7 +2,8 @@ BEFORE PUSH:
 [] delete .git for MLX42. For evaluation: MLX42 must be also pushed to intra
 
 07.03
-
+[x] moved textures to new folder
+[x] changed absolute path to relative path to textures.png inf init_game_struct()
 [x] libft must compile with cc, not gcc
 [x] moved all init_ft to new created init_game.c
 [] find better pictures
