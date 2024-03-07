@@ -2,6 +2,7 @@ BEFORE PUSH:
 [] delete .git for MLX42. For evaluation: MLX42 must be also pushed to intra
 
 07.03
+
 [] try to implement sprites
 [] find main GAME_CONCEPT/IDEA 
 [] memory leak when turning player near the wall
@@ -14,6 +15,8 @@ BEFORE PUSH:
 [] figure out how to draw a minimap
 [] Display door and open it (animation?)
 [] memory leak when turning player near the wall
+[x] check player in map
+[x] save player in  struct player 
 [x] Added main menu image (click with mouse to close it)
 [x] improve mouse rotation (rotate even when mouse is not moving)
 [x] rotate player with mouse

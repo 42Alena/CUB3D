@@ -9,6 +9,7 @@ SOURCES_M  := \
     ./src/main.c\
 	./src/game.c\
 	./src/game_init.c\
+	./src/player_save.c\
 	./src/error.c\
 	./src/key_press.c\
 	./src/map_check.c\

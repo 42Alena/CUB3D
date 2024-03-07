@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 19:22:05 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 20:22:02 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,10 @@ uint32_t	*get_color(mlx_texture_t *texture);
 void	init_map_structure(t_game *game);
 void	init_player_structure(t_game *game);
 void	init_game_struct(t_game *game);
+
+//player_save.c 
+void save_player_pos_dir(t_game *game, char player_dir, int x, int y);
+void	save_player_struct(t_game *game, char player_dir, int x, int y);
 
 //error.c
 void	ft_error(t_game *game, char *error_msg);

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:38:59 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 19:19:18 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 20:25:38 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,20 +116,15 @@ void	check_maps_characters(t_game *game)
         while (x < game->map.cols)
 		{
 			c = game->map.saved_map[y][x];
-			//CHECK PLAYER
 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 			{
-				player_count += 1;
-				//TODO: save player
-				//save_player_structure(t_game *game, char player_pos_dir
-				game->player.pos_x = x;
-				game->player.pos_y = y;
-				if (player_count > 1)
-					ft_error(game, "Map's requirements: set player direction to N,S,E or W");
+				save_player_struct(game, c, x, y);
+					player_count += 1;
+			if (player_count > 1)
+				ft_error(game, "Map's requirements: set player direction to N,S,E or W");
 			}
             x++;
         }
         y++;
     }
-
 }
