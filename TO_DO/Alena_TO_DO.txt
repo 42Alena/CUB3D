@@ -1,0 +1,77 @@
+ADD in TO_DO.txt
+
+
+---------------------------------------
+MAP_INFO:
+	[]each type of information from an element can be separated by one or more space(s).
+	[] map_info  lines can be with \n or ' ' - ignore them
+	[] can be different order for maps_info
+
+
+TEXTURES	
+	[]LETTERS: NO|SO|WE|EA
+	[] PATH:
+		[]cann be opened in read mode only?
+		[] check texture in not empty file
+	[] LETTERS
+		[]NO|SO|WE|EA
+		[]fill player_struct, according to  player_direction NO|SO|WE|EA:
+		[] if (dir_x== 0 && dir_y==0) error_exit("No direction for player set)
+	[] is valid path:
+COLORS:
+	[] valid letters: F|C
+	[] if real RGB colours (220,100,0= R,G,B colors in range [0,255]: 0, 255, 255)
+------------------------------------------
+MAP:
+	[]  map must be allways LAST in map.cub
+	[] spaces before and after main map walls are part of the map
+	[] INSIDE map:
+		[] no \n new lines
+		[] no spaces incide map between walls
+	[]	must be surrounded by walls:
+		[]if each line begin and ends with 1
+		[]if each line begin and ends with 1
+	[]  add flood_fill to check, if player on start game surrounded by walls
+
+PLAYER:
+	[] CHECK IF ONLY ONE PLAYER
+	[] SAVE PLAYER information in struct:
+	[] player: start coordinates
+	[] player: direction N|S|O|E
+	[]  is player position surrounded by walls with no moves(flood_fill to check)
+
+
+/* The map must be:
+1. closed/surrounded by walls, if not the program must return an error.
+2. Except for the map content, each type of element can be separated by one or more empty line(s).
+3.  Except for the map content which always has to be the last, each type of element can be set in any order in the file.
+
+4. Except for the map, each type of information from an element can be separated by one or more space(s).
+
+5. The map must be parsed as it looks in the file. Spaces are a valid part of the map and are up to you to handle. 
+
+6. You must be able to parse any kind of map, as long as it respects the rules of the map. 
+
+_______./maps/map.cub_________________________
+NO ./path_to_the_north_texture
+SO ./path_to_the_south_texture
+WE ./path_to_the_west_texture
+EA ./path_to_the_east_texture
+F 220,100,0
+C 225,30,0
+1111111111111111111111111
+1000000000110000000000001
+1011000001110000000000001
+1001000000000000000000001
+111111111011000001110000000000001
+100000000011000001110111111111111
+11110111111111011100000010001
+11110111111111011101010010001
+11000000110101011100000010001
+10000000000000001100000010001
+10000000000000001101010010001
+11000001110101011111011110N0111
+11110111 1110101 101111010001
+11111111 1111111 111111111111
+____________./maps/map.cub_________________________
+*/

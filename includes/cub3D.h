@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/06 17:45:42 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:13:24 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ typedef struct s_map
 	char	**saved_map;
 	int		cols;
 	int		rows;
-	char 	*no_texture;
-	char 	*so_texture;
-	char 	*we_texture;
-	char 	*ea_texture;
+	char 	*n_texture;
+	char 	*s_texture;
+	char 	*w_texture;
+	char 	*e_texture;
 	char 	*floor_color;
 	char 	*ceiling_color;
 }	t_map;
@@ -126,7 +126,22 @@ typedef struct s_game
 //raycasting.c
 void	raycasting(t_game *game);
 
+//raycasting.c
+void	distance_and_height(t_game *game);
+void	init_ray(t_game *game, int i, int w);
+void	calculate_step(t_game *game);
+void	hit_wall(t_game* game);
+void	calculate_start_end(t_game *game);
+void	calculate_floor_ceiling(t_game *game, t_floor *floor);
+void	draw_floor_ceiling(t_game *game, int x);
+void	draw(t_game *game, int x);
+void	raycasting(t_game* game);
+
 //game.c
+uint32_t	*get_color(mlx_texture_t *texture);
+// game_init.c 
+void init_map_structure(t_game *game);
+void init_player_structure(t_game *game);
 void	init_game_struct(t_game *game);
 
 //error.c
@@ -140,7 +155,8 @@ int		check_input(int argc, char **argv);
 void	print_map(t_game *game);
 
 //map_save.c
-void	map_init(t_game *game);
+t_bool	save_player_structure(t_game *game, char player_pos_dir);
+void	map_save(t_game *game);
 void	map_read(t_game *game, char *filename);
 void	check_maps_cols_rows(t_game *game, int fd);
 void	check_map(t_game *game, char *filename);

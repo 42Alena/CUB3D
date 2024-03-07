@@ -6,13 +6,51 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/06 15:39:17 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:10:11 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void map_init(t_game *game)
+
+t_bool save_player_structure(t_game *game, char player_pos_dir)
+{
+	if (player_pos_dir == 'N')
+	{
+		game->player.dir_x = -1;
+		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.plane_y = 0.66;
+		return (TRUE);
+	}
+	else if (player_pos_dir == 'S')
+	{
+		game->player.dir_x = 1;
+		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.plane_y = 0.66;
+		return (TRUE);
+	}
+	else if (player_pos_dir == 'W')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = -1;
+		game->player.plane_x = -0.66;
+		game->player.plane_y = 0;
+		return (TRUE);
+	}
+	else if (player_pos_dir == 'E')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = 1;
+		game->player.plane_x = -0.66;
+		game->player.plane_y = 0;
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
+void map_save(t_game *game)
 {
 	int		i;
 	int		j;
@@ -47,7 +85,7 @@ void	map_read(t_game *game, char *filename)
 	if (fd == -1)
 		ft_error(game, "Failure of opening map");
 	y = 0;
-	map_init(game);
+	map_save(game);
 	while (TRUE)
 	{
 		x = 0;
