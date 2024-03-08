@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/08 16:37:14 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:07:06 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 #include <fcntl.h>
 
 //GAME
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 960
+// # define WINDOW_WIDTH 1920
+// # define WINDOW_HEIGHT 960
 # define IMAGE_WIDTH 1024
 # define IMAGE_HEIGHT 1024
 # define FLOOR_WIDTH 512
@@ -120,7 +120,7 @@ typedef struct s_ray
 	double		wall_x;
 	int			tex_x;
 	double		step;
-	double		ZBuffer[WINDOW_WIDTH];
+	double		ZBuffer[1920];
 }	t_ray;
 
 typedef struct s_player
@@ -139,10 +139,8 @@ typedef struct s_mouse
 	double	mouse_y;
 }	t_mouse;
 
-
-typedef struct s_game
+typedef struct s_textures
 {
-	mlx_t			*mlx;
 	mlx_image_t		*image;
 	u_int32_t		*wall_tex;
 	u_int32_t		*wall_tex2;
@@ -151,8 +149,18 @@ typedef struct s_game
 	u_int32_t		*floor;
 	u_int32_t		*ceiling;
 	u_int32_t		*barrel;
+	u_int32_t		*c3po;
+	mlx_texture_t	*cursor;
 	mlx_image_t		*main_menu;
+}	t_textures;
+
+typedef struct s_game
+{
+	mlx_t			*mlx;
+	int				window_width;
+	int				window_height;
 	int				is_menu;
+	t_textures		textures;
 	t_mouse			mouse;
 	t_map			map;
 	t_player		player;
@@ -187,7 +195,7 @@ void	hit_wall(t_game* game);
 void	calculate_start_end(t_game *game);
 void	calculate_floor_ceiling(t_game *game, t_floor *floor);
 void	draw_floor_ceiling(t_game *game, int x);
-void	draw(t_game *game, int x);
+void	draw_walls(t_game *game, int x);
 void	raycasting(t_game* game);
 
 //game.c

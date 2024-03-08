@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:20:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/08 12:36:22 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:58:35 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param
 	&& game->mouse.mouse_y > 265 && game->mouse.mouse_y < 360)
 	{
 		game->is_menu = FALSE;
-		mlx_delete_image(game->mlx, game->main_menu);
+		mlx_delete_image(game->mlx, game->textures.main_menu);
 	}
 	(void)mods;
 }
@@ -42,7 +42,7 @@ double	rotation_speed(t_game *game, int direction, int position, double xpos)
 	if (direction == RIGHT)
 	{
 		if (game->mouse.mouse_x > xpos ||\
-		game->mouse.mouse_x > WINDOW_WIDTH / 1.1)
+		game->mouse.mouse_x > game->window_width / 1.1)
 			return (FALSE);
 		speed = (ROTATION_SPEED / 10) / position;
 		if (speed < ROTATION_SPEED / 30)
@@ -51,7 +51,7 @@ double	rotation_speed(t_game *game, int direction, int position, double xpos)
 	else if (direction == LEFT)
 	{
 		if (game->mouse.mouse_x < xpos ||\
-		game->mouse.mouse_x < WINDOW_WIDTH * 1.1 - WINDOW_WIDTH)
+		game->mouse.mouse_x < game->window_width * 1.1 - game->window_width)
 			return (FALSE);
 		speed = (-ROTATION_SPEED / 10) / position;
 		if (speed < ROTATION_SPEED / 30)
@@ -71,23 +71,22 @@ void	cursor(double xpos, double ypos, void *param)
 	double	position;
 
 	game = param;
-	if (xpos > WINDOW_WIDTH / 2)
+	if (xpos > game->window_width / 2)
 	{
-		position = WINDOW_WIDTH - xpos;
+		position = game->window_width - xpos;
 		if (position <= 0)
 			position = 1;
 		speed = rotation_speed(game, RIGHT, position, xpos);
 	}
 	else
 	{
-		position = WINDOW_WIDTH + xpos - WINDOW_WIDTH;
+		position = game->window_width + xpos - game->window_width;
 		if (position <= 0)
 			position = 1;
 		speed = rotation_speed(game, LEFT, position, xpos);
 	}
 	game->mouse.mouse_y = ypos;
 	game->mouse.mouse_x = xpos;
-	printf("x:%f y:%f\n", xpos, ypos);
 	if (speed != 0)
 		rotation(game, speed);
 }

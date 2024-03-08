@@ -1,7 +1,26 @@
 BEFORE PUSH:
 [] delete .git for MLX42. For evaluation: MLX42 must be also pushed to intra
 
+Nice to have
+[] Add music
+[] change speed in settings
+[] pause menu
+[] timer before explosion
+
+09.03
+[] find main GAME_CONCEPT/IDEA 
+[] memory leak when turning player near the wall 
+[] find better pictures
+[] Add more sprites
+[] EXIT without memory leaks
+[] write custom mlx_put_pixel
+[] figure out how to draw a minimap
+[] Display door and open it (animation?)
+
 08.03
+[x] added message from C3PO
+[x] added custom cursor
+[x] removed for loops from raycasting
 [x] Added sprites.c file for drawing sprites
 [x] Sprites implemented
 [x] Added floor_ceiling.c file for drawing floor and ceiling
@@ -10,17 +29,6 @@ BEFORE PUSH:
 [x] Added new mouse.c file for mouse functions
 
 07.03
-[] try to implement sprites
-[] find main GAME_CONCEPT/IDEA 
-[] memory leak when turning player near the wall
-[] find main GAME_CONCEPT/IDEA 
-[] find better pictures
-[] EXIT without memory leaks
-[] Add music
-[] write custom mlx_put_pixel
-[] figure out how to draw a minimap
-[] Display door and open it (animation?)
-[] memory leak when turning player near the wall
 [x] check player in map
 [x] save player in  struct player 
 [x] Added main menu image (click with mouse to close it)

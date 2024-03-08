@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:31:02 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/08 16:31:17 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:29:12 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,23 @@ void	draw_floor_ceiling(t_game *game, int x)
 {
 	t_floor		floor;
 	uint32_t	color;
+	int			y;
 
 	calculate_floor_ceiling(game, &floor);
-	for(int y = game->ray.draw_end + 1; y < WINDOW_HEIGHT; y++)
+	y = game->ray.draw_end + 1;
+	while (y < game->window_height)
 	{
-		floor.currentDist = WINDOW_HEIGHT / (2.0 * y - WINDOW_HEIGHT);
+		floor.currentDist = game->window_height / (2.0 * y - game->window_height);
 		floor.weight = (floor.currentDist - floor.distPlayer)\
 		/ (floor.distWall - floor.distPlayer);
 		floor.currentFloorX = floor.weight * floor.floorXWall + (1.0 - floor.weight) * game->player.pos_x;
 		floor.currentFloorY = floor.weight * floor.floorYWall + (1.0 - floor.weight) * game->player.pos_y;
 		floor.floorTexX = (int)(floor.currentFloorX * FLOOR_WIDTH) % FLOOR_WIDTH;
 		floor.floorTexY = (int)(floor.currentFloorY * FLOOR_HEIGHT) % FLOOR_HEIGHT;
-		color = game->floor[FLOOR_WIDTH * floor.floorTexY + floor.floorTexX];
-		mlx_put_pixel(game->image, x, y, color);
-		color = game->ceiling[FLOOR_WIDTH * floor.floorTexY + floor.floorTexX];
-		mlx_put_pixel(game->image, x, WINDOW_HEIGHT - y, color);
+		color = game->textures.floor[FLOOR_WIDTH * floor.floorTexY + floor.floorTexX];
+		mlx_put_pixel(game->textures.image, x, y, color);
+		color = game->textures.ceiling[FLOOR_WIDTH * floor.floorTexY + floor.floorTexX];
+		mlx_put_pixel(game->textures.image, x, game->window_height - y, color);
+		y++;
 	}
-
 }
