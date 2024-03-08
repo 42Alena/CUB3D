@@ -15,6 +15,9 @@ SOURCES_M  := \
 	./src/map_check.c\
 	./src/map_save.c\
 	./src/raycasting.c\
+	./src/mouse.c\
+	./src/sprites.c\
+	./src/floor_ceiling.c
 
 OBJECTS := $(SOURCES_M:.c=.o)
 

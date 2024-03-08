@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 19:22:05 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:14:45 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ int	check_collision(t_game *game, int direction)
 		check_y = game->player.pos_y + game->player.dir_y * MOVE_SPEED;
 		check_x = game->player.pos_x + game->player.dir_x * MOVE_SPEED;
 	}
-	if (direction == LEFT)
+	if (direction == RIGHT)
 	{
 		check_y = game->player.pos_y + game->player.dir_x * MOVE_SPEED;
 		check_x = game->player.pos_x - game->player.dir_y * MOVE_SPEED;
 	}
-	if (direction == RIGHT)
+	if (direction == LEFT)
 	{
 		check_y = game->player.pos_y - game->player.dir_x * MOVE_SPEED;
 		check_x = game->player.pos_x + game->player.dir_y * MOVE_SPEED;
@@ -75,12 +75,12 @@ void	move(t_game *game, int direction)
 		game->player.pos_y += game->player.dir_y * MOVE_SPEED;
 		game->player.pos_x += game->player.dir_x * MOVE_SPEED;
 	}
-	if (direction == LEFT)
+	if (direction == RIGHT)
 	{
 		game->player.pos_y += game->player.dir_x * MOVE_SPEED;
 		game->player.pos_x -= game->player.dir_y * MOVE_SPEED;
 	}
-	if (direction == RIGHT)
+	if (direction == LEFT)
 	{
 		game->player.pos_y -= game->player.dir_x * MOVE_SPEED;
 		game->player.pos_x += game->player.dir_y * MOVE_SPEED;

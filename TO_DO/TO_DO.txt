@@ -1,12 +1,18 @@
 BEFORE PUSH:
 [] delete .git for MLX42. For evaluation: MLX42 must be also pushed to intra
 
-07.03
+08.03
+[x] Added sprites.c file for drawing sprites
+[x] Sprites implemented
+[x] Added floor_ceiling.c file for drawing floor and ceiling
+[x] Working play button in the main menu
+[x] Mouse rotation improved
+[x] Added new mouse.c file for mouse functions
 
+07.03
 [] try to implement sprites
 [] find main GAME_CONCEPT/IDEA 
 [] memory leak when turning player near the wall
-[] try to implement sprites
 [] find main GAME_CONCEPT/IDEA 
 [] find better pictures
 [] EXIT without memory leaks

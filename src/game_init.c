@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 19:46:07 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:20:52 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_player_structure(t_game *game)
 {
 	////// version for tests
 	game->player.pos_x = 2.5;
-	game->player.pos_y = 2.5;
+	game->player.pos_y = 1.5;
 	game->player.dir_x = 0;
 	game->player.dir_y = 1;
 	game->player.plane_x = -0.66;
@@ -64,14 +64,17 @@ void	init_game_struct(t_game *game)
 	wall = mlx_load_png("./textures/windowspace.png");
 	game->wall_tex3 = get_color(wall);
 	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall2.png");
+	wall = mlx_load_png("./textures/starwall.png");
 	game->wall_tex4 = get_color(wall);
 	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/floor.png");
+	wall = mlx_load_png("./textures/floor_new.png");
 	game->floor = get_color(wall);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/ceiling.png");
 	game->ceiling = get_color(wall);
+	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/barrel2.png");
+	game->barrel = get_color(wall);
 	mlx_delete_texture(wall);
 	game->image = NULL;
 	game->is_menu = TRUE;
@@ -80,7 +83,7 @@ void	init_game_struct(t_game *game)
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3D", true);
 	if (!game->mlx)
 		ft_error(game, "Could not initialize MLX");
-	xpm_t *xpm42 = mlx_load_xpm42("./textures/menu.xpm42");
+	xpm_t *xpm42 = mlx_load_xpm42("./textures/PLAY.xpm42");
 	game->main_menu = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_image_to_window(game->mlx, game->main_menu, 0, 0);
 	mlx_delete_xpm42(xpm42);

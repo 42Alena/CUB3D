@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 20:22:02 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:37:14 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define RIGHT 1
 # define UP 2
 # define DOWN 3
+# define VMOVE 256.0
+# define SPRITE_SIZE 128
 
 
 
@@ -47,6 +49,26 @@ typedef enum e_bool
 	FALSE = 0,
 	TRUE = 1
 }	t_bool;
+
+typedef	struct s_sprite
+{
+	double 	transform_x;
+	double 	transform_y;
+	double	sprite_x;
+	double	sprite_y;
+	double	inv_det;
+	int		vMoveScreen;
+	int		sprite_screen_x;
+	int		sprite_height;
+	int		sprite_width;
+	int		draw_start_y;
+	int		draw_start_x;
+	int		draw_end_y;
+	int		draw_end_x;
+	int 	d;
+	int		tex_y;
+	int		tex_x; 
+}	t_sprite;
 
 typedef struct s_floor
 {
@@ -61,7 +83,7 @@ typedef struct s_floor
 	int 	floorTexX;
 	int		floorTexY;
 
-} t_floor;
+}	t_floor;
 
 typedef struct s_map
 {
@@ -98,6 +120,7 @@ typedef struct s_ray
 	double		wall_x;
 	int			tex_x;
 	double		step;
+	double		ZBuffer[WINDOW_WIDTH];
 }	t_ray;
 
 typedef struct s_player
@@ -127,11 +150,13 @@ typedef struct s_game
 	u_int32_t		*wall_tex4;
 	u_int32_t		*floor;
 	u_int32_t		*ceiling;
+	u_int32_t		*barrel;
 	mlx_image_t		*main_menu;
 	int				is_menu;
 	t_mouse			mouse;
 	t_map			map;
 	t_player		player;
+	t_sprite		sprite;
 	t_ray			ray;
 }	t_game;
 
@@ -143,6 +168,16 @@ void	raycasting(t_game *game);
 
 //minimap
 void	minimap(t_game *game);
+
+//sprites.c
+void	draw_sprites(t_game *game);
+
+//floor_ceiling.c
+void	draw_floor_ceiling(t_game *game, int x);
+
+//mouse.c
+void	cursor(double xpos, double ypos, void *param);
+void	mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 
 //raycasting.c
 void	distance_and_height(t_game *game);

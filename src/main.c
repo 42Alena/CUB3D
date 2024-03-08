@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 19:01:27 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:20:38 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,54 +30,11 @@ void ft_hook(void *param)
 			mlx_delete_image(game->mlx, game->image);
 		raycasting(game);
 		minimap(game);
-		if (game->mouse.mouse_x > WINDOW_WIDTH - 50)
+		if (game->mouse.mouse_x > WINDOW_WIDTH / 1.1)
 			rotation(game, ROTATION_SPEED / 2);
-		else if (game->mouse.mouse_x < WINDOW_WIDTH - WINDOW_WIDTH + 50)
+		else if (game->mouse.mouse_x < WINDOW_WIDTH * 1.1 - WINDOW_WIDTH)
 			rotation(game, -ROTATION_SPEED / 2);
 	}
-}
-
-void	mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
-{
-	t_game	*game;
-
-	game = param;
-	if (button == 0 && action == 0)
-	{
-		game->is_menu = FALSE;
-		mlx_delete_image(game->mlx, game->main_menu);
-	}
-	(void)mods;
-}
-
-void	cursor(double xpos, double ypos, void *param)
-{
-	t_game *game;
-	double	speed;
-
-	game = param;
-	game->mouse.mouse_y = ypos;
-	if (xpos > WINDOW_WIDTH / 2)
-	{
-		if (xpos < WINDOW_WIDTH / 1.5 || game->mouse.mouse_x > xpos)
-		{
-			game->mouse.mouse_x = xpos;
-			return ;
-		}
-		game->mouse.mouse_x = xpos;
-		speed = ROTATION_SPEED / 5;
-	}
-	else
-	{
-		if (xpos > WINDOW_WIDTH / 3 || game->mouse.mouse_x < xpos)
-		{
-			game->mouse.mouse_x = xpos;
-			return ;
-		}
-		game->mouse.mouse_x = xpos;
-		speed = -ROTATION_SPEED / 5;
-	}
-	rotation(game, speed);
 }
 
 int	main(int argc, char **argv)
