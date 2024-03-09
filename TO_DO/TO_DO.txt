@@ -16,9 +16,12 @@ Nice to have
 [] find main GAME_CONCEPT/IDEA 
 [] memory leak when turning player near the wall 
 [] find better pictures
-[] Crouch when c is pressed
+[] fix multiple sprites
 
 09.03
+[x] raycasting split into multiple files
+[x] norminette
+[x] Added lightsaber
 [x] Display door and open it (animation?)
 [x] Added c3po sprite
 

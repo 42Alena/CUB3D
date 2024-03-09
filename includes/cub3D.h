@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/09 17:48:54 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:59:47 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@
 // # define WINDOW_HEIGHT 960
 # define IMAGE_WIDTH 1024
 # define IMAGE_HEIGHT 1024
-# define FLOOR_WIDTH 512
-# define FLOOR_HEIGHT 512
+// floor and ceiling size
+# define F_WIDTH 512
+# define F_HEIGHT 512
 # define MOVE_SPEED 0.05
 # define ROTATION_SPEED 0.1
 # define LEFT 0
@@ -83,8 +84,8 @@ typedef struct s_floor
 	double	currentFloorX;
 	double	currentFloorY;
 	double	weight;
-	int 	floorTexX;
-	int		floorTexY;
+	int 	tex_x;
+	int		tex_y;
 
 }	t_floor;
 
@@ -152,6 +153,7 @@ typedef struct s_textures
 	u_int32_t		*ceiling;
 	u_int32_t		*c3po;
 	u_int32_t		*bottom_image;
+	u_int32_t		*lightsaber;
 	u_int32_t		*r2d2;
 	mlx_texture_t	*cursor;
 	mlx_image_t		*main_menu;
@@ -163,6 +165,7 @@ typedef struct s_game
 	int				window_width;
 	int				window_height;
 	int				is_menu;
+	int				is_opened;
 	t_textures		textures;
 	t_mouse			mouse;
 	t_map			map;
@@ -176,6 +179,13 @@ typedef struct s_game
 
 //raycasting.c
 void	raycasting(t_game *game);
+
+//calculations_raycasting.c
+void	calculate_start_end(t_game *game);
+void	hit_wall(t_game	*game);
+void	calculate_step(t_game *game);
+void	init_ray(t_game *game, int i, int w);
+void	distance_and_height(t_game *game);
 
 //minimap
 void	minimap(t_game *game);

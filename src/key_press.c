@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/09 17:29:30 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:32:00 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,4 @@ void	key_press(mlx_key_data_t keydata, void *param)
 		rotation(game, -ROTATION_SPEED);
 	else if (keydata.key == MLX_KEY_ESCAPE)
 		exit(1);
-	// else if (keydata.key == MLX_KEY_I)
-	// 	music();
 }

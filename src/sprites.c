@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:28:06 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/09 17:45:07 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:46:42 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	calculate_sprite(t_game *game, int index)
 	{
 		game->sprite.sprite_x = 3.5 - game->player.pos_x;
 		game->sprite.sprite_y = 3.5 - game->player.pos_y;
-		game->sprite.vMoveScreen = (int)(VMOVE / game->sprite.transform_y);
+		game->sprite.vMoveScreen = (int)((VMOVE * 3) / game->sprite.transform_y);
 	}
 	else if (index == 1)
 	{
 		game->sprite.sprite_x = 5.5 - game->player.pos_x;
-		game->sprite.sprite_y = 3.5 - game->player.pos_y;
-		game->sprite.vMoveScreen = (int)((VMOVE * 1.5) / game->sprite.transform_y);
+		game->sprite.sprite_y = 4.5 - game->player.pos_y;
+		game->sprite.vMoveScreen = (int)((VMOVE * 3) / game->sprite.transform_y);
 	}
 	game->sprite.inv_det = 1.0 / (game->player.plane_x * game->player.dir_y\
 	- game->player.dir_x* game->player.plane_y);

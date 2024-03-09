@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/09 17:09:54 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:28:24 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,13 @@ void	init_game_struct(t_game *game)
 	wall = mlx_load_png("./textures/warning.png");
 	game->textures.bottom_image = get_color(wall);
 	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/lightsaber.png");
+	game->textures.lightsaber = get_color(wall);
+	mlx_delete_texture(wall);
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
 	game->textures.image = NULL;
 	game->is_menu = TRUE;
+	game->is_opened = FALSE;
 	game->mouse.mouse_x = 0;
 	game->mouse.mouse_y = 0;
 	game->mlx = mlx_init(1920, 1080, "CUB3D", true);
