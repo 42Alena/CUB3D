@@ -15,7 +15,8 @@ Nice to have
 [] EXIT without memory leaks
 [] write custom mlx_put_pixel
 [] figure out how to draw a minimap
-[] Display door and open it (animation?)
+[x] Display door and open it (animation?)
+[x] Added c3po sprite
 
 08.03
 [x] added message from C3PO

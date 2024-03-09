@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/08 18:07:27 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:49:48 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,17 @@ void	init_game_struct(t_game *game)
 
 	init_map_structure(game);
 	init_player_structure(game);
-	wall = mlx_load_png("./textures/ceiling.png");
-	game->textures.wall_tex = get_color(wall);
+	wall = mlx_load_png("./textures/wall.png");
+	game->textures.textures[0]= get_color(wall);
+	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/wall2.png");
+	game->textures.textures[1] = get_color(wall);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/wall3.png");
-	game->textures.wall_tex2 = get_color(wall);
+	game->textures.textures[2] = get_color(wall);
 	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/door.png");
-	game->textures.wall_tex = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/windowspace.png");
-	game->textures.wall_tex3 = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/starwall.png");
-	game->textures.wall_tex4 = get_color(wall);
+	wall = mlx_load_png("./textures/wall4.png");
+	game->textures.textures[3] = get_color(wall);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/floor_new.png");
 	game->textures.floor = get_color(wall);
@@ -73,11 +70,20 @@ void	init_game_struct(t_game *game)
 	wall = mlx_load_png("./textures/ceiling.png");
 	game->textures.ceiling = get_color(wall);
 	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/barrel2.png");
-	game->textures.barrel = get_color(wall);
-	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/c3po.png");
 	game->textures.c3po = get_color(wall);
+	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/r2d2.png");
+	game->textures.r2d2 = get_color(wall);
+	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/door.png");
+	game->textures.door = get_color(wall);
+	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/dooropen.png");
+	game->textures.door_open = get_color(wall);
+	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/warning.png");
+	game->textures.bottom_image = get_color(wall);
 	mlx_delete_texture(wall);
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
 	game->textures.image = NULL;
@@ -88,7 +94,6 @@ void	init_game_struct(t_game *game)
 	if (!game->mlx)
 		ft_error(game, "Could not initialize MLX");
 	mlx_get_monitor_size(0, &game->window_width, &game->window_height);
-	printf("w:%d h:%d\n", game->window_width, game->window_height);
 	xpm_t *xpm42 = mlx_load_xpm42("./textures/PLAY.xpm42");
 	game->textures.main_menu = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_image_to_window(game->mlx, game->textures.main_menu, 0, 0);

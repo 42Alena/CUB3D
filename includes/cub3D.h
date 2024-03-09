@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/08 18:07:06 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:47:59 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@
 # define RIGHT 1
 # define UP 2
 # define DOWN 3
-# define VMOVE 256.0
-# define SPRITE_SIZE 128
+# define VMOVE 128.0
+# define SPRITE_WIDTH 128
+# define SPRITE_HEIGHT 128
 
 
 
@@ -142,14 +143,14 @@ typedef struct s_mouse
 typedef struct s_textures
 {
 	mlx_image_t		*image;
-	u_int32_t		*wall_tex;
-	u_int32_t		*wall_tex2;
-	u_int32_t		*wall_tex3;
-	u_int32_t		*wall_tex4;
+	u_int32_t		*textures[4];
+	u_int32_t		*door;
+	u_int32_t		*door_open;
 	u_int32_t		*floor;
 	u_int32_t		*ceiling;
-	u_int32_t		*barrel;
 	u_int32_t		*c3po;
+	u_int32_t		*bottom_image;
+	u_int32_t		*r2d2;
 	mlx_texture_t	*cursor;
 	mlx_image_t		*main_menu;
 }	t_textures;

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/08 18:03:21 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:57:49 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void	hit_wall(t_game* game)
 			game->ray.side = 1;
 		}
 		if (game->ray.mapY < 0 || game->ray.mapX < 0 ||\
-		game->map.saved_map[game->ray.mapX][game->ray.mapY] == '1')
+		game->map.saved_map[game->ray.mapX][game->ray.mapY] == '1' ||\
+		game->map.saved_map[game->ray.mapX][game->ray.mapY] == '2')
 			game->ray.hit = 1;
 	}
 }
@@ -108,23 +109,30 @@ void	draw_walls(t_game *game, int x)
 	uint32_t	color;
 	u_int32_t	*texture;
 
+	int texNum = game->map.saved_map[game->ray.mapX][game->ray.mapY];
 	if(game->ray.side == 0 && game->ray.rayDirX > 0)
-		texture = game->textures.wall_tex3;
+		texture = game->textures.textures[0];
     else if(game->ray.side == 0 && game->ray.rayDirX < 0)
-		texture = game->textures.wall_tex2;
+		texture = game->textures.textures[1];
     else if(game->ray.side == 1 && game->ray.rayDirY > 0)
-		texture = game->textures.wall_tex;
+		texture = game->textures.textures[2];
     else
-		texture = game->textures.wall_tex4;
+		texture = game->textures.textures[3];
+	if ((char)texNum == '2')
+		texture = game->textures.door;
+	if ((char)texNum == '2' && game->ray.perpWallDist < 1.2)
+		texture = game->textures.door_open;
 	texPos = (game->ray.draw_start - game->window_height / 2\
 	+ game->ray.line_height / 2) * game->ray.step;
 	y = game->ray.draw_start;
+	printf("texnum:%f\n", game->ray.perpWallDist);
 	while (y < game->ray.draw_end)
 	{
 		texY = (int)texPos;
 		texPos += game->ray.step;
 		color = texture[IMAGE_HEIGHT * texY + game->ray.tex_x];
-		mlx_put_pixel(game->textures.image, x, y++, color);
+		if ((color & 0x00FFFFFF) != 0)
+			mlx_put_pixel(game->textures.image, x, y++, color);
 	}
 	game->ray.ZBuffer[x] = game->ray.perpWallDist;
 }
