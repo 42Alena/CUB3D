@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/09 14:57:49 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:33:09 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ void	draw_walls(t_game *game, int x)
 	texPos = (game->ray.draw_start - game->window_height / 2\
 	+ game->ray.line_height / 2) * game->ray.step;
 	y = game->ray.draw_start;
-	printf("texnum:%f\n", game->ray.perpWallDist);
 	while (y < game->ray.draw_end)
 	{
 		texY = (int)texPos;

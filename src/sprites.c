@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:28:06 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/09 16:03:21 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:45:07 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	draw_sprites(t_game *game)
 	int			i;
 	
 	i = 0;
-	while (i < 2)
+	while (i < 1)
 	{
 		calculate_sprite(game, i);
 		stripe = game->sprite.draw_start_x;
@@ -84,7 +84,7 @@ void	draw_sprites(t_game *game)
 			y = game->sprite.draw_start_y;
 			while (y < game->sprite.draw_end_y)
 			{
-				game->sprite.d = (y-game->sprite.vMoveScreen)\
+				game->sprite.d = (y - game->sprite.vMoveScreen)\
 				* 256 - game->window_height * 128 + game->sprite.sprite_height * 128;
 				game->sprite.tex_y = ((game->sprite.d * SPRITE_HEIGHT) / game->sprite.sprite_height) / 256;
 				if (i == 0)

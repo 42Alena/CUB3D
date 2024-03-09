@@ -7,14 +7,18 @@ Nice to have
 [] pause menu
 [] timer before explosion
 
-09.03
-[] find main GAME_CONCEPT/IDEA 
-[] memory leak when turning player near the wall 
-[] find better pictures
+10.03
+[] Fix problem when displaying more than 1 sprite
 [] Add more sprites
 [] EXIT without memory leaks
 [] write custom mlx_put_pixel
 [] figure out how to draw a minimap
+[] find main GAME_CONCEPT/IDEA 
+[] memory leak when turning player near the wall 
+[] find better pictures
+[] Crouch when c is pressed
+
+09.03
 [x] Display door and open it (animation?)
 [x] Added c3po sprite
 
