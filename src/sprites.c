@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:28:06 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/09 18:46:42 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 13:16:13 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	calculate_sprite(t_game *game, int index)
 	{
 		game->sprite.sprite_x = 3.5 - game->player.pos_x;
 		game->sprite.sprite_y = 3.5 - game->player.pos_y;
-		game->sprite.vMoveScreen = (int)((VMOVE * 3) / game->sprite.transform_y);
+		game->sprite.vMoveScreen = (int)((VMOVE * 1.5) / game->sprite.transform_y);
 	}
 	else if (index == 1)
 	{

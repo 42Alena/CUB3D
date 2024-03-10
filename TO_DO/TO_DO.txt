@@ -17,6 +17,8 @@ Nice to have
 [] memory leak when turning player near the wall 
 [] find better pictures
 [] fix multiple sprites
+[x] movement is more smooth(key press is now handled in loop hook, not in key hook)
+[x] door opening improved
 
 09.03
 [x] raycasting split into multiple files

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/09 18:26:37 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 13:30:41 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,8 @@ void	ft_hook(void *param)
 		raycasting(game);
 		minimap(game);
 		c3po(game);
-		lightsaber(game);
-		// double time = mlx_get_time();
-		// mlx_put_string(game->mlx, ft_itoa((int)time), 120, 100);
+		//lightsaber(game);
+		key_press(game);
 		if (game->mouse.mouse_x > game->window_width / 1.1)
 			rotation(game, ROTATION_SPEED / 2);
 		else if (game->mouse.mouse_x < game->window_width * 1.1 \
@@ -108,16 +107,8 @@ int	main(int argc, char **argv)
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);
 	mlx_mouse_hook(game.mlx, mouse, &game);
-	mlx_key_hook(game.mlx, key_press, &game);
 	mlx_loop_hook(game.mlx, ft_hook, &game);
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }
-
-/////////////Alena
-	///to test map. Delete if not need
-	//print_map(&game);
-	//TODO:
-	//check walls
-	////////////////////////////////

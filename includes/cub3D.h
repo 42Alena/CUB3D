@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/09 18:59:47 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 14:48:19 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ typedef struct s_ray
 	double		wall_x;
 	int			tex_x;
 	double		step;
-	double		ZBuffer[1920];
+	double		*ZBuffer;
+	int			tex_num;
 }	t_ray;
 
 typedef struct s_player
@@ -152,6 +153,7 @@ typedef struct s_textures
 	u_int32_t		*floor;
 	u_int32_t		*ceiling;
 	u_int32_t		*c3po;
+	u_int32_t		*c3po2;
 	u_int32_t		*bottom_image;
 	u_int32_t		*lightsaber;
 	u_int32_t		*r2d2;
@@ -227,7 +229,7 @@ void	save_player_struct(t_game *game, char player_dir, int x, int y);
 void	ft_error(t_game *game, char *error_msg);
 
 //key_press
-void	key_press(mlx_key_data_t keydata, void *param);
+void	key_press(t_game *game);
 void	rotation(t_game *game, double rot_speed);
 
 //map_check

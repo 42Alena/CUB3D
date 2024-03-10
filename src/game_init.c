@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/09 18:28:24 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 14:48:06 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,31 @@ void	init_map_structure(t_game *game)
 	game->map.e_texture = 0;
 	game->map.floor_color = 0;
 	game->map.ceiling_color = 0;
+}
+void	init_ray_struct(t_game *game)
+{
+	game->ray.cameraX = 0;
+	game->ray.deltaDistX = 0;
+	game->ray.deltaDistY = 0;
+	game->ray.draw_end = 0;
+	game->ray.draw_start = 0;
+	game->ray.hit = 0;
+	game->ray.line_height = 0;
+	game->ray.perpWallDist = 0;
+	game->ray.rayDirX = 0;
+	game->ray.rayDirY = 0;
+	game->ray.side = 0;
+	game->ray.sideDistX = 0;
+	game->ray.sideDistY = 0;
+	game->ray.step = 0;
+	game->ray.stepX = 0;
+	game->ray.stepY = 0;
+	game->ray.tex_num = 0;
+	game->ray.tex_x = 0;
+	game->ray.wall_x = 0;
+	game->ray.ZBuffer = malloc(sizeof(double) * (game->window_width + 1));
+	if (!game->ray.ZBuffer)
+		ft_error(game, "Out of memory!");
 }
 
 void	init_player_structure(t_game *game)
@@ -46,12 +71,10 @@ void	init_player_structure(t_game *game)
 }
 
 
-void	init_game_struct(t_game *game)
+void	load_textures(t_game *game)
 {
 	mlx_texture_t	*wall;
 
-	init_map_structure(game);
-	init_player_structure(game);
 	wall = mlx_load_png("./textures/wall.png");
 	game->textures.textures[0]= get_color(wall);
 	mlx_delete_texture(wall);
@@ -73,6 +96,9 @@ void	init_game_struct(t_game *game)
 	wall = mlx_load_png("./textures/c3po.png");
 	game->textures.c3po = get_color(wall);
 	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/c3po2.png");
+	game->textures.c3po2 = get_color(wall);
+	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/r2d2.png");
 	game->textures.r2d2 = get_color(wall);
 	mlx_delete_texture(wall);
@@ -89,21 +115,31 @@ void	init_game_struct(t_game *game)
 	game->textures.lightsaber = get_color(wall);
 	mlx_delete_texture(wall);
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
+}
+
+void	init_game_struct(t_game *game)
+{
+	xpm_t	*xpm42;
+
+	game->window_height = 700;
+	game->window_width = 1000;
+	init_map_structure(game);
+	init_player_structure(game);
+	init_ray_struct(game);
+	load_textures(game);
 	game->textures.image = NULL;
 	game->is_menu = TRUE;
 	game->is_opened = FALSE;
 	game->mouse.mouse_x = 0;
 	game->mouse.mouse_y = 0;
-	game->mlx = mlx_init(1920, 1080, "CUB3D", true);
+	game->mlx = mlx_init(game->window_width, game->window_height, "CUB3D", true);
 	if (!game->mlx)
 		ft_error(game, "Could not initialize MLX");
-	mlx_get_monitor_size(0, &game->window_width, &game->window_height);
-	xpm_t *xpm42 = mlx_load_xpm42("./textures/PLAY.xpm42");
+	xpm42 = mlx_load_xpm42("./textures/PLAY.xpm42");
 	game->textures.main_menu = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_image_to_window(game->mlx, game->textures.main_menu, 0, 0);
 	mlx_delete_xpm42(xpm42);
 }
-
 
 
 // void init_game_struct(t_game *game)

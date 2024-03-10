@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/09 19:00:23 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 13:50:13 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 u_int32_t	*choose_texture(t_game *game)
 {
-	int			tex_num;
 	u_int32_t	*texture;
 
-	tex_num = game->map.saved_map[game->ray.mapX][game->ray.mapY];
-	if (game->ray.side == 0 && game->ray.rayDirX > 0)
+	game->ray.tex_num = game->map.saved_map[game->ray.mapX][game->ray.mapY];
+	if ((char)game->ray.tex_num == '2' && game->is_opened == TRUE)
+		texture = game->textures.door_open;
+	else if ((char)game->ray.tex_num == '2' && game->is_opened == FALSE)
+		texture = game->textures.door;
+	else if (game->ray.side == 0 && game->ray.rayDirX > 0)
 		texture = game->textures.textures[0];
 	else if (game->ray.side == 0 && game->ray.rayDirX < 0)
 		texture = game->textures.textures[1];
@@ -26,10 +29,6 @@ u_int32_t	*choose_texture(t_game *game)
 		texture = game->textures.textures[2];
 	else
 		texture = game->textures.textures[3];
-	if ((char)tex_num == '2')
-		texture = game->textures.door;
-	if ((char)tex_num == '2' && game->ray.perpWallDist < 1.2)
-		texture = game->textures.door_open;
 	return (texture);
 }
 
@@ -63,6 +62,11 @@ void	raycasting(t_game	*game)
 	x = 0;
 	game->textures.image = \
 	mlx_new_image(game->mlx, game->window_width, game->window_height);
+	game->ray.tex_num = game->map.saved_map[game->ray.mapX][game->ray.mapY];
+	if ((char)game->ray.tex_num == '2' && game->ray.perpWallDist > 1.3)
+		game->is_opened = FALSE;
+	else if ((char)game->ray.tex_num == '2' && game->ray.perpWallDist < 1.3)
+		game->is_opened = TRUE;
 	while (x < game->window_width)
 	{
 		init_ray(game, x, game->window_width);

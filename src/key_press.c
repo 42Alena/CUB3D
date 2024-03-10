@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/09 18:32:00 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 14:08:08 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,23 +87,24 @@ void	move(t_game *game, int direction)
 	}
 }
 
-void	key_press(mlx_key_data_t keydata, void *param)
+void	key_press(t_game *game)
 {
-	t_game	*game;
-	
-	game = param;
-	if (keydata.key == MLX_KEY_S)
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 		move(game, DOWN);
-	else if (keydata.key == MLX_KEY_W)
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		move(game, UP);
-	else if (keydata.key == MLX_KEY_D)
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		move(game, RIGHT);
-	else if (keydata.key == MLX_KEY_A)
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 		move(game, LEFT);
-	else if (keydata.key == MLX_KEY_RIGHT)
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotation(game, ROTATION_SPEED);
-	else if (keydata.key == MLX_KEY_LEFT)
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 		rotation(game, -ROTATION_SPEED);
-	else if (keydata.key == MLX_KEY_ESCAPE)
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+	{
+		free(game->ray.ZBuffer);
+		mlx_delete_image(game->mlx, game->textures.image);
 		exit(1);
+	}
 }
