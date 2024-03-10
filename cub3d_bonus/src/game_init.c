@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 14:48:06 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:43:54 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ void	init_game_struct(t_game *game)
 {
 	xpm_t	*xpm42;
 
-	game->window_height = 700;
-	game->window_width = 1000;
+	game->window_height = 960;
+	game->window_width = 1980;
 	init_map_structure(game);
 	init_player_structure(game);
 	init_ray_struct(game);

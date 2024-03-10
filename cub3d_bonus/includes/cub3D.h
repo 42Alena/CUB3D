@@ -6,16 +6,16 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 14:48:19 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:21:02 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/libft.h"
-# include "../lib_gnl/include/get_next_line.h"
-# include "../lib_mlx42/include/MLX42/MLX42.h"
+# include "../../libft/libft.h"
+# include "../../lib_gnl/include/get_next_line.h"
+# include "../../lib_mlx42/include/MLX42/MLX42.h"
 
 #include <stdlib.h>
 #include <stdio.h>
