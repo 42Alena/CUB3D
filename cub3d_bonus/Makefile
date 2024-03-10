@@ -18,7 +18,8 @@ SOURCES_M  := \
 	./src/mouse.c\
 	./src/sprites.c\
 	./src/floor_ceiling.c\
-	./src/calculations_raycasting.c
+	./src/calculations_raycasting.c\
+	./src/free.c
 
 OBJECTS := $(SOURCES_M:.c=.o)
 

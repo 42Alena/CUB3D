@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 13:30:41 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:19:50 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,6 @@ void	c3po(t_game *game)
 	}
 }
 
-void	lightsaber(t_game *game)
-{
-	uint32_t	color;
-	int			index;
-	int			y;
-	int			x;
-
-	y = 0;
-	while (y < game->window_height)
-	{
-		x = 0;
-		while (x < game->window_width)
-		{
-			index = (y % 960) * 1920 + (x % 1920);
-			color = game->textures.lightsaber[index];
-			if ((color & 0x00FFFFFF) != 0)
-				mlx_put_pixel(game->textures.image, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
 void	ft_hook(void *param)
 {
 	t_game	*game;
@@ -85,7 +62,6 @@ void	ft_hook(void *param)
 		raycasting(game);
 		minimap(game);
 		c3po(game);
-		//lightsaber(game);
 		key_press(game);
 		if (game->mouse.mouse_x > game->window_width / 1.1)
 			rotation(game, ROTATION_SPEED / 2);

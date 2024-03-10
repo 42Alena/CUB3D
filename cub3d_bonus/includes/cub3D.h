@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 15:21:02 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:00:01 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 //MUSIC
 
 //GAME
-// # define WINDOW_WIDTH 1920
-// # define WINDOW_HEIGHT 960
 # define IMAGE_WIDTH 1024
 # define IMAGE_HEIGHT 1024
 // floor and ceiling size
@@ -147,7 +145,10 @@ typedef struct s_mouse
 typedef struct s_textures
 {
 	mlx_image_t		*image;
-	u_int32_t		*textures[4];
+	u_int32_t		*north;
+	u_int32_t		*south;
+	u_int32_t		*west;
+	u_int32_t		*east;
 	u_int32_t		*door;
 	u_int32_t		*door_open;
 	u_int32_t		*floor;
@@ -181,6 +182,8 @@ typedef struct s_game
 
 //raycasting.c
 void	raycasting(t_game *game);
+
+void	free_double_array(char **array);
 
 //calculations_raycasting.c
 void	calculate_start_end(t_game *game);

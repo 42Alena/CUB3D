@@ -16,7 +16,8 @@ SOURCES_M  := \
 	./src/map_save.c\
 	./src/raycasting.c\
 	./src/floor_ceiling.c\
-	./src/calculations_raycasting.c
+	./src/calculations_raycasting.c\
+	./src/free.c
 
 OBJECTS := $(SOURCES_M:.c=.o)
 

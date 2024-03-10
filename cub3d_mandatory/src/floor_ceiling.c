@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:31:02 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/10 15:38:35 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:25:02 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw_floor_ceiling(t_game *game, int x)
 		floor.tex_y = (int)(floor.currentFloorY * F_HEIGHT) % F_HEIGHT;
 		color = get_rgba(200, 200, 200, 255);
 		mlx_put_pixel(game->textures.image, x, y, color);
-		color = get_rgba(50, 50, 50, 255);
+		color = get_rgba(150, 50, 50, 255);
 		mlx_put_pixel(game->textures.image, x, game->window_height - y, color);
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/10 13:50:13 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:57:38 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ u_int32_t	*choose_texture(t_game *game)
 	else if ((char)game->ray.tex_num == '2' && game->is_opened == FALSE)
 		texture = game->textures.door;
 	else if (game->ray.side == 0 && game->ray.rayDirX > 0)
-		texture = game->textures.textures[0];
+		texture = game->textures.north;
 	else if (game->ray.side == 0 && game->ray.rayDirX < 0)
-		texture = game->textures.textures[1];
+		texture = game->textures.south;
 	else if (game->ray.side == 1 && game->ray.rayDirY > 0)
-		texture = game->textures.textures[2];
+		texture = game->textures.west;
 	else
-		texture = game->textures.textures[3];
+		texture = game->textures.east;
 	return (texture);
 }
 

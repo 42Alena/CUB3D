@@ -7,16 +7,16 @@ Nice to have
 [] pause menu
 [] timer before explosion
 [] crouch 
+[] figure out how to draw a minimap
 
 11.03
-[] Add more sprites
 [] EXIT without memory leaks
 [] write custom mlx_put_pixel
-[] figure out how to draw a minimap
 [] fix multiple sprites
 [] segfault when move to the wall right after start
 
 10.03
+[x] norminette
 [x] split mandatory and bonus part
 [x] added sprite animation
 [x] movement is more smooth(key press is now handled in loop hook, not in key hook)

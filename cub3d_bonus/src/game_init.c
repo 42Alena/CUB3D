@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 15:43:54 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:56:51 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,16 @@ void	load_textures(t_game *game)
 	mlx_texture_t	*wall;
 
 	wall = mlx_load_png("./textures/wall.png");
-	game->textures.textures[0]= get_color(wall);
+	game->textures.north= get_color(wall);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/wall2.png");
-	game->textures.textures[1] = get_color(wall);
+	game->textures.south = get_color(wall);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/wall3.png");
-	game->textures.textures[2] = get_color(wall);
+	game->textures.west = get_color(wall);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/wall4.png");
-	game->textures.textures[3] = get_color(wall);
+	game->textures.east = get_color(wall);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/floor_new.png");
 	game->textures.floor = get_color(wall);

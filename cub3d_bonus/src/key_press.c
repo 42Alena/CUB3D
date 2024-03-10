@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 14:08:08 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:04:16 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ void	key_press(t_game *game)
 		rotation(game, -ROTATION_SPEED);
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 	{
-		free(game->ray.ZBuffer);
 		mlx_delete_image(game->mlx, game->textures.image);
-		exit(1);
+		free(game->ray.ZBuffer);
+		free_double_array(game->map.saved_map);
+		exit(EXIT_SUCCESS);
 	}
 }
