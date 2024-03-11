@@ -6,11 +6,41 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:20:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/09 16:03:02 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:47:02 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	settings(t_game *game)
+{
+	if (game->is_settings == FALSE && game->mouse.mouse_x > 700 \
+	&& game->mouse.mouse_x < 1200 && game->mouse.mouse_y > 400 && game->mouse.mouse_y < 500)
+	{
+		game->is_settings = TRUE;
+		mlx_image_to_window(game->mlx, game->textures.settings1, 0, 0);
+	}
+	if (game->is_settings == FALSE)
+		return ;
+	if (game->mouse.mouse_x > 675 && game->mouse.mouse_x < 800 \
+	&& game->mouse.mouse_y > 500 && game->mouse.mouse_y < 600)
+	{
+		game->move_speed = INITIAL_MOVE_SPEED / 2;
+		mlx_image_to_window(game->mlx, game->textures.settings05, 0, 0);
+	}
+	else if (game->mouse.mouse_x > 870 && game->mouse.mouse_x < 1000 \
+	&& game->mouse.mouse_y > 500 && game->mouse.mouse_y < 600)
+	{
+		game->move_speed = INITIAL_MOVE_SPEED;
+		mlx_image_to_window(game->mlx, game->textures.settings1, 0, 0);
+	}
+	else if (game->mouse.mouse_x > 1075 && game->mouse.mouse_x < 1200 \
+	&& game->mouse.mouse_y > 500 && game->mouse.mouse_y < 600)
+	{
+		game->move_speed = INITIAL_MOVE_SPEED * 2;
+		mlx_image_to_window(game->mlx, game->textures.settings2, 0, 0);
+	}
+}
 
 /*
 If left mouse button is pressed 
@@ -22,13 +52,25 @@ modifier_key_t mods, void *param)
 	t_game	*game;
 
 	game = param;
-	if (button == 0 && action == 0 && \
-	game->mouse.mouse_x > 700 && game->mouse.mouse_x < 1200 \
+	if (button != 0 || action != 0)
+		return ;
+	if (game->mouse.mouse_x > 700 && game->mouse.mouse_x < 1200 \
 	&& game->mouse.mouse_y > 265 && game->mouse.mouse_y < 360)
 	{
+		if (game->is_settings == TRUE && game->is_menu == TRUE)
+		{
+			mlx_image_to_window(game->mlx, game->textures.main_menu, 0, 0);
+			game->is_settings = FALSE;
+			return ;
+		}
 		game->is_menu = FALSE;
-		mlx_delete_image(game->mlx, game->textures.main_menu);
+		game->is_settings = FALSE;
+		game->textures.main_menu->enabled = FALSE;
+		game->textures.settings1->enabled = FALSE;
+		game->textures.settings05->enabled = FALSE;
+		game->textures.settings2->enabled = FALSE;
 	}
+	settings(game);
 	(void)mods;
 }
 /*

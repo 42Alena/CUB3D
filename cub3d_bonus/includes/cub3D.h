@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 11:18:19 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:29:20 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // floor and ceiling size
 # define F_WIDTH 512
 # define F_HEIGHT 512
-# define MOVE_SPEED 0.05
+# define INITIAL_MOVE_SPEED 0.05
 # define ROTATION_SPEED 0.1
 # define LEFT 0
 # define RIGHT 1
@@ -154,6 +154,9 @@ typedef struct s_textures
 	u_int32_t		*r2d2;
 	mlx_texture_t	*cursor;
 	mlx_image_t		*main_menu;
+	mlx_image_t		*settings05;
+	mlx_image_t		*settings1;
+	mlx_image_t		*settings2;
 }	t_textures;
 
 typedef struct s_game
@@ -163,6 +166,8 @@ typedef struct s_game
 	int				window_height;
 	int				is_menu;
 	int				is_opened;
+	int				is_settings;
+	double			move_speed;
 	t_textures		textures;
 	t_mouse			mouse;
 	t_map			map;

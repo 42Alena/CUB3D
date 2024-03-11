@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 17:19:50 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:33:22 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void	ft_hook(void *param)
 	t_game	*game;
 
 	game = param;
-	if (!game->is_menu)
+	if (!game->is_menu && !game->is_settings)
 	{
 		if (game->textures.image)
 			mlx_delete_image(game->mlx, game->textures.image);
 		raycasting(game);
-		minimap(game);
+		//minimap(game);
 		c3po(game);
 		key_press(game);
 		if (game->mouse.mouse_x > game->window_width / 1.1)

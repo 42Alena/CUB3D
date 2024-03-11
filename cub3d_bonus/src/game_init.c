@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 11:22:49 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:29:34 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ void	init_game_struct(t_game *game)
 	game->textures.image = NULL;
 	game->is_menu = TRUE;
 	game->is_opened = FALSE;
+	game->is_settings = FALSE;
+	game->move_speed = INITIAL_MOVE_SPEED;
 	game->mouse.mouse_x = 0;
 	game->mouse.mouse_y = 0;
 	game->mlx = \
@@ -136,5 +138,14 @@ void	init_game_struct(t_game *game)
 	xpm42 = mlx_load_xpm42("./textures/PLAY.xpm42");
 	game->textures.main_menu = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_image_to_window(game->mlx, game->textures.main_menu, 0, 0);
+	mlx_delete_xpm42(xpm42);
+	xpm42 = mlx_load_xpm42("./textures/settings1.xpm42");
+	game->textures.settings1 = mlx_texture_to_image(game->mlx, &xpm42->texture);
+	mlx_delete_xpm42(xpm42);
+	xpm42 = mlx_load_xpm42("./textures/settings05.xpm42");
+	game->textures.settings05 = mlx_texture_to_image(game->mlx, &xpm42->texture);
+	mlx_delete_xpm42(xpm42);
+	xpm42 = mlx_load_xpm42("./textures/settings2.xpm42");
+	game->textures.settings2 = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_delete_xpm42(xpm42);
 }

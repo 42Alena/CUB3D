@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 11:24:21 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:38:53 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ int	check_collision(t_game *game, int direction)
 
 	if (direction == DOWN)
 	{
-		check_y = game->player.pos_y - game->player.dir_y * MOVE_SPEED;
-		check_x = game->player.pos_x - game->player.dir_x * MOVE_SPEED;
+		check_y = game->player.pos_y - game->player.dir_y * game->move_speed;
+		check_x = game->player.pos_x - game->player.dir_x * game->move_speed;
 	}
 	if (direction == UP)
 	{
-		check_y = game->player.pos_y + game->player.dir_y * MOVE_SPEED;
-		check_x = game->player.pos_x + game->player.dir_x * MOVE_SPEED;
+		check_y = game->player.pos_y + game->player.dir_y * game->move_speed;
+		check_x = game->player.pos_x + game->player.dir_x * game->move_speed;
 	}
 	if (direction == RIGHT)
 	{
-		check_y = game->player.pos_y + game->player.dir_x * MOVE_SPEED;
-		check_x = game->player.pos_x - game->player.dir_y * MOVE_SPEED;
+		check_y = game->player.pos_y + game->player.dir_x * game->move_speed;
+		check_x = game->player.pos_x - game->player.dir_y * game->move_speed;
 	}
 	if (direction == LEFT)
 	{
-		check_y = game->player.pos_y - game->player.dir_x * MOVE_SPEED;
-		check_x = game->player.pos_x + game->player.dir_y * MOVE_SPEED;
+		check_y = game->player.pos_y - game->player.dir_x * game->move_speed;
+		check_x = game->player.pos_x + game->player.dir_y * game->move_speed;
 	}
 	return (distance_to_wall(game, check_x, check_y));
 }
@@ -71,23 +71,23 @@ void	move(t_game *game, int direction)
 		return ;
 	if (direction == DOWN)
 	{
-		game->player.pos_y -= game->player.dir_y * MOVE_SPEED;
-		game->player.pos_x -= game->player.dir_x * MOVE_SPEED;
+		game->player.pos_y -= game->player.dir_y * game->move_speed;
+		game->player.pos_x -= game->player.dir_x * game->move_speed;
 	}
 	if (direction == UP)
 	{
-		game->player.pos_y += game->player.dir_y * MOVE_SPEED;
-		game->player.pos_x += game->player.dir_x * MOVE_SPEED;
+		game->player.pos_y += game->player.dir_y * game->move_speed;
+		game->player.pos_x += game->player.dir_x * game->move_speed;
 	}
 	if (direction == RIGHT)
 	{
-		game->player.pos_y += game->player.dir_x * MOVE_SPEED;
-		game->player.pos_x -= game->player.dir_y * MOVE_SPEED;
+		game->player.pos_y += game->player.dir_x * game->move_speed;
+		game->player.pos_x -= game->player.dir_y * game->move_speed;
 	}
 	if (direction == LEFT)
 	{
-		game->player.pos_y -= game->player.dir_x * MOVE_SPEED;
-		game->player.pos_x += game->player.dir_y * MOVE_SPEED;
+		game->player.pos_y -= game->player.dir_x * game->move_speed;
+		game->player.pos_x += game->player.dir_y * game->move_speed;
 	}
 }
 
@@ -108,8 +108,25 @@ void	key_press(t_game *game)
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 	{
 		mlx_delete_image(game->mlx, game->textures.image);
+		mlx_delete_image(game->mlx, game->textures.main_menu);
+		mlx_delete_image(game->mlx, game->textures.settings1);
+		mlx_delete_image(game->mlx, game->textures.settings05);
+		mlx_delete_image(game->mlx, game->textures.settings2);
 		free(game->ray.z_buffer);
 		free_double_array(game->map.saved_map);
 		exit(EXIT_SUCCESS);
+	}
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_TAB))
+	{
+		game->is_settings = TRUE;
+		game->textures.settings1->enabled = TRUE;
+		game->textures.settings05->enabled = TRUE;
+		game->textures.settings2->enabled = TRUE;
+		if (game->move_speed == INITIAL_MOVE_SPEED)
+			mlx_image_to_window(game->mlx, game->textures.settings1, 0, 0);
+		else if (game->move_speed == INITIAL_MOVE_SPEED / 2)
+			mlx_image_to_window(game->mlx, game->textures.settings05, 0, 0);
+		else if (game->move_speed == INITIAL_MOVE_SPEED * 2)
+			mlx_image_to_window(game->mlx, game->textures.settings2, 0, 0);
 	}
 }

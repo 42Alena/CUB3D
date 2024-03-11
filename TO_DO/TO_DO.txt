@@ -4,16 +4,18 @@ BEFORE PUSH:
 Nice to have
 [] Add music
 [] change speed in settings
-[] pause menu
 [] timer before explosion
 [] crouch 
 [] figure out how to draw a minimap
 
 11.03
 [] EXIT without memory leaks
+[] segfault when move to the wall right after start
+[] add credits
 [] write custom mlx_put_pixel
 [] fix multiple sprites
-[] segfault when move to the wall right after start
+[x] pause menu
+[x] settings menu
 [x] almost all norminette (variables renamed to snake format)
 
 10.03
