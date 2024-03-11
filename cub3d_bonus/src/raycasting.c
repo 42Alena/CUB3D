@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/10 17:57:38 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:23:46 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ u_int32_t	*choose_texture(t_game *game)
 {
 	u_int32_t	*texture;
 
-	game->ray.tex_num = game->map.saved_map[game->ray.mapX][game->ray.mapY];
+	game->ray.tex_num = game->map.saved_map[game->ray.map_x][game->ray.map_y];
 	if ((char)game->ray.tex_num == '2' && game->is_opened == TRUE)
 		texture = game->textures.door_open;
 	else if ((char)game->ray.tex_num == '2' && game->is_opened == FALSE)
 		texture = game->textures.door;
-	else if (game->ray.side == 0 && game->ray.rayDirX > 0)
+	else if (game->ray.side == 0 && game->ray.ray_dir_x > 0)
 		texture = game->textures.north;
-	else if (game->ray.side == 0 && game->ray.rayDirX < 0)
+	else if (game->ray.side == 0 && game->ray.ray_dir_x < 0)
 		texture = game->textures.south;
-	else if (game->ray.side == 1 && game->ray.rayDirY > 0)
+	else if (game->ray.side == 1 && game->ray.ray_dir_y > 0)
 		texture = game->textures.west;
 	else
 		texture = game->textures.east;
@@ -52,7 +52,7 @@ void	draw_walls(t_game *game, int x)
 		if ((color & 0x00FFFFFF) != 0)
 			mlx_put_pixel(game->textures.image, x, y++, color);
 	}
-	game->ray.ZBuffer[x] = game->ray.perpWallDist;
+	game->ray.z_buffer[x] = game->ray.perp_wall_dist;
 }
 
 void	raycasting(t_game	*game)
@@ -62,10 +62,10 @@ void	raycasting(t_game	*game)
 	x = 0;
 	game->textures.image = \
 	mlx_new_image(game->mlx, game->window_width, game->window_height);
-	game->ray.tex_num = game->map.saved_map[game->ray.mapX][game->ray.mapY];
-	if ((char)game->ray.tex_num == '2' && game->ray.perpWallDist > 1.3)
+	game->ray.tex_num = game->map.saved_map[game->ray.map_x][game->ray.map_y];
+	if ((char)game->ray.tex_num == '2' && game->ray.perp_wall_dist > 1.3)
 		game->is_opened = FALSE;
-	else if ((char)game->ray.tex_num == '2' && game->ray.perpWallDist < 1.3)
+	else if ((char)game->ray.tex_num == '2' && game->ray.perp_wall_dist < 1.3)
 		game->is_opened = TRUE;
 	while (x < game->window_width)
 	{

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:58:28 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/09 18:58:39 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:33:38 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,56 +15,56 @@
 void	distance_and_height(t_game *game)
 {
 	if (game->ray.side == 0)
-		game->ray.perpWallDist = game->ray.sideDistX - game->ray.deltaDistX;
+		game->ray.perp_wall_dist = game->ray.side_dist_x - game->ray.delta_dist_x;
 	else
-		game->ray.perpWallDist = game->ray.sideDistY - game->ray.deltaDistY;
-	game->ray.line_height = (int)(game->window_height / game->ray.perpWallDist);
+		game->ray.perp_wall_dist = game->ray.side_dist_y - game->ray.delta_dist_y;
+	game->ray.line_height = (int)(game->window_height / game->ray.perp_wall_dist);
 }
 
 void	init_ray(t_game *game, int i, int w)
 {
-	game->ray.mapX = (int)game->player.pos_x;
-	game->ray.mapY = (int)game->player.pos_y;
-	game->ray.cameraX = 2 * i / (double)w - 1;
-	game->ray.rayDirX = \
-	game->player.dir_x + game->player.plane_x * game->ray.cameraX;
-	game->ray.rayDirY = \
-	game->player.dir_y + game->player.plane_y * game->ray.cameraX;
-	if (game->ray.rayDirX == 0)
-		game->ray.deltaDistX = 1e30;
+	game->ray.map_x = (int)game->player.pos_x;
+	game->ray.map_y = (int)game->player.pos_y;
+	game->ray.camera_x = 2 * i / (double)w - 1;
+	game->ray.ray_dir_x = \
+	game->player.dir_x + game->player.plane_x * game->ray.camera_x;
+	game->ray.ray_dir_y = \
+	game->player.dir_y + game->player.plane_y * game->ray.camera_x;
+	if (game->ray.ray_dir_x == 0)
+		game->ray.delta_dist_x = 1e30;
 	else
-		game->ray.deltaDistX = fabs(1 / game->ray.rayDirX);
-	if (game->ray.rayDirY == 0)
-		game->ray.deltaDistY = 1e30;
+		game->ray.delta_dist_x = fabs(1 / game->ray.ray_dir_x);
+	if (game->ray.ray_dir_y == 0)
+		game->ray.delta_dist_y = 1e30;
 	else
-		game->ray.deltaDistY = fabs(1 / game->ray.rayDirY);
+		game->ray.delta_dist_y = fabs(1 / game->ray.ray_dir_y);
 }
 
 void	calculate_step(t_game *game)
 {
-	if (game->ray.rayDirX < 0)
+	if (game->ray.ray_dir_x < 0)
 	{
-		game->ray.stepX = -1;
-		game->ray.sideDistX = \
-		(game->player.pos_x - game->ray.mapX) * game->ray.deltaDistX;
+		game->ray.step_x = -1;
+		game->ray.side_dist_x = \
+		(game->player.pos_x - game->ray.map_x) * game->ray.delta_dist_x;
 	}
 	else
 	{
-		game->ray.stepX = 1;
-		game->ray.sideDistX = \
-		(game->ray.mapX + 1.0 - game->player.pos_x) * game->ray.deltaDistX;
+		game->ray.step_x = 1;
+		game->ray.side_dist_x = \
+		(game->ray.map_x + 1.0 - game->player.pos_x) * game->ray.delta_dist_x;
 	}
-	if (game->ray.rayDirY < 0)
+	if (game->ray.ray_dir_y < 0)
 	{
-		game->ray.stepY = -1;
-		game->ray.sideDistY = \
-		(game->player.pos_y - game->ray.mapY) * game->ray.deltaDistY;
+		game->ray.step_y = -1;
+		game->ray.side_dist_y = \
+		(game->player.pos_y - game->ray.map_y) * game->ray.delta_dist_y;
 	}
 	else
 	{
-		game->ray.stepY = 1;
-		game->ray.sideDistY = \
-		(game->ray.mapY + 1.0 - game->player.pos_y) * game->ray.deltaDistY;
+		game->ray.step_y = 1;
+		game->ray.side_dist_y = \
+		(game->ray.map_y + 1.0 - game->player.pos_y) * game->ray.delta_dist_y;
 	}
 }
 
@@ -73,21 +73,21 @@ void	hit_wall(t_game	*game)
 	game->ray.hit = 0;
 	while (game->ray.hit == 0)
 	{
-		if (game->ray.sideDistX < game->ray.sideDistY)
+		if (game->ray.side_dist_x < game->ray.side_dist_y)
 		{
-			game->ray.sideDistX += game->ray.deltaDistX;
-			game->ray.mapX += game->ray.stepX;
+			game->ray.side_dist_x += game->ray.delta_dist_x;
+			game->ray.map_x += game->ray.step_x;
 			game->ray.side = 0;
 		}
 		else
 		{
-			game->ray.sideDistY += game->ray.deltaDistY;
-			game->ray.mapY += game->ray.stepY;
+			game->ray.side_dist_y += game->ray.delta_dist_y;
+			game->ray.map_y += game->ray.step_y;
 			game->ray.side = 1;
 		}
-		if (game->ray.mapY < 0 || game->ray.mapX < 0 || \
-		game->map.saved_map[game->ray.mapX][game->ray.mapY] == '1' || \
-		game->map.saved_map[game->ray.mapX][game->ray.mapY] == '2')
+		if (game->ray.map_y < 0 || game->ray.map_x < 0 || \
+		game->map.saved_map[game->ray.map_x][game->ray.map_y] == '1' || \
+		game->map.saved_map[game->ray.map_x][game->ray.map_y] == '2')
 			game->ray.hit = 1;
 	}
 }
@@ -102,15 +102,15 @@ void	calculate_start_end(t_game *game)
 		game->ray.draw_end = game->window_height - 1;
 	if (game->ray.side == 0)
 		game->ray.wall_x = \
-		game->player.pos_y + game->ray.perpWallDist * game->ray.rayDirY;
+		game->player.pos_y + game->ray.perp_wall_dist * game->ray.ray_dir_y;
 	else
 		game->ray.wall_x = \
-		game->player.pos_x + game->ray.perpWallDist * game->ray.rayDirX;
+		game->player.pos_x + game->ray.perp_wall_dist * game->ray.ray_dir_x;
 	game->ray.wall_x -= floor((game->ray.wall_x));
 	game->ray.tex_x = (int)(IMAGE_WIDTH * game->ray.wall_x);
-	if (game->ray.side == 0 && game->ray.rayDirX > 0)
+	if (game->ray.side == 0 && game->ray.ray_dir_x > 0)
 		game->ray.tex_x = IMAGE_WIDTH - game->ray.tex_x - 1;
-	if (game->ray.side == 1 && game->ray.rayDirY < 0)
+	if (game->ray.side == 1 && game->ray.ray_dir_y < 0)
 		game->ray.tex_x = IMAGE_WIDTH - game->ray.tex_x - 1;
 	game->ray.step = 1.0 * IMAGE_HEIGHT / game->ray.line_height;
 }

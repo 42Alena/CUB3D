@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 17:46:42 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:31:46 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,15 @@
 # include "../../lib_gnl/include/get_next_line.h"
 # include "../../lib_mlx42/include/MLX42/MLX42.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <math.h>
 //open
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
-//MUSIC
-
-//GAME
-// # define WINDOW_WIDTH 1920
-// # define WINDOW_HEIGHT 960
 # define IMAGE_WIDTH 1024
 # define IMAGE_HEIGHT 1024
 // floor and ceiling size
@@ -46,8 +41,6 @@
 # define SPRITE_WIDTH 128
 # define SPRITE_HEIGHT 128
 
-
-
 typedef enum e_bool
 {
 	FALSE = 0,
@@ -56,15 +49,15 @@ typedef enum e_bool
 
 typedef struct s_floor
 {
-	double	distWall;
-	double	distPlayer;
-	double	currentDist;
-	double	floorXWall;
-	double	floorYWall;
-	double	currentFloorX;
-	double	currentFloorY;
+	double	dist_wall;
+	double	dist_player;
+	double	current_dist;
+	double	floor_x_wall;
+	double	floor_y_wall;
+	double	current_floor_x;
+	double	current_floor_y;
 	double	weight;
-	int 	tex_x;
+	int		tex_x;
 	int		tex_y;
 
 }	t_floor;
@@ -74,28 +67,28 @@ typedef struct s_map
 	char	**saved_map;
 	int		cols;
 	int		rows;
-	char 	*n_texture;
-	char 	*s_texture;
-	char 	*w_texture;
-	char 	*e_texture;
-	char 	*floor_color;
-	char 	*ceiling_color;
+	char	*n_texture;
+	char	*s_texture;
+	char	*w_texture;
+	char	*e_texture;
+	char	*floor_color;
+	char	*ceiling_color;
 }	t_map;
 
 typedef struct s_ray
 {
-	int			mapX;
-	int			mapY;
-	double		cameraX;
-	double		stepX;
-	double		stepY;
-	double		sideDistX;
-	double		sideDistY;
-	double		rayDirX;
-	double		rayDirY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
+	int			map_x;
+	int			map_y;
+	double		camera_x;
+	double		step_x;
+	double		step_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
 	int			hit;
 	int			side;
 	int			line_height;
@@ -137,9 +130,6 @@ typedef struct s_game
 	t_ray			ray;
 }	t_game;
 
-
-//main
-
 //raycasting.c
 void	raycasting(t_game *game);
 
@@ -159,12 +149,12 @@ void	draw_floor_ceiling(t_game *game, int x);
 void	distance_and_height(t_game *game);
 void	init_ray(t_game *game, int i, int w);
 void	calculate_step(t_game *game);
-void	hit_wall(t_game* game);
+void	hit_wall(t_game *game);
 void	calculate_start_end(t_game *game);
 void	calculate_floor_ceiling(t_game *game, t_floor *floor);
 void	draw_floor_ceiling(t_game *game, int x);
 void	draw_walls(t_game *game, int x);
-void	raycasting(t_game* game);
+void	raycasting(t_game *game);
 
 //game.c
 uint32_t	*get_color(mlx_texture_t *texture);
@@ -175,7 +165,7 @@ void	init_player_structure(t_game *game);
 void	init_game_struct(t_game *game);
 
 //player_save.c 
-void save_player_pos_dir(t_game *game, char player_dir, int x, int y);
+void	save_player_pos_dir(t_game *game, char player_dir, int x, int y);
 void	save_player_struct(t_game *game, char player_dir, int x, int y);
 
 //error.c
@@ -188,8 +178,8 @@ void	rotation(t_game *game, double rot_speed);
 //map_check
 
 //////TO TEST
-void print_map_pos_x_y(t_game *game);
-void print_map(t_game *game);
+void	print_map_pos_x_y(t_game *game);
+void	print_map(t_game *game);
 ///END_TO TEST////////////////
 
 int		check_input(int argc, char **argv);
@@ -204,4 +194,3 @@ void	check_maps_cols_rows(t_game *game, int fd);
 void	check_map(t_game *game, char *filename);
 
 #endif
-

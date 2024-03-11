@@ -14,6 +14,7 @@ Nice to have
 [] write custom mlx_put_pixel
 [] fix multiple sprites
 [] segfault when move to the wall right after start
+[x] almost all norminette (variables renamed to snake format)
 
 10.03
 [x] norminette

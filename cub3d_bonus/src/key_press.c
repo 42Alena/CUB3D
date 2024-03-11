@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 18:04:16 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:24:21 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 void	rotation(t_game *game, double rot_speed)
 {
-	double	oldDirX;
-	double	oldPlaneX;
+	double	old_dir_x;
+	double	old_plane_x;
 
-	oldDirX = game->player.dir_x;
-	game->player.dir_x = game->player.dir_x * cos(rot_speed) - game->player.dir_y * sin(rot_speed);
-	game->player.dir_y = oldDirX * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
-	oldPlaneX = game->player.plane_x;
-	game->player.plane_x = game->player.plane_x * cos(rot_speed) - game->player.plane_y * sin(rot_speed);
-	game->player.plane_y = oldPlaneX * sin(rot_speed) + game->player.plane_y * cos(rot_speed);
+	old_dir_x = game->player.dir_x;
+	game->player.dir_x = \
+	game->player.dir_x * cos(rot_speed) - game->player.dir_y * sin(rot_speed);
+	game->player.dir_y = \
+	old_dir_x * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
+	old_plane_x = game->player.plane_x;
+	game->player.plane_x = game->player.plane_x * cos(rot_speed) \
+	- game->player.plane_y * sin(rot_speed);
+	game->player.plane_y = \
+	old_plane_x * sin(rot_speed) + game->player.plane_y * cos(rot_speed);
 }
 
 int	distance_to_wall(t_game *game, double check_x, double check_y)
@@ -104,7 +108,7 @@ void	key_press(t_game *game)
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 	{
 		mlx_delete_image(game->mlx, game->textures.image);
-		free(game->ray.ZBuffer);
+		free(game->ray.z_buffer);
 		free_double_array(game->map.saved_map);
 		exit(EXIT_SUCCESS);
 	}
