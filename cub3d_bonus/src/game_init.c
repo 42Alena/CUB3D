@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 16:27:16 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:47:46 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	extra_textures(t_game *game)
 	game->textures.bottom_image = get_color(wall);
 	mlx_delete_texture(wall);
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
-	game->textures.cursor_skeleton = mlx_load_png("./textures/skeleton.png");
+	game->textures.cursor_skeleton = mlx_load_png("./textures/no.png");
 }
 
 void	load_textures(t_game *game)
@@ -127,6 +127,7 @@ void	init_game_struct(t_game *game)
 	game->is_menu = TRUE;
 	game->is_opened = FALSE;
 	game->is_settings = FALSE;
+	game->dead_cursor = FALSE;
 	game->move_speed = INITIAL_MOVE_SPEED;
 	game->mouse.mouse_x = 0;
 	game->mouse.mouse_y = 0;

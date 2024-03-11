@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 16:28:21 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:51:21 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ void	game_over(t_game *game, double time)
 	int			y;
 	int			x;
 
-	mlx_set_cursor(game->mlx, mlx_create_cursor(game->textures.cursor_skeleton));
+	if (game->dead_cursor == FALSE)
+	{
+		game->dead_cursor = TRUE;	
+		mlx_set_cursor(game->mlx, mlx_create_cursor(game->textures.cursor_skeleton));
+	}
 	if ((int)time % 2 == 0)
-		color = 0xFF000044;
+		color = 0xFF000000;
 	else
 		color = 0xFF000066;
 	y = -1;
@@ -60,6 +64,7 @@ void	game_over(t_game *game, double time)
 		while (++x < game->window_width)
 			mlx_put_pixel(game->textures.image, x, y, color);
 	}
+	sleep(1);
 }
 
 void	ft_hook(void *param)

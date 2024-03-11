@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 16:22:25 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:08:10 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	key_press(t_game *game)
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_TAB))
 	{
+		system("aplay /home/dtolmaco/Desktop/cub3D/cub3d_bonus/src/a.wav");
 		game->is_settings = TRUE;
 		game->textures.settings1->enabled = TRUE;
 		game->textures.settings05->enabled = TRUE;

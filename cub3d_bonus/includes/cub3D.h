@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 16:27:31 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:47:32 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ typedef struct s_game
 	int				window_height;
 	int				is_menu;
 	int				is_opened;
+	int				dead_cursor;
 	int				end;
 	int				is_settings;
 	double			move_speed;
