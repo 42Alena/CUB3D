@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 12:29:20 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:27:31 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define F_HEIGHT 512
 # define INITIAL_MOVE_SPEED 0.05
 # define ROTATION_SPEED 0.1
+# define TIMER_SPEED 100
 # define LEFT 0
 # define RIGHT 1
 # define UP 2
@@ -150,9 +151,9 @@ typedef struct s_textures
 	u_int32_t		*c3po;
 	u_int32_t		*c3po2;
 	u_int32_t		*bottom_image;
-	u_int32_t		*lightsaber;
 	u_int32_t		*r2d2;
 	mlx_texture_t	*cursor;
+	mlx_texture_t	*cursor_skeleton;
 	mlx_image_t		*main_menu;
 	mlx_image_t		*settings05;
 	mlx_image_t		*settings1;
@@ -166,6 +167,7 @@ typedef struct s_game
 	int				window_height;
 	int				is_menu;
 	int				is_opened;
+	int				end;
 	int				is_settings;
 	double			move_speed;
 	t_textures		textures;
@@ -181,7 +183,9 @@ typedef struct s_game
 //raycasting.c
 void	raycasting(t_game *game);
 
+//free.c
 void	free_double_array(char **array);
+void	free_mlx(t_game *game);
 
 //calculations_raycasting.c
 void	calculate_start_end(t_game *game);

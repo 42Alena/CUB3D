@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 12:29:34 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:27:16 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,8 @@ void	extra_textures(t_game *game)
 	wall = mlx_load_png("./textures/warning.png");
 	game->textures.bottom_image = get_color(wall);
 	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/lightsaber.png");
-	game->textures.lightsaber = get_color(wall);
-	mlx_delete_texture(wall);
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
+	game->textures.cursor_skeleton = mlx_load_png("./textures/skeleton.png");
 }
 
 void	load_textures(t_game *game)
@@ -125,6 +123,7 @@ void	init_game_struct(t_game *game)
 	init_ray_struct(game);
 	load_textures(game);
 	game->textures.image = NULL;
+	game->end = FALSE;
 	game->is_menu = TRUE;
 	game->is_opened = FALSE;
 	game->is_settings = FALSE;

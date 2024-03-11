@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 12:38:53 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:22:25 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,7 @@ void	key_press(t_game *game)
 		rotation(game, -ROTATION_SPEED);
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 	{
-		mlx_delete_image(game->mlx, game->textures.image);
-		mlx_delete_image(game->mlx, game->textures.main_menu);
-		mlx_delete_image(game->mlx, game->textures.settings1);
-		mlx_delete_image(game->mlx, game->textures.settings05);
-		mlx_delete_image(game->mlx, game->textures.settings2);
-		free(game->ray.z_buffer);
-		free_double_array(game->map.saved_map);
+		free_mlx(game);
 		exit(EXIT_SUCCESS);
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_TAB))

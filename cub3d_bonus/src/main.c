@@ -6,62 +6,77 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 12:33:22 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:28:21 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	minimap(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = game->window_height / 30;
-	while (y < game->window_height / 5)
-	{
-		x = game->window_width / 30;
-		while (x < game->window_width / 6)
-			mlx_put_pixel(game->textures.image, x++, y, 0xFF000000);
-		y++;
-	}
-}
-
-void	c3po(t_game *game)
+void	timer(t_game *game, double time)
 {
 	uint32_t	color;
 	int			index;
 	int			y;
 	int			x;
 
-	y = 0;
-	while (y < game->window_height)
+	y = -1;
+	if (time * TIMER_SPEED > 700)
+		game->end = TRUE;
+	while (++y < game->window_height)
 	{
-		x = 0;
-		while (x < game->window_width)
+		x = -1;
+		while (++x < game->window_width)
 		{
 			index = (y % 960) * 1920 + (x % 1920);
 			color = game->textures.bottom_image[index];
-			if ((color & 0x00FFFFFF) != 0)
+			if (x < 1700 - time * TIMER_SPEED && x > 1000 && y > 850 && y < 920)
+			{
+				if (time * TIMER_SPEED > 500)
+					mlx_put_pixel(game->textures.image, x, y, 0xFF000099);
+				else
+					mlx_put_pixel(game->textures.image, x, y, 0xFF000044);
+			}
+			else if ((color & 0x00FFFFFF) != 0)
 				mlx_put_pixel(game->textures.image, x, y, color);
-			x++;
 		}
-		y++;
+	}
+}
+
+void	game_over(t_game *game, double time)
+{
+	uint32_t	color;
+	int			y;
+	int			x;
+
+	mlx_set_cursor(game->mlx, mlx_create_cursor(game->textures.cursor_skeleton));
+	if ((int)time % 2 == 0)
+		color = 0xFF000044;
+	else
+		color = 0xFF000066;
+	y = -1;
+	while (++y < game->window_height)
+	{
+		x = -1;
+		while (++x < game->window_width)
+			mlx_put_pixel(game->textures.image, x, y, color);
 	}
 }
 
 void	ft_hook(void *param)
 {
 	t_game	*game;
+	double	time;
 
 	game = param;
-	if (!game->is_menu && !game->is_settings)
+	time = mlx_get_time();
+	if (game->end)
+		game_over(game, time);
+	else if (!game->is_menu && !game->is_settings)
 	{
 		if (game->textures.image)
 			mlx_delete_image(game->mlx, game->textures.image);
 		raycasting(game);
-		//minimap(game);
-		c3po(game);
+		timer(game, time);
 		key_press(game);
 		if (game->mouse.mouse_x > game->window_width / 1.1)
 			rotation(game, ROTATION_SPEED / 2);
@@ -85,6 +100,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(game.mlx, mouse, &game);
 	mlx_loop_hook(game.mlx, ft_hook, &game);
 	mlx_loop(game.mlx);
+	free_mlx(&game);
 	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }

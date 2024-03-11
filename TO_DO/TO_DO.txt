@@ -2,19 +2,23 @@ BEFORE PUSH:
 [] delete .git for MLX42. For evaluation: MLX42 must be also pushed to intra
 
 Nice to have
-[] Add music
-[] change speed in settings
-[] timer before explosion
-[] crouch 
-[] figure out how to draw a minimap
+[:((] fix multiple sprites - I tried ...
+[] Add music - too complicated too include a library
+[] crouch - change the height of the walls?
+[] figure out how to draw a minimap - veery complicated
 
 11.03
 [] EXIT without memory leaks
 [] segfault when move to the wall right after start
 [] add credits
 [] write custom mlx_put_pixel
-[] fix multiple sprites
+[] improve wall collision
+[] stop timer when in menu
+[] change cursor to skeleton after explosion
+[x] shitty ship explosion (game over)
+[x] timer before explosion
 [x] pause menu
+[x] change speed in settings
 [x] settings menu
 [x] almost all norminette (variables renamed to snake format)
 
