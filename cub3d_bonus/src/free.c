@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 16:29:44 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:50:51 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void	free_mlx(t_game *game)
 	mlx_delete_texture(game->textures.cursor_skeleton);
 	free(game->ray.z_buffer);
 	free_double_array(game->map.saved_map);
+	system("pkill aplay");
 }

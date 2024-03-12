@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 16:51:21 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:41:58 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	game_over(t_game *game, double time)
 
 	if (game->dead_cursor == FALSE)
 	{
-		game->dead_cursor = TRUE;	
+		game->dead_cursor = TRUE;
+		system("pkill aplay");
 		mlx_set_cursor(game->mlx, mlx_create_cursor(game->textures.cursor_skeleton));
 	}
 	if ((int)time % 2 == 0)
@@ -104,6 +105,7 @@ int	main(int argc, char **argv)
 	mlx_cursor_hook(game.mlx, cursor, &game);
 	mlx_mouse_hook(game.mlx, mouse, &game);
 	mlx_loop_hook(game.mlx, ft_hook, &game);
+	system("/usr/bin/aplay ./music/main.wav &");
 	mlx_loop(game.mlx);
 	free_mlx(&game);
 	mlx_terminate(game.mlx);

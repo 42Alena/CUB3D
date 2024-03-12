@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:20:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/11 12:47:02 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:50:33 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	settings(t_game *game)
 	{
 		game->is_settings = TRUE;
 		mlx_image_to_window(game->mlx, game->textures.settings1, 0, 0);
+		system("/usr/bin/aplay ./music/click.wav &");
 	}
 	if (game->is_settings == FALSE)
 		return ;
@@ -27,18 +28,21 @@ void	settings(t_game *game)
 	{
 		game->move_speed = INITIAL_MOVE_SPEED / 2;
 		mlx_image_to_window(game->mlx, game->textures.settings05, 0, 0);
+		system("/usr/bin/aplay ./music/click.wav &");
 	}
 	else if (game->mouse.mouse_x > 870 && game->mouse.mouse_x < 1000 \
 	&& game->mouse.mouse_y > 500 && game->mouse.mouse_y < 600)
 	{
 		game->move_speed = INITIAL_MOVE_SPEED;
 		mlx_image_to_window(game->mlx, game->textures.settings1, 0, 0);
+		system("/usr/bin/aplay ./music/click.wav &");
 	}
 	else if (game->mouse.mouse_x > 1075 && game->mouse.mouse_x < 1200 \
 	&& game->mouse.mouse_y > 500 && game->mouse.mouse_y < 600)
 	{
 		game->move_speed = INITIAL_MOVE_SPEED * 2;
 		mlx_image_to_window(game->mlx, game->textures.settings2, 0, 0);
+		system("/usr/bin/aplay ./music/click.wav &");
 	}
 }
 
@@ -59,16 +63,20 @@ modifier_key_t mods, void *param)
 	{
 		if (game->is_settings == TRUE && game->is_menu == TRUE)
 		{
+			system("/usr/bin/aplay ./music/click.wav &");
 			mlx_image_to_window(game->mlx, game->textures.main_menu, 0, 0);
 			game->is_settings = FALSE;
 			return ;
 		}
+		if (game->is_settings == FALSE)
+			system("/usr/bin/aplay ./music/c3po.wav &");
 		game->is_menu = FALSE;
 		game->is_settings = FALSE;
 		game->textures.main_menu->enabled = FALSE;
 		game->textures.settings1->enabled = FALSE;
 		game->textures.settings05->enabled = FALSE;
 		game->textures.settings2->enabled = FALSE;
+		system("/usr/bin/aplay ./music/click.wav &");
 	}
 	settings(game);
 	(void)mods;

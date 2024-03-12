@@ -13,6 +13,9 @@ Nice to have
 [] write custom mlx_put_pixel
 [] improve wall collision
 [] stop timer when in menu
+[x] Kill music process after end
+[x] Add button sound
+[x] Add background music
 [x] Add music (I found a way using system("aplay ./path"))
 [x] change cursor after explosion
 [x] shitty ship explosion (game over)

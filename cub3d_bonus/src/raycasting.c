@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/11 13:46:04 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 13:01:19 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ void	raycasting(t_game	*game)
 	if ((char)game->ray.tex_num == '2' && game->ray.perp_wall_dist > 1.3)
 		game->is_opened = FALSE;
 	else if ((char)game->ray.tex_num == '2' && game->ray.perp_wall_dist < 1.3)
+	{
+		if (game->is_opened == FALSE)
+			system("aplay ./music/door.wav &");
 		game->is_opened = TRUE;
+	}
 	while (x < game->window_width)
 	{
 		init_ray(game, x, game->window_width);
