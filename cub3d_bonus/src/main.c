@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 17:19:50 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 05:00:52 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	minimap(t_game *game)
+void minimap(t_game *game)
 {
-	int	y;
-	int	x;
+	int y;
+	int x;
 
 	y = game->window_height / 30;
 	while (y < game->window_height / 5)
@@ -27,12 +27,12 @@ void	minimap(t_game *game)
 	}
 }
 
-void	c3po(t_game *game)
+void c3po(t_game *game)
 {
-	uint32_t	color;
-	int			index;
-	int			y;
-	int			x;
+	uint32_t color;
+	int index;
+	int y;
+	int x;
 
 	y = 0;
 	while (y < game->window_height)
@@ -50,9 +50,9 @@ void	c3po(t_game *game)
 	}
 }
 
-void	ft_hook(void *param)
+void ft_hook(void *param)
 {
-	t_game	*game;
+	t_game *game;
 
 	game = param;
 	if (!game->is_menu)
@@ -65,20 +65,19 @@ void	ft_hook(void *param)
 		key_press(game);
 		if (game->mouse.mouse_x > game->window_width / 1.1)
 			rotation(game, ROTATION_SPEED / 2);
-		else if (game->mouse.mouse_x < game->window_width * 1.1 \
-		- game->window_width)
+		else if (game->mouse.mouse_x < game->window_width * 1.1 - game->window_width)
 			rotation(game, -ROTATION_SPEED / 2);
 	}
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_game	game;
+	t_game game;
 
 	check_input(argc, argv);
 	init_game_struct(&game);
 	check_map(&game, argv[1]);
-	map_read(&game, argv[1]);
+	load_map_configuration(&game, argv[1]);
 	check_maps_characters(&game);
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);

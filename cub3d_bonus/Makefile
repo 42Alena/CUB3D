@@ -7,7 +7,7 @@ LIBGNL := ../lib_gnl
 LIBS := $(LIBFT)/libft.a $(LIBGNL)/libgnl.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SOURCES_M  := \
     ./src/main.c\
-	./src/game.c\
+	./src/map_visuals.c\
 	./src/game_init.c\
 	./src/player_save.c\
 	./src/error.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 17:56:51 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 05:42:54 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,53 +70,6 @@ void	init_player_structure(t_game *game)
 	// game->player.plane_y = 0.66;
 }
 
-
-void	load_textures(t_game *game)
-{
-	mlx_texture_t	*wall;
-
-	wall = mlx_load_png("./textures/wall.png");
-	game->textures.north= get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall2.png");
-	game->textures.south = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall3.png");
-	game->textures.west = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall4.png");
-	game->textures.east = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/floor_new.png");
-	game->textures.floor = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/ceiling.png");
-	game->textures.ceiling = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/c3po.png");
-	game->textures.c3po = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/c3po2.png");
-	game->textures.c3po2 = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/r2d2.png");
-	game->textures.r2d2 = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/door.png");
-	game->textures.door = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/dooropen.png");
-	game->textures.door_open = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/warning.png");
-	game->textures.bottom_image = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/lightsaber.png");
-	game->textures.lightsaber = get_color(wall);
-	mlx_delete_texture(wall);
-	game->textures.cursor = mlx_load_png("./textures/cursor.png");
-}
-
 void	init_game_struct(t_game *game)
 {
 	xpm_t	*xpm42;
@@ -140,28 +93,3 @@ void	init_game_struct(t_game *game)
 	mlx_image_to_window(game->mlx, game->textures.main_menu, 0, 0);
 	mlx_delete_xpm42(xpm42);
 }
-
-
-// void init_game_struct(t_game *game)
-// {
-// 	mlx_texture_t *wall;
-
-// 	init_map_structure(game);
-// 	init_player_structure(game);
-// 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/door.png");
-// 	game->wall_tex = get_color(wall);
-// 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/wall3.png");
-// 	game->wall_tex2 = get_color(wall);
-// 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/windowspace.png");
-// 	game->wall_tex3 = get_color(wall);
-// 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/wall2.png");
-// 	game->wall_tex4 = get_color(wall);
-// 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/floor.png");
-// 	game->floor = get_color(wall);
-// 	wall = mlx_load_png("/home/dtolmaco/Desktop/cub3D/src/ceiling.png");
-// 	game->ceiling = get_color(wall);
-// 	game->image = NULL;
-// 	game->mlx = mlx_init(game->window_width, game->window_height, "CUB3D", true);
-// 	if (!game->mlx)
-// 		ft_error(game, "Could not initialize MLX");
-// }

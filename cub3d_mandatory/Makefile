@@ -14,6 +14,7 @@ SOURCES_M  := \
 	./src/key_press.c\
 	./src/map_check.c\
 	./src/map_save.c\
+	./src/map_visuals.c\
 	./src/raycasting.c\
 	./src/floor_ceiling.c\
 	./src/calculations_raycasting.c\

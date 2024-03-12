@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/10 17:44:14 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/11 05:32:36 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,6 @@ void	init_player_structure(t_game *game)
 	// game->player.dir_y = 0;
 	// game->player.plane_x = 0;
 	// game->player.plane_y = 0.66;
-}
-
-
-void	load_textures(t_game *game)
-{
-	mlx_texture_t	*wall;
-
-	wall = mlx_load_png("./textures/wall.png");
-	game->textures.north = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall2.png");
-	game->textures.south = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall3.png");
-	game->textures.west = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall4.png");
-	game->textures.east = get_color(wall);
-	mlx_delete_texture(wall);
 }
 
 void	init_game_struct(t_game *game)

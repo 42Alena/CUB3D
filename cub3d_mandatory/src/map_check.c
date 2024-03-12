@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:38:59 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 20:25:38 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/11 20:09:01 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void print_map(t_game *game)
 }
 
 /// //////////////////////////////////////////////////////////
-
-
 
 int	check_input(int argc, char **argv)
 {
@@ -127,4 +125,29 @@ void	check_maps_characters(t_game *game)
         }
         y++;
     }
+}
+
+
+/*
+1. finding map\s size (num_cols (width) and num_rows*(length))
+first map check if:
+-  <some_map>.ber can  be opened
+-empty map (first line == 0)
+- map is rectangular - all lines same length as first line;
+- check if lines >=3(walls, signs, walls)
+*/
+void check_map(t_game *game, char *filename)
+{
+	int fd;
+
+	fd = open(filename, O_RDONLY);
+	game->map.cols = 0;
+	game->map.rows = 0;
+	if (fd == -1)
+		ft_error(game, "Failure of opening map");
+	check_maps_cols_rows(game, fd);
+	printf("rows: %d, cols: %d\n", game->map.rows, game->map.cols);
+	if (game->map.rows <= 9 && game->map.cols <= 7)
+		ft_error(game, "Map is not valid");
+	close(fd);
 }
