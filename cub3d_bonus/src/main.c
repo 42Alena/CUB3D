@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 12:41:58 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 14:41:24 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	ft_hook(void *param)
 		if (game->textures.image)
 			mlx_delete_image(game->mlx, game->textures.image);
 		raycasting(game);
+		minimap(game);
 		timer(game, time);
 		key_press(game);
 		if (game->mouse.mouse_x > game->window_width / 1.1)
@@ -101,6 +102,16 @@ int	main(int argc, char **argv)
 	check_map(&game, argv[1]);
 	map_read(&game, argv[1]);
 	check_maps_characters(&game);
+	int i = 0;
+	int j = 0;
+	while (game.map.saved_map[i])
+	{
+		j = 0;
+		while (game.map.saved_map[i][j])
+			printf("%c", game.map.saved_map[i][j++]);
+		printf("\n");
+		i++;
+	}
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);
 	mlx_mouse_hook(game.mlx, mouse, &game);

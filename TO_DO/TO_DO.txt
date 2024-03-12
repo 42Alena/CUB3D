@@ -4,7 +4,6 @@ BEFORE PUSH:
 Nice to have
 [:((] fix multiple sprites - I tried ...
 [] crouch - change the height of the walls?
-[] figure out how to draw a minimap - veery complicated
 
 11.03
 [] EXIT without memory leaks
@@ -13,6 +12,8 @@ Nice to have
 [] write custom mlx_put_pixel
 [] improve wall collision
 [] stop timer when in menu
+[] Add explosion sound
+[x] draw minimap
 [x] Kill music process after end
 [x] Add button sound
 [x] Add background music

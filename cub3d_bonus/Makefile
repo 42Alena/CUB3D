@@ -19,7 +19,8 @@ SOURCES_M  := \
 	./src/sprites.c\
 	./src/floor_ceiling.c\
 	./src/calculations_raycasting.c\
-	./src/free.c
+	./src/free.c\
+	./src/minimap.c
 
 OBJECTS := $(SOURCES_M:.c=.o)
 
