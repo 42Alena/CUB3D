@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 14:44:53 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:13:52 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	init_game_struct(t_game *game)
 	game->end = FALSE;
 	game->is_menu = TRUE;
 	game->is_opened = FALSE;
+	game->is_map = FALSE;
 	game->is_settings = FALSE;
 	game->dead_cursor = FALSE;
 	game->move_speed = INITIAL_MOVE_SPEED;

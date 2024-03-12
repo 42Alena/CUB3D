@@ -20,7 +20,8 @@ SOURCES_M  := \
 	./src/floor_ceiling.c\
 	./src/calculations_raycasting.c\
 	./src/free.c\
-	./src/minimap.c
+	./src/minimap.c\
+	./src/bigmap.c
 
 OBJECTS := $(SOURCES_M:.c=.o)
 

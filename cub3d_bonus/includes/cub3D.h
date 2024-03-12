@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 14:33:41 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:05:46 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,19 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define IMAGE_WIDTH 1024
-# define IMAGE_HEIGHT 1024
+# define IMAGE_WIDTH 512
+# define IMAGE_HEIGHT 512
+// minimap and bigmap
+# define WALL_WIDTH 15
+# define WALL_HEIGHT 15
+# define BIG_WALL_WIDTH 10
+# define BIG_WALL_HEIGHT 10
 // floor and ceiling size
 # define F_WIDTH 512
 # define F_HEIGHT 512
 # define INITIAL_MOVE_SPEED 0.05
 # define ROTATION_SPEED 0.1
-# define TIMER_SPEED 5
+# define TIMER_SPEED 30
 # define LEFT 0
 # define RIGHT 1
 # define UP 2
@@ -166,10 +171,11 @@ typedef struct s_game
 	int				window_width;
 	int				window_height;
 	int				is_menu;
+	int				is_settings;
+	int				is_map;
 	int				is_opened;
 	int				dead_cursor;
 	int				end;
-	int				is_settings;
 	double			move_speed;
 	t_textures		textures;
 	t_mouse			mouse;
@@ -194,6 +200,9 @@ void	hit_wall(t_game	*game);
 void	calculate_step(t_game *game);
 void	init_ray(t_game *game, int i, int w);
 void	distance_and_height(t_game *game);
+
+//bigmap
+void	bigmap(t_game *game);
 
 //minimap
 void	minimap(t_game *game);
@@ -236,6 +245,7 @@ void	ft_error(t_game *game, char *error_msg);
 
 //key_press
 void	key_press(t_game *game);
+void	key_hook(mlx_key_data_t keydata, void *param);
 void	rotation(t_game *game, double rot_speed);
 
 //map_check

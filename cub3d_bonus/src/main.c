@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 14:41:24 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:55:53 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	game_over(t_game *game, double time)
 	{
 		game->dead_cursor = TRUE;
 		system("pkill aplay");
+		system("aplay ./music/no.wav &");
 		mlx_set_cursor(game->mlx, mlx_create_cursor(game->textures.cursor_skeleton));
 	}
 	if ((int)time % 2 == 0)
@@ -82,7 +83,10 @@ void	ft_hook(void *param)
 		if (game->textures.image)
 			mlx_delete_image(game->mlx, game->textures.image);
 		raycasting(game);
-		minimap(game);
+		if (game->is_map)
+			bigmap(game);
+		else
+			minimap(game);
 		timer(game, time);
 		key_press(game);
 		if (game->mouse.mouse_x > game->window_width / 1.1)
@@ -115,8 +119,10 @@ int	main(int argc, char **argv)
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);
 	mlx_mouse_hook(game.mlx, mouse, &game);
+	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, ft_hook, &game);
 	system("/usr/bin/aplay ./music/main.wav &");
+	system("/usr/bin/aplay ./music/hellothere.wav &");
 	mlx_loop(game.mlx);
 	free_mlx(&game);
 	mlx_terminate(game.mlx);

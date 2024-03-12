@@ -1,67 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   bigmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 13:11:16 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/12 16:41:27 by dtolmaco         ###   ########.fr       */
+/*   Created: 2024/03/12 16:23:48 by dtolmaco          #+#    #+#             */
+/*   Updated: 2024/03/12 16:42:03 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-static void	draw_wall(t_game *game, int *draw_x, int draw_y, u_int32_t color)
+static void	draw_bigwall(t_game *game, int *draw_x, int draw_y, u_int32_t color)
 {
 	int	y;
 	int	x;
 
 	y = 0;
-	while (y < WALL_HEIGHT)
+	while (y < BIG_WALL_HEIGHT)
 	{
 		x = 0;
-		while (x < WALL_WIDTH)
+		while (x < BIG_WALL_WIDTH)
 		{
 			mlx_put_pixel(game->textures.image, *draw_x + x, draw_y + y, color);
 			x++;
 		}
 		y++;
 	}
-	*draw_x += WALL_WIDTH;
+	*draw_x += BIG_WALL_WIDTH;
 }
 
-void	minimap(t_game *game)
+void	bigmap(t_game *game)
 {
 	int	y_window;
 	int	x_window;
 	int	x;
 	int	y;
 
-	y_window = game->window_height / 30;
-	x = (int)game->player.pos_x - 5;
-	while (x < (int)game->player.pos_x + 5)
+	y_window = 0;
+	x = (int)game->player.pos_x - 15;
+	while (x < (int)game->player.pos_x + 15)
 	{
-		y = (int)game->player.pos_y - 8;
-		x_window = game->window_width / 30;
-		while (y < (int)game->player.pos_y + 8)
+		y = (int)game->player.pos_y - 20;
+		x_window = 0;
+		while (y < (int)game->player.pos_y + 20)
 		{
 			if (x < 0 || x >= game->map.rows || y >= game->map.cols || y < 0)
-				draw_wall(game, &x_window, y_window, 0xFF000000);
+				draw_bigwall(game, &x_window, y_window, 0xFF000000);
 			else if ((int)game->player.pos_x == x && (int)game->player.pos_y == y)
-				draw_wall(game, &x_window, y_window, 0xFFFF00FF);
+				draw_bigwall(game, &x_window, y_window, 0xFFFF00FF);
 			else if (game->map.saved_map[x][y] && game->map.saved_map[x][y] == '1')
-				draw_wall(game, &x_window, y_window, 0x808090FF);
+				draw_bigwall(game, &x_window, y_window, 0x808090FF);
 			else if (game->map.saved_map[x][y] && (game->map.saved_map[x][y] == '0' \
 			|| game->map.saved_map[x][y] == 'N' || game->map.saved_map[x][y] == ' '))
-				draw_wall(game, &x_window, y_window, 0x737373FF);
+				draw_bigwall(game, &x_window, y_window, 0x737373FF);
 			else if (game->map.saved_map[x][y] && game->map.saved_map[x][y] == '2')
-				draw_wall(game, &x_window, y_window, 0x000000FF);
+				draw_bigwall(game, &x_window, y_window, 0x000000FF);
 			else
-				draw_wall(game, &x_window, y_window, 0xFF000000);
+				draw_bigwall(game, &x_window, y_window, 0xFF000000);
 			y++;
 		}
-		y_window += WALL_HEIGHT;
+		y_window += BIG_WALL_HEIGHT;
 		x++;
 	}
 }

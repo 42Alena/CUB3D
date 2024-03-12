@@ -4,15 +4,19 @@ BEFORE PUSH:
 Nice to have
 [:((] fix multiple sprites - I tried ...
 [] crouch - change the height of the walls?
+[] stop timer when in menu
 
 11.03
-[] EXIT without memory leaks
-[] segfault when move to the wall right after start
+[] EXIT without memory leaks (seems no leaks, but double check!)
 [] add credits
-[] write custom mlx_put_pixel
-[] improve wall collision
-[] stop timer when in menu
 [] Add explosion sound
+[] segfault when move to the wall right after start
+[] improve wall collision
+[] write custom mlx_put_pixel
+[x] lower picture resolution from 1024 to 512
+[x] Added noooo sound at the end and hello there at the begging
+[x] open the big map when m is pressed
+[x] improve minimap (player is always in the middle)
 [x] draw minimap
 [x] Kill music process after end
 [x] Add button sound
