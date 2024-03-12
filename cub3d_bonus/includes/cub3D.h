@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 05:14:05 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:10:23 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,10 @@ typedef struct s_game
 } t_game;
 
 // main
+
+
+void	save_map_textures_and_colors(t_game *game);
+void load_textures(t_game *game);
 
 // raycasting.c
 void raycasting(t_game *game);

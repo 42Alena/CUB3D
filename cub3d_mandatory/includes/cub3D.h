@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 08:13:35 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:02:57 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,9 @@ void raycasting(t_game *game);
 // map_visuals.c
 uint32_t	*get_color(mlx_texture_t *texture);
 void	load_textures(t_game *game);
-void save_map_texture(t_game *game, char txtr_path, char x, char y);
-void save_map_color(t_game *game, char color_path, char x, char y);
-void	save_map_textures_and_colors(t_game *game, char *map_first_line);
+t_bool safe_check_substring(char *substring, char *string, int start, int len);
+void	check_save_map_texture(t_game *game, char *name_txtr, char *struct_map_path, int y);
+void	save_map_textures_and_colors(t_game *game);
 
 // game_init.c
 void init_map_structure(t_game *game);

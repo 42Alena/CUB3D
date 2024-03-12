@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 20:30:11 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:18:17 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void get_first_map_line(t_game *game, char *map_first_line)
 		}
 }
 
-t_bool check_map_first_last_line(char *first_last_line)
-{
-	
-}
+// t_bool check_map_first_last_line(char *first_last_line)
+// {
+// 	(void)first_last_line;
+// }
 
 void load_map_configuration(t_game *game, char *filename)
 {
@@ -105,7 +105,7 @@ void load_map_configuration(t_game *game, char *filename)
 	/// new
 	//TODO: I need to remember y array,
 	// where starts map and give it back to
-	save_map_textures_and_colors(game, &map_first_line);
+	save_map_textures_and_colors(game);
 	
 	//TODO check map first line after visuals
 	////////

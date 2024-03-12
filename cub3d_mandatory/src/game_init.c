@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 05:32:36 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:01:20 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	init_map_structure(t_game *game)
 	game->map.saved_map = NULL;
 	game->map.cols = 0;
 	game->map.rows = 0;
-	game->map.n_texture = 0;
-	game->map.s_texture = 0;
-	game->map.w_texture = 0;
-	game->map.e_texture = 0;
-	game->map.floor_color = 0;
-	game->map.ceiling_color = 0;
+	game->map.n_texture = NULL;
+	game->map.s_texture = NULL;
+	game->map.w_texture = NULL;
+	game->map.e_texture = NULL;
+	game->map.floor_color = NULL;
+	game->map.ceiling_color = NULL;
 }
 void	init_ray_struct(t_game *game)
 {
