@@ -39,12 +39,12 @@ re: fclean all
 
 $(LIBMLX):
 		echo "Downloading MLX42 library..."; \
-		git clone https://github.com/codam-coding-college/MLX42.git lib_mlx42; \
-		rm -rf lib_mlx42/.git;
+		git clone https://github.com/codam-coding-college/MLX42.git ../lib_mlx42; \
+		rm -rf ../lib_mlx42/.git;
 
 $(LIBMLX)/build/libmlx42.a: $(LIBMLX)
 		@echo "Building mlx42..."
-		@cd lib_mlx42; cmake  -DDEBUG=1 -B build; cmake --build build;
+		@cd ../lib_mlx42; cmake  -DDEBUG=1 -B build; cmake --build build;
 
 $(LIBFT)/libft.a:
 		@echo "Compiling libft..."
