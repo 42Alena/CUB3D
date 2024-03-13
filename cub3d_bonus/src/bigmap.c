@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:48 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/13 11:06:24 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/13 20:50:42 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,24 @@ void	bigmap(t_game *game)
 	int	y;
 
 	y_window = 0;
-	x = (int)game->player.pos_x - 15;
-	while (x < (int)game->player.pos_x + 15)
+	x = (int)game->player.pos_y - 15;
+	while (x < (int)game->player.pos_y + 15)
 	{
-		y = (int)game->player.pos_y - 20;
+		y = (int)game->player.pos_x - 20;
 		x_window = 0;
-		while (y < (int)game->player.pos_y + 20)
+		while (y < (int)game->player.pos_x + 20)
 		{
 			if (x < 0 || x >= game->map.rows || y >= game->map.cols || y < 0)
 				draw_bigwall(game, &x_window, y_window, 0xFF000000);
-			else if ((int)game->player.pos_x == x && (int)game->player.pos_y == y)
+			else if ((int)game->player.pos_x == y && (int)game->player.pos_y == x)
 				draw_bigwall(game, &x_window, y_window, 0xFFFF00FF);
 			else if (game->map.saved_map[x][y] && game->map.saved_map[x][y] == '1')
 				draw_bigwall(game, &x_window, y_window, 0x808090FF);
 			else if (game->map.saved_map[x][y] && (game->map.saved_map[x][y] == '0' \
 			|| game->map.saved_map[x][y] == 'N' || game->map.saved_map[x][y] == ' '))
 				draw_bigwall(game, &x_window, y_window, 0x737373FF);
-			else if (game->map.saved_map[x][y] && game->map.saved_map[x][y] == '2')
+			else if (game->map.saved_map[x][y] && (game->map.saved_map[x][y] == '2' \
+			|| game->map.saved_map[x][y] == '3'))
 				draw_bigwall(game, &x_window, y_window, 0x000000FF);
 			else
 				draw_bigwall(game, &x_window, y_window, 0xFF000000);

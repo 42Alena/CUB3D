@@ -6,14 +6,22 @@ Nice to have
 [] crouch - change the height of the walls?
 [] stop timer when in menu
 
-13.03
+14.03
 [] EXIT without memory leaks (seems no leaks, but double check!)
 [] add credits
 [] Add explosion sound
-[] segfault when move to the wall right after start
-[] improve wall collision
 [] write custom mlx_put_pixel
 [] Win the game
+
+13.03
+[x] fix image mirroring
+[x] door opening is broken
+[x] player move in the wrong direction on minimap
+[x] Everything appears to be not in the right direction
+[x] Added win image
+[x] fixed wall opening
+[x] segfault when move to the wall right after start
+[x] improve wall collision
 
 12.03
 [x] lower picture resolution from 1024 to 512

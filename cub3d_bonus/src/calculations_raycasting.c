@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:58:28 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/13 11:13:14 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/13 20:46:18 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,7 @@ void	hit_wall(t_game	*game)
 			game->ray.map_y += game->ray.step_y;
 			game->ray.side = 1;
 		}
-		if (game->ray.map_y < 0 || game->ray.map_x < 0 || \
-		game->map.saved_map[game->ray.map_x][game->ray.map_y] == '1' || \
-		game->map.saved_map[game->ray.map_x][game->ray.map_y] == '2')
+		if (game->map.saved_map[game->ray.map_y][game->ray.map_x] > '0')
 			game->ray.hit = 1;
 	}
 }

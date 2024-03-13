@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 17:30:04 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:16:59 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_textures
 	u_int32_t		*east;
 	u_int32_t		*door;
 	u_int32_t		*door_open;
+	u_int32_t		*win_image;
 	u_int32_t		*floor;
 	u_int32_t		*ceiling;
 	u_int32_t		*c3po;

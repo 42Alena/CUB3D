@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 16:13:52 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:30:36 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	extra_textures(t_game *game)
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/warning.png");
 	game->textures.bottom_image = get_color(wall);
+	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/win.png");
+	game->textures.win_image = get_color(wall);
 	mlx_delete_texture(wall);
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
 	game->textures.cursor_skeleton = mlx_load_png("./textures/no.png");

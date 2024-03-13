@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/13 12:02:27 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:47:59 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	rotation(t_game *game, double rot_speed)
 int	distance_to_wall(t_game *game, double check_x, double check_y)
 {
 	if (game->map.saved_map[(int)check_x][(int)game->player.pos_y] == '1'\
-	|| game->map.saved_map[(int)game->player.pos_x][(int)check_y] == '1' || \
-	game->ray.perp_wall_dist > 1.005)
+	|| game->map.saved_map[(int)game->player.pos_x][(int)check_y] == '1' \
+	|| game->ray.perp_wall_dist < 0.1)
 		return (FALSE);
 	return (TRUE);
 }
