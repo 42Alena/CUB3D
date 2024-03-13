@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/11 11:36:49 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:59:40 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	raycasting(t_game	*game)
 		distance_and_height(game);
 		calculate_start_end(game);
 		draw_walls(game, x);
-		draw_floor_ceiling(game, x);
+		//draw_floor_ceiling(game, x);
 		x++;
 	}
 	mlx_image_to_window(game->mlx, game->textures.image, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:11:16 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/12 16:41:27 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:02:08 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ void	minimap(t_game *game)
 	int	x;
 	int	y;
 
-	y_window = game->window_height / 30;
+	y_window = game->window_height / 50;
 	x = (int)game->player.pos_x - 5;
 	while (x < (int)game->player.pos_x + 5)
 	{
 		y = (int)game->player.pos_y - 8;
-		x_window = game->window_width / 30;
+		x_window = game->window_width / 50;
 		while (y < (int)game->player.pos_y + 8)
 		{
 			if (x < 0 || x >= game->map.rows || y >= game->map.cols || y < 0)
-				draw_wall(game, &x_window, y_window, 0xFF000000);
+				x_window += WALL_WIDTH;
 			else if ((int)game->player.pos_x == x && (int)game->player.pos_y == y)
 				draw_wall(game, &x_window, y_window, 0xFFFF00FF);
 			else if (game->map.saved_map[x][y] && game->map.saved_map[x][y] == '1')
@@ -58,7 +58,7 @@ void	minimap(t_game *game)
 			else if (game->map.saved_map[x][y] && game->map.saved_map[x][y] == '2')
 				draw_wall(game, &x_window, y_window, 0x000000FF);
 			else
-				draw_wall(game, &x_window, y_window, 0xFF000000);
+				x_window += WALL_WIDTH;
 			y++;
 		}
 		y_window += WALL_HEIGHT;

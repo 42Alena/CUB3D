@@ -6,13 +6,16 @@ Nice to have
 [] crouch - change the height of the walls?
 [] stop timer when in menu
 
-11.03
+13.03
 [] EXIT without memory leaks (seems no leaks, but double check!)
 [] add credits
 [] Add explosion sound
 [] segfault when move to the wall right after start
 [] improve wall collision
 [] write custom mlx_put_pixel
+[] Win the game
+
+12.03
 [x] lower picture resolution from 1024 to 512
 [x] Added noooo sound at the end and hello there at the begging
 [x] open the big map when m is pressed
@@ -21,6 +24,8 @@ Nice to have
 [x] Kill music process after end
 [x] Add button sound
 [x] Add background music
+
+11.03
 [x] Add music (I found a way using system("aplay ./path"))
 [x] change cursor after explosion
 [x] shitty ship explosion (game over)

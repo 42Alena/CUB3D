@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/12 13:01:19 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/13 11:42:11 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ void	draw_walls(t_game *game, int x)
 	game->ray.z_buffer[x] = game->ray.perp_wall_dist;
 }
 
+int	door_near(t_game *game)
+{
+	return ( \
+	game->map.saved_map[(int)game->player.pos_x][(int)game->player.pos_y] == '2' \
+	|| game->map.saved_map[(int)game->player.pos_x + 1][(int)game->player.pos_y] == '2' \
+	|| game->map.saved_map[(int)game->player.pos_x][(int)game->player.pos_y + 1] == '2' \
+	|| game->map.saved_map[(int)game->player.pos_x - 1][(int)game->player.pos_y] == '2' \
+	|| game->map.saved_map[(int)game->player.pos_x][(int)game->player.pos_y - 1] == '2');
+}
+
 void	raycasting(t_game	*game)
 {
 	int	x;
@@ -63,12 +73,13 @@ void	raycasting(t_game	*game)
 	game->textures.image = \
 	mlx_new_image(game->mlx, game->window_width, game->window_height);
 	game->ray.tex_num = game->map.saved_map[game->ray.map_x][game->ray.map_y];
-	if ((char)game->ray.tex_num == '2' && game->ray.perp_wall_dist > 1.3)
+	printf("%d\n", door_near(game));
+	if ((char)game->ray.tex_num == '2' && !door_near(game))
 		game->is_opened = FALSE;
-	else if ((char)game->ray.tex_num == '2' && game->ray.perp_wall_dist < 1.3)
+	else if ((char)game->ray.tex_num == '2' && door_near(game))
 	{
 		if (game->is_opened == FALSE)
-			system("aplay ./music/door.wav &");
+			system("aplay -q ./music/door.wav &");
 		game->is_opened = TRUE;
 	}
 	while (x < game->window_width)

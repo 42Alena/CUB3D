@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 17:05:46 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:30:04 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define F_HEIGHT 512
 # define INITIAL_MOVE_SPEED 0.05
 # define ROTATION_SPEED 0.1
-# define TIMER_SPEED 30
+# define TIMER_SPEED 20
 # define LEFT 0
 # define RIGHT 1
 # define UP 2
