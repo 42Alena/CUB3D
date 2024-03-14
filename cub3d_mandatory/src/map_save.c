@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 20:18:05 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/14 06:39:52 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-void map_save(t_game *game)
+void map_allocate_memory(t_game *game)
 {
 	int		i;
 	int		j;
@@ -38,18 +38,22 @@ void map_save(t_game *game)
 	game->map.saved_map[i] = NULL;
 }
 
-void	map_read(t_game *game, char *filename)
+void	map_read_save(t_game *game, char *filename)
 {
 	int		fd;
 	int		x;
 	int		y;
 	char	*line;
 
+	get_size_map(game, filename);
+
+	//TODO: add hier check maps colons rows
+
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		ft_error(game, "Failure of opening map");
 	y = 0;
-	map_save(game);
+	map_allocate_memory(game);
 	while (TRUE)
 	{
 		x = 0;
@@ -68,19 +72,24 @@ void	map_read(t_game *game, char *filename)
 	close(fd);
 }
 
-/* 
-check_maps_cols_rows(t_game *game, int fd) is partial function 
-from void	check_map(t_game *game, char *filename) 
-//save info before map in structure, not in map
-//save max as for num rows
-//save max as for num cols */
-void	check_maps_cols_rows(t_game *game, int fd)
+/*
+1. finding map\s size (num_cols (width) and num_rows*(length))
+first map check if:
+-  <some_map>.ber can  be opened
+-empty map (first line == 0)
+- map is rectangular - all lines same length as first line;
+- check if lines >=3(walls, signs, walls)
+*/
+void	get_size_map(t_game *game, char *filename)
 {
+	int		fd;
 	char	*line;
 	int		max_len;
 
 	line = NULL;
-	max_len = 0;
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		ft_error(game, "Failure of opening map");
 	while (TRUE)
 	{
 		line = get_next_line(fd);
@@ -96,30 +105,5 @@ void	check_maps_cols_rows(t_game *game, int fd)
 			game->map.cols = max_len;
 		game->map.rows += 1;
 	}
-	if (game->map.cols == 0 && game->map.rows == 0)
-		ft_error(game, "Map is empty");
-}
-
-/*
-1. finding map\s size (num_cols (width) and num_rows*(length))
-first map check if:
--  <some_map>.ber can  be opened
--empty map (first line == 0)
-- map is rectangular - all lines same length as first line;
-- check if lines >=3(walls, signs, walls)
-*/
-void	check_map(t_game *game, char *filename)
-{
-	int		fd;
-
-	fd = open(filename, O_RDONLY);
-	game->map.cols = 0;
-	game->map.rows = 0;
-	if (fd == -1)
-		ft_error(game, "Failure of opening map");
-	check_maps_cols_rows(game, fd);
-	printf ("rows: %d, cols: %d\n", game->map.rows, game->map.cols);
-	if (game->map.rows < 3)
-		ft_error(game, "Map is not valid");
 	close(fd);
 }

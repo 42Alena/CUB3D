@@ -1,5 +1,58 @@
 ADD in TO_DO.txt
 
+MAP
+MAP (count start from 1):
+first 8 lines only textures and colours and at  x >=7
+
+frm 
+y>=0 && y<=7
+y>=0 && y<=7
+map can start from line 9 and must have at 
+map y >= 3 lines
+map x >= 3 colomns
+
+check how many players
+
+// MAP
+// MAP (count start from 1):
+// first 8 lines only textures and colours and at  x >=7
+
+// frm 
+// y>=0 && y<=7
+// y>=0 && y<=7
+// map can start from line 9 and must have at 
+// map y >= 3 lines
+// map x >= 3 colomns
+
+// void()
+
+//TODO add check first if in map exist first and lat line ,
+//first line - after 8 lines of code
+//last line - after at least 10 lines of code
+// then check if nothing is after last line except " " and "\n"
+//start searchig first line from beginn
+//start searchig last line from end
+//write nbr_first_line in struct
+
+//TODO : Add check map
+	// if (game->map.cols == 0 && game->map.rows == 0)
+	// 	ft_error(game, "Map is empty");
+	// printf ("rows: %d, cols: %d\n", game->map.rows, game->map.cols);
+	// if (game->map.rows < 3)
+	// 	ft_error(game, "Map is not valid");
+/* 
+
+//save info before map in structure, not in map
+//save max as for num rows
+//save max as for num cols
+//TODO:  NEED TO GO IN SAVED MAP
+// CHECK SIZE
+// CHECK IF THEE IS STRUCTURES
+//SKIP empty LINES
+//find and write in struct position of first line
+// check the position of first and last line 
+//- where position in file (must be at the end)
+*/
 
 ---------------------------------------
 MAP_INFO:

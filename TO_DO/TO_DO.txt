@@ -7,6 +7,9 @@ Nice to have
 [] stop timer when in menu
 
 14.03
+
+[] //TODO: add smth to free in game in ft_error(t_game *game, char *error_msg)
+	 and rename function in error_exit
 [] EXIT without memory leaks (seems no leaks, but double check!)
 [] add credits
 [] Add explosion sound
@@ -14,6 +17,7 @@ Nice to have
 [] Win the game
 
 13.03
+[x] added check_input.c and check input
 [x] fix image mirroring
 [x] door opening is broken
 [x] player move in the wrong direction on minimap

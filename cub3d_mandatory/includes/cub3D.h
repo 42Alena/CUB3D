@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 11:31:46 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/14 09:17:13 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_map
 	char	**saved_map;
 	int		cols;
 	int		rows;
+	int		first_map_line;
+	int		last_map_line;
 	char	*n_texture;
 	char	*s_texture;
 	char	*w_texture;
@@ -102,6 +104,7 @@ typedef struct s_ray
 
 typedef struct s_player
 {
+	int			count;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -159,12 +162,16 @@ void	raycasting(t_game *game);
 //game.c
 uint32_t	*get_color(mlx_texture_t *texture);
 
+//check_input.c 
+int		check_input(int argc, char **argv);
+
 // game_init.c 
 void	init_map_structure(t_game *game);
 void	init_player_structure(t_game *game);
 void	init_game_struct(t_game *game);
 
-//player_save.c 
+//player_save.c
+void	check_save_player(t_game *game, char c, int x, int y);
 void	save_player_pos_dir(t_game *game, char player_dir, int x, int y);
 void	save_player_struct(t_game *game, char player_dir, int x, int y);
 
@@ -175,22 +182,32 @@ void	ft_error(t_game *game, char *error_msg);
 void	key_press(t_game *game);
 void	rotation(t_game *game, double rot_speed);
 
-//map_check
 
+//map_utils
+t_bool safe_check_substring(char *substring, char *string, int start, int len);
+t_bool is_empty_line(char *line);
+t_bool is_map_middle_lines(t_game *game, int y);
+t_bool is_map_walls_first_last_line(char *line);
+
+//map_check
 //////TO TEST
 void	print_map_pos_x_y(t_game *game);
 void	print_map(t_game *game);
 ///END_TO TEST////////////////
 
+//map_check
+void find_first_last_line(t_game *game);
 int		check_input(int argc, char **argv);
 void	print_map(t_game *game);
 void	check_maps_characters(t_game *game);
 
+//map visuals
+void load_textures(t_game *game);
+
 //map_save.c
-t_bool	save_player_structure(t_game *game, char player_pos_dir);
-void	map_save(t_game *game);
-void	map_read(t_game *game, char *filename);
-void	check_maps_cols_rows(t_game *game, int fd);
-void	check_map(t_game *game, char *filename);
+void	map_allocate_memory(t_game *game);
+void	map_read_save(t_game *game, char *filename);
+void	is_valid_map(t_game *game);
+void	get_size_map(t_game *game, char *filename);
 
 #endif

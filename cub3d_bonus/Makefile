@@ -7,7 +7,7 @@ LIBGNL := ../lib_gnl
 LIBS := $(LIBFT)/libft.a $(LIBGNL)/libgnl.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SOURCES_M  := \
     ./src/main.c\
-	./src/game.c\
+	./src/game_utils.c\
 	./src/game_init.c\
 	./src/player_save.c\
 	./src/error.c\
@@ -43,12 +43,12 @@ re: fclean all
 
 $(LIBMLX):
 		echo "Downloading MLX42 library..."; \
-		git clone https://github.com/codam-coding-college/MLX42.git lib_mlx42; \
-		rm -rf lib_mlx42/.git;
+		git clone https://github.com/codam-coding-college/MLX42.git ../lib_mlx42; \
+		rm -rf ../lib_mlx42/.git;
 
 $(LIBMLX)/build/libmlx42.a: $(LIBMLX)
 		@echo "Building mlx42..."
-		@cd lib_mlx42; cmake  -DDEBUG=1 -B build; cmake --build build;
+		@cd ../lib_mlx42; cmake  -DDEBUG=1 -B build; cmake --build build;
 
 $(LIBFT)/libft.a:
 		@echo "Compiling libft..."

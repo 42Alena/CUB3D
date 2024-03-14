@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/13 16:16:59 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/14 06:41:46 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,10 +261,8 @@ void	print_map(t_game *game);
 void	check_maps_characters(t_game *game);
 
 //map_save.c
-t_bool	save_player_structure(t_game *game, char player_pos_dir);
-void	map_save(t_game *game);
-void	map_read(t_game *game, char *filename);
-void	check_maps_cols_rows(t_game *game, int fd);
-void	check_map(t_game *game, char *filename);
+void	map_allocate_memory(t_game *game);
+void	map_read_save(t_game *game, char *filename);
+void	get_size_map(t_game *game, char *filename);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 18:23:11 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/14 02:37:44 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int	main(int argc, char **argv)
 
 	check_input(argc, argv);
 	init_game_struct(&game);
-	check_map(&game, argv[1]);
-	map_read(&game, argv[1]);
+	get_size_map(&game, argv[1]);
+	map_read_save(&game, argv[1]);
 	check_maps_characters(&game);
 	int i = 0;
 	int j = 0;
