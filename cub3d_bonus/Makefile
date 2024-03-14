@@ -1,6 +1,6 @@
 NAME  = cub3D
 CC  = cc
-CFLAGS  = -Wall -Wextra -Werror -I./include -I$(LIBMLX)/include
+CFLAGS  = -Wall -Wextra -Werror -ffast-math -I./include -I$(LIBMLX)/include
 LIBMLX := ../lib_mlx42
 LIBFT := ../libft
 LIBGNL := ../lib_gnl

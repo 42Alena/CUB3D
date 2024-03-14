@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/12 18:23:11 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:16:07 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,27 @@ void	timer(t_game *game, double time)
 	}
 }
 
-void	game_over(t_game *game, double time)
+void	game_over(t_game *game)
 {
-	uint32_t	color;
-	int			y;
-	int			x;
-
 	if (game->dead_cursor == FALSE)
 	{
 		game->dead_cursor = TRUE;
 		system("pkill aplay");
 		system("aplay -q ./music/no.wav &");
-		mlx_set_cursor(game->mlx, mlx_create_cursor(game->textures.cursor_skeleton));
+		system("aplay -q ./music/end.wav &");
+		mlx_image_to_window(game->mlx, game->textures.end, 0, 0);
 	}
-	if ((int)time % 2 == 0)
-		color = 0xFF000000;
-	else
-		color = 0xFF000066;
-	y = -1;
-	while (++y < game->window_height)
+}
+
+void	win_screen(t_game *game)
+{
+	if (game->dead_cursor == FALSE)
 	{
-		x = -1;
-		while (++x < game->window_width)
-			mlx_put_pixel(game->textures.image, x, y, color);
+		game->dead_cursor = TRUE;
+		system("pkill aplay");
+		system("aplay -q ./music/yoda.wav &");
+		mlx_image_to_window(game->mlx, game->textures.congrats, 0, 0);
 	}
-	sleep(1);
 }
 
 void	ft_hook(void *param)
@@ -77,7 +73,9 @@ void	ft_hook(void *param)
 	game = param;
 	time = mlx_get_time();
 	if (game->end)
-		game_over(game, time);
+		game_over(game);
+	if (game->is_win)
+		win_screen(game);
 	else if (!game->is_menu && !game->is_settings)
 	{
 		if (game->textures.image)
@@ -101,21 +99,12 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	(void)argc;
 	check_input(argc, argv);
 	init_game_struct(&game);
 	check_map(&game, argv[1]);
 	map_read(&game, argv[1]);
-	check_maps_characters(&game);
-	int i = 0;
-	int j = 0;
-	while (game.map.saved_map[i])
-	{
-		j = 0;
-		while (game.map.saved_map[i][j])
-			printf("%c", game.map.saved_map[i][j++]);
-		printf("\n");
-		i++;
-	}
+	//check_maps_characters(&game);
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);
 	mlx_mouse_hook(game.mlx, mouse, &game);
@@ -125,6 +114,15 @@ int	main(int argc, char **argv)
 	system("/usr/bin/aplay -q ./music/hellothere.wav &");
 	mlx_loop(game.mlx);
 	free_mlx(&game);
-	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }
+// int i = 0;
+// int j = 0;
+// while (game.map.saved_map[i])
+// {
+// 	j = 0;
+// 	while (game.map.saved_map[i][j])
+// 		printf("%c", game.map.saved_map[i][j++]);
+// 	printf("\n");
+// 	i++;
+// }

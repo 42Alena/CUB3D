@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/13 19:30:36 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:00:42 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	extra_textures(t_game *game)
 	game->textures.win_image = get_color(wall);
 	mlx_delete_texture(wall);
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
-	game->textures.cursor_skeleton = mlx_load_png("./textures/no.png");
 }
 
 void	load_textures(t_game *game)
@@ -115,30 +114,10 @@ void	load_textures(t_game *game)
 	extra_textures(game);
 }
 
-void	init_game_struct(t_game *game)
+void	load_images(t_game *game)
 {
 	xpm_t	*xpm42;
 
-	game->window_height = 960;
-	game->window_width = 1980;
-	init_map_structure(game);
-	init_player_structure(game);
-	init_ray_struct(game);
-	load_textures(game);
-	game->textures.image = NULL;
-	game->end = FALSE;
-	game->is_menu = TRUE;
-	game->is_opened = FALSE;
-	game->is_map = FALSE;
-	game->is_settings = FALSE;
-	game->dead_cursor = FALSE;
-	game->move_speed = INITIAL_MOVE_SPEED;
-	game->mouse.mouse_x = 0;
-	game->mouse.mouse_y = 0;
-	game->mlx = \
-	mlx_init(game->window_width, game->window_height, "CUB3D", true);
-	if (!game->mlx)
-		ft_error(game, "Could not initialize MLX");
 	xpm42 = mlx_load_xpm42("./textures/PLAY.xpm42");
 	game->textures.main_menu = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_image_to_window(game->mlx, game->textures.main_menu, 0, 0);
@@ -152,4 +131,36 @@ void	init_game_struct(t_game *game)
 	xpm42 = mlx_load_xpm42("./textures/settings2.xpm42");
 	game->textures.settings2 = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_delete_xpm42(xpm42);
+	xpm42 = mlx_load_xpm42("./textures/no.xpm42");
+	game->textures.end = mlx_texture_to_image(game->mlx, &xpm42->texture);
+	mlx_delete_xpm42(xpm42);
+	xpm42 = mlx_load_xpm42("./textures/congrats.xpm42");
+	game->textures.congrats = mlx_texture_to_image(game->mlx, &xpm42->texture);
+	mlx_delete_xpm42(xpm42);
+}
+
+void	init_game_struct(t_game *game)
+{
+	game->window_height = 960;
+	game->window_width = 1980;
+	init_map_structure(game);
+	init_player_structure(game);
+	init_ray_struct(game);
+	load_textures(game);
+	game->textures.image = NULL;
+	game->end = FALSE;
+	game->is_win = FALSE;
+	game->is_menu = TRUE;
+	game->is_opened = FALSE;
+	game->is_map = FALSE;
+	game->is_settings = FALSE;
+	game->dead_cursor = FALSE;
+	game->move_speed = INITIAL_MOVE_SPEED;
+	game->mouse.mouse_x = 0;
+	game->mouse.mouse_y = 0;
+	game->mlx = \
+	mlx_init(game->window_width, game->window_height, "CUB3D", true);
+	if (!game->mlx)
+		ft_error(game, "Could not initialize MLX");
+	load_images(game);
 }

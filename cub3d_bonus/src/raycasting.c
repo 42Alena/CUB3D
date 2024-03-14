@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/13 20:47:58 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:55:10 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,23 +56,23 @@ void	draw_walls(t_game *game, int x)
 	game->ray.z_buffer[x] = game->ray.perp_wall_dist;
 }
 
-int	door_near(t_game *game)
+int	is_near(t_game *game, char c)
 {
 	if (game->player.dir_x > 0.5 && game->player.dir_x < 1 && \
 	game->player.dir_y > -0.5 && game->player.dir_y < 0.5 && \
-	game->map.saved_map[(int)game->player.pos_y][(int)game->player.pos_x + 1] == '2')
+	game->map.saved_map[(int)game->player.pos_y][(int)game->player.pos_x + 1] == c)
 		return (TRUE);
 	else if (game->player.dir_x < -0.5 && game->player.dir_x > -1 && \
 	game->player.dir_y > -0.5 && game->player.dir_y < 0.5 && \
-	game->map.saved_map[(int)game->player.pos_y][(int)game->player.pos_x - 1] == '2')
+	game->map.saved_map[(int)game->player.pos_y][(int)game->player.pos_x - 1] == c)
 		return (TRUE);
 	else if (game->player.dir_y > 0.5 && game->player.dir_y < 1 && \
 	game->player.dir_x > -0.5 && game->player.dir_x < 0.5 && \
-	game->map.saved_map[(int)game->player.pos_y + 1][(int)game->player.pos_x] == '2')
+	game->map.saved_map[(int)game->player.pos_y + 1][(int)game->player.pos_x] == c)
 		return (TRUE);
 	else if (game->player.dir_y < -0.5 && game->player.dir_y > -1 && \
 	game->player.dir_x > -0.5 && game->player.dir_x < 0.5 && \
-	game->map.saved_map[(int)game->player.pos_y - 1][(int)game->player.pos_x] == '2')
+	game->map.saved_map[(int)game->player.pos_y - 1][(int)game->player.pos_x] == c)
 		return (TRUE);
 	return (FALSE);
 }
@@ -80,9 +80,11 @@ int	door_near(t_game *game)
 void	door_open_or_closed(t_game *game)
 {
 	game->ray.tex_num = game->map.saved_map[game->ray.map_y][game->ray.map_x];
-	if ((char)game->ray.tex_num == '2' && !door_near(game))
+	if (game->ray.tex_num == '3' && is_near(game, '3'))
+		game->is_win = TRUE;
+	if ((char)game->ray.tex_num == '2' && !is_near(game, '2'))
 		game->is_opened = FALSE;
-	else if ((char)game->ray.tex_num == '2' && door_near(game))
+	else if ((char)game->ray.tex_num == '2' && is_near(game, '2'))
 	{
 		if (game->is_opened == FALSE)
 			system("aplay -q ./music/door.wav &");

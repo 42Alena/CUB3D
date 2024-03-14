@@ -7,11 +7,15 @@ Nice to have
 [] stop timer when in menu
 
 14.03
-[] EXIT without memory leaks (seems no leaks, but double check!)
 [] add credits
-[] Add explosion sound
 [] write custom mlx_put_pixel
-[] Win the game
+[] Memory leaks when exit with red cross (how to call free?)
+[x] Win the game
+[x] Add game over music and improve game over
+[x] mandatory part deleted, will do it at the end
+[x] EXIT without memory leaks (seems no leaks, but double check!)
+[x] All possibly lost leaks fixed
+[x] fixed alena's memory errors in map save
 
 13.03
 [x] fix image mirroring

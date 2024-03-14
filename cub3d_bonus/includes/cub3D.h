@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/13 16:16:59 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:02:23 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,9 @@ typedef struct s_textures
 	u_int32_t		*bottom_image;
 	u_int32_t		*r2d2;
 	mlx_texture_t	*cursor;
-	mlx_texture_t	*cursor_skeleton;
 	mlx_image_t		*main_menu;
+	mlx_image_t		*end;
+	mlx_image_t		*congrats;
 	mlx_image_t		*settings05;
 	mlx_image_t		*settings1;
 	mlx_image_t		*settings2;
@@ -176,6 +177,7 @@ typedef struct s_game
 	int				is_map;
 	int				is_opened;
 	int				dead_cursor;
+	int				is_win;
 	int				end;
 	double			move_speed;
 	t_textures		textures;

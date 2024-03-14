@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_save.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 20:18:05 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/14 11:15:48 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void map_save(t_game *game)
 	int		j;
 	
 	i = -1;
-	game->map.saved_map = (char **)malloc(game->map.rows * sizeof(char *));
+	game->map.saved_map = (char **)malloc((game->map.rows + 1) * sizeof(char *));
 	if (game->map.saved_map == NULL)
 		ft_error (game, "Map: memory allocation faled");
     while (++i < game->map.rows) 
 	{
-        game->map.saved_map[i] = (char *)malloc(game->map.cols * sizeof(char));
+        game->map.saved_map[i] = (char *)malloc((game->map.cols + 1) * sizeof(char));
 		if (!game->map.saved_map[i])
 		{
 			j = -1;
