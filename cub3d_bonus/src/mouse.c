@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:20:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/12 18:23:37 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:15:24 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,5 @@ void	cursor(double xpos, double ypos, void *param)
 	game->mouse.mouse_y = ypos;
 	game->mouse.mouse_x = xpos;
 	if (speed != 0)
-		rotation(game, speed);
+		rotation(&game->player, speed * 2);
 }

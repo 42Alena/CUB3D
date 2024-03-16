@@ -6,62 +6,54 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/14 13:16:07 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:28:39 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	timer(t_game *game, double time)
+void	timer(mlx_image_t *image, int height, int width, double time)
 {
-	uint32_t	color;
-	int			index;
 	int			y;
 	int			x;
 
 	y = -1;
-	if (time * TIMER_SPEED > 700)
-		game->end = TRUE;
-	while (++y < game->window_height)
+	while (++y < height)
 	{
 		x = -1;
-		while (++x < game->window_width)
+		while (++x < width)
 		{
-			index = (y % 960) * 1920 + (x % 1920);
-			color = game->textures.bottom_image[index];
-			if (x < 1700 - time * TIMER_SPEED && x > 1000 && y > 850 && y < 920)
+			if (x < 1700 - time * TIMER_SPEED && x > 1000 && y > 50 && y < 100)
 			{
 				if (time * TIMER_SPEED > 500)
-					mlx_put_pixel(game->textures.image, x, y, 0xFF000099);
+					mlx_put_pixel(image, x, y, 0xFF000099);
 				else
-					mlx_put_pixel(game->textures.image, x, y, 0xFF000044);
+					mlx_put_pixel(image, x, y, 0xFF000044);
 			}
-			else if ((color & 0x00FFFFFF) != 0)
-				mlx_put_pixel(game->textures.image, x, y, color);
 		}
 	}
 }
 
-void	game_over(t_game *game)
+void	game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor)
 {
-	if (game->dead_cursor == FALSE)
+	if (*dead_cursor == FALSE)
 	{
-		game->dead_cursor = TRUE;
+		*dead_cursor = TRUE;
 		system("pkill aplay");
 		system("aplay -q ./music/no.wav &");
 		system("aplay -q ./music/end.wav &");
-		mlx_image_to_window(game->mlx, game->textures.end, 0, 0);
+		mlx_image_to_window(mlx, end, 0, 0);
 	}
 }
 
-void	win_screen(t_game *game)
+void	win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor)
 {
-	if (game->dead_cursor == FALSE)
+	if (*dead_cursor == FALSE)
 	{
-		game->dead_cursor = TRUE;
+		*dead_cursor = TRUE;
 		system("pkill aplay");
 		system("aplay -q ./music/yoda.wav &");
-		mlx_image_to_window(game->mlx, game->textures.congrats, 0, 0);
+		mlx_image_to_window(mlx, congrats, 0, 0);
 	}
 }
 
@@ -72,27 +64,27 @@ void	ft_hook(void *param)
 
 	game = param;
 	time = mlx_get_time();
-	if (game->end)
-		game_over(game);
-	if (game->is_win)
-		win_screen(game);
-	else if (!game->is_menu && !game->is_settings)
+	if (time * TIMER_SPEED > 700)
+		game->end = TRUE;
+	if (!game->is_menu && !game->is_settings \
+	&& !game->is_win && !game->end)
 	{
 		if (game->textures.image)
 			mlx_delete_image(game->mlx, game->textures.image);
 		raycasting(game);
-		if (game->is_map)
-			bigmap(game);
-		else
-			minimap(game);
-		timer(game, time);
 		key_press(game);
+		minimap(game);
+		timer(game->textures.image, game->window_height, game->window_width, time);
 		if (game->mouse.mouse_x > game->window_width / 1.1)
-			rotation(game, ROTATION_SPEED / 2);
+			rotation(&game->player, ROTATION_SPEED / 2);
 		else if (game->mouse.mouse_x < game->window_width * 1.1 \
 		- game->window_width)
-			rotation(game, -ROTATION_SPEED / 2);
+			rotation(&game->player, -ROTATION_SPEED / 2);
 	}
+	else if (game->end && !game->dead_cursor)
+		game_over(game->textures.end, game->mlx, &game->dead_cursor);
+	else if (game->is_win && !game->dead_cursor)
+		win_screen(game->textures.congrats, game->mlx, &game->dead_cursor);
 }
 
 int	main(int argc, char **argv)

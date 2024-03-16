@@ -6,90 +6,90 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/14 12:31:58 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:22:05 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	rotation(t_game *game, double rot_speed)
+void	rotation(t_player *player, double rot_speed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = game->player.dir_x;
-	game->player.dir_x = \
-	game->player.dir_x * cos(rot_speed) - game->player.dir_y * sin(rot_speed);
-	game->player.dir_y = \
-	old_dir_x * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
-	old_plane_x = game->player.plane_x;
-	game->player.plane_x = game->player.plane_x * cos(rot_speed) \
-	- game->player.plane_y * sin(rot_speed);
-	game->player.plane_y = \
-	old_plane_x * sin(rot_speed) + game->player.plane_y * cos(rot_speed);
+	old_dir_x = player->dir_x;
+	player->dir_x = \
+	player->dir_x * cos(rot_speed) - player->dir_y * sin(rot_speed);
+	player->dir_y = \
+	old_dir_x * sin(rot_speed) + player->dir_y * cos(rot_speed);
+	old_plane_x = player->plane_x;
+	player->plane_x = player->plane_x * cos(rot_speed) \
+	- player->plane_y * sin(rot_speed);
+	player->plane_y = \
+	old_plane_x * sin(rot_speed) + player->plane_y * cos(rot_speed);
 }
 
-int	distance_to_wall(t_game *game, double check_x, double check_y)
+int	distance_to_wall(t_player *player, char **saved_map, double check_x, double check_y)
 {
-	if (game->map.saved_map[(int)game->player.pos_y][(int)check_x] == '1' \
-	|| game->map.saved_map[(int)check_y][(int)game->player.pos_x] == '1' \
-	|| game->map.saved_map[(int)check_y][(int)game->player.pos_x] == '3' \
-	|| game->map.saved_map[(int)game->player.pos_y][(int)check_x] == '3')
+	if (saved_map[(int)player->pos_y][(int)check_x] == '1' \
+	|| saved_map[(int)check_y][(int)player->pos_x] == '1' \
+	|| saved_map[(int)check_y][(int)player->pos_x] == '3' \
+	|| saved_map[(int)player->pos_y][(int)check_x] == '3')
 		return (FALSE);
 	return (TRUE);
 }
 
-int	check_collision(t_game *game, int direction)
+int	check_collision(t_player *player, char **saved_map, double move_speed, int direction)
 {
 	double		check_x;
 	double		check_y;
 
 	if (direction == DOWN)
 	{
-		check_y = game->player.pos_y - game->player.dir_y * game->move_speed;
-		check_x = game->player.pos_x - game->player.dir_x * game->move_speed;
+		check_y = player->pos_y - player->dir_y * move_speed;
+		check_x = player->pos_x - player->dir_x * move_speed;
 	}
 	if (direction == UP)
 	{
-		check_y = game->player.pos_y + game->player.dir_y * game->move_speed;
-		check_x = game->player.pos_x + game->player.dir_x * game->move_speed;
+		check_y = player->pos_y + player->dir_y * move_speed;
+		check_x = player->pos_x + player->dir_x * move_speed;
 	}
 	if (direction == RIGHT)
 	{
-		check_y = game->player.pos_y + game->player.dir_x * game->move_speed;
-		check_x = game->player.pos_x - game->player.dir_y * game->move_speed;
+		check_y = player->pos_y + player->dir_x * move_speed;
+		check_x = player->pos_x - player->dir_y * move_speed;
 	}
 	if (direction == LEFT)
 	{
-		check_y = game->player.pos_y - game->player.dir_x * game->move_speed;
-		check_x = game->player.pos_x + game->player.dir_y * game->move_speed;
+		check_y = player->pos_y - player->dir_x * move_speed;
+		check_x = player->pos_x + player->dir_y * move_speed;
 	}
-	return (distance_to_wall(game, check_x, check_y));
+	return (distance_to_wall(player, saved_map, check_x, check_y));
 }
 
-void	move(t_game *game, int direction)
+void	move(t_player *player, char **saved_map, double move_speed, int direction)
 {
-	if (!check_collision(game, direction))
+	if (!check_collision(player, saved_map, move_speed, direction))
 		return ;
 	if (direction == DOWN)
 	{
-		game->player.pos_y -= game->player.dir_y * game->move_speed;
-		game->player.pos_x -= game->player.dir_x * game->move_speed;
+		player->pos_y -= player->dir_y * move_speed;
+		player->pos_x -= player->dir_x * move_speed;
 	}
 	if (direction == UP)
 	{
-		game->player.pos_y += game->player.dir_y * game->move_speed;
-		game->player.pos_x += game->player.dir_x * game->move_speed;
+		player->pos_y += player->dir_y * move_speed;
+		player->pos_x += player->dir_x * move_speed;
 	}
 	if (direction == RIGHT)
 	{
-		game->player.pos_y += game->player.dir_x * game->move_speed;
-		game->player.pos_x -= game->player.dir_y * game->move_speed;
+		player->pos_y += player->dir_x * move_speed;
+		player->pos_x -= player->dir_y * move_speed;
 	}
 	if (direction == LEFT)
 	{
-		game->player.pos_y -= game->player.dir_x * game->move_speed;
-		game->player.pos_x += game->player.dir_y * game->move_speed;
+		player->pos_y -= player->dir_x * move_speed;
+		player->pos_x += player->dir_y * move_speed;
 	}
 }
 
@@ -115,17 +115,17 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 void	key_press(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-		move(game, DOWN);
+		move(&game->player, game->map.saved_map, game->move_speed, DOWN);
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		move(game, UP);
+		move(&game->player, game->map.saved_map, game->move_speed, UP);
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-		move(game, RIGHT);
+		move(&game->player, game->map.saved_map, game->move_speed, RIGHT);
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-		move(game, LEFT);
+		move(&game->player, game->map.saved_map, game->move_speed, LEFT);
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		rotation(game, ROTATION_SPEED);
+		rotation(&game->player, ROTATION_SPEED);
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		rotation(game, -ROTATION_SPEED);
+		rotation(&game->player, -ROTATION_SPEED);
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_TAB))
 	{
 		game->is_settings = TRUE;

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:11:16 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/13 20:09:03 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:25:04 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void	minimap(t_game *game)
 	int	x;
 	int	y;
 
+	if (game->is_map)
+	{
+		bigmap(game);
+		return ;
+	}
 	y_window = game->window_height / 50;
 	x = (int)game->player.pos_y - 5;
 	while (x < (int)game->player.pos_y + 5)

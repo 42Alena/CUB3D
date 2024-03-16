@@ -6,10 +6,15 @@ Nice to have
 [] crouch - change the height of the walls?
 [] stop timer when in menu
 
-14.03
 [] add credits
 [] write custom mlx_put_pixel
 [] Memory leaks when exit with red cross (how to call free?)
+
+16.03
+[x] now game is way faster
+[x] I optimized the code by removing unneccesary things  (on the 4 floor game is very slow!)
+
+14.03
 [x] Win the game
 [x] Add game over music and improve game over
 [x] mandatory part deleted, will do it at the end

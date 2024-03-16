@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/14 13:02:23 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:31:40 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,6 @@ typedef struct s_sprite
 	int		tex_y;
 	int		tex_x; 
 }	t_sprite;
-
-typedef struct s_floor
-{
-	double	dist_wall;
-	double	dist_player;
-	double	current_dist;
-	double	floor_x_wall;
-	double	floor_y_wall;
-	double	current_floor_x;
-	double	current_floor_y;
-	double	weight;
-	int		tex_x;
-	int		tex_y;
-
-}	t_floor;
 
 typedef struct s_map
 {
@@ -226,7 +211,6 @@ void	init_ray(t_game *game, int i, int w);
 void	calculate_step(t_game *game);
 void	hit_wall(t_game *game);
 void	calculate_start_end(t_game *game);
-void	calculate_floor_ceiling(t_game *game, t_floor *floor);
 void	draw_floor_ceiling(t_game *game, int x);
 void	draw_walls(t_game *game, int x);
 void	raycasting(t_game *game);
@@ -249,7 +233,7 @@ void	ft_error(t_game *game, char *error_msg);
 //key_press
 void	key_press(t_game *game);
 void	key_hook(mlx_key_data_t keydata, void *param);
-void	rotation(t_game *game, double rot_speed);
+void	rotation(t_player *player, double rot_speed);
 
 //map_check
 
