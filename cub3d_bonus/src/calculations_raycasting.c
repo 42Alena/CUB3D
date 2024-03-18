@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:58:28 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/13 20:46:18 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:08:15 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 void	distance_and_height(t_game *game)
 {
 	if (game->ray.side == 0)
-		game->ray.perp_wall_dist = game->ray.side_dist_x - game->ray.delta_dist_x;
+		game->ray.perp_wall_dist = \
+		game->ray.side_dist_x - game->ray.delta_dist_x;
 	else
-		game->ray.perp_wall_dist = game->ray.side_dist_y - game->ray.delta_dist_y;
-	game->ray.line_height = (int)(game->window_height / game->ray.perp_wall_dist);
+		game->ray.perp_wall_dist = \
+		game->ray.side_dist_y - game->ray.delta_dist_y;
+	game->ray.line_height = \
+	(int)(game->window_height / game->ray.perp_wall_dist);
 }
 
 void	init_ray(t_game *game, int i, int w)

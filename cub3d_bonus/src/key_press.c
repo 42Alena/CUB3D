@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/16 12:22:05 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:16:26 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,64 +29,54 @@ void	rotation(t_player *player, double rot_speed)
 	old_plane_x * sin(rot_speed) + player->plane_y * cos(rot_speed);
 }
 
-int	distance_to_wall(t_player *player, char **saved_map, double check_x, double check_y)
-{
-	if (saved_map[(int)player->pos_y][(int)check_x] == '1' \
-	|| saved_map[(int)check_y][(int)player->pos_x] == '1' \
-	|| saved_map[(int)check_y][(int)player->pos_x] == '3' \
-	|| saved_map[(int)player->pos_y][(int)check_x] == '3')
-		return (FALSE);
-	return (TRUE);
-}
-
-int	check_collision(t_player *player, char **saved_map, double move_speed, int direction)
+int	check_collision(t_player *player, char **saved_map, double speed, int dir)
 {
 	double		check_x;
 	double		check_y;
 
-	if (direction == DOWN)
+	if (dir == DOWN)
 	{
-		check_y = player->pos_y - player->dir_y * move_speed;
-		check_x = player->pos_x - player->dir_x * move_speed;
+		check_y = player->pos_y - player->dir_y * speed;
+		check_x = player->pos_x - player->dir_x * speed;
 	}
-	if (direction == UP)
+	if (dir == UP)
 	{
-		check_y = player->pos_y + player->dir_y * move_speed;
-		check_x = player->pos_x + player->dir_x * move_speed;
+		check_y = player->pos_y + player->dir_y * speed;
+		check_x = player->pos_x + player->dir_x * speed;
 	}
-	if (direction == RIGHT)
+	if (dir == RIGHT)
 	{
-		check_y = player->pos_y + player->dir_x * move_speed;
-		check_x = player->pos_x - player->dir_y * move_speed;
+		check_y = player->pos_y + player->dir_x * speed;
+		check_x = player->pos_x - player->dir_y * speed;
 	}
-	if (direction == LEFT)
+	if (dir == LEFT)
 	{
-		check_y = player->pos_y - player->dir_x * move_speed;
-		check_x = player->pos_x + player->dir_y * move_speed;
+		check_y = player->pos_y - player->dir_x * speed;
+		check_x = player->pos_x + player->dir_y * speed;
 	}
 	return (distance_to_wall(player, saved_map, check_x, check_y));
 }
 
-void	move(t_player *player, char **saved_map, double move_speed, int direction)
+void	move(t_player *player, char **saved_map, double move_speed, int dir)
 {
-	if (!check_collision(player, saved_map, move_speed, direction))
+	if (!check_collision(player, saved_map, move_speed, dir))
 		return ;
-	if (direction == DOWN)
+	if (dir == DOWN)
 	{
 		player->pos_y -= player->dir_y * move_speed;
 		player->pos_x -= player->dir_x * move_speed;
 	}
-	if (direction == UP)
+	if (dir == UP)
 	{
 		player->pos_y += player->dir_y * move_speed;
 		player->pos_x += player->dir_x * move_speed;
 	}
-	if (direction == RIGHT)
+	if (dir == RIGHT)
 	{
 		player->pos_y += player->dir_x * move_speed;
 		player->pos_x -= player->dir_y * move_speed;
 	}
-	if (direction == LEFT)
+	if (dir == LEFT)
 	{
 		player->pos_y -= player->dir_x * move_speed;
 		player->pos_x += player->dir_y * move_speed;

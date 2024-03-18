@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:28:06 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/11 11:23:57 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:44:25 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,25 @@ void	sprite_height_width(t_game *game, int scale)
 		game->sprite.draw_end_x = game->window_width - 1;
 }
 
-void	calculate_sprite(t_game *game, int index)
+void	sprite_movement(t_game *game)
 {
 	game->sprite.sprite_x = 3.5 - game->player.pos_x;
 	game->sprite.sprite_y = 3.5 - game->player.pos_y;
-	game->sprite.v_move_screen = (int)((VMOVE * 1.5) / game->sprite.transform_y);
-	game->sprite.inv_det = 1.0 / (game->player.plane_x * game->player.dir_y \
-	- game->player.dir_x * game->player.plane_y);
-	game->sprite.transform_x = game->sprite.inv_det * (game->player.dir_y \
-	* game->sprite.sprite_x - game->player.dir_x * game->sprite.sprite_y);
-	game->sprite.transform_y = game->sprite.inv_det * (-game->player.plane_y \
-	* game->sprite.sprite_x + game->player.plane_x * game->sprite.sprite_y);
-	game->sprite.sprite_screen_x = (int)((game->window_width / 2) \
-	* (1 + game->sprite.transform_x / game->sprite.transform_y));
-	if (index == 0)
-		sprite_height_width(game, 2);
-	else if (index == 1)
-		sprite_height_width(game, 3);
+}
+
+void	calculate_sprite(t_game *g)
+{
+	sprite_movement(g);
+	g->sprite.v_move_screen = (int)((VMOVE * 1.5) / g->sprite.transform_y);
+	g->sprite.inv_det = 1.0 / (g->player.plane_x * g->player.dir_y \
+	- g->player.dir_x * g->player.plane_y);
+	g->sprite.transform_x = g->sprite.inv_det * (g->player.dir_y \
+	* g->sprite.sprite_x - g->player.dir_x * g->sprite.sprite_y);
+	g->sprite.transform_y = g->sprite.inv_det * (-g->player.plane_y \
+	* g->sprite.sprite_x + g->player.plane_x * g->sprite.sprite_y);
+	g->sprite.sprite_screen_x = (int)((g->window_width / 2) \
+	* (1 + g->sprite.transform_x / g->sprite.transform_y));
+	sprite_height_width(g, 2);
 }
 
 void	draw_stripe(t_game *game, int stripe, int animation)
@@ -82,14 +84,12 @@ void	draw_stripe(t_game *game, int stripe, int animation)
 void	draw_sprites(t_game *game)
 {
 	int			stripe;
-	int			i;
 	int			animation;
 
-	i = 0;
 	animation = 0;
 	if ((int)mlx_get_time() % 2 == 0)
 		animation = 1;
-	calculate_sprite(game, i);
+	calculate_sprite(game);
 	stripe = game->sprite.draw_start_x;
 	while (stripe < game->sprite.draw_end_x)
 	{

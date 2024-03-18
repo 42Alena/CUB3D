@@ -6,33 +6,11 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/16 12:28:39 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:18:39 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-void	timer(mlx_image_t *image, int height, int width, double time)
-{
-	int			y;
-	int			x;
-
-	y = -1;
-	while (++y < height)
-	{
-		x = -1;
-		while (++x < width)
-		{
-			if (x < 1700 - time * TIMER_SPEED && x > 1000 && y > 50 && y < 100)
-			{
-				if (time * TIMER_SPEED > 500)
-					mlx_put_pixel(image, x, y, 0xFF000099);
-				else
-					mlx_put_pixel(image, x, y, 0xFF000044);
-			}
-		}
-	}
-}
 
 void	game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor)
 {
@@ -57,6 +35,22 @@ void	win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor)
 	}
 }
 
+void	gameplay(t_game *game, double time)
+{
+	if (game->textures.image)
+		mlx_delete_image(game->mlx, game->textures.image);
+	raycasting(game);
+	draw_sprites(game);
+	key_press(game);
+	minimap(game);
+	timer(game->textures.image, game->window_height, game->window_width, time);
+	if (game->mouse.mouse_x > game->window_width / 1.1)
+		rotation(&game->player, ROTATION_SPEED / 2);
+	else if (game->mouse.mouse_x < game->window_width * 1.1 \
+	- game->window_width)
+		rotation(&game->player, -ROTATION_SPEED / 2);
+}
+
 void	ft_hook(void *param)
 {
 	t_game	*game;
@@ -68,19 +62,7 @@ void	ft_hook(void *param)
 		game->end = TRUE;
 	if (!game->is_menu && !game->is_settings \
 	&& !game->is_win && !game->end)
-	{
-		if (game->textures.image)
-			mlx_delete_image(game->mlx, game->textures.image);
-		raycasting(game);
-		key_press(game);
-		minimap(game);
-		timer(game->textures.image, game->window_height, game->window_width, time);
-		if (game->mouse.mouse_x > game->window_width / 1.1)
-			rotation(&game->player, ROTATION_SPEED / 2);
-		else if (game->mouse.mouse_x < game->window_width * 1.1 \
-		- game->window_width)
-			rotation(&game->player, -ROTATION_SPEED / 2);
-	}
+		gameplay(game, time);
 	else if (game->end && !game->dead_cursor)
 		game_over(game->textures.end, game->mlx, &game->dead_cursor);
 	else if (game->is_win && !game->dead_cursor)
@@ -96,7 +78,6 @@ int	main(int argc, char **argv)
 	init_game_struct(&game);
 	check_map(&game, argv[1]);
 	map_read(&game, argv[1]);
-	//check_maps_characters(&game);
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);
 	mlx_mouse_hook(game.mlx, mouse, &game);
@@ -108,6 +89,7 @@ int	main(int argc, char **argv)
 	free_mlx(&game);
 	return (EXIT_SUCCESS);
 }
+	//check_maps_characters(&game);
 // int i = 0;
 // int j = 0;
 // while (game.map.saved_map[i])

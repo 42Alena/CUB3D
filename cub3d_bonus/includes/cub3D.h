@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/16 12:31:40 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:40:34 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,10 +189,21 @@ void	calculate_step(t_game *game);
 void	init_ray(t_game *game, int i, int w);
 void	distance_and_height(t_game *game);
 
-//bigmap
+//textures.c
+void	load_images(t_game *game);
+void	load_textures(t_game *game);
+void	extra_textures(t_game *game);
+
+//main_menu.c
+void	launch_game(t_game *game);
+void	back_to_main_menu(t_game *game);
+void	settings(t_game *game);
+int		move_speed(t_game *game);
+
+//bigmap.c
 void	bigmap(t_game *game);
 
-//minimap
+//minimap.c
 void	minimap(t_game *game);
 
 //sprites.c
@@ -215,8 +226,10 @@ void	draw_floor_ceiling(t_game *game, int x);
 void	draw_walls(t_game *game, int x);
 void	raycasting(t_game *game);
 
-//game.c
+//utils.c
 uint32_t	*get_color(mlx_texture_t *texture);
+int			distance_to_wall(t_player *player, char **saved_map, double x, double y);
+void		timer(mlx_image_t *image, int height, int width, double time);
 
 // game_init.c 
 void	init_map_structure(t_game *game);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   player_save.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:17:51 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/07 20:25:17 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:45:24 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void save_player_pos_dir(t_game *game, char player_dir, int x, int y)
+void	save_player_pos_dir(t_game *game, char player_dir, int x, int y)
 {
 	if (player_dir == 'N')
 	{

@@ -6,32 +6,30 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/14 11:15:48 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:47:18 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-
-
-void map_save(t_game *game)
+void	map_save(t_game *game)
 {
 	int		i;
 	int		j;
-	
+
 	i = -1;
-	game->map.saved_map = (char **)malloc((game->map.rows + 1) * sizeof(char *));
+	game->map.saved_map = malloc((game->map.rows + 1) * sizeof(char *));
 	if (game->map.saved_map == NULL)
 		ft_error (game, "Map: memory allocation faled");
-    while (++i < game->map.rows) 
+	while (++i < game->map.rows) 
 	{
-        game->map.saved_map[i] = (char *)malloc((game->map.cols + 1) * sizeof(char));
+		game->map.saved_map[i] = malloc((game->map.cols + 1) * sizeof(char));
 		if (!game->map.saved_map[i])
 		{
 			j = -1;
-            while (++j < i)
-                free(game->map.saved_map[j]);
-            free(game->map.saved_map);
+			while (++j < i)
+				free(game->map.saved_map[j]);
+			free(game->map.saved_map);
 			ft_error (game, "Map: memory allocation faled");
 		}
 	}
@@ -61,7 +59,7 @@ void	map_read(t_game *game, char *filename)
 			game->map.saved_map[y][x] = line[x];
 			x++;
 		}
-        game->map.saved_map[y][x] = '\0';
+		game->map.saved_map[y][x] = '\0';
 		free(line);
 		y++;
 	}

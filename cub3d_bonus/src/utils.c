@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/11 11:09:04 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:45:03 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,36 @@ uint32_t	*get_color(mlx_texture_t *texture)
 		i++;
 	}
 	return (colors);
+}
+
+int	distance_to_wall(t_player *player, char **saved_map, double x, double y)
+{
+	if (saved_map[(int)player->pos_y][(int)x] == '1' \
+	|| saved_map[(int)y][(int)player->pos_x] == '1' \
+	|| saved_map[(int)y][(int)player->pos_x] == '3' \
+	|| saved_map[(int)player->pos_y][(int)x] == '3')
+		return (FALSE);
+	return (TRUE);
+}
+
+void	timer(mlx_image_t *image, int height, int width, double time)
+{
+	int			y;
+	int			x;
+
+	y = -1;
+	while (++y < height)
+	{
+		x = -1;
+		while (++x < width)
+		{
+			if (x < 1700 - time * TIMER_SPEED && x > 1000 && y > 50 && y < 100)
+			{
+				if (time * TIMER_SPEED > 500)
+					mlx_put_pixel(image, x, y, 0xFF000099);
+				else
+					mlx_put_pixel(image, x, y, 0xFF000044);
+			}
+		}
+	}
 }

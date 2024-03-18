@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/16 11:57:02 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:43:40 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,26 @@ void	draw_walls(t_game *game, int x)
 
 int	is_near(t_game *game, char c)
 {
+	int	y;
+	int	x;
+
+	x = (int)game->player.pos_x;
+	y = (int)game->player.pos_y;
 	if (game->player.dir_x > 0.5 && game->player.dir_x < 1 && \
 	game->player.dir_y > -0.5 && game->player.dir_y < 0.5 && \
-	game->map.saved_map[(int)game->player.pos_y][(int)game->player.pos_x + 1] == c)
+	game->map.saved_map[y][x + 1] == c)
 		return (TRUE);
 	else if (game->player.dir_x < -0.5 && game->player.dir_x > -1 && \
 	game->player.dir_y > -0.5 && game->player.dir_y < 0.5 && \
-	game->map.saved_map[(int)game->player.pos_y][(int)game->player.pos_x - 1] == c)
+	game->map.saved_map[y][x - 1] == c)
 		return (TRUE);
 	else if (game->player.dir_y > 0.5 && game->player.dir_y < 1 && \
 	game->player.dir_x > -0.5 && game->player.dir_x < 0.5 && \
-	game->map.saved_map[(int)game->player.pos_y + 1][(int)game->player.pos_x] == c)
+	game->map.saved_map[y + 1][x] == c)
 		return (TRUE);
 	else if (game->player.dir_y < -0.5 && game->player.dir_y > -1 && \
 	game->player.dir_x > -0.5 && game->player.dir_x < 0.5 && \
-	game->map.saved_map[(int)game->player.pos_y - 1][(int)game->player.pos_x] == c)
+	game->map.saved_map[y - 1][x] == c)
 		return (TRUE);
 	return (FALSE);
 }
@@ -111,6 +116,5 @@ void	raycasting(t_game	*game)
 		draw_floor_ceiling(game, x);
 		x++;
 	}
-	draw_sprites(game);
 	mlx_image_to_window(game->mlx, game->textures.image, 0, 0);
 }

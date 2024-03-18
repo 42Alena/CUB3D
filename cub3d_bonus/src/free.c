@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/14 12:59:19 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:09:14 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	free_textures(t_game *game)
 		free(game->textures.west);
 	else if (game->textures.win_image)
 		free(game->textures.win_image);
-	else if (game->textures.r2d2)
-		free(game->textures.r2d2);
 }
 
 void	free_mlx(t_game *game)

@@ -10,6 +10,10 @@ Nice to have
 [] write custom mlx_put_pixel
 [] Memory leaks when exit with red cross (how to call free?)
 
+18.03
+[x] ALL norminette fixed
+[x] split minimap and bigmap
+
 16.03
 [x] now game is way faster
 [x] I optimized the code by removing unneccesary things  (on the 4 floor game is very slow!)
