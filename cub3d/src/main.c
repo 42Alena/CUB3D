@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/18 11:18:39 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:49:04 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	(void)argc;
 	check_input(argc, argv);
 	init_game_struct(&game);
 	check_map(&game, argv[1]);
@@ -89,14 +88,3 @@ int	main(int argc, char **argv)
 	free_mlx(&game);
 	return (EXIT_SUCCESS);
 }
-	//check_maps_characters(&game);
-// int i = 0;
-// int j = 0;
-// while (game.map.saved_map[i])
-// {
-// 	j = 0;
-// 	while (game.map.saved_map[i][j])
-// 		printf("%c", game.map.saved_map[i][j++]);
-// 	printf("\n");
-// 	i++;
-// }

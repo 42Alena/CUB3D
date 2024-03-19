@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/18 11:47:18 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/19 18:48:42 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	check_map(t_game *game, char *filename)
 	if (fd == -1)
 		ft_error(game, "Failure of opening map");
 	check_maps_cols_rows(game, fd);
-	printf ("rows: %d, cols: %d\n", game->map.rows, game->map.cols);
 	if (game->map.rows < 3)
 		ft_error(game, "Map is not valid");
 	close(fd);

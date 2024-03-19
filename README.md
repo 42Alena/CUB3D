@@ -1,5 +1,5 @@
 # 3D game using RAYCASTING
-
+_Note: The codebase follows the norms specified by Norminette._
 ## How to compile
 ```
 make && ./cub3d maps/simple.cub
