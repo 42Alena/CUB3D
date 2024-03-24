@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:58:28 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/18 11:08:15 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/24 11:54:53 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	hit_wall(t_game	*game)
 	}
 }
 
-void	calculate_start_end(t_game *game)
+void	calculate_start_end(t_game *game, int tex_height, int tex_width)
 {
 	game->ray.draw_start = -game->ray.line_height / 2 + game->window_height / 2;
 	if (game->ray.draw_start < 0)
@@ -108,10 +108,10 @@ void	calculate_start_end(t_game *game)
 		game->ray.wall_x = \
 		game->player.pos_x + game->ray.perp_wall_dist * game->ray.ray_dir_x;
 	game->ray.wall_x -= floor((game->ray.wall_x));
-	game->ray.tex_x = (int)(IMAGE_WIDTH * game->ray.wall_x);
+	game->ray.tex_x = (int)(tex_width * game->ray.wall_x);
 	if (game->ray.side == 0 && game->ray.ray_dir_x > 0)
-		game->ray.tex_x = IMAGE_WIDTH - game->ray.tex_x - 1;
+		game->ray.tex_x = tex_width - game->ray.tex_x - 1;
 	if (game->ray.side == 1 && game->ray.ray_dir_y < 0)
-		game->ray.tex_x = IMAGE_WIDTH - game->ray.tex_x - 1;
-	game->ray.step = 1.0 * IMAGE_HEIGHT / game->ray.line_height;
+		game->ray.tex_x = tex_width - game->ray.tex_x - 1;
+	game->ray.step = 1.0 * tex_height / game->ray.line_height;
 }

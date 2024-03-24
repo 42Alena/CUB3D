@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/18 11:09:14 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/24 12:02:16 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,22 @@ void	free_double_array(char **array)
 
 void	free_textures(t_game *game)
 {
-	if (game->textures.bottom_image)
-		free(game->textures.bottom_image);
-	else if (game->textures.c3po)
+	if (game->textures.c3po)
 		free(game->textures.c3po);
 	else if (game->textures.c3po2)
 		free(game->textures.c3po2);
-	else if (game->textures.ceiling)
-		free(game->textures.ceiling);
 	else if (game->textures.door)
 		free(game->textures.door);
 	else if (game->textures.door_open)
 		free(game->textures.door_open);
-	else if (game->textures.floor)
-		free(game->textures.floor);
-	else if (game->textures.east)
-		free(game->textures.east);
-	else if (game->textures.north)
-		free(game->textures.north);
-	else if (game->textures.south)
-		free(game->textures.south);
-	else if (game->textures.west)
-		free(game->textures.west);
+	else if (game->textures.wall.east)
+		free(game->textures.wall.east);
+	else if (game->textures.wall.north)
+		free(game->textures.wall.north);
+	else if (game->textures.wall.south)
+		free(game->textures.wall.south);
+	else if (game->textures.wall.west)
+		free(game->textures.wall.west);
 	else if (game->textures.win_image)
 		free(game->textures.win_image);
 }

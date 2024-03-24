@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:28:06 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/18 11:44:25 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/24 14:51:51 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	sprite_height_width(t_game *game, int scale)
 {
+	(void)scale;
 	game->sprite.sprite_height = \
-	abs((int)(game->window_height / (game->sprite.transform_y)) / scale);
+	abs((int)(game->window_height / (game->sprite.transform_y)) / 2);
 	game->sprite.draw_start_y = -game->sprite.sprite_height / 2 \
 	+ game->window_height / 2 + game->sprite.v_move_screen;
 	if (game->sprite.draw_start_y < 0)
@@ -25,13 +26,13 @@ void	sprite_height_width(t_game *game, int scale)
 	if (game->sprite.draw_end_y >= game->window_height)
 		game->sprite.draw_end_y = game->window_height - 1;
 	game->sprite.sprite_width = \
-	abs((int)(game->window_height / (game->sprite.transform_y)) / scale);
+	abs((int)(game->window_height / (game->sprite.transform_y)) / 3);
 	game->sprite.draw_start_x = -game->sprite.sprite_width / \
 	2 + game->sprite.sprite_screen_x;
 	if (game->sprite.draw_start_x < 0)
 		game->sprite.draw_start_x = 0;
-	game->sprite.draw_end_x = game->sprite.sprite_width / \
-	2 + game->sprite.sprite_screen_x;
+	game->sprite.draw_end_x = game->sprite.sprite_width / 2 + \
+	game->sprite.sprite_screen_x;
 	if (game->sprite.draw_end_x >= game->window_width)
 		game->sprite.draw_end_x = game->window_width - 1;
 }
@@ -68,12 +69,12 @@ void	draw_stripe(t_game *game, int stripe, int animation)
 		game->sprite.d = (y - game->sprite.v_move_screen) \
 		* 256 - game->window_height * 128 + game->sprite.sprite_height * 128;
 		game->sprite.tex_y = \
-		((game->sprite.d * SPRITE_HEIGHT) / game->sprite.sprite_height) / 256;
+		((game->sprite.d * game->textures.c3po_h) / game->sprite.sprite_height) / 256;
 		if (animation == 0)
-			color = game->textures.c3po[SPRITE_WIDTH \
+			color = game->textures.c3po[game->textures.c3po_w \
 			* game->sprite.tex_y + game->sprite.tex_x];
 		else if (animation == 1)
-			color = game->textures.c3po2[SPRITE_WIDTH \
+			color = game->textures.c3po2[game->textures.c3po_w \
 			* game->sprite.tex_y + game->sprite.tex_x];
 		if ((color & 0x00FFFFFF) != 0)
 			mlx_put_pixel(game->textures.image, stripe, y, color);

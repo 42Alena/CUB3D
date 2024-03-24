@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:11:04 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/18 11:11:12 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/24 14:51:30 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,27 @@ void	extra_textures(t_game *game)
 
 	wall = mlx_load_png("./textures/c3po.png");
 	game->textures.c3po = get_color(wall);
+	game->textures.c3po_w = wall->width;
+	game->textures.c3po_h = wall->height;
+	printf("W:%d H:%d\n", wall->width, wall->height);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/c3po2.png");
 	game->textures.c3po2 = get_color(wall);
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/door.png");
 	game->textures.door = get_color(wall);
+	game->textures.door_w = wall->width;
+	game->textures.door_h = wall->height;
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/dooropen.png");
 	game->textures.door_open = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/warning.png");
-	game->textures.bottom_image = get_color(wall);
+	game->textures.door_open_w = wall->width;
+	game->textures.door_open_h = wall->height;
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/win.png");
 	game->textures.win_image = get_color(wall);
+	game->textures.win_image_w = wall->width;
+	game->textures.win_image_h = wall->height;
 	mlx_delete_texture(wall);
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
 }
@@ -41,23 +47,25 @@ void	load_textures(t_game *game)
 {
 	mlx_texture_t	*wall;
 
-	wall = mlx_load_png("./textures/wall.png");
-	game->textures.north = get_color(wall);
+	wall = mlx_load_png("./textures/wall4.png");
+	game->textures.wall.north = get_color(wall);
+	game->textures.wall.north_w = wall->width;
+	game->textures.wall.north_h = wall->height;
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/wall2.png");
-	game->textures.south = get_color(wall);
+	game->textures.wall.south = get_color(wall);
+	game->textures.wall.south_w = wall->width;
+	game->textures.wall.south_h = wall->height;
+	mlx_delete_texture(wall);
+	wall = mlx_load_png("./textures/wall.png");
+	game->textures.wall.west = get_color(wall);
+	game->textures.wall.west_w = wall->width;
+	game->textures.wall.west_h = wall->height;
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/wall3.png");
-	game->textures.west = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall4.png");
-	game->textures.east = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/floor_new.png");
-	game->textures.floor = get_color(wall);
-	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/ceiling.png");
-	game->textures.ceiling = get_color(wall);
+	game->textures.wall.east = get_color(wall);
+	game->textures.wall.east_w = wall->width;
+	game->textures.wall.east_h = wall->height;
 	mlx_delete_texture(wall);
 	extra_textures(game);
 }

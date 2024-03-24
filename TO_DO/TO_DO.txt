@@ -8,7 +8,11 @@ Nice to have
 
 [] add credits
 [] write custom mlx_put_pixel
-[] Memory leaks when exit with red cross (how to call free?)
+[] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
+
+24.03
+[x] now textures do not have to be the same size (we take their size from them) 
+	no more #define IMAGE_WIDTH, #define SPRITE_WIDTH
 
 18.03
 [x] ALL norminette fixed
