@@ -8,7 +8,7 @@ LIBS := $(LIBFT)/libft.a $(LIBGNL)/libgnl.a $(LIBMLX)/build/libmlx42.a -ldl -lgl
 SOURCES_M  := \
     ./src/main.c\
 	./src/game_utils.c\
-	./src/check_input.c\
+	./src/map_file_check.c\
 	./src/game_init.c\
 	./src/map_utils.c\
 	./src/map_visuals.c\

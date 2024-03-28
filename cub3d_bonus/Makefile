@@ -12,6 +12,7 @@ SOURCES_M  := \
 	./src/player_save.c\
 	./src/error.c\
 	./src/key_press.c\
+	./src/map_file_check.c\
 	./src/map_check.c\
 	./src/map_save.c\
 	./src/raycasting.c\

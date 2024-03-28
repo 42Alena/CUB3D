@@ -6,18 +6,18 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/14 02:37:44 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:01:35 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	timer(t_game *game, double time)
+void timer(t_game *game, double time)
 {
-	uint32_t	color;
-	int			index;
-	int			y;
-	int			x;
+	uint32_t color;
+	int index;
+	int y;
+	int x;
 
 	y = -1;
 	if (time * TIMER_SPEED > 700)
@@ -42,11 +42,11 @@ void	timer(t_game *game, double time)
 	}
 }
 
-void	game_over(t_game *game, double time)
+void game_over(t_game *game, double time)
 {
-	uint32_t	color;
-	int			y;
-	int			x;
+	uint32_t color;
+	int y;
+	int x;
 
 	if (game->dead_cursor == FALSE)
 	{
@@ -69,10 +69,10 @@ void	game_over(t_game *game, double time)
 	sleep(1);
 }
 
-void	ft_hook(void *param)
+void ft_hook(void *param)
 {
-	t_game	*game;
-	double	time;
+	t_game *game;
+	double time;
 
 	game = param;
 	time = mlx_get_time();
@@ -91,17 +91,16 @@ void	ft_hook(void *param)
 		key_press(game);
 		if (game->mouse.mouse_x > game->window_width / 1.1)
 			rotation(game, ROTATION_SPEED / 2);
-		else if (game->mouse.mouse_x < game->window_width * 1.1 \
-		- game->window_width)
+		else if (game->mouse.mouse_x < game->window_width * 1.1 - game->window_width)
 			rotation(game, -ROTATION_SPEED / 2);
 	}
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_game	game;
+	t_game game;
 
-	check_input(argc, argv);
+	map_file_check(argc, argv);
 	init_game_struct(&game);
 	get_size_map(&game, argv[1]);
 	map_read_save(&game, argv[1]);

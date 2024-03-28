@@ -17,7 +17,7 @@ Nice to have
 [] Win the game
 
 13.03
-[x] added check_input.c and check input
+[x] added map_file_check.c and check input
 [x] fix image mirroring
 [x] door opening is broken
 [x] player move in the wrong direction on minimap

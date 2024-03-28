@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:36:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/14 09:13:24 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:05:59 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ t_bool is_map_middle_lines(t_game *game, int y)
 
 
 
+
 //////////////////////////PRINTs FOR TEST MAPS//////////////////////
 // TODO: move/delete before push
 void print_map_pos_x_y(t_game *game)
@@ -151,5 +152,20 @@ void print_map(t_game *game)
         printf("\n");
         y++;
     }
+}
+
+void print_map_structure(t_game *game)
+{
+    printf("Map Structure:\n");
+    printf("cols: %d\n", game->map.cols);
+    printf("rows: %d\n", game->map.rows);
+    printf("first_map_line: %d\n", game->map.first_map_line);
+    printf("last_map_line: %d\n", game->map.last_map_line);
+    printf("n_texture: %s\n", game->map.n_texture);
+    printf("s_texture: %s\n", game->map.s_texture);
+    printf("w_texture: %s\n", game->map.w_texture);
+    printf("e_texture: %s\n", game->map.e_texture);
+    printf("floor_color: %s\n", game->map.floor_color);
+    printf("ceiling_color: %s\n", game->map.ceiling_color);
 }
 //////////////

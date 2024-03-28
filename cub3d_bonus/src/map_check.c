@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:38:59 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/13 21:14:12 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:56:54 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,6 @@ void print_map(t_game *game)
 }
 
 /// //////////////////////////////////////////////////////////
-
-
-
-int	check_input(int argc, char **argv)
-{
-	int	len_argv1;
-
-	if (argc != 2)
-		ft_error(NULL, "Invalid arguments. Start: ./cub3D <map_name>.cub");
-	len_argv1 = ft_strlen(argv[1]);
-	if ((len_argv1 < 5) || (argv[1][len_argv1 - 4] != '.')
-		|| (argv[1][len_argv1 - 3] != 'c') || (argv[1][len_argv1 - 2] != 'u')
-		|| (argv[1][len_argv1 - 1] != 'b'))
-			ft_error(NULL, "Invalid file extension: .cub expected");
-	return (0);
-}
-
 
 
 // void	check_map_walls(t_game *game)
