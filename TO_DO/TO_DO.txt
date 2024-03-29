@@ -10,6 +10,10 @@ Nice to have
 [] write custom mlx_put_pixel
 [] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
 
+28.03
+[x] Makefiles(libft,libgnl,cub3D: added for debug -g to CFLAGS
+[x] check arguments,  check map file(.cub, open)
+
 24.03
 [x] now textures do not have to be the same size (we take their size from them) 
 	no more #define IMAGE_WIDTH, #define SPRITE_WIDTH
