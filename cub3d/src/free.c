@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/24 12:02:16 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/28 20:36:56 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+int free_string_and_return_value(char *str_to_free, int ret_value)
+{
+    if (str_to_free != NULL)
+        free(str_to_free);
+    return ret_value;
+}
 
 void	free_double_array(char **array)
 {

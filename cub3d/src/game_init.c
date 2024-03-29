@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/18 11:10:51 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:28:49 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	init_ray_struct(t_game *game)
 
 void	init_player_structure(t_game *game)
 {
+	game->player.count = 0;
 	game->player.pos_x = 2.5;
 	game->player.pos_y = 1.5;
 	game->player.dir_x = 0;

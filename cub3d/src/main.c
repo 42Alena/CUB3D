@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/19 18:49:04 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/28 20:02:18 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,66 @@ void	ft_hook(void *param)
 		win_screen(game->textures.congrats, game->mlx, &game->dead_cursor);
 }
 
+/* 
+PRINTF FOR DEBUG
+    
+printf("string:|%s|\ntemp:|%s|\n", string, temp);
+printf("%s, len_argv1=%d\n", argv[1], len_argv1);
+printf("ENTERED HIER\n");
+ */
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
-
-	check_input(argc, argv);
+	
+	map_file_check(argc, argv);
 	init_game_struct(&game);
-	check_map(&game, argv[1]);
-	map_read(&game, argv[1]);
-	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
-	mlx_cursor_hook(game.mlx, cursor, &game);
-	mlx_mouse_hook(game.mlx, mouse, &game);
-	mlx_key_hook(game.mlx, key_hook, &game);
-	mlx_loop_hook(game.mlx, ft_hook, &game);
-	system("/usr/bin/aplay -q ./music/main.wav &");
-	system("/usr/bin/aplay -q ./music/hellothere.wav &");
-	mlx_loop(game.mlx);
-	free_mlx(&game);
+	map_read_save(&game, argv[1]);
+	// check_maps_characters(&game); //NOW
+
+	/// MY CHECK PRINTS
+	print_map(&game);
+	print_map_structure(&game);
+
+
+	
+
+	//////MAIN
+	//map_file_check(argc, argv);
+	// init_game_struct(&game);
+	// check_map(&game, argv[1]);
+	// map_read(&game, argv[1]);
+	// mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
+	// mlx_cursor_hook(game.mlx, cursor, &game);
+	// mlx_mouse_hook(game.mlx, mouse, &game);
+	// mlx_key_hook(game.mlx, key_hook, &game);
+	// mlx_loop_hook(game.mlx, ft_hook, &game);
+	// system("/usr/bin/aplay -q ./music/main.wav &");
+	// system("/usr/bin/aplay -q ./music/hellothere.wav &");
+	// mlx_loop(game.mlx);
+	// free_mlx(&game);
 	return (EXIT_SUCCESS);
 }
+
+
+
+////////ORIGINAL MAIN
+// int	main(int argc, char **argv)
+// {
+// 	t_game	game;
+
+// 	check_input(argc, argv);
+// 	init_game_struct(&game);
+// 	check_map(&game, argv[1]);
+// 	map_read(&game, argv[1]);
+// 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
+// 	mlx_cursor_hook(game.mlx, cursor, &game);
+// 	mlx_mouse_hook(game.mlx, mouse, &game);
+// 	mlx_key_hook(game.mlx, key_hook, &game);
+// 	mlx_loop_hook(game.mlx, ft_hook, &game);
+// 	system("/usr/bin/aplay -q ./music/main.wav &");
+// 	system("/usr/bin/aplay -q ./music/hellothere.wav &");
+// 	mlx_loop(game.mlx);
+// 	free_mlx(&game);
+// 	return (EXIT_SUCCESS);
+// }
