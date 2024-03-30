@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/28 21:19:14 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/30 21:41:46 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,13 @@ typedef struct s_game
 	t_ray ray;
 } t_game;
 
-// main
+// in main.c only main
+
+// game_play,c (other functions from main)
+void	game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
+void	win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
+void	gameplay(t_game *game, double time);
+void	ft_hook(void *param);
 
 // map_file_check.c
 int			map_file_check(int argc, char **argv);
