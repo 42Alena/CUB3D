@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/30 21:41:46 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/31 20:09:07 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ typedef struct s_map
 	int rows;
 	int first_map_line;
 	int last_map_line;
-	char *n_texture;
-	char *s_texture;
-	char *w_texture;
-	char *e_texture;
+	char *no_texture;
+	char *so_texture;
+	char *we_texture;
+	char *ea_texture;
 	char *floor_color;
 	char *ceiling_color;
 } t_map;
@@ -93,8 +93,8 @@ typedef struct s_sprite
 
 typedef struct s_ray
 {
-	int		map_x;
-	int		map_y;
+	int map_x;
+	int map_y;
 	double camera_x;
 	double step_x;
 	double step_y;
@@ -126,14 +126,14 @@ typedef struct s_wall
 	int south_w;
 	int south_h;
 	u_int32_t *west;
-	int		west_w;
-	int		west_h;
+	int west_w;
+	int west_h;
 	u_int32_t *east;
 	int east_w;
 	int east_h;
 } t_wall;
 
-typedef struct s_textures
+typedef struct so_textures
 {
 	mlx_image_t *image;
 	u_int32_t *door;
@@ -195,102 +195,102 @@ typedef struct s_game
 // in main.c only main
 
 // game_play,c (other functions from main)
-void	game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
-void	win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
-void	gameplay(t_game *game, double time);
-void	ft_hook(void *param);
+void game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
+void win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
+void gameplay(t_game *game, double time);
+void ft_hook(void *param);
 
 // map_file_check.c
-int			map_file_check(int argc, char **argv);
-void			check_valid_file(char *temp_file);
+t_bool	map_file_check(int argc, char **argv);
+t_bool	check_valid_file(char *temp_file);
+t_bool	wall_file_check(char *wall_file, t_game *game, char *wall);
 
 // map_check
-void		check_maps_characters(t_game *game);
+void check_maps_characters(t_game *game);
 
 // map_save.c
-void		map_allocate_memory(t_game *game);
-void		map_read_save(t_game *game, char *filename);
-void		get_size_map(t_game *game, char *filename);
+void	map_allocate_memory(t_game *game);
+void	map_read_save(t_game *game, char *filename);
+void	get_size_map(t_game *game, char *filename);
 
 // map_utils
-t_bool		is_substring(char *substring, char *string, int start, int len);
-t_bool		is_empty_line(char *line);
-t_bool		is_map_middle_lines(t_game *game, int y);
-t_bool		is_map_walls_first_last_line(char *line);
+t_bool is_substring(char *substring, char *string, int start, int len);
+t_bool is_empty_line(char *line);
+t_bool is_map_middle_lines(t_game *game, int y);
+t_bool is_map_walls_first_last_line(char *line);
 //////TO TEST
-void		print_map_structure(t_game *game);
-void		print_map_pos_x_y(t_game *game);
-void		print_map(t_game *game);
+void print_map_structure(t_game *game);
+void print_map_pos_x_y(t_game *game);
+void print_map(t_game *game);
 /// END_TO TEST////////////////
 
 // game_init.c
-void		init_map_structure(t_game *game);
-void		init_player_structure(t_game *game);
-void		init_game_struct(t_game *game);
+void init_map_structure(t_game *game);
+void init_player_structure(t_game *game);
+void init_game_struct(t_game *game);
+
+//map_visuals.c 
+
 
 // map_player_save.c
-void		check_save_player(t_game *game, char c, int x, int y);
-void		save_player_pos_dir(t_game *game, char player_dir, int x, int y);
-void		save_player_struct(t_game *game, char player_dir, int x, int y);
+void check_save_player(t_game *game, char c, int x, int y);
+void save_player_pos_dir(t_game *game, char player_dir, int x, int y);
+void save_player_struct(t_game *game, char player_dir, int x, int y);
 
 // free.c
-int			free_string_and_return_value(char *str_to_free, int ret_value);
-void		free_double_array(char **array);
-void		free_mlx(t_game *game);
+int free_string_and_return_value(char *str_to_free, int ret_value);
+void free_double_array(char **array);
+void free_mlx(t_game *game);
 
 // error.c
-void		ft_error(t_game *game, char *error_msg);
-
-// was double included
-//  //raycasting.c
-//  void	raycasting(t_game *game);
+void ft_error(t_game *game, char *error_msg);
 
 // raycasting.c
-void		draw_floor_ceiling(t_game *game, int x);
-void		raycasting(t_game *game);
+void draw_floor_ceiling(t_game *game, int x);
+void raycasting(t_game *game);
 
 // raycasting_calculations.c
-void		calculate_start_end(t_game *game, int tex_height, int tex_width);
-void		hit_wall(t_game *game);
-void		calculate_step(t_game *game);
-void		init_ray(t_game *game, int i, int w);
-void		distance_and_height(t_game *game);
+void calculate_start_end(t_game *game, int tex_height, int tex_width);
+void hit_wall(t_game *game);
+void calculate_step(t_game *game);
+void init_ray(t_game *game, int i, int w);
+void distance_and_height(t_game *game);
 
 // textures.c
-void		load_images(t_game *game);
-void		load_textures(t_game *game);
-void		extra_textures(t_game *game);
+void load_images(t_game *game);
+void load_textures(t_game *game);
+void extra_textures(t_game *game);
 
 // main_menu.c
-void		launch_game(t_game *game);
-void		back_to_main_menu(t_game *game);
-void		settings(t_game *game);
-int			move_speed(t_game *game);
+void launch_game(t_game *game);
+void back_to_main_menu(t_game *game);
+void settings(t_game *game);
+int move_speed(t_game *game);
 
 // bigmap.c
-void		bigmap(t_game *game);
+void bigmap(t_game *game);
 
 // minimap.c
-void		minimap(t_game *game);
+void minimap(t_game *game);
 
 // sprites.c
-void		draw_sprites(t_game *game);
+void draw_sprites(t_game *game);
 
 // floor_ceiling.c
-void		draw_floor_ceiling(t_game *game, int x);
+void draw_floor_ceiling(t_game *game, int x);
 
 // mouse.c
-void		cursor(double xpos, double ypos, void *param);
-void		mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
+void cursor(double xpos, double ypos, void *param);
+void mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 
 // utils.c
-uint32_t	*get_color(mlx_texture_t *texture);
-int			distance_to_wall(t_player *player, char **saved_map, double x, double y);
-void		timer(mlx_image_t *image, int height, int width, double time);
+uint32_t *get_color(mlx_texture_t *texture);
+int distance_to_wall(t_player *player, char **saved_map, double x, double y);
+void timer(mlx_image_t *image, int height, int width, double time);
 
 // key_press
-void		key_press(t_game *game);
-void		key_hook(mlx_key_data_t keydata, void *param);
-void		rotation(t_player *player, double rot_speed);
+void key_press(t_game *game);
+void key_hook(mlx_key_data_t keydata, void *param);
+void rotation(t_player *player, double rot_speed);
 
 #endif

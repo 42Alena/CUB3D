@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:36:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/28 21:04:03 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/31 19:03:17 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_bool is_substring(char *substring, char *string, int start, int len)
         return FALSE;
     if (ft_strncmp(substring, temp, len) != 0)
     {
-        //TODO: change to ft_free_return
+        // TODO: change to ft_free_return
         free(temp);
         return FALSE;
     }
@@ -168,10 +168,10 @@ void print_map_structure(t_game *game)
     printf("rows: %d\n", game->map.rows);
     printf("first_map_line: %d\n", game->map.first_map_line);
     printf("last_map_line: %d\n", game->map.last_map_line);
-    printf("n_texture: %s\n", game->map.n_texture);
-    printf("s_texture: %s\n", game->map.s_texture);
-    printf("w_texture: %s\n", game->map.w_texture);
-    printf("e_texture: %s\n", game->map.e_texture);
+    printf("no_texture: %s\n", game->map.no_texture);
+    printf("so_texture: %s\n", game->map.so_texture);
+    printf("we_texture: %s\n", game->map.we_texture);
+    printf("ea_texture: %s\n", game->map.ea_texture);
     printf("floor_color: %s\n", game->map.floor_color);
     printf("ceiling_color: %s\n", game->map.ceiling_color);
 }

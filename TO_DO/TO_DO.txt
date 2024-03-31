@@ -11,14 +11,27 @@ Nice to have
 [] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
 
 04.04
-[]  to Daniil: simle.cup is not valid, because spaces incide map
+[]  to Daniil: map simle.cub is not valid, because spaces inside the map
+	from imle.cub:
 	"
 	1000001111111111111111111111111111111
 	1000001                             1
 	1000003111111111111111111111111111111
 	"
+	[] add option for normal mode without time pressure
+
+
+31.03
+[] load_textures(t_game *game): delete lines with load textures directly, not from struct
+[] continue work on searching and saving  wall_path (in map_visuals.c)
+
 
 30.03
+[x] renamed wall_textures in file_names and in function to understandble names (from 1,2 to north, south..)
+[x] added our game_wall_textures in map.cub
+[x] add check file_extention and if not empty file for load textures
+[x] change load wall structures from struct textures in function "load_textures(t_game *game)"
+[x] start work on checking wall_path and files
 
 29.03
 [x] solved mistake in .gitignore, that files were not pushed

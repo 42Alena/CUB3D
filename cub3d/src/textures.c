@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:11:04 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/24 14:51:30 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/03/31 21:56:33 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	extra_textures(t_game *game)
+void extra_textures(t_game *game)
 {
-	mlx_texture_t	*wall;
+	mlx_texture_t *wall;
 
 	wall = mlx_load_png("./textures/c3po.png");
 	game->textures.c3po = get_color(wall);
@@ -43,26 +43,40 @@ void	extra_textures(t_game *game)
 	game->textures.cursor = mlx_load_png("./textures/cursor.png");
 }
 
-void	load_textures(t_game *game)
+void load_textures(t_game *game)
 {
-	mlx_texture_t	*wall;
-
-	wall = mlx_load_png("./textures/wall4.png");
+	mlx_texture_t *wall;
+	
+	// TODO: delete lines with load not from struct
+	wall = mlx_load_png("./textures/wall_north.png");
+	// wall = mlx_load_png(game->map.no_texture);
+	
 	game->textures.wall.north = get_color(wall);
 	game->textures.wall.north_w = wall->width;
 	game->textures.wall.north_h = wall->height;
 	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall2.png");
+
+	// TODO: delete lines with load not from struct
+	 wall = mlx_load_png("./textures/wall_south.png");
+	// wall = mlx_load_png(game->map.so_texture);
 	game->textures.wall.south = get_color(wall);
 	game->textures.wall.south_w = wall->width;
 	game->textures.wall.south_h = wall->height;
 	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall.png");
+	
+	// TODO: delete lines with load not from struct
+	wall = mlx_load_png("./textures/wall_west.png");
+	// wall = mlx_load_png(game->map.we_texture);
+	
 	game->textures.wall.west = get_color(wall);
 	game->textures.wall.west_w = wall->width;
 	game->textures.wall.west_h = wall->height;
 	mlx_delete_texture(wall);
-	wall = mlx_load_png("./textures/wall3.png");
+	
+	// TODO: delete lines with load not from struct
+	wall = mlx_load_png("./textures/wall_east.png");
+	// wall = mlx_load_png(game->map.ea_texture);
+	
 	game->textures.wall.east = get_color(wall);
 	game->textures.wall.east_w = wall->width;
 	game->textures.wall.east_h = wall->height;
@@ -70,9 +84,9 @@ void	load_textures(t_game *game)
 	extra_textures(game);
 }
 
-void	load_images(t_game *game)
+void load_images(t_game *game)
 {
-	xpm_t	*xpm42;
+	xpm_t *xpm42;
 
 	xpm42 = mlx_load_xpm42("./textures/PLAY.xpm42");
 	game->textures.main_menu = mlx_texture_to_image(game->mlx, &xpm42->texture);
@@ -82,8 +96,8 @@ void	load_images(t_game *game)
 	game->textures.settings1 = mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_delete_xpm42(xpm42);
 	xpm42 = mlx_load_xpm42("./textures/settings05.xpm42");
-	game->textures.settings05 = \
-	mlx_texture_to_image(game->mlx, &xpm42->texture);
+	game->textures.settings05 =
+		mlx_texture_to_image(game->mlx, &xpm42->texture);
 	mlx_delete_xpm42(xpm42);
 	xpm42 = mlx_load_xpm42("./textures/settings2.xpm42");
 	game->textures.settings2 = mlx_texture_to_image(game->mlx, &xpm42->texture);

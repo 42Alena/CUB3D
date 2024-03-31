@@ -12,6 +12,7 @@ SOURCES_M  := \
 	./src/map_file_check.c\
 	./src/map_save.c\
 	./src/map_check.c\
+	./src/map_visuals.c\
 	./src/map_utils.c\
 	./src/map_player_save.c\
 	./src/error.c\

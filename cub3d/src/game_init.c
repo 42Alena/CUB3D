@@ -6,26 +6,26 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/28 18:28:49 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/03/31 19:03:17 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	init_map_structure(t_game *game)
+void init_map_structure(t_game *game)
 {
 	game->map.saved_map = NULL;
 	game->map.cols = 0;
 	game->map.rows = 0;
-	game->map.n_texture = 0;
-	game->map.s_texture = 0;
-	game->map.w_texture = 0;
-	game->map.e_texture = 0;
+	game->map.no_texture = 0;
+	game->map.so_texture = 0;
+	game->map.we_texture = 0;
+	game->map.ea_texture = 0;
 	game->map.floor_color = 0;
 	game->map.ceiling_color = 0;
 }
 
-void	init_ray_struct(t_game *game)
+void init_ray_struct(t_game *game)
 {
 	game->ray.camera_x = 0;
 	game->ray.delta_dist_x = 0;
@@ -51,7 +51,7 @@ void	init_ray_struct(t_game *game)
 		ft_error(game, "Out of memory!");
 }
 
-void	init_player_structure(t_game *game)
+void init_player_structure(t_game *game)
 {
 	game->player.count = 0;
 	game->player.pos_x = 2.5;
@@ -62,7 +62,7 @@ void	init_player_structure(t_game *game)
 	game->player.plane_y = 0;
 }
 
-void	init_game_struct(t_game *game)
+void init_game_struct(t_game *game)
 {
 	game->window_height = 960;
 	game->window_width = 1980;
@@ -81,8 +81,8 @@ void	init_game_struct(t_game *game)
 	game->move_speed = INITIAL_MOVE_SPEED;
 	game->mouse.mouse_x = 0;
 	game->mouse.mouse_y = 0;
-	game->mlx = \
-	mlx_init(game->window_width, game->window_height, "CUB3D", true);
+	game->mlx =
+		mlx_init(game->window_width, game->window_height, "CUB3D", true);
 	if (!game->mlx)
 		ft_error(game, "Could not initialize MLX");
 	load_images(game);
