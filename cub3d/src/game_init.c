@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/31 19:03:17 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/01 19:53:00 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void init_game_struct(t_game *game)
 {
 	game->window_height = 960;
 	game->window_width = 1980;
-	init_map_structure(game);
-	init_player_structure(game);
 	init_ray_struct(game);
 	load_textures(game);
 	game->textures.image = NULL;

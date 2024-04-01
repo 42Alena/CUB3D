@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 18:42:54 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:52:59 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,16 +213,16 @@ void	map_allocate_memory(t_game *game);
 void	map_read_save(t_game *game, char *filename);
 void	get_size_map(t_game *game, char *filename);
 
-// map_utils
+// map_utils.c
 t_bool is_substring(char *substring, char *string, int start, int len);
 t_bool is_empty_line(char *line);
 t_bool is_map_middle_lines(t_game *game, int y);
 t_bool is_map_walls_first_last_line(char *line);
-//////TO TEST
+//___________TEST___FUNCTIONS___DELETE BEFORE PUSH__________
 void print_map_structure(t_game *game);
 void print_map_pos_x_y(t_game *game);
 void print_map(t_game *game);
-/// END_TO TEST////////////////
+//-------------END_TO TEST-------------------------------------------
 
 // game_init.c
 void init_map_structure(t_game *game);
@@ -230,7 +230,7 @@ void init_player_structure(t_game *game);
 void init_game_struct(t_game *game);
 
 //map_visuals.c 
-
+void	save_map_textures_and_colors(t_game *game);
 
 // map_player_save.c
 void check_save_player(t_game *game, char c, int x, int y);

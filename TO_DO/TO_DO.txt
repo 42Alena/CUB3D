@@ -21,12 +21,15 @@ Nice to have
 	[] add option for normal mode without time pressure
 
 
-31.03
+01.04
+[x] checked game on school Computer
+[x] added minimum posible size for map.cub
+[x] moved init_map and init_player from init_game struct(to not open game window for incorrect input)
+
 [] load_textures(t_game *game): delete lines with load textures directly, not from struct
 [] continue work on searching and saving  wall_path (in map_visuals.c)
 
-
-30.03
+31.03
 [x] renamed wall_textures in file_names and in function to understandble names (from 1,2 to north, south..)
 [x] added our game_wall_textures in map.cub
 [x] add check file_extention and if not empty file for load textures

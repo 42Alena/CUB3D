@@ -1,5 +1,46 @@
 ADD in TO_DO.txt
+make && make clean &&  ./cub3D ./maps/empty.cub  
 
+MAP
+MAP (count start from 1):
+first 8 lines only textures and colours and at  x >=7
+
+frm 
+y>=0 && y<=7
+y>=0 && y<=7
+map can start from line 9 and must have at 
+map y >= 3 lines
+map x >= 3 colomns
+
+check how many players
+
+//TODO add check first if in map exist first and lat line ,
+//first line - after 8 lines of code
+//last line - after at least 10 lines of code
+// then check if nothing is after last line except " " and "\n"
+//start searchig first line from beginn
+//start searchig last line from end
+//write nbr_first_line in struct
+
+//TODO : Add check map
+	// if (game->map.cols == 0 && game->map.rows == 0)
+	// 	ft_error(game, "Map is empty");
+	// printf ("rows: %d, cols: %d\n", game->map.rows, game->map.cols);
+	// if (game->map.rows < 3)
+	// 	ft_error(game, "Map is not valid");
+/* 
+
+//save info before map in structure, not in map
+//save max as for num rows
+//save max as for num cols
+//TODO:  NEED TO GO IN SAVED MAP
+// CHECK SIZE
+// CHECK IF THEE IS STRUCTURES
+//SKIP empty LINES
+//find and write in struct position of first line
+// check the position of first and last line 
+//- where position in file (must be at the end)
+*/
 
 ---------------------------------------
 MAP_INFO:
@@ -21,6 +62,7 @@ TEXTURES
 COLORS:
 	[] valid letters: F|C
 	[] if real RGB colours (220,100,0= R,G,B colors in range [0,255]: 0, 255, 255)
+	[] the smallest RGB color is (0, 0, 0), which corresponds to black.
 ------------------------------------------
 MAP:
 	[]  map must be allways LAST in map.cub
@@ -75,3 +117,53 @@ C 225,30,0
 11111111 1111111 111111111111
 ____________./maps/map.cub_________________________
 */
+
+
+
+
+//___________________MAIN for parsing and tests(ALENA)____________________________________
+/* 
+./cub3D ./maps/empty.cub 
+ */
+/* 
+PRINTF FOR DEBUG
+// 	/// MY CHECK PRINTS
+// 	print_map(&game);
+// 	print_map_structure(&game);  
+
+printf("string:|%s|\ntemp:|%s|\n", string, temp);
+printf("%s, len_argv1=%d\n", argv[1], len_argv1);
+printf("ENTERED HIER\n");
+ */
+
+//NOW
+
+///______________MAIN.WORKING HERE
+int	main(int argc, char **argv)
+{
+	t_game	game;
+	map_file_check(argc, argv); //NEW
+	init_map_structure(&game);
+	init_player_structure(&game);
+	map_read_save(&game, argv[1]);
+	//save_map_textures_and_colors(&game);
+	//check_maps_characters(&game); //from map_check.c
+
+//--------------print map__structure---------------------
+	print_map(&game);
+	print_map_structure(&game);  
+//-------------------------------
+
+	//  init_game_struct(&game);
+	// mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
+	// mlx_cursor_hook(game.mlx, cursor, &game);
+	// mlx_mouse_hook(game.mlx, mouse, &game);
+	// mlx_key_hook(game.mlx, key_hook, &game);
+	// mlx_loop_hook(game.mlx, ft_hook, &game);
+	// system("/usr/bin/aplay -q ./music/main.wav &");
+	// system("/usr/bin/aplay -q ./music/hellothere.wav &");
+	// mlx_loop(game.mlx);
+	// free_mlx(&game);
+	return (EXIT_SUCCESS);
+}
+//__________________________________________
