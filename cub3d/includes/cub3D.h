@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/31 20:09:07 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:42:54 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,10 +203,10 @@ void ft_hook(void *param);
 // map_file_check.c
 t_bool	map_file_check(int argc, char **argv);
 t_bool	check_valid_file(char *temp_file);
-t_bool	wall_file_check(char *wall_file, t_game *game, char *wall);
+t_bool	wall_file_check_save(char *name_txtr, char *line);
 
 // map_check
-void check_maps_characters(t_game *game);
+// void	check_maps_characters(t_game *game);
 
 // map_save.c
 void	map_allocate_memory(t_game *game);
