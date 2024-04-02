@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 21:35:23 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/02 05:21:23 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,22 @@ void	get_size_map(t_game *game, char *filename)
 		game->map.rows += 1;
 	}
 	close(fd);
+}
+
+void extract_map_save(t_game *game, int row)
+{
+	int	y;
+
+	y = 0;
+	while (game->map.saved_map[row] \
+		&& is_empty_line(game->map.saved_map[row]))
+		row++;
+	while (game->map.saved_map[y] && y < row)
+	{
+		free(game->map.saved_map[y]);
+		y++;
+	}
+	// print_map_structure(game);
+	//go from end
+
 }

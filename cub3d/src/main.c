@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/02 02:56:23 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/02 05:53:33 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,28 @@
 
 //__________ NOW.VERSION MAIN___________________________
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-	map_file_check(argc, argv); //NEW
-	init_map_structure(&game);
-	init_player_structure(&game);
-	map_read_save(&game, argv[1]);
-	save_map_textures_and_colors(&game);
+// int	main(int argc, char **argv)
+// {
+// 	t_game	game;
+// 	map_file_check(argc, argv); //NEW
+// 	init_map_structure(&game);
+// 	init_player_structure(&game);
+// 	map_read_save(&game, argv[1]);
+// 	save_map_textures_and_colors(&game);
 
 
-	init_game_struct(&game);
-	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
-	mlx_cursor_hook(game.mlx, cursor, &game);
-	mlx_mouse_hook(game.mlx, mouse, &game);
-	mlx_key_hook(game.mlx, key_hook, &game);
-	mlx_loop_hook(game.mlx, ft_hook, &game);
-	system("/usr/bin/aplay -q ./music/main.wav &");
-	system("/usr/bin/aplay -q ./music/hellothere.wav &");
-	mlx_loop(game.mlx);
-	free_mlx(&game);
-	return (EXIT_SUCCESS);
-}
+// 	init_game_struct(&game);
+// 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
+// 	mlx_cursor_hook(game.mlx, cursor, &game);
+// 	mlx_mouse_hook(game.mlx, mouse, &game);
+// 	mlx_key_hook(game.mlx, key_hook, &game);
+// 	mlx_loop_hook(game.mlx, ft_hook, &game);
+// 	system("/usr/bin/aplay -q ./music/main.wav &");
+// 	system("/usr/bin/aplay -q ./music/hellothere.wav &");
+// 	mlx_loop(game.mlx);
+// 	free_mlx(&game);
+// 	return (EXIT_SUCCESS);
+// }
 
 //_______________________________________________________
 
@@ -70,23 +70,22 @@ printf("ENTERED HIER\n");
 //NOW
 
 ///______________MAIN.WORKING HERE
-// int	main(int argc, char **argv)
-// {
-// 	t_game	game;
-// 	map_file_check(argc, argv); //NEW
-// 	init_map_structure(&game);
-// 	init_player_structure(&game);
-// 	map_read_save(&game, argv[1]);
-// 	save_map_textures_and_colors(&game); //Working, need to convert colors
+int	main(int argc, char **argv)
+{
+	t_game	game;
+	map_file_check(argc, argv); //NEW
+	init_map_structure(&game);
+	init_player_structure(&game);
+	map_read_save(&game, argv[1]);
+	save_map_textures_and_colors(&game); //Working, need to convert colors
 
-	//________working on:
-	//check_maps_characters(&game); //from map_check.c
-	//_______________________________
-//--------------print map__structure---------------------
-	//print_map(&game);
-// 	print_map_structure(&game);  
-// 	return (EXIT_SUCCESS);
-// }
+
+	// check_maps_characters(&game); //from map_check.c
+
+	// print_map(&game);
+	// print_map_structure(&game);  
+	return (EXIT_SUCCESS);
+}
 //-------------------------------
 
 	//  init_game_struct(&game);

@@ -32,31 +32,49 @@ void	save_map_textures_and_colors(t_game *game)
 	char *temp_line;
 
 	y = 0;
-    while (y < game->map.rows - 3  || !is_map_settings_complete(game))
+    while (y <= game->map.rows - 3  || !is_map_settings_complete(game))
 	{
 		temp_line = ft_strtrim(game->map.saved_map[y], " ");
-		// printf("%s\n", temp_line);
-		if (temp_line == NULL)
+		if (is_empty_line(temp_line))
 			y++;	
 		else if (is_substring("NO ", temp_line, 0, 3))
+		{
+			printf("y: %d, line: %s\n", y, temp_line);
 			wall_file_check_save(&(game->map.no_texture),  temp_line);
-		else if (is_substring("SO ", temp_line, 0, 3))
-			wall_file_check_save(&(game->map.so_texture),  temp_line);
-		else if (is_substring("WE ", temp_line, 0, 3))
-			wall_file_check_save(&(game->map.we_texture),  temp_line);
-		else if (is_substring("EA ", temp_line, 0, 3))
-			wall_file_check_save(&(game->map.ea_texture),  temp_line);
-		else if (is_substring("F ", temp_line, 0, 2))
-				save_map_color(&(game->map.floor_color_str), temp_line);
-		else if (is_substring("C ", temp_line, 0, 2))
-				save_map_color(&(game->map.ceiling_color_str), temp_line);
+			y++;
+		}
+		// else if (is_substring("SO ", temp_line, 0, 3))
+		// {
+		// 	wall_file_check_save(&(game->map.so_texture),  temp_line);
+		// 	y++;
+		// }
+		// else if (is_substring("WE ", temp_line, 0, 3))
+		// {
+		// 	wall_file_check_save(&(game->map.we_texture),  temp_line);
+		// 	y++;
+		// }
+		// else if (is_substring("EA ", temp_line, 0, 3))
+		// {
+		// 	wall_file_check_save(&(game->map.ea_texture),  temp_line);
+		// 	y++;
+		// }
+		// else if (is_substring("F ", temp_line, 0, 2))
+		// {
+		// 	save_map_color(&(game->map.floor_color_str), temp_line);
+		// 	y++;
+		// }
+		// else if (is_substring("C ", temp_line, 0, 2))
+		// {
+		// 	save_map_color(&(game->map.ceiling_color_str), temp_line);
+		// 	y++;
+		// }
 		else
 			break ;
-        y++;
     }
 	// print_map_structure(game);
-	if (is_map_settings_complete(game))
-			ft_error(game, "Map's requirements: Texture or color information is missing");
+	// if (is_map_settings_complete(game) == FALSE)
+	// 		ft_error(game, "Map's requirements: Texture or color information is missing");
+	// extract_map_save(game, y);
 	//TODO: save y as first line of map		
 
 	// if all structures full => beginns map check from this line
@@ -64,16 +82,13 @@ void	save_map_textures_and_colors(t_game *game)
 }
 
 
-
-//TODO: WORKING HIER
-//do I need hier struct game?
-// t_bool	wall_file_check_save(char *name_txtr,char *wall_file, t_game *game)
 void	wall_file_check_save(char **name_txtr, char *line)
 {
 	char	*wall_path;
 	int		length_wall_path;
 
- 	// dprintf(2,"name_txtr :%s\n",name_txtr);
+	printf("name_txtr: %s, line: %s\n", *name_txtr, line);
+
 	if (*name_txtr != NULL)
 	{
 		free(line);
@@ -99,8 +114,8 @@ void	wall_file_check_save(char **name_txtr, char *line)
 	}
 	is_valid_file(wall_path);
 	*name_txtr = wall_path;
-	// dprintf(2,"name_txtr after :%s\n",name_txtr);
-	// free(wall_path);
+
+	free(wall_path);
 }
 
 

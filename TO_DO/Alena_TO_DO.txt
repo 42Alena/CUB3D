@@ -177,3 +177,7 @@ int	main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 //__________________________________________
+
+
+
+	// dprintf(2,"name_txtr after :%s\n",name_txtr);

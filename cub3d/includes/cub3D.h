@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/02 02:06:14 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/02 05:15:26 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ t_bool	is_valid_file(char *temp_file);
 void	map_allocate_memory(t_game *game);
 void	map_read_save(t_game *game, char *filename);
 void	get_size_map(t_game *game, char *filename);
+void extract_map_save(t_game *game, int row);
 
 // map_utils.c
 t_bool is_substring(char *substring, char *string, int start, int len);
