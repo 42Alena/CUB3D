@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 20:31:26 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/01 21:35:23 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ void	map_read_save(t_game *game, char *filename)
 	char	*line;
 
 	get_size_map(game, filename);
-/////////////////debug
-//	printf("cols:%d, rows: %d", game->map.cols, game->map.rows);
-////////////////end debug	
-	if (game->map.rows < 9 && game->map.cols < 9)
+	if (game->map.rows <= 8 || game->map.cols <= 7)
 		ft_error (game, "Map: not enough information");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		ft_error(game, "Failure of opening map");
+		ft_error(game, "Can not open the map");
 	y = 0;
 	map_allocate_memory(game);
 	while (TRUE)
@@ -89,7 +86,7 @@ void	get_size_map(t_game *game, char *filename)
 	line = NULL;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		ft_error(game, "Failure of opening map");
+		ft_error(game, "Can not open the map");
 	while (TRUE)
 	{
 		line = get_next_line(fd);

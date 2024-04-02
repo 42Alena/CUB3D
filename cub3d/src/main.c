@@ -6,13 +6,17 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 20:29:44 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/02 02:56:23 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+//////////////////////////////////////////////////
+//////////////////////////////////////////
+
 //__________ NOW.VERSION MAIN___________________________
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -20,9 +24,9 @@ int	main(int argc, char **argv)
 	init_map_structure(&game);
 	init_player_structure(&game);
 	map_read_save(&game, argv[1]);
-	//save_map_textures_and_colors(&game);
+	save_map_textures_and_colors(&game);
 
-//--------------------
+
 	init_game_struct(&game);
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);
@@ -35,13 +39,14 @@ int	main(int argc, char **argv)
 	free_mlx(&game);
 	return (EXIT_SUCCESS);
 }
+
 //_______________________________________________________
 
 
+///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
-
-
-//___________________MAIN for parsing and tests(ALENA)____________________________________
+//_____________TESTS______MAIN for parsing and tests(ALENA)____________________________________
 /* 
 ./cub3D ./maps/empty.cub 
 
@@ -51,7 +56,11 @@ make && make clean &&  ./cub3D ./maps/empty.cub
 PRINTF FOR DEBUG
 // 	/// MY CHECK PRINTS
 // 	print_map(&game);
-// 	print_map_structure(&game);  
+// 	print_map_structure(&game);
+
+/////////////////debug
+//	printf("cols:%d, rows: %d", game->map.cols, game->map.rows);
+////////////////end debug	  
 
 printf("string:|%s|\ntemp:|%s|\n", string, temp);
 printf("%s, len_argv1=%d\n", argv[1], len_argv1);
@@ -68,12 +77,14 @@ printf("ENTERED HIER\n");
 // 	init_map_structure(&game);
 // 	init_player_structure(&game);
 // 	map_read_save(&game, argv[1]);
-	//save_map_textures_and_colors(&game);
-	//check_maps_characters(&game); //from map_check.c
+// 	save_map_textures_and_colors(&game); //Working, need to convert colors
 
+	//________working on:
+	//check_maps_characters(&game); //from map_check.c
+	//_______________________________
 //--------------print map__structure---------------------
-	// print_map(&game);
-	// print_map_structure(&game);  
+	//print_map(&game);
+// 	print_map_structure(&game);  
 // 	return (EXIT_SUCCESS);
 // }
 //-------------------------------
@@ -92,6 +103,14 @@ printf("ENTERED HIER\n");
 // }
 //__________________________________________
 	
+
+
+
+
+
+
+
+
 
 
 

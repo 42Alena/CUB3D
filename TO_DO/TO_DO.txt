@@ -19,15 +19,27 @@ Nice to have
 	1000003111111111111111111111111111111
 	"
 	[] add option for normal mode without time pressure
+	[] extra_textures(t_game *game):
+		//TODO: Daniil, do you need hier to print wall->width, wall->height
+		printf("W:%d H:%d\n", wall->width, wall->height);
+
+
+02.04
+[] draw_floor_ceiling(t_game *game, int x): 
+	get colours from map struct, after reading from map.cub 
+[x] added: check and save wall_path in struct(in map_visuals.c)
+[x] added: check and save colorsin struct(in map_visuals.c)
+[] add conversion from color string in struct to uint
+[] after saving textures and colours from saved_map in struct => delete this information from saved_map
+[] load_textures(t_game *game): delete lines with load textures directly, not from struct
 
 
 01.04
 [x] checked game on school Computer
 [x] added minimum posible size for map.cub
 [x] moved init_map and init_player from init_game struct(to not open game window for incorrect input)
-
-[] load_textures(t_game *game): delete lines with load textures directly, not from struct
-[] continue work on searching and saving  wall_path (in map_visuals.c)
+[x] added uint32_t	values in struct  for color cailing and floor, renamed *char colors
+[x] continue work on searching and saving  wall_path (in map_visuals.c)
 
 31.03
 [x] renamed wall_textures in file_names and in function to understandble names (from 1,2 to north, south..)

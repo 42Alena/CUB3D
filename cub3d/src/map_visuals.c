@@ -12,95 +12,96 @@
 
 #include "../includes/cub3D.h"
 
+t_bool	is_map_settings_complete(t_game *game)
+{
+	if (game->map.no_texture == NULL || game->map.so_texture == NULL || \
+		game->map.we_texture == NULL || game->map.ea_texture == NULL || \
+		game->map.floor_color_str == NULL || game->map.ceiling_color_str == NULL)
+		return (TRUE);
+	else
+		return (FALSE);
+}
+
 /* 
 map must be at the and of file. mininimal size of map can be col=3, rows=3:
 (y < game->map.rows - 3)
  */
-// void	save_map_textures_and_colors(t_game *game)
-// {
-// 	int		y;
-// 	char *temp_line;
-// 	char *key;
-// 	y = 0;
-	
-// 	key = NULL;
-//     while (y < game->map.rows - 3)
-// 	{
-// 		temp_line = ft_strtrim(game->map.saved_map[y], " ");
-// 		if (temp_line == NULL)
-// 			y++;	
-// 		else if (is_substring("NO ", temp_line, 0, 3))
-// 			wall_file_check_save(game->map.no_texture, char *wall_file);
+void	save_map_textures_and_colors(t_game *game)
+{
+	int		y;
+	char *temp_line;
+
+	y = 0;
+    while (y < game->map.rows - 3  || !is_map_settings_complete(game))
+	{
+		temp_line = ft_strtrim(game->map.saved_map[y], " ");
+		// printf("%s\n", temp_line);
+		if (temp_line == NULL)
+			y++;	
+		else if (is_substring("NO ", temp_line, 0, 3))
+			wall_file_check_save(&(game->map.no_texture),  temp_line);
+		else if (is_substring("SO ", temp_line, 0, 3))
+			wall_file_check_save(&(game->map.so_texture),  temp_line);
+		else if (is_substring("WE ", temp_line, 0, 3))
+			wall_file_check_save(&(game->map.we_texture),  temp_line);
+		else if (is_substring("EA ", temp_line, 0, 3))
+			wall_file_check_save(&(game->map.ea_texture),  temp_line);
+		else if (is_substring("F ", temp_line, 0, 2))
+				save_map_color(&(game->map.floor_color_str), temp_line);
+		else if (is_substring("C ", temp_line, 0, 2))
+				save_map_color(&(game->map.ceiling_color_str), temp_line);
+		else
+			break ;
+        y++;
+    }
+	// print_map_structure(game);
+	if (is_map_settings_complete(game))
+			ft_error(game, "Map's requirements: Texture or color information is missing");
+	//TODO: save y as first line of map		
+
+	// if all structures full => beginns map check from this line
+	free(temp_line);
+}
 
 
 
-// 		// if (!safe_check_substring("NO", temp_line, 0, 2) && game->map.n_texture == NULL)
-//         check_save_map_texture(game, "NO ", game->map.no_texture, y);
-// 		// else if (!safe_check_substring("SO", temp_line, 0, 2) && game->map.s_texture == NULL)
-//         check_save_map_texture(game, "SO ", game->map.so_texture, y);
-// 		// else if (!safe_check_substring("WE", temp_line, 0, 2) && game->map.w_texture == NULL)
-//         check_save_map_texture(game, "WE ", game->map.we_texture, y);
-// 		// else if (!safe_check_substring("EA", temp_line, 0, 2) && game->map.e_texture == NULL)
-//         check_save_map_texture(game, "EA ", game->map.ea_texture, y);
-		
-		
-// 		// else
+//TODO: WORKING HIER
+//do I need hier struct game?
+// t_bool	wall_file_check_save(char *name_txtr,char *wall_file, t_game *game)
+void	wall_file_check_save(char **name_txtr, char *line)
+{
+	char	*wall_path;
+	int		length_wall_path;
 
-// 			// 	save_map_color(game, game->map.ceiling_color, y);
-//         y++;
-//     }
-// 	//check if all structures full
-// 	if (game->map.no_texture == NULL || game->map.so_texture == NULL || \
-// 		game->map.we_texture == NULL || game->map.ea_texture == NULL || \
-// 		game->map.floor_color == NULL || game->map.ceiling_color == NULL)
-// 			ft_error(game, "Map's requirements: Texture or color information is missing");
-// 	// if all structures full => beginns map check from this line
-// 	free(temp_line);
-// }
-
-
-// /* 
-// map must be at the and of file. mininimal size of map can be col=3, rows=3:
-// (y < game->map.rows - 3)
-//  */
-// void	save_map_textures_and_colors(t_game *game)
-// {
-// 	int		y;
-// 	char *temp_line;
-// 	y = 0;
-	
-//     while (y < game->map.rows - 3)
-// 	{
-// 		temp_line = ft_strtrim(game->map.saved_map[y], " ");
-// 		//skip empty lines till map
-// 		if (temp_line == NULL)
-// 			y++;
-
-
-
-
-
-// 		// if (!safe_check_substring("NO", temp_line, 0, 2) && game->map.n_texture == NULL)
-//         check_save_map_texture(game, "NO ", game->map.no_texture, y);
-// 		// else if (!safe_check_substring("SO", temp_line, 0, 2) && game->map.s_texture == NULL)
-//         check_save_map_texture(game, "SO ", game->map.so_texture, y);
-// 		// else if (!safe_check_substring("WE", temp_line, 0, 2) && game->map.w_texture == NULL)
-//         check_save_map_texture(game, "WE ", game->map.we_texture, y);
-// 		// else if (!safe_check_substring("EA", temp_line, 0, 2) && game->map.e_texture == NULL)
-//         check_save_map_texture(game, "EA ", game->map.ea_texture, y);
-		
-		
-// 		// else
-
-// 			// 	save_map_color(game, game->map.ceiling_color, y);
-//         y++;
-//     }
-// 	if (game->map.n_texture == NULL || game->map.s_texture == NULL || \
-// 		game->map.w_texture == NULL || game->map.e_texture == NULL || \
-// 		game->map.floor_color == NULL || game->map.ceiling_color == NULL)
-// 			ft_error(game, "Map's requirements: Texture or color information is missing");
-// }
-
+ 	// dprintf(2,"name_txtr :%s\n",name_txtr);
+	if (*name_txtr != NULL)
+	{
+		free(line);
+		ft_error(NULL, "Map: double map settings for texture");
+	}
+	length_wall_path = ft_strlen(line) - 3;
+	wall_path = ft_substr(line, 3, length_wall_path);
+	wall_path = ft_strtrim(wall_path, " ");
+    if (wall_path == NULL)
+		ft_error(NULL, "Missing file: <wall>.png");
+	length_wall_path = ft_strlen(wall_path);
+	if (length_wall_path <= 4)
+	{
+		free(line);
+		free(wall_path);
+		ft_error(NULL, "Expected file:  <wall>.png");
+	}
+	else if (is_substring(".png", wall_path, length_wall_path - 4, 4) == FALSE)
+	{
+		free(line);
+		free(wall_path);
+		ft_error(NULL, "Invalid  file extension: .png expected");
+	}
+	is_valid_file(wall_path);
+	*name_txtr = wall_path;
+	// dprintf(2,"name_txtr after :%s\n",name_txtr);
+	// free(wall_path);
+}
 
 
 
@@ -109,30 +110,41 @@ map must be at the and of file. mininimal size of map can be col=3, rows=3:
 //     return (r << 24 | g << 16 | b << 8 | a);
 // }
 // TODO check if colors from 0 to 255
-// void save_map_color(t_game *game, char *name_color, char *struct_map_color, int y)
-// {
-// 	int		color_length;
-// 	int		fd;
-// 	char	*temp_color;
-	
-// 	if (struct_map_color != -1)
-// 		ft_error(NULL, "Double texture");
-// 	temp_color = ft_strtrim(game->map.saved_map[y], " ");
-// 	color_length =  ft_strlen(temp_color);
-// 	if (color_length <= 6)
-// 		ft_error(NULL, "Invalid color texture");
-// 	if (!safe_check_substring(name_color, temp_color, 0, 2))
-// 		return ;
-// 	temp_color = ft_substr(temp_color, 0, 2);
-// 	temp_color = ft_strtrim(temp_color, " ");
 
-// 	// if (!safe_check_substring(".png", temp_color, color_length - 4, 4))
-// 	// 	ft_error(NULL, "Invalid texture extension: .png expected");		
-// 	printf("%s\n", temp_color);
-// 	fd = open(temp_color, O_RDONLY);
-// 	if (fd == -1)
-// 		ft_error(game, "Failure of opening texture");
-// 	else
-// 		name_color = temp_color;
-// 	// (r << 24 | g << 16 | b << 8 | a)
-// }
+
+void save_map_color(char **name_color, char *line)
+{
+	char	*color_str;
+	int		length_color_str;
+
+	// dprintf(2,"name_color: %s\n", name_color);
+	// printf("floor_color_str: %s\n", name_color);
+    // printf("ceiling_color_str: %s\n", name_color);
+	if (*name_color != NULL)
+	{
+		free(line);
+		ft_error(NULL, "Map: double map settings for color");
+	}
+	length_color_str = ft_strlen(line) - 2;
+	color_str = ft_substr(line, 2, length_color_str);
+	color_str = ft_strtrim(color_str, " ");
+    if (color_str == NULL)
+		ft_error(NULL, "Missing map settings for color");
+	length_color_str = ft_strlen(color_str);
+	if (length_color_str <= 6)
+	{
+		free(line);
+		free(color_str);
+		ft_error(NULL, "Invalid color texture");
+	}
+	*name_color = color_str;
+	// dprintf(2,"name_color after :%s\n", name_color);
+	// printf("floor_color_str: %s\n", name_color);
+    // printf("ceiling_color_str: %s\n", name_color);
+
+
+	//TODO: add conversion from color_str to color_uint
+	// (r << 24 | g << 16 | b << 8 | a)
+
+	// free(color_str);
+}

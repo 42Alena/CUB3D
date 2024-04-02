@@ -6,13 +6,12 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:52:02 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 19:47:27 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/02 02:06:28 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-/* NEW_WORKING */
 t_bool	map_file_check(int argc, char **argv)
 {
 	char	*temp_file;
@@ -34,14 +33,12 @@ t_bool	map_file_check(int argc, char **argv)
 		free(temp_file);
 		ft_error(NULL, "Invalid  file extension: .cub expected");
 	}
-	check_valid_file(temp_file);
+	is_valid_file(temp_file);
 	free(temp_file);
 	return (TRUE);
 }
 
-//TODO: add check if file is empty
-/* Attempt to read a single byte */
-t_bool check_valid_file(char *temp_file)
+t_bool is_valid_file(char *temp_file)
 {
 	int		fd;
 	char	buffer[1];
@@ -67,42 +64,5 @@ t_bool check_valid_file(char *temp_file)
 		ft_error(NULL, "Error: File is empty");
 	}
 	close(fd);
-	return (TRUE);
-}
-
-//TODO: WORKING HIER
-//do I need hier struct game?
-// t_bool	wall_file_check_save(char *name_txtr,char *wall_file, t_game *game)
-t_bool	wall_file_check_save(char *name_txtr, char *line)
-{
-	char	*wall_path;
-	int		length_wall_path;
-
-	if (name_txtr != NULL)
-	{
-		free(line);
-		ft_error(NULL, "Double texture");
-	}
-	length_wall_path = ft_strlen(line) - 3;
-	wall_path = ft_substr(line, 3, length_wall_path);
-	wall_path = ft_strtrim(wall_path, " ");
-    if (wall_path == NULL)
-		ft_error(NULL, "Missing file: <wall>.png");
-	length_wall_path = ft_strlen(wall_path);
-	if (length_wall_path <= 4)
-	{
-		free(line);
-		free(wall_path);
-		ft_error(NULL, "Expected file:  <wall>.png");
-	}
-	else if (is_substring(".png", wall_path, length_wall_path - 4, 4) == FALSE)
-	{
-		free(line);
-		free(wall_path);
-		ft_error(NULL, "Invalid  file extension: .png expected");
-	}
-	check_valid_file(wall_path);
-	name_txtr = wall_path;
-	free(wall_path);
 	return (TRUE);
 }

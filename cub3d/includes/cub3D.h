@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 18:52:59 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/02 02:06:14 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ typedef struct s_mouse
 
 typedef struct s_map
 {
-	char **saved_map;
-	int cols;
-	int rows;
-	int first_map_line;
-	int last_map_line;
-	char *no_texture;
-	char *so_texture;
-	char *we_texture;
-	char *ea_texture;
-	char *floor_color;
-	char *ceiling_color;
-} t_map;
+	char	 **saved_map;
+	int			cols;
+	int			rows;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	char		*floor_color_str;
+	uint32_t	floor_color_uint;
+	char		*ceiling_color_str;
+	uint32_t	ceiling_color_uint;
+}	t_map;
 
 typedef struct s_sprite
 {
@@ -202,8 +202,7 @@ void ft_hook(void *param);
 
 // map_file_check.c
 t_bool	map_file_check(int argc, char **argv);
-t_bool	check_valid_file(char *temp_file);
-t_bool	wall_file_check_save(char *name_txtr, char *line);
+t_bool	is_valid_file(char *temp_file);
 
 // map_check
 // void	check_maps_characters(t_game *game);
@@ -230,7 +229,10 @@ void init_player_structure(t_game *game);
 void init_game_struct(t_game *game);
 
 //map_visuals.c 
+t_bool	is_map_settings_complete(t_game *game);
 void	save_map_textures_and_colors(t_game *game);
+void	wall_file_check_save(char **name_txtr, char *line);
+void save_map_color(char **name_color, char *line);
 
 // map_player_save.c
 void check_save_player(t_game *game, char c, int x, int y);

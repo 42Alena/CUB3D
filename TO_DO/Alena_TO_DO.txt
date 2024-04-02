@@ -63,6 +63,16 @@ COLORS:
 	[] valid letters: F|C
 	[] if real RGB colours (220,100,0= R,G,B colors in range [0,255]: 0, 255, 255)
 	[] the smallest RGB color is (0, 0, 0), which corresponds to black.
+	[] get color from *char to UInt
+		Color 1: RGB(255, 69, 0) - This corresponds to a shade of orange.
+
+	Uint value: 0xFF4500
+	Color 2: RGB(0, 255, 0) - This corresponds to pure green.
+
+	Uint value: 0x00FF00
+	Color 3: RGB(0, 0, 255) - This corresponds to pure blue.
+
+	Uint value: 0x0000FF
 ------------------------------------------
 MAP:
 	[]  map must be allways LAST in map.cub

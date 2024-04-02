@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:11:04 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/31 21:56:33 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:58:14 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void extra_textures(t_game *game)
 	game->textures.c3po = get_color(wall);
 	game->textures.c3po_w = wall->width;
 	game->textures.c3po_h = wall->height;
+
+	//TODO: Daniil, do you need hier to print wall->width, wall->height?
 	printf("W:%d H:%d\n", wall->width, wall->height);
+
+
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/c3po2.png");
 	game->textures.c3po2 = get_color(wall);

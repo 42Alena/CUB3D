@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 19:53:00 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/01 23:16:08 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,25 @@ void init_map_structure(t_game *game)
 	game->map.saved_map = NULL;
 	game->map.cols = 0;
 	game->map.rows = 0;
-	game->map.no_texture = 0;
-	game->map.so_texture = 0;
-	game->map.we_texture = 0;
-	game->map.ea_texture = 0;
-	game->map.floor_color = 0;
-	game->map.ceiling_color = 0;
+	game->map.no_texture = NULL;
+	game->map.so_texture = NULL;
+	game->map.we_texture = NULL;
+	game->map.ea_texture = NULL;
+	game->map.floor_color_str = NULL;
+	game->map.floor_color_uint = 0;
+	game->map.ceiling_color_str = NULL;
+	game->map.ceiling_color_uint = 0;
+}
+
+void init_player_structure(t_game *game)
+{
+	game->player.count = 0;
+	game->player.pos_x = 2.5;
+	game->player.pos_y = 1.5;
+	game->player.dir_x = 0;
+	game->player.dir_y = 1;
+	game->player.plane_x = -0.66;
+	game->player.plane_y = 0;
 }
 
 void init_ray_struct(t_game *game)
@@ -49,17 +62,6 @@ void init_ray_struct(t_game *game)
 	game->ray.z_buffer = malloc(sizeof(double) * (game->window_width + 1));
 	if (!game->ray.z_buffer)
 		ft_error(game, "Out of memory!");
-}
-
-void init_player_structure(t_game *game)
-{
-	game->player.count = 0;
-	game->player.pos_x = 2.5;
-	game->player.pos_y = 1.5;
-	game->player.dir_x = 0;
-	game->player.dir_y = 1;
-	game->player.plane_x = -0.66;
-	game->player.plane_y = 0;
 }
 
 void init_game_struct(t_game *game)
