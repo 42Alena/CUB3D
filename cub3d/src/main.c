@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/02 05:53:33 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:05:58 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 	// check_maps_characters(&game); //from map_check.c
 
 	// print_map(&game);
-	// print_map_structure(&game);  
+	print_map_structure(&game);  
 	return (EXIT_SUCCESS);
 }
 //-------------------------------
