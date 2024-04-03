@@ -6,27 +6,26 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:17:51 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/28 18:13:44 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:55:59 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-
 void check_save_player(t_game *game, char c, int x, int y)
 {
-    if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-    {
-        if(game->player.count == 0)
-        {
-		    save_player_struct(game, c, x, y);
-            game->player.count  += 1;
-        }
-        else
-		    ft_error(game, "Only one player can be in game");
-    }
-    else
-		ft_error(game, "Set player direction to N,S,E or W");
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	{
+		if (game->player.count == 0)
+		{
+			save_player_struct(game, c, x, y);
+			game->player.count += 1;
+		}
+		else
+			ft_error_exit_game(game, "Only one player can be in game");
+	}
+	else
+		ft_error_exit_game(game, "Set player direction to N,S,E or W");
 }
 
 void save_player_pos_dir(t_game *game, char player_dir, int x, int y)
@@ -55,7 +54,7 @@ void save_player_pos_dir(t_game *game, char player_dir, int x, int y)
 	game->player.pos_y = y;
 }
 
-void	save_player_struct(t_game *game, char player_dir, int x, int y)
+void save_player_struct(t_game *game, char player_dir, int x, int y)
 {
 	if (player_dir == 'N' || player_dir == 'S')
 	{

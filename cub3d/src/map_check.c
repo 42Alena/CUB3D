@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:38:59 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 18:42:39 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:55:59 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ orientation
 
 // 	y = 0;
 // 	player_count = 0;
-	
+
 // 	//TODO:check_map_walls(game);
-	
+
 // 	while (y < game->map.rows)
 // 	{
 // 		x = 0;
@@ -39,7 +39,7 @@ orientation
 // 			{
 // 				player_count += 1;
 // 				if (player_count > 1)
-// 					ft_error(game, \
+// 					ft_error_exit_game(game, \
 // 					"Map's requirements: one player");
 // 				save_player_struct(game, c, x, y);
 // 			}
@@ -48,10 +48,10 @@ orientation
 // 				//TODO: check if ' ' only before and after outside walls,
 // 				//but not inside map
 // 				//TODO:check_map_walls(game);
-// 				ft_error(game, \
+// 				ft_error_exit_game(game, \
 // 					"Map's requirements: set player direction to N,S,E or W");
 // 			}
-			
+
 // 			x++;
 // 		}
 // 		y++;

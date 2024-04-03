@@ -6,52 +6,78 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/28 20:36:56 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:19:32 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-int free_string_and_return_value(char *str_to_free, int ret_value)
+void free_double_array(char **array)
 {
-    if (str_to_free != NULL)
-        free(str_to_free);
-    return ret_value;
-}
-
-void	free_double_array(char **array)
-{
-	int	i;
+	int i;
 
 	i = 0;
 	while (array[i])
-		free(array[i++]);
+	{	
+		free(array[i]);
+		array[i] = NULL;
+		i++;		
+	}
 	free(array);
+	*array = NULL;
 }
 
-void	free_textures(t_game *game)
+void free_game(t_game *game)
+{
+	free_mlx_img_txtr(game);
+	free_textures(game);
+	free(game->ray.z_buffer);
+	free_map_struct(game);
+	system("pkill aplay");
+	if (game->mlx)
+		mlx_terminate(game->mlx);
+}
+
+void free_map_struct(t_game *game)
+{
+	free_double_array(game->map.saved_map);
+	if (game->map.no_texture)
+		free(game->map.no_texture);
+	if (game->map.so_texture)
+		free(game->map.so_texture);
+	if (game->map.we_texture)
+		free(game->map.we_texture);
+	if (game->map.ea_texture)
+		free(game->map.ea_texture);
+	if (game->map.floor_color_str)
+		free(game->map.floor_color_str);
+	if (game->map.ceiling_color_str)
+		free(game->map.ceiling_color_str);
+}
+
+void free_textures(t_game *game)
 {
 	if (game->textures.c3po)
 		free(game->textures.c3po);
-	else if (game->textures.c3po2)
+	if (game->textures.c3po2)
 		free(game->textures.c3po2);
-	else if (game->textures.door)
+	if (game->textures.door)
 		free(game->textures.door);
-	else if (game->textures.door_open)
+	if (game->textures.door_open)
 		free(game->textures.door_open);
-	else if (game->textures.wall.east)
+	if (game->textures.wall.east)
 		free(game->textures.wall.east);
-	else if (game->textures.wall.north)
+	if (game->textures.wall.north)
 		free(game->textures.wall.north);
-	else if (game->textures.wall.south)
+	if (game->textures.wall.south)
 		free(game->textures.wall.south);
-	else if (game->textures.wall.west)
+	if (game->textures.wall.west)
 		free(game->textures.wall.west);
-	else if (game->textures.win_image)
+	if (game->textures.win_image)
 		free(game->textures.win_image);
 }
 
-void	free_mlx(t_game *game)
+void free_mlx_img_txtr(t_game *game)
 {
 	if (game->textures.image)
 		mlx_delete_image(game->mlx, game->textures.image);
@@ -67,11 +93,7 @@ void	free_mlx(t_game *game)
 		mlx_delete_image(game->mlx, game->textures.end);
 	if (game->textures.congrats)
 		mlx_delete_image(game->mlx, game->textures.congrats);
-	free_textures(game);
+	
+	//TODO: add check if cursor exist
 	mlx_delete_texture(game->textures.cursor);
-	free(game->ray.z_buffer);
-	free_double_array(game->map.saved_map);
-	system("pkill aplay");
-	if (game->mlx)
-		mlx_terminate(game->mlx);
 }

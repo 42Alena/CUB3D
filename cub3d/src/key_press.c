@@ -3,36 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/18 11:16:26 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:32:19 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	rotation(t_player *player, double rot_speed)
+void rotation(t_player *player, double rot_speed)
 {
-	double	old_dir_x;
-	double	old_plane_x;
+	double old_dir_x;
+	double old_plane_x;
 
 	old_dir_x = player->dir_x;
-	player->dir_x = \
-	player->dir_x * cos(rot_speed) - player->dir_y * sin(rot_speed);
-	player->dir_y = \
-	old_dir_x * sin(rot_speed) + player->dir_y * cos(rot_speed);
+	player->dir_x =
+		player->dir_x * cos(rot_speed) - player->dir_y * sin(rot_speed);
+	player->dir_y =
+		old_dir_x * sin(rot_speed) + player->dir_y * cos(rot_speed);
 	old_plane_x = player->plane_x;
-	player->plane_x = player->plane_x * cos(rot_speed) \
-	- player->plane_y * sin(rot_speed);
-	player->plane_y = \
-	old_plane_x * sin(rot_speed) + player->plane_y * cos(rot_speed);
+	player->plane_x = player->plane_x * cos(rot_speed) - player->plane_y * sin(rot_speed);
+	player->plane_y =
+		old_plane_x * sin(rot_speed) + player->plane_y * cos(rot_speed);
 }
 
-int	check_collision(t_player *player, char **saved_map, double speed, int dir)
+int check_collision(t_player *player, char **saved_map, double speed, int dir)
 {
-	double		check_x;
-	double		check_y;
+	double check_x;
+	double check_y;
 
 	if (dir == DOWN)
 	{
@@ -57,10 +56,10 @@ int	check_collision(t_player *player, char **saved_map, double speed, int dir)
 	return (distance_to_wall(player, saved_map, check_x, check_y));
 }
 
-void	move(t_player *player, char **saved_map, double move_speed, int dir)
+void move(t_player *player, char **saved_map, double move_speed, int dir)
 {
 	if (!check_collision(player, saved_map, move_speed, dir))
-		return ;
+		return;
 	if (dir == DOWN)
 	{
 		player->pos_y -= player->dir_y * move_speed;
@@ -83,9 +82,9 @@ void	move(t_player *player, char **saved_map, double move_speed, int dir)
 	}
 }
 
-void	key_hook(mlx_key_data_t keydata, void *param)
+void key_hook(mlx_key_data_t keydata, void *param)
 {
-	t_game	*game;
+	t_game *game;
 
 	game = param;
 	if (keydata.key == MLX_KEY_M && keydata.action == MLX_RELEASE)
@@ -97,12 +96,12 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 	else if (keydata.key == MLX_KEY_ESCAPE)
 	{
-		free_mlx(game);
+		free_game(game);
 		exit(EXIT_SUCCESS);
 	}
 }
 
-void	key_press(t_game *game)
+void key_press(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 		move(&game->player, game->map.saved_map, game->move_speed, DOWN);

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/01 23:16:08 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:55:59 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void init_ray_struct(t_game *game)
 	game->ray.wall_x = 0;
 	game->ray.z_buffer = malloc(sizeof(double) * (game->window_width + 1));
 	if (!game->ray.z_buffer)
-		ft_error(game, "Out of memory!");
+		ft_error_exit_game(game, "Out of memory!");
 }
 
 void init_game_struct(t_game *game)
@@ -84,6 +84,6 @@ void init_game_struct(t_game *game)
 	game->mlx =
 		mlx_init(game->window_width, game->window_height, "CUB3D", true);
 	if (!game->mlx)
-		ft_error(game, "Could not initialize MLX");
+		ft_error_exit_game(game, "Could not initialize MLX");
 	load_images(game);
 }

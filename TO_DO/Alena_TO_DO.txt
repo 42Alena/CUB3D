@@ -24,10 +24,10 @@ check how many players
 
 //TODO : Add check map
 	// if (game->map.cols == 0 && game->map.rows == 0)
-	// 	ft_error(game, "Map is empty");
+	// 	ft_error_exit_game(game, "Map is empty");
 	// printf ("rows: %d, cols: %d\n", game->map.rows, game->map.cols);
 	// if (game->map.rows < 3)
-	// 	ft_error(game, "Map is not valid");
+	// 	ft_error_exit_game(game, "Map is not valid");
 /* 
 
 //save info before map in structure, not in map
@@ -152,7 +152,7 @@ printf("ENTERED HIER\n");
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	map_file_check(argc, argv); //NEW
+	map_file_check(t_game *game, argc, argv); //NEW
 	init_map_structure(&game);
 	init_player_structure(&game);
 	map_read_save(&game, argv[1]);
@@ -173,7 +173,7 @@ int	main(int argc, char **argv)
 	// system("/usr/bin/aplay -q ./music/main.wav &");
 	// system("/usr/bin/aplay -q ./music/hellothere.wav &");
 	// mlx_loop(game.mlx);
-	// free_mlx(&game);
+	// free_game(&game);
 	return (EXIT_SUCCESS);
 }
 //__________________________________________

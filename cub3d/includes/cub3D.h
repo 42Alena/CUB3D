@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/02 05:15:26 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:24:28 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ typedef struct s_mouse
 
 typedef struct s_map
 {
-	char	 **saved_map;
-	int			cols;
-	int			rows;
-	char		*no_texture;
-	char		*so_texture;
-	char		*we_texture;
-	char		*ea_texture;
-	char		*floor_color_str;
-	uint32_t	floor_color_uint;
-	char		*ceiling_color_str;
-	uint32_t	ceiling_color_uint;
-}	t_map;
+	char **saved_map;
+	int cols;
+	int rows;
+	char *no_texture;
+	char *so_texture;
+	char *we_texture;
+	char *ea_texture;
+	char *floor_color_str;
+	uint32_t floor_color_uint;
+	char *ceiling_color_str;
+	uint32_t ceiling_color_uint;
+} t_map;
 
 typedef struct s_sprite
 {
@@ -201,16 +201,16 @@ void gameplay(t_game *game, double time);
 void ft_hook(void *param);
 
 // map_file_check.c
-t_bool	map_file_check(int argc, char **argv);
-t_bool	is_valid_file(char *temp_file);
+t_bool map_file_check(t_game *game, int argc, char **argv);
+t_bool is_valid_file(t_game *game, char *temp_file);
 
 // map_check
 // void	check_maps_characters(t_game *game);
 
 // map_save.c
-void	map_allocate_memory(t_game *game);
-void	map_read_save(t_game *game, char *filename);
-void	get_size_map(t_game *game, char *filename);
+void map_allocate_memory(t_game *game);
+void map_read_save(t_game *game, char *filename);
+void get_size_map(t_game *game, char *filename);
 void extract_map_save(t_game *game, int row);
 
 // map_utils.c
@@ -229,11 +229,11 @@ void init_map_structure(t_game *game);
 void init_player_structure(t_game *game);
 void init_game_struct(t_game *game);
 
-//map_visuals.c 
-t_bool	is_map_settings_complete(t_game *game);
-void	save_map_textures_and_colors(t_game *game);
-void	wall_file_check_save(char **name_txtr, char *line);
-void save_map_color(char **name_color, char *line);
+// map_visuals.c
+t_bool is_map_settings_complete(t_game *game);
+void save_map_textures_and_colors(t_game *game);
+void wall_file_check_save(t_game *game, char **name_txtr, char *line);
+void	save_map_color(t_game *game, char **name_color, char *line);
 
 // map_player_save.c
 void check_save_player(t_game *game, char c, int x, int y);
@@ -241,12 +241,14 @@ void save_player_pos_dir(t_game *game, char player_dir, int x, int y);
 void save_player_struct(t_game *game, char player_dir, int x, int y);
 
 // free.c
-int free_string_and_return_value(char *str_to_free, int ret_value);
 void free_double_array(char **array);
-void free_mlx(t_game *game);
+void free_game(t_game *game);
+void free_map_struct(t_game *game);
+void free_textures(t_game *game);
+void free_mlx_img_txtr(t_game *game);
 
 // error.c
-void ft_error(t_game *game, char *error_msg);
+void ft_error_exit_game(t_game *game, char *error_msg);
 
 // raycasting.c
 void draw_floor_ceiling(t_game *game, int x);
