@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 13:21:59 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:34:03 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void map_allocate_memory(t_game *game)
 	i = -1;
 	game->map.saved_map = (char **)malloc((game->map.rows + 1) * sizeof(char *));
 	if (game->map.saved_map == NULL)
-		ft_error_exit_game(game, "Map: memory allocation faled");
+		error_map_exit_game(game, "Map: memory allocation faled");
 	while (++i < game->map.rows)
 	{
 		game->map.saved_map[i] = (char *)malloc(game->map.cols * sizeof(char));
@@ -30,7 +30,7 @@ void map_allocate_memory(t_game *game)
 			while (++j < i)
 				free(game->map.saved_map[j]);
 			free(game->map.saved_map);
-			ft_error_exit_game(game, "Map: memory allocation faled");
+			error_map_exit_game(game, "Map: memory allocation faled");
 		}
 	}
 	game->map.saved_map[i] = NULL;
@@ -45,10 +45,10 @@ void map_read_save(t_game *game, char *filename)
 
 	get_size_map(game, filename);
 	if (game->map.rows <= 8 || game->map.cols <= 7)
-		ft_error_exit_game(game, "Map: not enough information");
+		error_map_exit_game(game, "Map: not enough information");
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		ft_error_exit_game(game, "Can not open the map");
+		error_map_exit_game(game, "Can not open the map");
 	y = 0;
 	map_allocate_memory(game);
 	while (TRUE)
@@ -86,7 +86,7 @@ void get_size_map(t_game *game, char *filename)
 	line = NULL;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		ft_error_exit_game(game, "Can not open the map");
+		error_map_exit_game(game, "Can not open the map");
 	while (TRUE)
 	{
 		line = get_next_line(fd);

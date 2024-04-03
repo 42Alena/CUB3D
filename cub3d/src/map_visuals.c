@@ -14,9 +14,9 @@
 
 t_bool is_map_settings_complete(t_game *game)
 {
-	if (game->map.no_texture == NULL || game->map.so_texture == NULL ||
-		game->map.we_texture == NULL || game->map.ea_texture == NULL ||
-		game->map.floor_color_str == NULL || game->map.ceiling_color_str == NULL)
+	if (game->map.no_texture != NULL && game->map.so_texture != NULL &&
+		game->map.we_texture != NULL && game->map.ea_texture != NULL &&
+		game->map.floor_color_str != NULL && game->map.ceiling_color_str != NULL)
 		return (TRUE);
 	else
 		return (FALSE);
@@ -32,7 +32,7 @@ void save_map_textures_and_colors(t_game *game)
 	char *temp_line;
 
 	y = 0;
-	while (y <= game->map.rows - 3 || !is_map_settings_complete(game))
+	while (y <= game->map.rows - 3 || is_map_settings_complete(game))
 	{
 		temp_line = ft_strtrim(game->map.saved_map[y], " ");
 		if (is_substring("NO ", temp_line, 0, 3))
@@ -56,8 +56,8 @@ void save_map_textures_and_colors(t_game *game)
 		y++;
 	}
 	// print_map_structure(game);
-	// if (is_map_settings_complete(game) == FALSE)
-	// 		ft_error_exit_game(game, "Map's requirements: Texture or color information is missing");
+	if (is_map_settings_complete(game) == FALSE)
+		error_map_exit_game(game, "Map's requirements: Texture or color information is missing");
 	// extract_map_save(game, y);
 	// TODO: save y as first line of map
 
@@ -71,23 +71,23 @@ void wall_file_check_save(t_game *game, char **name_txtr, char *line)
 	if (*name_txtr != NULL)
 	{
 		free(line);
-		ft_error_exit_game(game, "Map: double map settings for texture");
+		error_map_exit_game(game, "Map: double map settings for texture");
 	}
 	length_name_txtr = ft_strlen(line) - 3;
 	*name_txtr = ft_substr(line, 3, length_name_txtr);
 	*name_txtr = ft_strtrim(*name_txtr, " ");
 	if (*name_txtr == NULL)
-		ft_error_exit_game(game, "Missing file: <wall>.png");
+		error_map_exit_game(game, "Missing file: <wall>.png");
 	length_name_txtr = ft_strlen(*name_txtr);
 	if (length_name_txtr <= 4)
 	{
 		free(line);
-		ft_error_exit_game(game, "Expected file:  <wall>.png");
+		error_map_exit_game(game, "Expected file:  <wall>.png");
 	}
 	else if (is_substring(".png", *name_txtr, length_name_txtr - 4, 4) == FALSE)
 	{
 		free(line);
-		ft_error_exit_game(game, "Invalid  file extension: .png expected");
+		error_map_exit_game(game, "Invalid  file extension: .png expected");
 	}
 	is_valid_file(game, *name_txtr);
 }
@@ -100,25 +100,25 @@ void wall_file_check_save(t_game *game, char **name_txtr, char *line)
 // 	if (*name_txtr != NULL)
 // 	{
 // 		free(line);
-// 		ft_error_exit_game(game, "Map: double map settings for texture");
+// 		error_map_exit_game(game, "Map: double map settings for texture");
 // 	}
 // 	length_wall_path = ft_strlen(line) - 3;
 // 	wall_path = ft_substr(line, 3, length_wall_path);
 // 	wall_path = ft_strtrim(wall_path, " ");
 //     if (wall_path == NULL)
-// 		ft_error_exit_game(game, "Missing file: <wall>.png");
+// 		error_map_exit_game(game, "Missing file: <wall>.png");
 // 	length_wall_path = ft_strlen(wall_path);
 // 	if (length_wall_path <= 4)
 // 	{
 // 		free(line);
 // 		free(wall_path);
-// 		ft_error_exit_game(game, "Expected file:  <wall>.png");
+// 		error_map_exit_game(game, "Expected file:  <wall>.png");
 // 	}
 // 	else if (is_substring(".png", wall_path, length_wall_path - 4, 4) == FALSE)
 // 	{
 // 		free(line);
 // 		free(wall_path);
-// 		ft_error_exit_game(game, "Invalid  file extension: .png expected");
+// 		error_map_exit_game(game, "Invalid  file extension: .png expected");
 // 	}
 // 	is_valid_file(game, wall_path);
 // 	*name_txtr = wall_path;
@@ -132,7 +132,7 @@ void wall_file_check_save(t_game *game, char **name_txtr, char *line)
 // TODO check if colors from 0 to 255
 
 //(rgb[0] << 24) + (rgb[1] << 16) + (rgb[2] << 8)
-void	save_map_color(t_game *game, char **name_color, char *line)
+void save_map_color(t_game *game, char **name_color, char *line)
 {
 	int length_color_str;
 
@@ -142,18 +142,18 @@ void	save_map_color(t_game *game, char **name_color, char *line)
 	if (*name_color != NULL)
 	{
 		free(line);
-		ft_error_exit_game(game, "Map: double map settings for color");
+		error_map_exit_game(game, "Map: double map settings for color");
 	}
 	length_color_str = ft_strlen(line) - 2;
 	*name_color = ft_substr(line, 2, length_color_str);
 	*name_color = ft_strtrim(*name_color, " ");
 	if (*name_color == NULL)
-		ft_error_exit_game(game, "Missing map settings for color");
+		error_map_exit_game(game, "Missing map settings for color");
 	length_color_str = ft_strlen(*name_color);
 	if (length_color_str <= 6)
 	{
 		free(line);
-		ft_error_exit_game(game, "Invalid color texture");
+		error_map_exit_game(game, "Invalid color texture");
 	}
 	// dprintf(2,"name_color after :%s\n", name_color);
 	// printf("floor_color_str: %s\n", name_color);

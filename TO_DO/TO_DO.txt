@@ -29,12 +29,14 @@ Nice to have
 03.04
 [] new function free_game
 [] new function free_map_struct and added to free_game instead of free_double_array
-[]  ft_error_exit_game: normal free game and map in (void)game;     
+[]  error_map_exit_game: normal free game and map in (void)game;     
 [] changed all "else if statements"  to "if statements" for each member of the struct:
 	there's a logical issue in the code:
 	 if one of the texture pointers (no_texture, so_texture, we_texture, or ea_texture) is allocated,
 	then it will be freed, but the subsequent conditions  will still be evaluated,
 	leading to potential double-freeing or accessing memory that has already been freed.
+[] added check if no map_information
+
 
 02.04
 [] draw_floor_ceiling(t_game *game, int x): 

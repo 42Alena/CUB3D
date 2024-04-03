@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 13:19:32 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:22:05 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void free_double_array(char **array)
 	int i;
 
 	i = 0;
+	if (array == NULL)
+        return ;
 	while (array[i])
 	{	
 		free(array[i]);
@@ -29,10 +31,10 @@ void free_double_array(char **array)
 
 void free_game(t_game *game)
 {
+	free_map_struct(game);
 	free_mlx_img_txtr(game);
 	free_textures(game);
 	free(game->ray.z_buffer);
-	free_map_struct(game);
 	system("pkill aplay");
 	if (game->mlx)
 		mlx_terminate(game->mlx);

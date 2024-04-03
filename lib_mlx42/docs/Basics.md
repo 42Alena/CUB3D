@@ -94,7 +94,7 @@ In order to achieve this we use [hooks](./Hooks.md).
 #define HEIGHT 256
 
 // Exit the program as failure.
-static void ft_error_exit_game(void)
+static void error_exit_game(void)
 {
 	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
@@ -115,14 +115,14 @@ int32_t	main(void)
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
 	if (!mlx)
-		ft_error_exit_game();
+		error_exit_game();
 
 	/* Do stuff */
 
 	// Create and display the image.
 	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-		ft_error_exit_game();
+		error_exit_game();
 
 	// Even after the image is being displayed, we can still modify the buffer.
 	mlx_put_pixel(img, 0, 0, 0xFF0000FF);

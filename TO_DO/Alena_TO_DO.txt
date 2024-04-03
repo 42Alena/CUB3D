@@ -24,10 +24,10 @@ check how many players
 
 //TODO : Add check map
 	// if (game->map.cols == 0 && game->map.rows == 0)
-	// 	ft_error_exit_game(game, "Map is empty");
+	// 	error_map_exit_game(game, "Map is empty");
 	// printf ("rows: %d, cols: %d\n", game->map.rows, game->map.cols);
 	// if (game->map.rows < 3)
-	// 	ft_error_exit_game(game, "Map is not valid");
+	// 	error_map_exit_game(game, "Map is not valid");
 /* 
 
 //save info before map in structure, not in map
