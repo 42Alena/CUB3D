@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:11:04 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/01 22:58:14 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:14:57 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,36 +51,22 @@ void load_textures(t_game *game)
 {
 	mlx_texture_t *wall;
 	
-	// TODO: delete lines with load not from struct
-	wall = mlx_load_png("./textures/wall_north.png");
-	// wall = mlx_load_png(game->map.no_texture);
-	
+	wall = mlx_load_png(game->map.no_texture);
 	game->textures.wall.north = get_color(wall);
 	game->textures.wall.north_w = wall->width;
 	game->textures.wall.north_h = wall->height;
 	mlx_delete_texture(wall);
-
-	// TODO: delete lines with load not from struct
-	 wall = mlx_load_png("./textures/wall_south.png");
-	// wall = mlx_load_png(game->map.so_texture);
+	wall = mlx_load_png(game->map.so_texture);
 	game->textures.wall.south = get_color(wall);
 	game->textures.wall.south_w = wall->width;
 	game->textures.wall.south_h = wall->height;
 	mlx_delete_texture(wall);
-	
-	// TODO: delete lines with load not from struct
-	wall = mlx_load_png("./textures/wall_west.png");
-	// wall = mlx_load_png(game->map.we_texture);
-	
+	wall = mlx_load_png(game->map.we_texture);
 	game->textures.wall.west = get_color(wall);
 	game->textures.wall.west_w = wall->width;
 	game->textures.wall.west_h = wall->height;
 	mlx_delete_texture(wall);
-	
-	// TODO: delete lines with load not from struct
-	wall = mlx_load_png("./textures/wall_east.png");
-	// wall = mlx_load_png(game->map.ea_texture);
-	
+	wall = mlx_load_png(game->map.ea_texture);
 	game->textures.wall.east = get_color(wall);
 	game->textures.wall.east_w = wall->width;
 	game->textures.wall.east_h = wall->height;

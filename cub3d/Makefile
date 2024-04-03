@@ -6,6 +6,7 @@ LIBFT := ../libft
 LIBGNL := ../lib_gnl
 LIBS := $(LIBFT)/libft.a $(LIBGNL)/libgnl.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SOURCES_M  := \
+    ./src/map_prints_delete_for_intra.c\
     ./src/main.c\
 	./src/game_init.c\
 	./src/game_play.c\
@@ -13,6 +14,7 @@ SOURCES_M  := \
 	./src/map_save.c\
 	./src/map_check.c\
 	./src/map_visuals.c\
+	./src/map_colors.c\
 	./src/map_utils.c\
 	./src/map_player_save.c\
 	./src/error.c\
@@ -22,7 +24,6 @@ SOURCES_M  := \
 	./src/mouse.c\
 	./src/key_press.c\
 	./src/sprites.c\
-	./src/floor_ceiling.c\
 	./src/minimap.c\
 	./src/bigmap.c\
 	./src/textures.c\

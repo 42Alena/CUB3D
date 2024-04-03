@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 17:34:03 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:52:57 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void init_map_structure(t_game *game)
 	game->map.we_texture = NULL;
 	game->map.ea_texture = NULL;
 	game->map.floor_color_str = NULL;
-	game->map.floor_color_uint = 0;
 	game->map.ceiling_color_str = NULL;
-	game->map.ceiling_color_uint = 0;
+	game->map.floor_color_uint = 256;
+	game->map.ceiling_color_uint = 256;
 }
 
 void init_player_structure(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 17:31:24 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:10:00 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,9 +216,13 @@ void extract_map_save(t_game *game, int row);
 // map_utils.c
 t_bool is_substring(char *substring, char *string, int start, int len);
 t_bool is_empty_line(char *line);
-t_bool is_map_middle_lines(t_game *game, int y);
-t_bool is_map_walls_first_last_line(char *line);
+// t_bool is_map_middle_lines(t_game *game, int y);
+// t_bool is_map_walls_first_last_line(char *line);
+
+
 //___________TEST___FUNCTIONS___DELETE BEFORE PUSH__________
+// map_prints_delete_for_intra.c 
+
 void print_map_structure(t_game *game);
 void print_map_pos_x_y(t_game *game);
 void print_map(t_game *game);
@@ -233,7 +237,12 @@ void init_game_struct(t_game *game);
 t_bool is_map_settings_complete(t_game *game);
 void save_map_textures_and_colors(t_game *game);
 void wall_file_check_save(t_game *game, char **name_txtr, char *line);
+void draw_floor_ceiling(t_game *game, int x);
+
+// map_colors.c  
 void save_map_color(t_game *game, char **name_color, char *line);
+uint32_t	get_rgb_from_string(t_game *game, char *rgb_string);
+int get_color_from_string(t_game *game, char **splited_colors, int i);
 
 // map_player_save.c
 void check_save_player(t_game *game, char c, int x, int y);
@@ -281,9 +290,6 @@ void minimap(t_game *game);
 
 // sprites.c
 void draw_sprites(t_game *game);
-
-// floor_ceiling.c
-void draw_floor_ceiling(t_game *game, int x);
 
 // mouse.c
 void cursor(double xpos, double ypos, void *param);

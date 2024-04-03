@@ -180,4 +180,4 @@ int	main(int argc, char **argv)
 
 
 
-	// dprintf(2,"name_txtr after :%s\n",name_txtr);
+	// dprintf(2,"name_txtr after :%s\n",name_txtr); -- for deburg in STDERR

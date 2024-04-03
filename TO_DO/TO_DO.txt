@@ -27,26 +27,26 @@ Nice to have
 
 
 03.04
-[] new function free_game
-[] new function free_map_struct and added to free_game instead of free_double_array
-[]  error_map_exit_game: normal free game and map in (void)game;     
-[] changed all "else if statements"  to "if statements" for each member of the struct:
+[x] new function free_game
+[x] new function free_map_struct and added to free_game instead of free_double_array
+[x]  error_map_exit_game: normal free game and map in (void)game;     
+[x] changed all "else if statements"  to "if statements" for each member of the struct:
 	there's a logical issue in the code:
 	 if one of the texture pointers (no_texture, so_texture, we_texture, or ea_texture) is allocated,
 	then it will be freed, but the subsequent conditions  will still be evaluated,
 	leading to potential double-freeing or accessing memory that has already been freed.
-[] added check if no map_information
+[x] added check if no map_information
+[x] map_info_colors: add check if:
+	if exact 3 colors, if only digits, if only 2 ",", if positiv values, if 0-255
+[x] add conversion from color string in struct to uint
+[x] draw_floor_ceiling(t_game *game, int x): get colours from map struct, after reading from map.cub
+[x] load_textures(t_game *game):  get textures from map struct, after reading from map.cub
+[] after saving textures and colours from saved_map in struct => delete this information from saved_map
 
 
 02.04
-[] draw_floor_ceiling(t_game *game, int x): 
-	get colours from map struct, after reading from map.cub 
 [x] added: check and save wall_path in struct(in map_visuals.c)
-[x] added: check and save colorsin struct(in map_visuals.c)
-[] add conversion from color string in struct to uint
-[] after saving textures and colours from saved_map in struct => delete this information from saved_map
-[] load_textures(t_game *game): delete lines with load textures directly, not from struct
-
+[x] added: check and save colors in struct(in map_visuals.c)
 
 01.04
 [x] checked game on school Computer
