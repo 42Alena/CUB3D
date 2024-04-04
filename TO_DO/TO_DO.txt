@@ -10,7 +10,7 @@ Nice to have
 [] write custom mlx_put_pixel
 [] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
 
-04.04
+?04.04
 []  to Daniil: map simle.cub is not valid, because spaces inside the map
 	from imle.cub:
 	"
@@ -25,6 +25,9 @@ Nice to have
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
 
+04.04
+[]change map_allocate_memory( ) to clean memory with free_double_array()
+[] map_read_save() add fill with spaces line till map->cols
 
 03.04
 [x] new function free_game

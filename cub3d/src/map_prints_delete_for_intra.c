@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 19:31:25 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:36:41 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,17 @@ void print_map_pos_x_y(t_game *game)
 
 void print_map(t_game *game)
 {
-    int y = 0;
-    while (y < game->map.rows)
+    if (game->map.saved_map != NULL)
     {
-        int x = 0;
-        while (x < game->map.cols)
+        int i = 0;
+        printf("%d rows\n", game->map.rows);
+        while (game->map.saved_map[i] && i < game->map.rows)
         {
-            printf("%c", game->map.saved_map[y][x]);
-            x++;
+            printf("||%s||\n", game->map.saved_map[i]);
+            i++;
         }
-        printf("\n");
-        y++;
     }
+    (void)game;
 }
 
 void print_map_structure(t_game *game)
@@ -58,4 +57,4 @@ void print_map_structure(t_game *game)
     printf("floor_color_uint: %d\n", game->map.floor_color_uint);
     printf("ceiling_color_uint: %d\n", game->map.ceiling_color_uint);
 }
-//////////////
+

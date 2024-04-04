@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 17:14:39 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:44:29 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,27 @@ int main(int argc, char **argv)
 	t_game game;
 	map_file_check(&game, argc, argv); // NEW
 	init_map_structure(&game);
+	print_map(&game);
+	// print_map_structure(&game);
+
 	init_player_structure(&game);
 	map_read_save(&game, argv[1]);
-
-	save_map_textures_and_colors(&game); // Working, need to convert colors
+	save_map_textures_and_colors(&game);
 
 	// check_maps_characters(&game); //from map_check.c
+	print_map(&game);
+	// free_double_array(game.map.saved_map);
+	//print_map(&game);
 	
 	//____TEST_____________________
-	printf("_____MAP_______\n\n");
-	print_map(&game);
-	printf("_____END_MAP_______\n\n");
-	printf("_____MAP_STRUCT______\n\n");
-	print_map_structure(&game);
-	printf("_____END_MAP_STRUCT______\n\n");
+
+	// print_map_structure(&game);
+	// printf("_____MAP_______\n\n");
+	// print_map(&game);
+	// printf("_____END_MAP_______\n\n");
+	// printf("_____MAP_STRUCT______\n\n");
+	// print_map_structure(&game);
+	// printf("_____END_MAP_STRUCT______\n\n");
 	//_____END_TEST______________
 
 

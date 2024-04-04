@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 09:40:58 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:41:46 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,15 @@ typedef struct s_game
 	t_ray ray;
 } t_game;
 
+//___________TEST___FUNCTIONS___DELETE BEFORE PUSH__________
+// map_prints_delete_for_intra.c 
+void print_map_structure(t_game *game);
+void print_map_pos_x_y(t_game *game);
+void print_map(t_game *game);
+//-------------END_TO TEST-------------------------------------------
+
+
+
 // in main.c only main
 
 // game_play,c (other functions from main)
@@ -207,25 +216,22 @@ t_bool is_valid_file(t_game *game, char *temp_file);
 // map_check
 // void	check_maps_characters(t_game *game);
 
+//  map_check_lines.c 
+t_bool is_empty_line(char *line);
+t_bool is_map_first_last_line(t_game *game, int cl);
+
+//map_check_walls.c  
+// t_bool is_map_first_last_columns(t_game *game, int col);
+
 // map_save.c
 void map_allocate_memory(t_game *game);
 void map_read_save(t_game *game, char *filename);
 void get_size_map(t_game *game, char *filename);
 void extract_map_save(t_game *game, int first_line);
+void	extract_map(t_game *game, int first_line, int last_line);
 
 // map_utils.c
 t_bool is_substring(char *substring, char *string, int start, int len);
-t_bool is_empty_line(char *line);
-t_bool is_map_first_last_line(t_game *game, int row);
-
-
-//___________TEST___FUNCTIONS___DELETE BEFORE PUSH__________
-// map_prints_delete_for_intra.c 
-
-void print_map_structure(t_game *game);
-void print_map_pos_x_y(t_game *game);
-void print_map(t_game *game);
-//-------------END_TO TEST-------------------------------------------
 
 // game_init.c
 void init_map_structure(t_game *game);

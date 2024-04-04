@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 10:03:04 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:53:04 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ void map_allocate_memory(t_game *game)
 		error_map_exit_game(game, "Map: memory allocation faled");
 	while (++i < game->map.rows)
 	{
-		game->map.saved_map[i] = (char *)malloc(game->map.cols * sizeof(char));
+		game->map.saved_map[i] = (char *)malloc((game->map.cols + 1) * sizeof(char));
 		if (!game->map.saved_map[i])
 		{
 			j = -1;
-			while (++j < i)
+			while (++j <= i)
 				free(game->map.saved_map[j]);
 			free(game->map.saved_map);
 			error_map_exit_game(game, "Map: memory allocation faled");
 		}
+		game->map.saved_map[i][game->map.cols] = '\0';
 	}
 	game->map.saved_map[i] = NULL;
 }
@@ -62,7 +63,13 @@ void map_read_save(t_game *game, char *filename)
 			game->map.saved_map[y][x] = line[x];
 			x++;
 		}
-		game->map.saved_map[y][x] = '\0';
+		while (x < game->map.cols)
+		{
+			game->map.saved_map[y][x] = ' ';
+			x++;
+		}
+		game->map.saved_map[y][game->map.cols] = '\0';
+		// game->map.saved_map[y][x] = '\0';
 		free(line);
 		y++;
 	}
@@ -115,7 +122,7 @@ void extract_map_save(t_game *game, int first_line)
 
 	last_line = game->map.rows;
 
-	printf("game->map.saved_map[first_line]: ||%s||\n", game->map.saved_map[first_line]);
+	// printf("game->map.saved_map[first_line]: ||%s||\n", game->map.saved_map[first_line]);
 	if (is_map_first_last_line(game, first_line) == FALSE)
 		error_map_exit_game(game, "Map: first line is not valid");
 
@@ -123,16 +130,12 @@ void extract_map_save(t_game *game, int first_line)
 	while(is_empty_line(game->map.saved_map[last_line]))
 		last_line -= 1;
 
-	printf(" first_line = %d,\n last_line = %d\n", first_line, last_line);
+	// printf(" first_line = %d,\n last_line = %d\n", first_line, last_line);
 	if (last_line <= first_line + 1)
 		error_map_exit_game(game, "Map: middle map is not valid");
 
-	printf("game->map.saved_map[last_line]: ||%s||\n", game->map.saved_map[last_line]);
+	// printf("game->map.saved_map[last_line]: ||%s||\n", game->map.saved_map[last_line]);
 	if ( is_map_first_last_line(game, last_line) == FALSE)
 		error_map_exit_game(game, "Map: last line is not valid");
+	// free_double_array(game->map.saved_map);
 }
-
-// t_bool check_line_walls(t_game *game, int row)
-// {
-
-// }

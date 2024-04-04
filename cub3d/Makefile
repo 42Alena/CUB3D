@@ -15,6 +15,7 @@ SOURCES_M  := \
 	./src/map_check.c\
 	./src/map_visuals.c\
 	./src/map_colors.c\
+	./src/map_check_lines.c\
 	./src/map_utils.c\
 	./src/map_player_save.c\
 	./src/error.c\
@@ -33,7 +34,8 @@ SOURCES_M  := \
 OBJECTS := $(SOURCES_M:.c=.o)
 
 $(NAME): $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a $(LIBGNL)/libgnl.a  $(OBJECTS)
-		$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a  -o $(NAME)
+# $(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a -fsanitize=address -o $(NAME)
 
 all: $(NAME)
 
