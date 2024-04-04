@@ -1,6 +1,7 @@
 NAME  = cub3D
 CC  = cc
 CFLAGS  = -Wall -Wextra -Werror -g3  -ffast-math -I./include -I$(LIBMLX)/include
+# FSANITIZE = -fsanitize=address
 LIBMLX := ../lib_mlx42
 LIBFT := ../libft
 LIBGNL := ../lib_gnl
@@ -34,8 +35,7 @@ SOURCES_M  := \
 OBJECTS := $(SOURCES_M:.c=.o)
 
 $(NAME): $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a $(LIBGNL)/libgnl.a  $(OBJECTS)
-# $(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a -o $(NAME)
-		$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a -fsanitize=address -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a $(FSANITIZE) -o $(NAME)
 
 all: $(NAME)
 

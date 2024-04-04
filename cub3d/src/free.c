@@ -6,12 +6,28 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 17:41:26 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/04 20:28:06 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+void free_double_array_2(char ***array)
+{
+	int i;
+
+	i = 0;
+	if (*array == NULL)
+        return ;
+	while ((*array)[i])
+	{	
+		free((*array)[i]);
+		(*array)[i] = NULL;
+		i++;		
+	}
+	free(*array);
+	*array = NULL;
+}
 
 void free_double_array(char **array)
 {

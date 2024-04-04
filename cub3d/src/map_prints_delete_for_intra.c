@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 17:36:41 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/04 20:09:30 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void print_map(t_game *game)
             i++;
         }
     }
-    (void)game;
+    // (void)game;
 }
 
 void print_map_structure(t_game *game)

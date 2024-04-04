@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 17:41:46 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/04 20:24:20 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,7 @@ void save_player_pos_dir(t_game *game, char player_dir, int x, int y);
 void save_player_struct(t_game *game, char player_dir, int x, int y);
 
 // free.c
+void free_double_array_2(char ***array);
 void free_double_array(char **array);
 void free_game(t_game *game);
 void free_map_struct(t_game *game);
