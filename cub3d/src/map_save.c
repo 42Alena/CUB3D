@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 17:34:03 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/04 10:03:04 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,34 @@ void get_size_map(t_game *game, char *filename)
 	close(fd);
 }
 
-void extract_map_save(t_game *game, int row)
+/* 
+row = first line of map
+check if it firs_last_line(consisst only from spaces or 1)
+ */
+void extract_map_save(t_game *game, int first_line)
 {
-	int y;
+	int	last_line;
 
-	y = 0;
-	while (game->map.saved_map[row] && is_empty_line(game->map.saved_map[row]))
-		row++;
-	while (game->map.saved_map[y] && y < row)
-	{
-		free(game->map.saved_map[y]);
-		y++;
-	}
-	// print_map_structure(game);
-	// go from end
+	last_line = game->map.rows;
+
+	printf("game->map.saved_map[first_line]: ||%s||\n", game->map.saved_map[first_line]);
+	if (is_map_first_last_line(game, first_line) == FALSE)
+		error_map_exit_game(game, "Map: first line is not valid");
+
+	//find last row (go from bottom to first line)
+	while(is_empty_line(game->map.saved_map[last_line]))
+		last_line -= 1;
+
+	printf(" first_line = %d,\n last_line = %d\n", first_line, last_line);
+	if (last_line <= first_line + 1)
+		error_map_exit_game(game, "Map: middle map is not valid");
+
+	printf("game->map.saved_map[last_line]: ||%s||\n", game->map.saved_map[last_line]);
+	if ( is_map_first_last_line(game, last_line) == FALSE)
+		error_map_exit_game(game, "Map: last line is not valid");
 }
+
+// t_bool check_line_walls(t_game *game, int row)
+// {
+
+// }

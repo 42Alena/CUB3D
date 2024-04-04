@@ -1,4 +1,5 @@
 ADD in TO_DO.txt
+make && make clean && ./cub3D ./maps/test.cub
 make && make clean &&  ./cub3D ./maps/empty.cub  
 
 MAP
