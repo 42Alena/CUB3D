@@ -25,9 +25,15 @@ Nice to have
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
 
+05.04
+[]	find map in saved mapfile, check
+[]	exract map from map file and save back to saved_mp in struct map
+[] after saving textures and colours from saved_map in struct => delete this information from saved_map
+
 04.04
-[]change map_allocate_memory( ) to clean memory with free_double_array()
-[] map_read_save() add fill with spaces line till map->cols
+[] change map_file_allocate_memory( ) to clean memory with free_double_array()
+[] map_file_read_save() add fill with spaces line till map->cols
+[] found and fixed sgv with free_double_map
 
 03.04
 [x] new function free_game
@@ -44,8 +50,6 @@ Nice to have
 [x] add conversion from color string in struct to uint
 [x] draw_floor_ceiling(t_game *game, int x): get colours from map struct, after reading from map.cub
 [x] load_textures(t_game *game):  get textures from map struct, after reading from map.cub
-[] after saving textures and colours from saved_map in struct => delete this information from saved_map
-
 
 02.04
 [x] added: check and save wall_path in struct(in map_visuals.c)

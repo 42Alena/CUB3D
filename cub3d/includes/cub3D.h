@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 20:24:20 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:19:27 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,17 +218,20 @@ t_bool is_valid_file(t_game *game, char *temp_file);
 
 //  map_check_lines.c 
 t_bool is_empty_line(char *line);
-t_bool is_map_first_last_line(t_game *game, int cl);
+t_bool is_map_first_last_line(t_game *game, int row);
 
 //map_check_walls.c  
 // t_bool is_map_first_last_columns(t_game *game, int col);
 
-// map_save.c
-void map_allocate_memory(t_game *game);
-void map_read_save(t_game *game, char *filename);
-void get_size_map(t_game *game, char *filename);
-void extract_map_save(t_game *game, int first_line);
-void	extract_map(t_game *game, int first_line, int last_line);
+// map_file_save.c
+void map_file_allocate_memory(t_game *game);
+void map_file_read_save(t_game *game, char *filename);
+void get_size_map_file (t_game *game, char *filename);
+void extract_game_map_save(t_game *game, int first_line);
+
+void check_lines_game_map_file(t_game *game, int first_line, int last_line);
+int get_size_cols_game_map(t_game *game, int first_line, int last_line);
+void extract_game_map(t_game *game, int first_line, int last_line);
 
 // map_utils.c
 t_bool is_substring(char *substring, char *string, int start, int len);
@@ -255,7 +258,7 @@ void save_player_pos_dir(t_game *game, char player_dir, int x, int y);
 void save_player_struct(t_game *game, char player_dir, int x, int y);
 
 // free.c
-void free_double_array_2(char ***array);
+void free_double_char_pointer_array(char ***array);
 void free_double_array(char **array);
 void free_game(t_game *game);
 void free_map_struct(t_game *game);

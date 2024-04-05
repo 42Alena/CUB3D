@@ -156,7 +156,7 @@ int	main(int argc, char **argv)
 	map_file_check(t_game *game, argc, argv); //NEW
 	init_map_structure(&game);
 	init_player_structure(&game);
-	map_read_save(&game, argv[1]);
+	map_file_read_save(&game, argv[1]);
 	//save_map_textures_and_colors(&game);
 	//check_maps_characters(&game); //from map_check.c
 

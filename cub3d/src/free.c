@@ -6,13 +6,13 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 20:28:06 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/05 06:43:31 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void free_double_array_2(char ***array)
+void free_double_char_pointer_array(char ***array)
 {
 	int i;
 

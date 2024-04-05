@@ -12,7 +12,7 @@ SOURCES_M  := \
 	./src/game_init.c\
 	./src/game_play.c\
 	./src/map_file_check.c\
-	./src/map_save.c\
+	./src/map_file_save.c\
 	./src/map_check.c\
 	./src/map_visuals.c\
 	./src/map_colors.c\

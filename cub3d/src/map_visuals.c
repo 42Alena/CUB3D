@@ -68,16 +68,25 @@ void save_map_textures_and_colors(t_game *game)
 	}
 	if (is_map_settings_complete(game) == FALSE)
 		error_map_exit_game(game, "Map's requirements: Texture or color information is missing");
-	//printf("game->map.saved_map[y]: ||%s||\n", game->map.saved_map[y]);
-	// print_map_structure(game);
 
-	//TODO:include extract_map_save
-	// extract_map_save(game, y);
+	// TODO: save y =  first line of map
+	printf("\n________AFTER_SAVE_GAME_MAP__________\n");
+	printf("game->map.saved_map[y]: ||%s||\n", game->map.saved_map[y]);
+	print_map_structure(game);
 
-	// TODO: save y as first line of map
+	//TODO:include extract_game_map_save
+	extract_game_map_save(game, y);
+
+	
+	printf("\n________AFTER_SAVE_GAME_MAP__________\n");
+	printf("game->map.saved_map[y]: ||%s||\n", game->map.saved_map[y]);
+	print_map_structure(game);
 
 	// if all structures full => beginns map check from this line
 }
+void save_game_map
+
+
 
 void wall_file_check_save(t_game *game, char **name_txtr, char *line)
 {
