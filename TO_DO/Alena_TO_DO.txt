@@ -2,6 +2,23 @@ ADD in TO_DO.txt
 make && make clean && ./cub3D ./maps/test.cub
 make && make clean &&  ./cub3D ./maps/empty.cub  
 
+
+0. Check argument map.cub
+1. init STRUCTURES
+2.	map_file_check.c:
+	map_file_check and is_valid_file:
+	-valid extention
+	- can be opened
+	- not empty
+	RETURN:
+	error and exit or
+	=> saved map_path in struct
+
+3. read map_file and save in struct
+	-check and save map info in sruct till map
+3. 
+
+
 MAP
 MAP (count start from 1):
 first 8 lines only textures and colours and at  x >=7

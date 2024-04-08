@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 12:39:49 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:38:16 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void map_file_read_save(t_game *game, char *filename)
 	if (fd == -1)
 		error_map_exit_game(game, "Can not open the map");
 	y = 0;
-	// map_allocate_memory(game);
+	map_allocate_memory(game);
 	while (TRUE)
 	{
 		x = 0;

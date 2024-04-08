@@ -15,6 +15,7 @@ SOURCES_M  := \
 	./src/map_check_lines.c\
 	./src/map_file_check.c\
 	./src/map_file_save.c\
+	./src/map_game_save.c\
 	./src/map_player_save.c\
 	./src/map_visuals.c\
 	./src/map_colors.c\
@@ -31,7 +32,6 @@ SOURCES_M  := \
 	./src/textures.c\
 	./src/main_menu.c\
 	./src/utils.c
-# ./src/map_game_save.c\
 
 OBJECTS := $(SOURCES_M:.c=.o)
 

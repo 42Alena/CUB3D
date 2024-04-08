@@ -75,7 +75,7 @@ void save_map_textures_and_colors(t_game *game)
 	print_map_structure(game);
 
 	//TODO:include extract_game_map_save
-	// extract_game_map_save(game, y);
+	extract_game_map_save(game, y);
 
 	
 	printf("\n________AFTER_SAVE_GAME_MAP__________\n");
@@ -84,7 +84,7 @@ void save_map_textures_and_colors(t_game *game)
 
 	// if all structures full => beginns map check from this line
 }
-// void save_game_map
+void save_game_map
 
 
 
@@ -113,7 +113,6 @@ void wall_file_check_save(t_game *game, char **name_txtr, char *line)
 		free(line);
 		error_map_exit_game(game, "Invalid  file extension: .png expected");
 	}
-	//TODO check what texture  to send or check separate
 	is_valid_file(game, *name_txtr);
 }
 

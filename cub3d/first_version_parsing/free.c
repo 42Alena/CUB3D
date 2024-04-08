@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 10:48:28 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/05 06:43:31 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,6 @@ void free_game(t_game *game)
 void free_map_struct(t_game *game)
 {
 	free_double_array(game->map.saved_map);
-
-	//______new
-	if (game->map.file_path)
-		free(game->map.file_path);
-	if (game->map.tmp_line)
-		free(game->map.tmp_line);
-
-
-	//end_new
-
 	if (game->map.no_texture)
 		free(game->map.no_texture);
 	if (game->map.so_texture)

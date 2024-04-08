@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_game_ave.c                                     :+:      :+:    :+:   */
+/*   map_game_save.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:17:30 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/05 12:19:27 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:49:52 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,7 @@ void extract_game_map(t_game *game, int first_line, int last_line)
 	free_double_char_pointer_array(&game->map.saved_map);
 	game->map.cols = cols;
 	game->map.cols = last_line - first_line;
-	game->map.saved_map = last_line - first_line;
+
+	//Copy from map
+	game->map.saved_map = temp_map;
 }
