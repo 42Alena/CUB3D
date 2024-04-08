@@ -1,7 +1,7 @@
 NAME  = cub3D
 CC  = cc
 CFLAGS  = -Wall -Wextra -Werror -g3  -ffast-math -I./include -I$(LIBMLX)/include
-# FSANITIZE = -fsanitize=address
+FSANITIZE = -fsanitize=address
 LIBMLX := ../lib_mlx42
 LIBFT := ../libft
 LIBGNL := ../lib_gnl

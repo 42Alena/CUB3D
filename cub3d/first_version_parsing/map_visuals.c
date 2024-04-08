@@ -84,21 +84,22 @@ void save_map_textures_and_colors(t_game *game)
 
 	// if all structures full => beginns map check from this line
 }
-void save_game_map
+
 
 
 
 void wall_file_check_save(t_game *game, char **name_txtr, char *line)
 {
 	int length_name_txtr;
+	char	*temp;
 
 	if (*name_txtr != NULL)
 	{
 		free(line);
 		error_map_exit_game(game, "Map: double map settings for texture");
 	}
-	length_name_txtr = ft_strlen(line) - 3;
-	*name_txtr = ft_substr(line, 3, length_name_txtr);
+	length_name_txtr = ft_strlen(line);
+	*name_txtr = ft_substr(line, 3, length_name_txtr - 3);
 	*name_txtr = ft_strtrim(*name_txtr, " ");
 	if (*name_txtr == NULL)
 		error_map_exit_game(game, "Missing file: <wall>.png");

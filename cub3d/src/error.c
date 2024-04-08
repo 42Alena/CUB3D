@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:28:58 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 17:31:24 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:32:23 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void error_map_exit_game(t_game *game, char *error_msg)
 	write(2, "ERROR\n", 6);
 	write(2, error_msg, len_error_msg);
 	write(2, "\n", 1);
+	if (game->map.fd_open)
+	{
+		close(game->map.fd);
+		game->map.fd_open = FALSE;
+	}
 	free_map_struct(game);
 	exit(EXIT_FAILURE);
 }

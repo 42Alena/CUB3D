@@ -25,6 +25,12 @@ Nice to have
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
 
+
+08.04
+[] start from beginn to change parsing
+[] for map_error_exit added in map_struct fd and fd_open, to close before exit
+
+
 05.04
 []	find map in saved mapfile, check
 []	exract map from map file and save back to saved_mp in struct map

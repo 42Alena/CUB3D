@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:26:35 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 11:48:37 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:28:38 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ t_bool is_empty_line(char *line)
 }
 
 /* first and last line can  */
-t_bool is_map_first_last_line(t_game *game, int row)
+t_bool is_map_first_last_line(t_game *game)
 {
     int i;
-    char *line;
+    // char *line;
 
     i = 0;
-    line =  game->map.saved_map[row];
-    while (line[i])
+    // line =  game->map.tmp_line;
+    while (game->map.tmp_line[i])
     {
-        if (line[i] != '1' && line[i] != ' ')
+        if (game->map.tmp_line[i] != '1' && game->map.tmp_line[i] != ' ')
             return (FALSE);
         i++;
     }
@@ -94,3 +94,22 @@ and have only map symbols
 //     return (TRUE);
 // }
 
+
+
+///_1.VERSION
+// /* first and last line can  */
+// t_bool is_map_first_last_line(t_game *game, int row)
+// {
+//     int i;
+//     char *line;
+
+//     i = 0;
+//     line =  game->map.saved_map[row];
+//     while (line[i])
+//     {
+//         if (line[i] != '1' && line[i] != ' ')
+//             return (FALSE);
+//         i++;
+//     }
+//     return (TRUE);
+// }

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 12:46:12 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:54:18 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ typedef struct s_map
 
 //__________new
 	char	*file_path;
+	t_bool	fd_open;
+	int		fd;
 	char	*tmp_line;
 	int		len_tmp_line;
-
 	int		first_line;
 	int		last_line;
-	int		max_len_map_line;
+
 //_end new
 
 
@@ -222,7 +223,7 @@ void gameplay(t_game *game, double time);
 void ft_hook(void *param);
 
 // map_file_check.c
-t_bool map_file_check(t_game *game, int argc, char **argv);
+void	map_file_check(t_game *game, int argc, char **argv);
 t_bool is_valid_file(t_game *game, char *file_path);
 
 
@@ -231,17 +232,27 @@ t_bool is_valid_file(t_game *game, char *file_path);
 
 
 //___________map_file_save.c_______________
+///---new
+void map_file_read_save(t_game *game);
+void save_map_info_in_struct (t_game *game);
+void new_check_file_map_lines(t_game *game, t_bool flag_map_start);
+void new_save_map_info_lines_to_struct(t_game *game);
 void map_file_allocate_memory(t_game *game);
-void map_file_read_save(t_game *game, char *filename);
-void get_size_map_file (t_game *game, char *filename);
-void extract_game_map_save(t_game *game, int first_line);
 
-void check_lines_game_map_file(t_game *game, int first_line, int last_line);
-int get_size_cols_game_map(t_game *game, int first_line, int last_line);
-void extract_game_map(t_game *game, int first_line, int last_line);
-//  map_check_lines.c 
+///---old map_file_save.c
+// void map_file_allocate_memory(t_game *game);
+// void map_file_read_save(t_game *game, char *filename);
+// void save_map_info_in_struct (t_game *game);
+// void extract_game_map_save(t_game *game, int first_line);
+
+// void check_lines_game_map_file(t_game *game, int first_line, int last_line);
+// int get_size_cols_game_map(t_game *game, int first_line, int last_line);
+// void extract_game_map(t_game *game, int first_line, int last_line);
+
+
+//_________map_check_lines.c___________ 
 t_bool is_empty_line(char *line);
-t_bool is_map_first_last_line(t_game *game, int row);
+t_bool is_map_first_last_line(t_game *game);
 
 
 //___________map_check_walls.c____________
@@ -260,7 +271,8 @@ void init_game_struct(t_game *game);
 // map_visuals.c
 t_bool is_map_settings_complete(t_game *game);
 void save_map_textures_and_colors(t_game *game);
-void wall_file_check_save(t_game *game, char **name_txtr, char *line);
+
+void wall_file_check_save(t_game *game, char **name_txtr, char *txtr_path);
 void draw_floor_ceiling(t_game *game, int x);
 
 // map_colors.c  

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 09:38:16 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:54:44 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void map_file_read_save(t_game *game, char *filename)
 	int y;
 	char *line;
 
-	get_size_map_file (game, filename);
+	save_map_info_in_struct (game, filename);
 
 	if (game->map.rows <= 8 || game->map.cols <= 7)
 		error_map_exit_game(game, "Map: not enough information");
@@ -86,7 +86,7 @@ first map check if:
 - map is rectangular - all lines same length as first line;
 - check if lines >=3(walls, signs, walls)
 */
-void get_size_map_file (t_game *game, char *filename)
+void save_map_info_in_struct (t_game *game)
 {
 	int fd;
 	char *line;

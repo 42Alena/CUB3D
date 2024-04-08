@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 12:39:03 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:15:55 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,21 @@ int main(int argc, char **argv)
 	init_player_structure(&game);
 
 	map_file_check(&game, argc, argv);
-	print_map_structure(&game);
 
-	//map_file_read_save(&game, argv[1]);
+
+	// map_file_read_save(&game, argv[1]);
+	map_file_read_save(&game);
 	// save_map_textures_and_colors(&game);
-	// print_map(&game);
 
 	// check_maps_characters(&game); //from map_check.c
 	// print_map(&game);
 	// free_double_char_pointer_array(&game.map.saved_map);
 	
 	//____TEST_____________________
+	// print_map(&game);
 
-	print_map(&game);
-	// print_map_structure(&game);
+	// print_map(&game);
+	print_map_structure(&game);
 	// printf("_____MAP_______\n\n");
 	// print_map(&game);
 	// printf("_____END_MAP_______\n\n");

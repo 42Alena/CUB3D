@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/05 12:19:27 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:54:31 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ t_bool is_map_first_last_line(t_game *game, int row);
 // map_file_save.c
 void map_file_allocate_memory(t_game *game);
 void map_file_read_save(t_game *game, char *filename);
-void get_size_map_file (t_game *game, char *filename);
+void save_map_info_in_struct (t_game *game);
 void extract_game_map_save(t_game *game, int first_line);
 
 void check_lines_game_map_file(t_game *game, int first_line, int last_line);
