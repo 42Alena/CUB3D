@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 19:15:55 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:03:40 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(int argc, char **argv)
 
 	// map_file_read_save(&game, argv[1]);
 	map_file_read_save(&game);
+	
 	// save_map_textures_and_colors(&game);
 
 	// check_maps_characters(&game); //from map_check.c

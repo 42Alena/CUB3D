@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:26:35 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 17:28:38 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:33:02 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,65 @@ t_bool is_empty_line(char *line)
 /* first and last line can  */
 t_bool is_map_first_last_line(t_game *game)
 {
-    int i;
+    int x;
     // char *line;
 
-    i = 0;
+    x = 0;
     // line =  game->map.tmp_line;
-    while (game->map.tmp_line[i])
+    while (game->map.tmp_line[x])
     {
-        if (game->map.tmp_line[i] != '1' && game->map.tmp_line[i] != ' ')
+        if (game->map.tmp_line[x] != '1' && game->map.tmp_line[x] != ' ')
             return (FALSE);
-        i++;
+        x++;
     }
     return (TRUE);
 }
+
+/*
+it must beginn and end with 1   1
+and have only map symbols
+*/
+t_bool is_map_middle_lines(t_game *game)
+{
+    int x;
+    char *line;
+    int end;
+    char c;
+    int count_player;
+
+    line = game->map.tmp_line;
+    x = 0;
+    end = ft_strlen(line) - 1;
+    count_player = 0;
+    while(line[x] && line[x] == ' ')
+        x++;
+    while(line[end] && line[end] == ' ' && end >= x)
+
+    if (line[x] != 1 && line[end] != 1)
+        error_map_exit_game(game, "Map: middlerow: no outside wall");
+    while (line[x] < end)
+    {
+        c = line[x];
+        //if (c == '0') TODO:ADD CHECK for spaces with 0
+
+        if (c != 'N' && c != 'S' && c != 'W' && c != 'E' && c != 0 && c != 1 && c!= ' ')
+            error_map_exit_game(game, "Map: failed wall");
+        //TODO: add check player
+        if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+        {
+            count_player += 1;
+            if (count_player > 1)
+                error_map_exit_game(game, "Map: failed wall");
+        }
+        //     check_save_player(game, c, x, y);
+        x++;
+    }
+    // if (line[x] != 1 && line[len - 1] != 1)
+    //     error_map_exit_game(game, "Map: middlerow: no outside wall");
+    return (TRUE);
+}
+
+
 
 /*
 it must beginn and end with 1   1

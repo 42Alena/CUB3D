@@ -56,7 +56,7 @@ void print_map_structure(t_game *game)
 	//___new
     printf("fd: %d\n", game->map.fd);
     printf("fd_open: %d\n", game->map.fd_open);
-    printf("path: %s\n", game->map.file_path);
+    printf("map_path: %s\n", game->map.file_path);
     printf("tmp_line: %s\n", game->map.tmp_line);
     printf("first_line: %d\n", game->map.first_line);
     printf("last_line: %d\n", game->map.last_line);

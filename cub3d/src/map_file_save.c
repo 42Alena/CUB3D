@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 20:06:32 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:54:54 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ void map_file_read_save(t_game *game)
 void save_map_info_in_struct(t_game *game)
 {
 	int	flag_map_start;
+	int	flag_map_info_end;
+
 
 	flag_map_start = FALSE;
-
 	game->map.fd = open(game->map.file_path, O_RDONLY);
 	if (game->map.fd == -1)
 		error_map_exit_game(game, "Can not open the map");
@@ -72,71 +73,85 @@ void save_map_info_in_struct(t_game *game)
 	while (TRUE)
 	{
 		game->map.tmp_line = get_next_line(game->map.fd);
-		
 		if (game->map.tmp_line == NULL)
 			break ;
-		game->map.rows += 1;
+		game->map.tmp_line = ft_strtrim(game->map.tmp_line, " ");
 		game->map.len_tmp_line = ft_strlen(game->map.tmp_line);
 		if (game->map.tmp_line[game->map.len_tmp_line - 1] == '\n')
 			game->map.tmp_line[game->map.len_tmp_line - 1] = ' ';
-		printf("gnl: ||%s\n||", game->map.tmp_line);
-		//TODO: add check
 
-		// if (is_map_settings_complete(game) && !is_empty_line(game->map.tmp_line))
-		// 	new_check_file_map_lines(game, flag_map_start);
-		// else if ()
-		//TODO: CHANGE FUNCTION FOR SAVE MAP TO CLOSE FD BEFORE EXIT GAME.(RETURN)
-		if (is_map_settings_complete(game))
+		flag_map_info_end = is_map_settings_complete(game);
+
+		printf("gnl: ||%s\n||", game->map.tmp_line);
+
+		if (!flag_map_info_end)
 		{
-			// if (!is_empty_line(game->map.tmp_line))
-			// 	new_check_file_map_lines(game, flag_map_start);
-		}	
-		else
-			(new_save_map_info_lines_to_struct(game));
+			new_save_map_info_lines_to_struct(game);
+			printf ("WRITING _MAP_INFO\n");
+		}
+		else if(flag_map_info_end && !flag_map_start)
+		{
+		 	if(game->map.len_tmp_line == 0)
+				printf ("SKIP_NEW_LINES_BEFORE_MAP\n");
+			else
+			{
+				flag_map_start = TRUE;
+				if (is_map_first_last_line(game) == FALSE)
+					error_map_exit_game(game, "Map: first line is not valid");
+				printf ("FIRST_MAP_LINE\n");
+			}
+		}
+		else if (flag_map_start)
+		{
+			// new_check_file_map_lines(game);
+			game->map.rows += 1;
+			if (game->map.cols < game->map.len_tmp_line)
+				game->map.rows = game->map.len_tmp_line;
+		}
 
 		//check for end of the file
 		if (game->map.len_tmp_line == 0)
 			break;
 
-
 		free(game->map.tmp_line);
-		game->map.rows += 1;
 	}
 	close(game->map.fd);
 	game->map.fd_open = FALSE;
 }
 
 
-void new_check_file_map_lines(t_game *game, t_bool flag_map_start)
-{
-	//skip empty lines before map starts
-	if (flag_map_start == FALSE)
-	{			
-			if (is_map_first_last_line(game) == FALSE)
-				error_map_exit_game(game, "Map: first line is not valid");
-			else
-			{
-				flag_map_start = TRUE;
-				game->map.first_line = game->map.rows;
-			}
-	}
-	else if (flag_map_start == TRUE)
-	{
+// void new_check_file_map_lines(t_game *game)
+// {
 
-			// if (!is_map_first_last_line(game) && 
-				//!is_map_middle_line(game, game->map.tmp_line)
-				//TODO: write function for middle row(beginn from 1, allowed symbols,
-				//and if player - save player)
-				// )
-			//TODO: ADD check if it middle row(allowed signes) or last row
-			game->map.last_line = game->map.rows;
+// 	if (is_map_first_last_line(game))
+// 	{
+// 		game->map.last_line = game->map.rows;
+// 	}
+// 	else if (/* condition */)
+// 	{
+// 		/is_map_middle_line(game, game->map.tmp_line) == FALSE
+// 	}
+	
+		
 
-	}
-	game->map.cols = game->map.len_tmp_line;
-	//not include new line \n\0 in length
-	if (game->map.tmp_line[game->map.cols - 1] == '\n')
-	game->map.cols -= 1;		
-}
+
+// 	// }
+
+// 	// 			// error_map_exit_game(game, "Map: first line is not valid");
+// 	// }
+
+// 				//!
+// 				//TODO: write function for middle row(beginn from 1, allowed symbols,
+// 				//and if player - save player)
+// 				// )
+// 			//TODO: ADD check if it middle row(allowed signes) or last row
+
+// 	// 		game->map.last_line = game->map.rows;
+
+// 	// }
+
+
+// }
 
 //SAVE ALL INFORMATION TO STRUCT
 //AFTER READING fule - check all together?
@@ -145,8 +160,8 @@ void new_save_map_info_lines_to_struct(t_game *game)
 	char	*line;
 	int	len;
 
-	line = ft_strtrim(game->map.tmp_line, " ");
-	len = ft_strlen(line);
+	line = game->map.tmp_line;
+	len = game->map.len_tmp_line;
 
 	if (is_substring("NO ", line, 0, 3))
 	{
@@ -169,13 +184,13 @@ void new_save_map_info_lines_to_struct(t_game *game)
 		save_map_color(game, &(game->map.ceiling_color_str), line);
 		game->map.ceiling_color_uint = get_rgb_from_string(game, game->map.ceiling_color_str);
 	}
-	else if (!is_empty_line(line))
+	else if (!game->map.len_tmp_line)
 	{
-		free(line);
+		// free(line);
 		error_map_exit_game(game, "Map info is not complete");
 	}
-	else
-		free(line);
+	// else
+		// free(line);
 }
 
 

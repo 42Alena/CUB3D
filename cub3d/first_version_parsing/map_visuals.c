@@ -34,12 +34,12 @@ map must be at the and of file. mininimal size of map can be col=3, rows=3:
 void save_map_textures_and_colors(t_game *game)
 {
 	int y;
-	char *temp_line;
+	//char *temp_line;
 
 	y = 0;
 	while (y <= game->map.rows - 3 || is_map_settings_complete(game))
 	{
-		temp_line = ft_strtrim(game->map.saved_map[y], " ");
+		//temp_line = ft_strtrim(game->map.saved_map[y], " ");
 		if (is_substring("NO ", temp_line, 0, 3))
 			wall_file_check_save(game, &(game->map.no_texture), temp_line);
 		else if (is_substring("SO ", temp_line, 0, 3))

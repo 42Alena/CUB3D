@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 18:54:18 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:04:59 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ t_bool is_valid_file(t_game *game, char *file_path);
 ///---new
 void map_file_read_save(t_game *game);
 void save_map_info_in_struct (t_game *game);
-void new_check_file_map_lines(t_game *game, t_bool flag_map_start);
+void new_check_file_map_lines(t_game *game);
 void new_save_map_info_lines_to_struct(t_game *game);
 void map_file_allocate_memory(t_game *game);
 
