@@ -53,7 +53,7 @@ void wall_file_check_save(t_game *game, char **name_txtr, char *line)
 		free(line);
 		error_map_exit_game(game, "Invalid  file extension: .png expected");
 	}
-	printf("wall_file_check_save: %s\n", *name_txtr);
+	// printf("wall_file_check_save: %s\n", *name_txtr);
 	is_valid_file(game, *name_txtr);
 }
 

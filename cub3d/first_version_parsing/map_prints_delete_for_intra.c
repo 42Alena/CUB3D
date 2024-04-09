@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 20:09:30 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:32:59 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void print_map_structure(t_game *game)
     printf("Map Structure:\n");
     printf("cols: %d\n", game->map.cols);
     printf("rows: %d\n", game->map.rows);
+    printf("first_line: %d\n", game->map.first_line);
+    printf("last_line: %d\n", game->map.last_line);
     printf("no_texture: %s\n", game->map.no_texture);
     printf("so_texture: %s\n", game->map.so_texture);
     printf("we_texture: %s\n", game->map.we_texture);

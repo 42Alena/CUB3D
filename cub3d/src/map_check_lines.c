@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:26:35 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/09 16:33:02 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:47:40 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,34 +63,35 @@ t_bool is_map_middle_lines(t_game *game)
 {
     int x;
     char *line;
-    int end;
+    int len;
     char c;
-    int count_player;
 
-    line = game->map.tmp_line;
+    line = ft_strtrim(game->map.tmp_line, " ");
+    len = ft_strlen(line);
     x = 0;
-    end = ft_strlen(line) - 1;
-    count_player = 0;
-    while(line[x] && line[x] == ' ')
-        x++;
-    while(line[end] && line[end] == ' ' && end >= x)
 
-    if (line[x] != 1 && line[end] != 1)
+    if (len > 0 && line[0] != '1' && line[len - 1] != '1')
+    {
+        printf("line[x]: %c,\n", line[x]);
         error_map_exit_game(game, "Map: middlerow: no outside wall");
-    while (line[x] < end)
+    }
+    while (line[x])
     {
         c = line[x];
         //if (c == '0') TODO:ADD CHECK for spaces with 0
 
-        if (c != 'N' && c != 'S' && c != 'W' && c != 'E' && c != 0 && c != 1 && c!= ' ')
-            error_map_exit_game(game, "Map: failed wall");
-        //TODO: add check player
-        if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+        if (c != 'N' && c != 'S' && c != 'W' && c != 'E' && c != '0' && c != '1' && c != ' ')
         {
-            count_player += 1;
-            if (count_player > 1)
-                error_map_exit_game(game, "Map: failed wall");
+            printf("line[x]: %c,\n", line[x]);
+            error_map_exit_game(game, "Map: Not allowed symbol");
         }
+        //TODO: add check player
+        // if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+        // {
+        //     game->map.count_player += 1;
+        //     if (count_player > 1)
+        //         error_map_exit_game(game, "Map: failed wall");
+        // }
         //     check_save_player(game, c, x, y);
         x++;
     }
