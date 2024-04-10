@@ -25,6 +25,12 @@ Nice to have
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
 
+10.04
+[] change save_map_info_in_struct with multiple while()
+[]
+09.04
+[x]	added check for map file before save in **saved_map
+[x] map is now saved in **saved_map
 
 08.04
 [] start from beginn to change parsing

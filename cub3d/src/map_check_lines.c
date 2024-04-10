@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:26:35 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/09 19:47:40 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:28:57 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,32 @@ t_bool is_empty_line(char *line)
     if (line == NULL)
         return (TRUE);
     temp_line = ft_strtrim(line, " ");
+    if (temp_line == NULL)
+        return (TRUE);
+    while (temp_line[i])
+    {
+        if (temp_line[i] != ' ' && temp_line[i] != '\n')
+        {
+            free(temp_line);
+            return (FALSE);
+        }
+        i++;
+    }
+    if (temp_line != NULL)
+        free(temp_line);
+    return (TRUE);
+}
+
+
+t_bool is_empty_tmp_line(t_game *game)
+{
+    int i;
+    char *temp_line;
+
+    i = 0;
+    if (game->map.tmp_line == NULL)
+        return (TRUE);
+    temp_line = ft_strtrim(game->map.tmp_line, " ");
     if (temp_line == NULL)
         return (TRUE);
     while (temp_line[i])

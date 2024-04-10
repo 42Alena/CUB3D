@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/09 19:25:47 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:29:35 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,7 @@ void map_file_allocate_memory(t_game *game);
 
 //_________map_check_lines.c___________ 
 t_bool is_empty_line(char *line);
+t_bool is_empty_tmp_line(t_game *game);
 t_bool is_map_first_last_line(t_game *game);
 t_bool is_map_middle_lines(t_game *game);
 
