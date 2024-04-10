@@ -6,32 +6,29 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:00:39 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 17:41:38 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:19:46 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void save_map_color(t_game *game, char **name_color, char *line)
+void save_map_color(t_game *game, char **name_color, char c_f)
 {
-	int length_color_str;
-
 	if (*name_color != NULL)
-	{
-		free(line);
 		error_map_exit_game(game, "Map: double map settings for color");
-	}
-	length_color_str = ft_strlen(line) - 2;
-	*name_color = ft_substr(line, 2, length_color_str);
+	*name_color = ft_substr(game->map.tmp_line, 2, game->map.len_tmp_line - 2);
 	*name_color = ft_strtrim(*name_color, " ");
 	if (*name_color == NULL)
 		error_map_exit_game(game, "Missing map settings for color");
-	length_color_str = ft_strlen(*name_color);
-	if (length_color_str <= 6)
-	{
-		free(line);
+	game->map.len_tmp_line = ft_strlen(*name_color);
+	if (game->map.len_tmp_line <= 6)
 		error_map_exit_game(game, "Invalid color texture");
-	}
+	if(c_f == 'c')
+		game->map.ceiling_color_uint =\
+		get_rgb_from_string(game, game->map.ceiling_color_str);
+	else if (c_f == 'f')
+		game->map.floor_color_uint =\
+		get_rgb_from_string(game, game->map.floor_color_str);
 }
 
 uint32_t	get_rgb_from_string(t_game *game, char *rgb_string)
@@ -46,8 +43,6 @@ uint32_t	get_rgb_from_string(t_game *game, char *rgb_string)
     splited_colors = ft_split(rgb_string, ',');
 	while (splited_colors[i])
 	{
-		// printf("\nsplited_colors||%s||\n", splited_colors[i]);
-		
 		if (i >= 3)
 			error_map_exit_game(game, "Not valid color");
 		splited_colors[i] = ft_strtrim(splited_colors[i], " ");
@@ -84,3 +79,31 @@ int get_color_from_string(t_game *game, char **splited_colors, int i)
 	}
 	return (color);
 }
+
+
+/* 
+10.04
+void save_map_color(t_game *game, char **name_color, char *line)
+{
+	int length_color_str;
+
+	if (*name_color != NULL)
+	{
+		free(line);
+		error_map_exit_game(game, "Map: double map settings for color");
+	}
+	length_color_str = ft_strlen(line) - 2;
+	*name_color = ft_substr(line, 2, length_color_str);
+	*name_color = ft_strtrim(*name_color, " ");
+	if (*name_color == NULL)
+		error_map_exit_game(game, "Missing map settings for color");
+	length_color_str = ft_strlen(*name_color);
+	if (length_color_str <= 6)
+	{
+		free(line);
+		error_map_exit_game(game, "Invalid color texture");
+	}
+}
+
+
+ */

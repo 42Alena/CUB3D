@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/10 13:29:35 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:17:38 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,11 +274,11 @@ void init_game_struct(t_game *game);
 t_bool is_map_settings_complete(t_game *game);
 void save_map_textures_and_colors(t_game *game);
 
-void wall_file_check_save(t_game *game, char **name_txtr, char *txtr_path);
+void wall_file_check_save(t_game *game, char **name_txtr);
 void draw_floor_ceiling(t_game *game, int x);
 
 // map_colors.c  
-void save_map_color(t_game *game, char **name_color, char *line);
+void save_map_color(t_game *game, char **name_color, char c_f);
 uint32_t	get_rgb_from_string(t_game *game, char *rgb_string);
 int get_color_from_string(t_game *game, char **splited_colors, int i);
 

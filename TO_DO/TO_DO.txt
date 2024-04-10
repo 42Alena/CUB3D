@@ -25,27 +25,30 @@ Nice to have
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
 
+
+
+
 10.04
 [] change save_map_info_in_struct with multiple while()
-[]
+[x] added: skipping spaces between map info and map
+
 09.04
 [x]	added check for map file before save in **saved_map
 [x] map is now saved in **saved_map
 
 08.04
-[] start from beginn to change parsing
-[] for map_error_exit added in map_struct fd and fd_open, to close before exit
-
+[x] start from beginn to change parsing
+[x] for map_error_exit added in map_struct fd and fd_open, to close before exit
 
 05.04
-[]	find map in saved mapfile, check
-[]	exract map from map file and save back to saved_mp in struct map
-[] after saving textures and colours from saved_map in struct => delete this information from saved_map
+[x]	find map in saved mapfile, check
+[x]	exract map from map file and save back to saved_mp in struct map
+[x] after saving textures and colours from saved_map in struct => delete this information from saved_map
 
 04.04
-[] change map_file_allocate_memory( ) to clean memory with free_double_array()
-[] map_file_read_save() add fill with spaces line till map->cols
-[] found and fixed sgv with free_double_map
+[x] change map_file_allocate_memory( ) to clean memory with free_double_array()
+[x] map_file_read_save() add fill with spaces line till map->cols
+[x] found and fixed sgv with free_double_map
 
 03.04
 [x] new function free_game
