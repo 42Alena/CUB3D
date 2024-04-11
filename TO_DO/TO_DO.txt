@@ -27,9 +27,11 @@ Nice to have
 
 
 
+11.04
+[x] better check before savemap in array
 
 10.04
-[] change save_map_info_in_struct with multiple while()
+[x] change save_map_info_in_struct with multiple while()
 [x] added: skipping spaces between map info and map
 
 09.04

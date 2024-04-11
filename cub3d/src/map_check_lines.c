@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:26:35 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/10 13:28:57 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:45:17 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,23 @@ t_bool is_empty_line(char *line)
 t_bool is_empty_tmp_line(t_game *game)
 {
     int i;
-    char *temp_line;
 
     i = 0;
+
     if (game->map.tmp_line == NULL)
-        return (TRUE);
-    temp_line = ft_strtrim(game->map.tmp_line, " ");
-    if (temp_line == NULL)
-        return (TRUE);
-    while (temp_line[i])
     {
-        if (temp_line[i] != ' ' && temp_line[i] != '\n')
-        {
-            free(temp_line);
+        // printf("is_empty_tmp_line||%s|| = TRUE\n", game->map.tmp_line);
+        return (TRUE);
+    }
+    while (game->map.tmp_line[i])
+    {
+        if (game->map.tmp_line[i] != ' ')
             return (FALSE);
-        }
+
         i++;
     }
-    if (temp_line != NULL)
-        free(temp_line);
+    
+    // printf("is_empty_tmp_line||%s|| = TRUE\n", game->map.tmp_line);
     return (TRUE);
 }
 
@@ -68,18 +66,28 @@ t_bool is_empty_tmp_line(t_game *game)
 t_bool is_map_first_last_line(t_game *game)
 {
     int x;
+    int ones;
     // char *line;
 
     x = 0;
+    ones = 0;
     // line =  game->map.tmp_line;
     while (game->map.tmp_line[x])
     {
-        if (game->map.tmp_line[x] != '1' && game->map.tmp_line[x] != ' ')
+        if (game->map.tmp_line[x] == '1')
+            ones += 1;
+         else if(game->map.tmp_line[x] != ' ')
             return (FALSE);
         x++;
     }
+    if (ones == 0)
+        return (FALSE);
     return (TRUE);
 }
+
+
+
+
 
 /*
 it must beginn and end with 1   1

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:17:51 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/03 17:34:03 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:45:53 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void check_save_player(t_game *game, char c, int x, int y)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-	{
-		if (game->player.count == 0)
-		{
+	// {
+	// 	if (game->player.count == 0)
+	// 	{
 			save_player_struct(game, c, x, y);
-			game->player.count += 1;
-		}
-		else
-			error_map_exit_game(game, "Only one player can be in game");
-	}
-	else
-		error_map_exit_game(game, "Set player direction to N,S,E or W");
+	// 		game->player.count += 1;
+	// 	}
+	// 	else
+	// 		error_map_exit_game(game, "Only one player can be in game");
+	// }
+	// else
+	// 	error_map_exit_game(game, "Set player direction to N,S,E or W");
 }
 
 void save_player_pos_dir(t_game *game, char player_dir, int x, int y)

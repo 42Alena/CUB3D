@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/10 19:17:38 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:34:21 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ typedef struct s_map
 
 //__________new
 	char	*file_path;
+	char	**file_map;
 	t_bool	fd_open;
 	int		fd;
 	char	*tmp_line;
 	int		len_tmp_line;
 	int		first_line;
+	int		first_empty_line;
 	int		last_line;
 
 //_end new
@@ -235,9 +237,14 @@ t_bool is_valid_file(t_game *game, char *file_path);
 ///---new
 void map_file_read_save(t_game *game);
 void save_map_info_in_struct (t_game *game);
-void new_check_file_map_lines(t_game *game);
+void	change_char_newline_to_space(t_game *game);
+void new_save_map_info_lines_to_struct(t_game *game);
+void check_map_file_lines(t_game *game);
+
 void new_save_map_info_lines_to_struct(t_game *game);
 void map_file_allocate_memory(t_game *game);
+// void map_allocate_memory(t_game *game, char **name_map);
+
 
 ///---old map_file_save.c
 // void map_file_allocate_memory(t_game *game);

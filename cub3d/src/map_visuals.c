@@ -32,9 +32,9 @@ void wall_file_check_save(t_game *game, char **name_txtr)
 {
 	if (*name_txtr != NULL)
 		error_map_exit_game(game, "Map: double map settings for texture");
-	*name_txtr = ft_substr(game->map.tmp_line, 3, game->map.len_tmp_line - 3);
+	*name_txtr = ft_substr(game->map.tmp_line, 3, game->map.len_tmp_line - 3); 
 	*name_txtr = ft_strtrim(*name_txtr, " ");
-	if (*name_txtr == NULL)
+	if (*name_txtr == NULL)   //TODO: change to is_empty_line
 		error_map_exit_game(game, "Missing file: <wall>.png");
 	game->map.len_tmp_line = ft_strlen(*name_txtr);
 	if (game->map.len_tmp_line <= 4)

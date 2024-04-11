@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 20:10:52 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:57:59 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ void print_map(t_game *game)
             i++;
         }
     }
+    if (game->map.file_map == NULL)
+        printf("\n MAP_file_map = NULL\n");
+    else
+    {
+        int i = 0;
+        printf("%d rows\n", game->map.rows);
+        while (game->map.file_map[i] && i < game->map.rows)
+        {
+            printf("||%s||\n", game->map.file_map[i]);
+            i++;
+        }
+    }
     // (void)game;
 }
 
@@ -60,6 +72,7 @@ void print_map_structure(t_game *game)
     printf("tmp_line: %s\n", game->map.tmp_line);
     printf("first_line: %d\n", game->map.first_line);
     printf("last_line: %d\n", game->map.last_line);
+    printf("first_empty_line: %d\n", game->map.first_empty_line);
 
     printf("len_tmp_line: %d\n", game->map.len_tmp_line);
 
