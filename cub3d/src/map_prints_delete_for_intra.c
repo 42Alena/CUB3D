@@ -6,11 +6,12 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/11 17:57:59 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/12 13:01:51 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+// 		printf("gnl:||%d||%s||\n", game->map.rows, game->map.tmp_line);
 //////////////////////////PRINTs FOR TEST MAPS//////////////////////
 // TODO: move/delete before push
 void print_map_pos_x_y(t_game *game)
@@ -30,32 +31,18 @@ void print_map_pos_x_y(t_game *game)
 
 void print_map(t_game *game)
 {
-    
+
     if (game->map.saved_map == NULL)
         printf("\n MAP = NULL\n");
     else
     {
         int i = 0;
-        printf("%d rows\n", game->map.rows);
         while (game->map.saved_map[i] && i < game->map.rows)
         {
             printf("||%s||\n", game->map.saved_map[i]);
             i++;
         }
     }
-    if (game->map.file_map == NULL)
-        printf("\n MAP_file_map = NULL\n");
-    else
-    {
-        int i = 0;
-        printf("%d rows\n", game->map.rows);
-        while (game->map.file_map[i] && i < game->map.rows)
-        {
-            printf("||%s||\n", game->map.file_map[i]);
-            i++;
-        }
-    }
-    // (void)game;
 }
 
 void print_map_structure(t_game *game)
@@ -65,7 +52,7 @@ void print_map_structure(t_game *game)
     printf("cols: %d\n", game->map.cols);
     printf("rows: %d\n", game->map.rows);
 
-	//___new
+    //___new
     printf("fd: %d\n", game->map.fd);
     printf("fd_open: %d\n", game->map.fd_open);
     printf("map_path: %s\n", game->map.file_path);
@@ -76,7 +63,7 @@ void print_map_structure(t_game *game)
 
     printf("len_tmp_line: %d\n", game->map.len_tmp_line);
 
-	//end_new
+    // end_new
 
     printf("no_texture: %s\n", game->map.no_texture);
     printf("so_texture: %s\n", game->map.so_texture);
@@ -88,6 +75,31 @@ void print_map_structure(t_game *game)
     printf("ceiling_color_uint: %d\n", game->map.ceiling_color_uint);
     printf("\n===========MAP_STRUCT==========================================\n");
     print_map(game);
-    printf("\n================================================================\n");
+    printf("================================================================\n");
 }
+
+
+
+
+//_____________TESTS______MAIN for parsing and tests(ALENA)____________________________________
+/*
+./cub3D ./maps/empty.cub
+
+make && make clean &&  ./cub3D ./maps/empty.cub
+ */
+/*
+PRINTF FOR DEBUG
+// 	/// MY CHECK PRINTS
+// 	print_map(&game);
+// 	print_map_structure(&game);
+
+/////////////////debug
+//	printf("cols:%d, rows: %d", game->map.cols, game->map.rows);
+////////////////end debug
+
+printf("string:|%s|\ntemp:|%s|\n", string, temp);
+printf("%s, len_argv1=%d\n", argv[1], len_argv1);
+printf("ENTERED HIER\n");
+ */
+
 

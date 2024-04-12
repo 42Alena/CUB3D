@@ -6,54 +6,76 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:38:59 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/04 20:14:46 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:51:07 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-/*
-The map must be composed of only 6 possible characters: 0 for an empty space,
-1 for a wall, and N,S,E or W for the player’s start position and spawning
-orientation
-*/
-// void	check_maps_characters(t_game *game)
-// {
-// 	int		x;
-// 	int		y;
-// 	char	c;
-// 	int		player_count;
+void check_map(t_game *game)
+{
+	int row;
+	
+	row = 0;
+	while(row < game->map.rows)
+	{
+		game->map.tmp_line = game->map.saved_map[row];
+		if (!is_empty_tmp_line(game))
+			break ;
+		printf("row=%d||emptyLine||%s||\n", row, game->map.tmp_line);
+		//move first und last line;
+		row++;
+	}
+	//check for first\last line
+	if (!is_map_first_last_line(game))
+		error_map_exit_game(game, "Map: Not valid first line");
+	printf("row=%d||first_Line||%s||\n", row, game->map.tmp_line);
+	// while(row < game->map.rows)
+	// {
+	// 	game->map.tmp_line = game->map.saved_map[row];
+	// 	//move first und last line
+		
 
-// 	y = 0;
-// 	player_count = 0;
 
-// 	//TODO:check_map_walls(game);
 
-// 	while (y < game->map.rows)
-// 	{
-// 		x = 0;
-// 		while (x < game->map.cols)
-// 		{
-// 			c = game->map.saved_map[y][x];
-// 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-// 			{
-// 				player_count += 1;
-// 				if (player_count > 1)
-// 					error_map_exit_game(game, 
-// 					"Map's requirements: one player");
-// 				save_player_struct(game, c, x, y);
-// 			}
-// 			else if (c != ' ' && c != '0'  && c != '1')
-// 			{
-// 				//TODO: check if ' ' only before and after outside walls,
-// 				//but not inside map
-// 				//TODO:check_map_walls(game);
-// 				error_map_exit_game(game, \'
-// 					"Map's requirements: set player direction to N,S,E or W");
-// 			}
+		
+	// 	free(game->map.tmp_line);
+	// 	row++;
+	// }
+	
+}
 
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
+void	check_maps_characters(t_game *game)
+{
+	
+	int x;
+	int row;
+	char c;
+	x = 0;
+	row = 0;
+
+	// while (game->map.tmp_line[x] && game->map.tmp_line[x] != ' ')
+	// 	x++;
+
+	while (game->map.tmp_line[x])
+	{
+		c = game->map.tmp_line[x];
+		if ((c == '0' && game->map.tmp_line[x - 1] && game->map.tmp_line[x - 1] == ' ') ||\
+			(c == '0' && game->map.tmp_line[x + 1] && game->map.tmp_line[x + 1] == ' ') ||\
+			(c == '0' && game->map.tmp_line[row - 1] && game->map.tmp_line[row - 1] == ' ') ||\
+			(c == '0' && game->map.tmp_line[row + 1] && game->map.tmp_line[row + 1] == ' '))
+			error_map_exit_game(game, "Map: '0' adjacent to a space character");
+		if (c != 'N' && c != 'S' && c != 'W' && c != 'E' && c != '0' && c != '1' && c != ' ')
+			error_map_exit_game(game, "Map: Detected unsupported symbol");
+		if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		{
+			if ((game->map.tmp_line[x - 1] && game->map.tmp_line[x - 1] != '0' && game->map.tmp_line[x - 1] != '1') ||
+				((game->map.tmp_line[x + 1] && game->map.tmp_line[x + 1] != '0' && game->map.tmp_line[x + 1] != '1')))
+				error_map_exit_game(game, "Map: Player's position is not valid");
+			game->player.count += 1;
+			// if (game->player.count != 1)
+			// 	error_map_exit_game(game, "Must be 1 Player with direction  N,S,E or W");
+		}
+		x++;
+	}
+}

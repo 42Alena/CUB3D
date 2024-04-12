@@ -38,23 +38,23 @@
 // }
 
 /* first and last column can be only 1 or space */
-t_bool has_map_right_wall(t_game *game, int col)
-{
-    int i;
-    char *line;
+// t_bool has_map_right_wall(t_game *game, int col)
+// {
+//     int i;
+//     char *line;
 
-    i = 0;
-    line =  game->map.saved_map[col];
-    while (line[i])
-    {
-        if (line[i] != '1' && line[i] != ' ')
-            return (FALSE);
-            // printf("c = %c = FALSE\n\n", line [i]);
-        i++;
-    }
-    printf("T R U E\n\n");
-    return (TRUE);
-}
+//     i = 0;
+//     line =  game->map.saved_map[col];
+//     while (line[i])
+//     {
+//         if (line[i] != '1' && line[i] != ' ')
+//             return (FALSE);
+//             // printf("c = %c = FALSE\n\n", line [i]);
+//         i++;
+//     }
+//     printf("T R U E\n\n");
+//     return (TRUE);
+// }
 
 
 

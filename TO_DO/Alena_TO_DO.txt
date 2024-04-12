@@ -1,7 +1,7 @@
 ADD in TO_DO.txt
 make && make clean && ./cub3D ./maps/test.cub
 make && make clean &&  ./cub3D ./maps/empty.cub  
-
+	printf("!!!!!!!!||firstLine = %d||lastLine = %d||\n",game->map.first_line, game->map.last_line);
 
 0. Check argument map.cub
 1. init STRUCTURES

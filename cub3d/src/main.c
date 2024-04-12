@@ -6,29 +6,24 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/09 14:03:40 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:49:20 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-//__NOW___ 2.VERSION_____MAIN___________________________
-///______________MAIN.WORKING HERE
+///___NOW____________MAIN.WORKING HERE
 int main(int argc, char **argv)
 {
 	t_game game;
 
 	init_map_structure(&game);
 	init_player_structure(&game);
-
+	
 	map_file_check(&game, argc, argv);
-
-
-	// map_file_read_save(&game, argv[1]);
 	map_file_read_save(&game);
 	
-	// save_map_textures_and_colors(&game);
-
+	check_map(&game); 
 	// check_maps_characters(&game); //from map_check.c
 	// print_map(&game);
 	// free_double_char_pointer_array(&game.map.saved_map);
@@ -46,15 +41,12 @@ int main(int argc, char **argv)
 	// printf("_____END_MAP_STRUCT______\n\n");
 	//_____END_TEST______________
 
-
+	// free_map_struct(&game);
+	// print_map_structure(&game);
 	return (EXIT_SUCCESS);
 }
 
-
-
-
-
-//-------------------------------
+//---!!!!!--------CONTINUE OF MAIN --------------------
 
 //  init_game_struct(&game);
 // mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
@@ -68,6 +60,11 @@ int main(int argc, char **argv)
 // free_game(&game);
 // 	return (EXIT_SUCCESS);
 // }
+
+
+
+
+
 //__________________________________________
 
 // 	//////from 0.MAIN
@@ -87,30 +84,6 @@ int main(int argc, char **argv)
 // 	return (EXIT_SUCCESS);
 // }
 
-
-
-
-
-//_____________TESTS______MAIN for parsing and tests(ALENA)____________________________________
-/*
-./cub3D ./maps/empty.cub
-
-make && make clean &&  ./cub3D ./maps/empty.cub
- */
-/*
-PRINTF FOR DEBUG
-// 	/// MY CHECK PRINTS
-// 	print_map(&game);
-// 	print_map_structure(&game);
-
-/////////////////debug
-//	printf("cols:%d, rows: %d", game->map.cols, game->map.rows);
-////////////////end debug
-
-printf("string:|%s|\ntemp:|%s|\n", string, temp);
-printf("%s, len_argv1=%d\n", argv[1], len_argv1);
-printf("ENTERED HIER\n");
- */
 
 
 

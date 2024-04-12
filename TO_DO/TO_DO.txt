@@ -10,14 +10,8 @@ Nice to have
 [] write custom mlx_put_pixel
 [] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
 
-?04.04
-[]  to Daniil: map simle.cub is not valid, because spaces inside the map
-	from imle.cub:
-	"
-	1000001111111111111111111111111111111
-	1000001                             1
-	1000003111111111111111111111111111111
-	"
+
+[]  to Daniil: 
 	[] add option for normal mode without time pressure
 	[] extra_textures(t_game *game):
 		//TODO: Daniil, do you need hier to print wall->width, wall->height
@@ -25,10 +19,29 @@ Nice to have
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
 
-
+12.04
+[]
 
 11.04
-[x] better check before savemap in array
+[x] much better check before savemap in array
+	[x] check for valid first and last line
+	[x]	check if exact 1 player with allowed directiona
+	[x] empty count_lines
+	[x] not allowed symbols
+	[x] '0' with spaces
+	[x] finding first and last line
+	[] adjust finding max line in map  for memory allocation
+	[] check lines outside walls
+	[] check player outside map or false position
+
+Check after save:
+// TODO:ADD CHECK for spaces with 0
+//TODO: adjust finding max line (skippping spaces from right)
+[] check players position y+1 and y-1
+[] check player surrounded by spaces
+[] changed function for save player,
+[] add check for walls after save to saved_map
+
 
 10.04
 [x] change save_map_info_in_struct with multiple while()

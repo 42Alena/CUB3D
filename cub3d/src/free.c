@@ -6,28 +6,11 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/08 10:48:28 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:51:40 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-void free_double_char_pointer_array(char ***array)
-{
-	int i;
-
-	i = 0;
-	if (*array == NULL)
-        return ;
-	while ((*array)[i])
-	{	
-		free((*array)[i]);
-		(*array)[i] = NULL;
-		i++;		
-	}
-	free(*array);
-	*array = NULL;
-}
 
 void free_double_array(char **array)
 {
@@ -46,31 +29,48 @@ void free_double_array(char **array)
 	array = NULL;
 }
 
-
-void free_game(t_game *game)
+void free_saved_map(t_game *game)
 {
-	free_map_struct(game);
-	free_mlx_img_txtr(game);
-	free_textures(game);
-	free(game->ray.z_buffer);
-	system("pkill aplay");
-	if (game->mlx)
-		mlx_terminate(game->mlx);
+	int i;
+
+	i = 0;
+	if (game->map.saved_map == NULL)
+        return ;
+	while (game->map.saved_map[i])
+	{	
+		printf("free||i=%d||%s||\n", i, game->map.saved_map[i]);
+		// free(game->map.saved_map[i]);
+		game->map.saved_map[i] = NULL;
+		i++;		
+	}
+	free(game->map.saved_map);
+	game->map.saved_map = NULL;
+}
+
+void free_ptr_double_array(char ***array_ptr)
+{
+    char **array = *array_ptr;
+    int i = 0;
+
+    if (array == NULL)
+        return;
+
+    while (array[i] != NULL)
+    {
+		printf("free||i=%d||%s||\n", i, array[i] );
+        free(array[i]);
+        array[i] = NULL;
+        i++;
+    }
+    // free(array);
+    *array_ptr = NULL; // Update the original pointer to NULL
 }
 
 void free_map_struct(t_game *game)
 {
-	free_double_array(game->map.saved_map);
-
-	//______new
-	if (game->map.file_path)
-		free(game->map.file_path);
+	// free_double_array(game); //must be pointer
 	if (game->map.tmp_line)
 		free(game->map.tmp_line);
-
-
-	//end_new
-
 	if (game->map.no_texture)
 		free(game->map.no_texture);
 	if (game->map.so_texture)
@@ -83,6 +83,20 @@ void free_map_struct(t_game *game)
 		free(game->map.floor_color_str);
 	if (game->map.ceiling_color_str)
 		free(game->map.ceiling_color_str);
+	free_saved_map(game);
+	// free_ptr_double_array(&(game->map.saved_map));
+}
+
+
+void free_game(t_game *game)
+{
+	free_map_struct(game);
+	free_mlx_img_txtr(game);
+	free_textures(game);
+	free(game->ray.z_buffer);
+	system("pkill aplay");
+	if (game->mlx)
+		mlx_terminate(game->mlx);
 }
 
 void free_textures(t_game *game)
