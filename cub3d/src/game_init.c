@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/11 19:08:59 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 11:23:42 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void init_map_structure(t_game *game)
 	game->map.first_line = 0;
 	game->map.middle_line = 0;
 	game->map.last_line = 0;
-	game->map.first_empty_line = 0;
 	game->map.tmp_line = NULL;
 	game->map.len_tmp_line = 0;
 

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/12 15:27:41 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 10:33:39 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ void map_file_allocate_memory(t_game *game)
 	int	len;
 
 	i = -1;
-	if (game->map.last_line > game->map.first_line + 3)
-		len = game->map.last_line - game->map.first_line;
-	else
+	if (game->map.last_line  <= (game->map.first_line + 3))
 		error_map_exit_game(game, "Map: not enough lines");
+	len = game->map.last_line - game->map.first_line;
 	game->map.saved_map = (char **)malloc((len) * sizeof(char *));
 	if (game->map.saved_map == NULL)
 		error_map_exit_game(game, "Map: memory allocation faled");

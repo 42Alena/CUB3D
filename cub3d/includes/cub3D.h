@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/12 15:46:46 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 11:23:23 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct s_map
 	int		len_tmp_line;
 	int		first_line;
 	int		middle_line;
-	int		first_empty_line;
 	int		last_line;
 //_end new
 
@@ -251,8 +250,11 @@ void	check_maps_characters(t_game *game);
 
 
 //_________map_check_lines.c___________ 
+
 t_bool is_empty_line(char *line);
 t_bool is_empty_tmp_line(t_game *game);
+void walls_check_save_in_struct(t_game *game);
+t_bool is_map_north_south_wall(t_game *game);
 t_bool is_map_first_last_line(t_game *game);
 t_bool is_map_middle_lines(t_game *game);
 

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:17:30 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/12 15:22:38 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 10:42:58 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ void save_map_in_struct(t_game *game)
 		game->map.rows += 1;
 	}
 	game->map.saved_map[game->map.rows] = NULL;
-	game->map.last_line = game->map.rows;
-	game->map.first_line = 0;
 }
-
+//TODO: add precheck  for player and precheck for lines
 void save_map_info_in_struct(t_game *game)
 {
 	fd_open(game);

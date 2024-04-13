@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/12 15:51:40 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:33:07 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void free_saved_map(t_game *game)
         return ;
 	while (game->map.saved_map[i])
 	{	
-		printf("free||i=%d||%s||\n", i, game->map.saved_map[i]);
+		// printf("free||i=%d||%s||\n", i, game->map.saved_map[i]);
 		// free(game->map.saved_map[i]);
 		game->map.saved_map[i] = NULL;
 		i++;		
@@ -57,7 +57,7 @@ void free_ptr_double_array(char ***array_ptr)
 
     while (array[i] != NULL)
     {
-		printf("free||i=%d||%s||\n", i, array[i] );
+		// printf("free||i=%d||%s||\n", i, array[i] );
         free(array[i]);
         array[i] = NULL;
         i++;

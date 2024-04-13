@@ -20,7 +20,7 @@ Nice to have
 		mlx_delete_texture(game->textures.cursor);
 
 12.04
-[]
+[]TODO: add precheck  for player and precheck for lines
 
 11.04
 [x] much better check before savemap in array
