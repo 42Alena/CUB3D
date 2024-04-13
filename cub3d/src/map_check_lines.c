@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:26:35 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 15:30:43 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 16:47:45 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,8 @@ void map_check_middle_lines(t_game *game)
 		game->map.tmp_line = game->map.saved_map[row];
 		if (is_empty_tmp_line(game))
 			error_map_exit_game(game, "Map: empty line");
-        if ((game->map.saved_map[row][0] != '1') ||\
-            (game->map.saved_map[row][game->map.cols - 1] != '1') ||\
-            ((game->map.saved_map[row][0] != ' ') ||\
-            (game->map.saved_map[row][game->map.cols - 1] != ' ')))
-            error_map_exit_game(game, "Map: not valid symbol in east or ost wall");
 		row++;
-		printf(" EMPTYLIne=%d||%s||\n", row, game->map.tmp_line);	
-		printf("[[0]= ||%c||||[game->map.cols - 1]= ||%c||\n", game->map.saved_map[row][0], game->map.saved_map[row][game->map.cols - 1]);	
+		printf(" middleLIne=%d||%s||\n", row, game->map.tmp_line);	
 	}
 	// printf(" TMPline=%d||%s||\n", row, game->map.tmp_line);
 	game->map.tmp_line = NULL;

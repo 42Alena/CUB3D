@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:17:30 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 10:42:58 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 16:56:47 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void save_map_in_struct(t_game *game)
 {
 	int x;
+	int	i;
 	
 	game->map.rows = 0;
 	while (TRUE)
@@ -23,21 +24,27 @@ void save_map_in_struct(t_game *game)
 		game->map.tmp_line = get_next_line(game->map.fd);
 		if (game->map.tmp_line == NULL)
 			break;
-		x = -1;
+		i = 0;
+		x = 0;
+		game->map.saved_map[game->map.rows][x] = ' ';
 		change_char_newline_to_space(game);
 		while (game->map.tmp_line[++x])
-			game->map.saved_map[game->map.rows][x] = game->map.tmp_line[x];
+		{
+			game->map.saved_map[game->map.rows][x] = game->map.tmp_line[i];
+			i++;
+		}
 		x -= 1;
 		while (++x < game->map.cols)
 			game->map.saved_map[game->map.rows][x] = ' ';
 		game->map.saved_map[game->map.rows][x] = '\0';
 		if (game->map.tmp_line)
 			free(game->map.tmp_line);
-		printf("%d||%s||\n", game->map.rows ,game->map.saved_map[game->map.rows]);
+		// printf("%d||%s||\n", game->map.rows ,game->map.saved_map[game->map.rows]);
 		game->map.rows += 1;
 	}
 	game->map.saved_map[game->map.rows] = NULL;
 }
+
 //TODO: add precheck  for player and precheck for lines
 void save_map_info_in_struct(t_game *game)
 {
@@ -48,7 +55,7 @@ void save_map_info_in_struct(t_game *game)
 		game->map.tmp_line = get_next_line(game->map.fd);
 		if (game->map.tmp_line == NULL)
 			break;
-		new_save_map_info_lines_to_struct(game);
+		save_map_info_lines_to_struct(game);
 		if (game->map.tmp_line)
 			free(game->map.tmp_line);
 	}
@@ -59,17 +66,22 @@ void save_map_info_in_struct(t_game *game)
 		game->map.tmp_line = get_next_line(game->map.fd);
 		if (game->map.tmp_line == NULL)
 			break;
-		change_char_newline_to_space(game);
-		game->map.len_tmp_line = ft_strlen(game->map.tmp_line);
+		// change_char_newline_to_space(game);
+		length_tmp_line(game); //TODO: change to new function
+		// game->map.len_tmp_line = ft_strlen(game->map.tmp_line);
+		
+		//TODO: ADD PRE_CHECK for ' '0' ', ' 'P' ' and count players
+		
 		if (game->map.cols < game->map.len_tmp_line)
 			game->map.cols = game->map.len_tmp_line;
 		if (game->map.tmp_line)
 			free(game->map.tmp_line);
 	}
+	game->map.cols += 1;
 	fd_close(game);
 }
 
-void new_save_map_info_lines_to_struct(t_game *game)
+void save_map_info_lines_to_struct(t_game *game)
 {
 	game->map.tmp_line = ft_strtrim(game->map.tmp_line, " ");
 	change_char_newline_to_space(game);
@@ -89,3 +101,16 @@ void new_save_map_info_lines_to_struct(t_game *game)
 	else if (!is_empty_tmp_line(game))
 		error_map_exit_game(game, "Map info is not complete");
 }
+
+
+
+/* 
+//from other functioons:
+        if ((game->map.saved_map[row][1] != ' ') &&\
+            (game->map.saved_map[row][1] != '1') &&\
+            (game->map.saved_map[row][game->map.cols - 2] != ' ') &&\
+            (game->map.saved_map[row][game->map.cols - 2] != '1'))
+            error_map_exit_game(game, "Map: not valid symbol in east or ost wall");
+
+
+ */

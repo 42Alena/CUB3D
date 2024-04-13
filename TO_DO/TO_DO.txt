@@ -19,8 +19,9 @@ Nice to have
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
 
-12.04
-[] added find,save and check for outside walls
+12-13.04
+[x] solved mistake with dobble free mistake
+[x] added find,save and check for outside walls
 []TODO: add precheck  for player and precheck for lines
 []  map_check_middle_lines 
 [] save player in struct

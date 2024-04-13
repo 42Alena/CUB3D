@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 15:19:45 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 16:02:15 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ t_bool is_map_settings_complete(t_game *game);
 //______map_game_save.c
 void save_map_in_struct(t_game *game);
 void save_map_info_in_struct(t_game *game);
-void new_save_map_info_lines_to_struct(t_game *game);
+void save_map_info_lines_to_struct(t_game *game);
 
 
 //______map_file_check.c
