@@ -21,6 +21,8 @@ Nice to have
 
 12.04
 []TODO: add precheck  for player and precheck for lines
+[]  map_check_middle_lines 
+[] save player in struct
 
 11.04
 [x] much better check before savemap in array

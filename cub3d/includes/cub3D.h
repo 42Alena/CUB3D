@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 11:23:23 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:19:45 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,17 +246,16 @@ void fd_close(t_game *game);
 
 //______map_check.c______________
 void check_map(t_game *game);
-void	check_maps_characters(t_game *game);
+void walls_check_save_in_struct(t_game *game);
+// void	check_maps_characters(t_game *game);
 
 
 //_________map_check_lines.c___________ 
-
-t_bool is_empty_line(char *line);
 t_bool is_empty_tmp_line(t_game *game);
-void walls_check_save_in_struct(t_game *game);
+void 	walls_check_save_in_struct(t_game *game);
+void map_check_middle_lines(t_game *game);
 t_bool is_map_north_south_wall(t_game *game);
-t_bool is_map_first_last_line(t_game *game);
-t_bool is_map_middle_lines(t_game *game);
+t_bool old_is_map_middle_lines(t_game *game);
 
 
 //___________map_check_walls.c____________
@@ -270,6 +269,7 @@ void save_player_struct(t_game *game, char player_dir, int x, int y);
 
 //_______map_utils.c_______
 t_bool is_substring(char *substring, char *string, int start, int len);
+void length_tmp_line(t_game *game);
 
 //_______game_init.c_________
 void init_map_structure(t_game *game);

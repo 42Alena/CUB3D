@@ -6,39 +6,11 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:26:35 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 10:17:49 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:30:43 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-
-t_bool is_empty_line(char *line)
-{
-    int i;
-    char *temp_line;
-
-    i = 0;
-    if (line == NULL)
-        return (TRUE);
-    temp_line = ft_strtrim(line, " ");
-    if (temp_line == NULL)
-        return (TRUE);
-    while (temp_line[i])
-    {
-        if (temp_line[i] != ' ' && temp_line[i] != '\n')
-        {
-            if (temp_line)
-                free(temp_line);
-            return (FALSE);
-        }
-        i++;
-    }
-    if (temp_line)
-        free(temp_line);
-    return (TRUE);
-}
-
 
 t_bool is_empty_tmp_line(t_game *game)
 {
@@ -49,9 +21,7 @@ t_bool is_empty_tmp_line(t_game *game)
         return (TRUE);
     while (game->map.tmp_line[i])
     {
-        // if (game->map.tmp_line[i] == '\n')
-        //     game->map.tmp_line[i] = ' ';
-        if (game->map.tmp_line[i] != ' ')
+        if (game->map.tmp_line[i] != ' ' && game->map.tmp_line[i]!= '\n')
             return (FALSE);
         i++;
     }
@@ -59,7 +29,35 @@ t_bool is_empty_tmp_line(t_game *game)
     return (TRUE);
 }
 
-/* first and last line can  */
+/* first and last line can be  one or space*/
+void walls_check_save_in_struct(t_game *game)
+{
+	// int row;
+
+	game->map.first_line = 0;
+	game->map.last_line = game->map.rows;
+	while (game->map.first_line < game->map.last_line)
+	{
+		game->map.tmp_line = game->map.saved_map[game->map.first_line];
+		if (!is_empty_tmp_line(game))
+			break ;
+		game->map.first_line++;
+	}
+	is_map_north_south_wall(game);
+	if (game->map.first_line == game->map.last_line)
+		error_map_exit_game(game, "Map: no north wall");
+	while (game->map.last_line >= game->map.first_line)
+	{
+		game->map.tmp_line = game->map.saved_map[game->map.last_line];
+		if (!is_empty_tmp_line(game))
+			break ;
+		game->map.last_line--;
+	}
+	if (game->map.last_line <= (game->map.first_line + 1))
+		error_map_exit_game(game, "Map: no south wall");
+	is_map_north_south_wall(game);
+}
+
 t_bool is_map_north_south_wall(t_game *game)
 {
     int x;
@@ -80,13 +78,39 @@ t_bool is_map_north_south_wall(t_game *game)
     return (TRUE);
 }
 
+//WORKING HERE;search for empty lines in map
+//save player in struct
+void map_check_middle_lines(t_game *game)
+{
+	int row;
+
+	row = game->map.first_line + 1;
+	while (row < game->map.last_line)
+	{
+		game->map.tmp_line = game->map.saved_map[row];
+		if (is_empty_tmp_line(game))
+			error_map_exit_game(game, "Map: empty line");
+        if ((game->map.saved_map[row][0] != '1') ||\
+            (game->map.saved_map[row][game->map.cols - 1] != '1') ||\
+            ((game->map.saved_map[row][0] != ' ') ||\
+            (game->map.saved_map[row][game->map.cols - 1] != ' ')))
+            error_map_exit_game(game, "Map: not valid symbol in east or ost wall");
+		row++;
+		printf(" EMPTYLIne=%d||%s||\n", row, game->map.tmp_line);	
+		printf("[[0]= ||%c||||[game->map.cols - 1]= ||%c||\n", game->map.saved_map[row][0], game->map.saved_map[row][game->map.cols - 1]);	
+	}
+	// printf(" TMPline=%d||%s||\n", row, game->map.tmp_line);
+	game->map.tmp_line = NULL;
+	// printf(" TMPline=%d||%s||\n", row, game->map.tmp_line);
+}
+
 //check fo we/ost walls if 1.or last symbol  !' ' and ! '1'
 
 /*
 it must beginn and end with 1   1
 and have only map symbols
 */
-t_bool is_map_middle_lines(t_game *game)
+t_bool old_is_map_middle_lines(t_game *game)
 {
     int x;
     char *line;
@@ -128,49 +152,3 @@ t_bool is_map_middle_lines(t_game *game)
     //     error_map_exit_game(game, "Map: middlerow: no outside wall");
     return (TRUE);
 }
-
-
-
-
-// t_bool is_empty_line(char *line)
-// {
-//     int i;
-//     char *temp_line;
-
-//     i = 0;
-//     if (line == NULL)
-//         return (TRUE);
-//     temp_line = ft_strtrim(line, " ");
-//     if (temp_line == NULL)
-//         return (TRUE);
-//     while (temp_line[i])
-//     {
-//         if (temp_line[i] != ' ' && temp_line[i] != '\n')
-//         {
-//             if (temp_line)
-//                 free(temp_line);
-//             return (FALSE);
-//         }
-//         i++;
-//     }
-//     if (temp_line)
-//         free(temp_line);
-//     return (TRUE);
-// }
-
-// t_bool is_empty_line(char *line)
-// {
-//     int i;
-
-//     i = 0;
-//     if (line == NULL)
-//         return (TRUE);
-//     printf("is_empty_tmp_line||%s||\n", line);
-//     while (line[i])
-//     {
-//         if (line[i] && line[i] != ' ')
-//             return (FALSE);
-//         i++;
-//     }
-//     return (TRUE);
-// }

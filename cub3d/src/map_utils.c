@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:36:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/12 10:47:52 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:20:39 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,13 @@ t_bool is_substring(char *substring, char *string, int start, int len)
     if (temp)
         free(temp);
     return (result);
+}
+
+void length_tmp_line(t_game *game)
+{
+    game->map.len_tmp_line = 0;
+    if (game->map.tmp_line == NULL)
+        game->map.len_tmp_line = 0;
+    while (game->map.tmp_line[game->map.len_tmp_line])
+        game->map.len_tmp_line += 1;
 }
