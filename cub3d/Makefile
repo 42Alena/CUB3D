@@ -16,6 +16,7 @@ SOURCES_M  := \
 	./src/map_file_save.c\
 	./src/map_game_save.c\
 	./src/map_check.c\
+	./src/map_check_walls.c\
 	./src/map_player_save.c\
 	./src/map_visuals.c\
 	./src/map_colors.c\

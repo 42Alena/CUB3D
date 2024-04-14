@@ -12,89 +12,52 @@
 
 #include "../includes/cub3D.h"
 
-/* first and last column can be only 1 or space 
-111
-101
- 1111
-    111
-*/
-// t_bool has_map_left_wall(t_game *game, int first_line, int last_line)
-// {
-//     int    i;
-//     char *line;
-//     int   flag_beginn;  
 
-//     while (line[i])
-//     {
-//         i = 0;
-//         line =  game->map.saved_map[col];
-//         if (line[i] != '1' && line[i] != ' ')
-//             printf("c = %c = FALSE\n\n", line [i]);
-//             // return (FALSE);
-//         i++;
-//     }
-//     printf("T R U E\n\n");
-//     return (TRUE);
-// }
+/* first and last line can be  one or space*/
+void walls_check_save_in_struct(t_game *game)
+{
+	// int row;
 
-/* first and last column can be only 1 or space */
-// t_bool has_map_right_wall(t_game *game, int col)
-// {
-//     int i;
-//     char *line;
+	game->map.first_line = 0;
+	game->map.last_line = game->map.rows;
+	while (game->map.first_line < game->map.last_line)
+	{
+		game->map.tmp_line = game->map.saved_map[game->map.first_line];
+		if (!is_empty_tmp_line(game))
+			break ;
+		game->map.first_line++;
+	}
+	is_map_north_south_wall(game);
+	if (game->map.first_line == game->map.last_line)
+		error_map_exit_game(game, "Map: no north wall");
+	while (game->map.last_line >= game->map.first_line)
+	{
+		game->map.tmp_line = game->map.saved_map[game->map.last_line];
+		if (!is_empty_tmp_line(game))
+			break ;
+		game->map.last_line--;
+	}
+	if (game->map.last_line <= (game->map.first_line + 1))
+		error_map_exit_game(game, "Map: no south wall");
+	is_map_north_south_wall(game);
+}
 
-//     i = 0;
-//     line =  game->map.saved_map[col];
-//     while (line[i])
-//     {
-//         if (line[i] != '1' && line[i] != ' ')
-//             return (FALSE);
-//             // printf("c = %c = FALSE\n\n", line [i]);
-//         i++;
-//     }
-//     printf("T R U E\n\n");
-//     return (TRUE);
-// }
+t_bool is_map_north_south_wall(t_game *game)
+{
+    int x;
+    int ones;
 
-
-
-
-/*
-it must beginn and end with 1   1
-and have only map symbols
-*/
-// t_bool is_map_middle_lines(t_game *game, int y)
-// {
-//     int x;
-//     char *temp_line;
-//     int length_temp_line;
-//     char c;
-
-//     x = 1;
-//     temp_line = ft_strtrim(game->map.saved_map[y], " ");
-//     length_temp_line = ft_strlen(temp_line);
-//     if (length_temp_line < 3)
-//         return (FALSE);
-//     if (temp_line[0] != 1 && temp_line[length_temp_line - 1] != 1)
-//         return (FALSE);
-//     while (temp_line[x] < length_temp_line)
-//     {
-//         c = temp_line[x];
-
-//         // if (c == ' ')
-//         // {
-//         //     //TODO: add check if  spacen inbetween outside walls 11 11
-//         //      //                                                     11
-//         //     //TODO: ADD HIER FLOOD FILL to check walls
-//         // }
-
-//         if (c != 'N' && c != 'S' && c != 'W' && c != 'E' && c != 0 && c != 1)
-//             return (FALSE);
-
-//         if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-//             check_save_player(game, c, x, y);
-//         x++;
-//     }
-//     return (TRUE);
-// }
-
+    x = 0;
+    ones = 0;
+    while (game->map.tmp_line[x])
+    {
+        if (game->map.tmp_line[x] == '1')
+            ones += 1;
+         else if(game->map.tmp_line[x] != ' ')
+            error_map_exit_game(game, "Map: no south/north wall");
+        x++;
+    }
+    if (ones == 0)
+        return (FALSE);
+    return (TRUE);
+}

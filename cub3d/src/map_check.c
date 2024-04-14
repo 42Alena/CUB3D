@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:38:59 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 15:29:05 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/14 08:24:55 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void check_map(t_game *game)
 	walls_check_save_in_struct(game);
 	// between first and last check for empty s[aces]
 	// map_check_empty_lines(game);
-	map_check_middle_lines(game);
+	
+	// map_check_middle_lines(game);
 }
 
 void	check_maps_characters(t_game *game)

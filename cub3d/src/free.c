@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/12 21:33:07 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/14 07:46:19 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,6 @@ void free_saved_map(t_game *game)
 	game->map.saved_map = NULL;
 }
 
-void free_ptr_double_array(char ***array_ptr)
-{
-    char **array = *array_ptr;
-    int i = 0;
-
-    if (array == NULL)
-        return;
-
-    while (array[i] != NULL)
-    {
-		// printf("free||i=%d||%s||\n", i, array[i] );
-        free(array[i]);
-        array[i] = NULL;
-        i++;
-    }
-    // free(array);
-    *array_ptr = NULL; // Update the original pointer to NULL
-}
-
 void free_map_struct(t_game *game)
 {
 	// free_double_array(game); //must be pointer
@@ -84,7 +65,6 @@ void free_map_struct(t_game *game)
 	if (game->map.ceiling_color_str)
 		free(game->map.ceiling_color_str);
 	free_saved_map(game);
-	// free_ptr_double_array(&(game->map.saved_map));
 }
 
 

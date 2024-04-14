@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 16:02:15 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/14 08:46:26 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_map
 	int		first_line;
 	int		middle_line;
 	int		last_line;
+	int		count_player;
 //_end new
 
 
@@ -216,7 +217,7 @@ void print_map(t_game *game);
 
 // in main.c only main
 
-// game_play,c (other functions from main)
+// game_play.c (other functions from main)
 void game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
 void win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
 void gameplay(t_game *game, double time);
@@ -225,41 +226,40 @@ void ft_hook(void *param);
 
 
 //___________map_file_save.c_______________
-void map_file_read_save(t_game *game);
+void	map_file_read_save(t_game *game);
 void	change_char_newline_to_space(t_game *game);
-void map_file_allocate_memory(t_game *game);
-t_bool is_map_settings_complete(t_game *game);
+void	map_file_allocate_memory(t_game *game);
+t_bool	is_map_settings_complete(t_game *game);
 
 
 //______map_game_save.c
-void save_map_in_struct(t_game *game);
-void save_map_info_in_struct(t_game *game);
-void save_map_info_lines_to_struct(t_game *game);
+void	save_map_in_struct(t_game *game);
+void	save_map_info_in_struct(t_game *game);
+void	check_map_file_characters(t_game *game);
+void	save_map_info_lines_to_struct(t_game *game);
 
 
 //______map_file_check.c
 void	map_file_check(t_game *game, int argc, char **argv);
-t_bool is_valid_file(t_game *game, char *file_path);
-void fd_open(t_game *game);
-void fd_close(t_game *game);
+t_bool	is_valid_file(t_game *game, char *file_path);
+void	fd_open(t_game *game);
+void	fd_close(t_game *game);
+void	gnl_free_tmp_line_set_null(t_game *game);
 
 
 //______map_check.c______________
-void check_map(t_game *game);
-void walls_check_save_in_struct(t_game *game);
+void	check_map(t_game *game);
 // void	check_maps_characters(t_game *game);
 
 
 //_________map_check_lines.c___________ 
-t_bool is_empty_tmp_line(t_game *game);
-void 	walls_check_save_in_struct(t_game *game);
-void map_check_middle_lines(t_game *game);
-t_bool is_map_north_south_wall(t_game *game);
-t_bool old_is_map_middle_lines(t_game *game);
+t_bool	is_empty_tmp_line(t_game *game);
+void	map_check_middle_lines(t_game *game); //WORKING HERE
 
 
 //___________map_check_walls.c____________
-// t_bool is_map_first_last_columns(t_game *game, int col);
+void 	walls_check_save_in_struct(t_game *game);
+t_bool	is_map_north_south_wall(t_game *game);
 
 
 //______map_player_save.c________
@@ -290,7 +290,6 @@ int get_color_from_string(t_game *game, char **splited_colors, int i);
 void free_saved_map(t_game *game);
 void free_double_array(char **array);
 void free_map_struct(t_game *game);
-void free_ptr_double_array(char ***array_ptr);
 void free_game(t_game *game);
 void free_textures(t_game *game);
 void free_mlx_img_txtr(t_game *game);

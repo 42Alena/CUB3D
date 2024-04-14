@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:28:58 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 14:26:12 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/14 08:54:42 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ void error_map_exit_game(t_game *game, char *error_msg)
 	write(2, "\n", 1);
 	if (game->map.fd_open)
 	{
+		while (TRUE)
+		{
+			game->map.tmp_line = get_next_line(game->map.fd);
+			gnl_free_tmp_line_set_null(game);
+			// if (game->map.tmp_line == NULL)
+			// 	break ;
+			// free(game->map.tmp_line);
+			// game->map.tmp_line = NULL;
+		}
 		close(game->map.fd);
 		game->map.fd_open = FALSE;
 	}
