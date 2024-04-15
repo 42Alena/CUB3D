@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/14 10:51:57 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:00:30 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void init_map_structure(t_game *game)
 void init_player_structure(t_game *game)
 {
 	game->player.count = 0;
+	game->player.map_start_dir = 0;
+	game->player.row = 0;
+	game->player.col = 0;
 	game->player.pos_x = 2.5;
 	game->player.pos_y = 1.5;
 	game->player.dir_x = 0;

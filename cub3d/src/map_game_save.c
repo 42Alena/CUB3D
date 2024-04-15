@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:17:30 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/14 09:52:06 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:53:03 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void check_map_file_characters(t_game *game)
 	{
 		c = game->map.tmp_line[i];
 		if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-			game->map.count_player += 1;
+			game->player.count += 1;
 		else if (c != '0' && c != '1' && c != ' ')
 			error_map_exit_game(game, "Map: Detected unsupported symbol");
 		i++;

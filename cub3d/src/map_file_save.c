@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/14 08:50:46 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/15 12:53:28 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void map_file_allocate_memory(t_game *game)
 	i = -1;
 	
 	//TODO: MOVE IN PRECHECK
-	printf("game->player.count=%d\n", game->map.count_player);
-	if (game->map.count_player != 1)
+	printf("game->player.count=%d\n", game->player.count);
+	if (game->player.count != 1)
 		error_map_exit_game(game, "Must be 1 Player with direction  N,S,E or W");
 	if (game->map.last_line  <= (game->map.first_line + 3))
 		error_map_exit_game(game, "Map: not enough lines");

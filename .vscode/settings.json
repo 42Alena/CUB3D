@@ -1,14 +1,17 @@
 {
-	"files.associations": {
-		"array": "c",
-		"string_view": "c",
-		"initializer_list": "c",
-		"ranges": "c",
-		"span": "c",
-		"utility": "c",
-		"deque": "c",
-		"string": "c",
-		"unordered_map": "c",
-		"vector": "c"
-	}
+  "files.associations": {
+    "*.ejs": "html",
+    "array": "c",
+    "string_view": "c",
+    "initializer_list": "c",
+    "ranges": "c",
+    "span": "c",
+    "utility": "c",
+    "deque": "c",
+    "string": "c",
+    "unordered_map": "c",
+    "vector": "c",
+    "queue": "c",
+    "random": "c"
+  }
 }

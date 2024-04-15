@@ -19,13 +19,13 @@ Nice to have
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
 
-12-13.04
+12-14.04
 []while gnl: change functions to not exit with error/interrrupt 
 [x] solved mistake with dobble free mistake
 [x] added find,save and check for outside walls
 []TODO: add precheck  for player and precheck for lines
 []  map_check_middle_lines 
-[] save player in struct
+[x] save player in struct
 
 11.04
 [x] much better check before savemap in array
