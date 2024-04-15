@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/14 08:46:26 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/14 10:56:26 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ typedef struct so_textures
 typedef struct s_player
 {
 	int count;
+	char map_start_dir;
 	double pos_x;
 	double pos_y;
 	double dir_x;
@@ -249,7 +250,7 @@ void	gnl_free_tmp_line_set_null(t_game *game);
 
 //______map_check.c______________
 void	check_map(t_game *game);
-// void	check_maps_characters(t_game *game);
+void	check_maps_characters(t_game *game, int row);
 
 
 //_________map_check_lines.c___________ 
@@ -264,8 +265,8 @@ t_bool	is_map_north_south_wall(t_game *game);
 
 //______map_player_save.c________
 void check_save_player(t_game *game, char c, int x, int y);
-void save_player_pos_dir(t_game *game, char player_dir, int x, int y);
-void save_player_struct(t_game *game, char player_dir, int x, int y);
+void save_player_pos_dir(t_game *game, int x, int y);
+void save_player_struct(t_game *game, int x, int y);
 
 //_______map_utils.c_______
 t_bool is_substring(char *substring, char *string, int start, int len);

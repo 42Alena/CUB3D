@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 11:24:16 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/14 11:01:52 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,16 @@ void print_map_structure(t_game *game)
     printf("ceiling_color_str: %s\n", game->map.ceiling_color_str);
     printf("floor_color_uint: %d\n", game->map.floor_color_uint);
     printf("ceiling_color_uint: %d\n", game->map.ceiling_color_uint);
+    printf("\n++++++++++++++++++++++PLAYER+++++++++++++++++\n");
+    printf("count player: %d\n",game->player.count);
+    printf("count player: %c\n",game->player.map_start_dir);
+    printf("pos_x: %f\n",game->player.pos_x);
+    printf("pos_y: %f\n",game->player.pos_y);
+    printf("dir_x: %f\n",game->player.dir_x);
+    printf("dir_y: %f\n",game->player.dir_y);   
+    printf("plane_x: %f\n",game->player.plane_x);
+    printf("plane_y: %f\n",game->player.plane_y);
+    printf("\n++++++++++++++++++++++++++++++++++++++++++++\n");
     printf("\n===========MAP_STRUCT==========================================\n");
     print_map(game);
     printf("================================================================\n");

@@ -12,12 +12,9 @@
 
 #include "../includes/cub3D.h"
 
-
-/* first and last line can be  one or space*/
+/* first and last line must be  one's with/without spaces*/
 void walls_check_save_in_struct(t_game *game)
 {
-	// int row;
-
 	game->map.first_line = 0;
 	game->map.last_line = game->map.rows;
 	while (game->map.first_line < game->map.last_line)

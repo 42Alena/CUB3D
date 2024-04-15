@@ -6,12 +6,11 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:17:30 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/14 08:55:50 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/14 09:52:06 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
 
 void save_map_in_struct(t_game *game)
 {
@@ -44,10 +43,6 @@ void save_map_in_struct(t_game *game)
 	game->map.saved_map[game->map.rows] = NULL;
 }
 
-
-//TODO: add precheck  for player and precheck for lines
-//TTODO:: DONT INTERRUPT GNL TILL IS NOT END OF THE FILE => for No memory leaks
-//TODO: []while gnl: change functions to not exit with error/interrrupt 
 void save_map_info_in_struct(t_game *game)
 {
 	fd_open(game);
@@ -97,13 +92,11 @@ void check_map_file_characters(t_game *game)
 	}
 }
 
-
-
 void save_map_info_lines_to_struct(t_game *game)
 {
 	game->map.tmp_line = ft_strtrim(game->map.tmp_line, " ");
 	change_char_newline_to_space(game);
-	game->map.len_tmp_line = ft_strlen(game->map.tmp_line);
+	length_tmp_line(game);
 	if (is_substring("NO ", game->map.tmp_line, 0, 3))
 		wall_file_check_save(game, &(game->map.no_texture));
 	else if (is_substring("SO ", game->map.tmp_line, 0, 3))

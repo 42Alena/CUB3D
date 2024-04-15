@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:36:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/13 15:20:39 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/14 09:48:13 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool is_substring(char *substring, char *string, int start, int len)
 {
-    char *temp;
+    char    *temp;
     t_bool  result;
 
     temp = ft_substr(string, start, len);
