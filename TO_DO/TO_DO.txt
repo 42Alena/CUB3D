@@ -26,6 +26,10 @@ Nice to have
 []TODO: add precheck  for player and precheck for lines
 []  map_check_middle_lines 
 [x] save player in struct
+[]programm doesn't exit ERROR Map: Detected unsupported symbol
+[] finds and prints no line after last line
+	11111111 1111111 111111111111
+ 	0
 
 11.04
 [x] much better check before savemap in array

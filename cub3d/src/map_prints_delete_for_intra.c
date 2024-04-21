@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/15 13:08:12 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:49:42 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,13 @@ void print_map_structure(t_game *game)
     print_map(game);
     printf("================================================================\n");
 }
+
+/* 
+	printf("player|%c|, x=%d, y= %d\n", game->player.map_start_dir,row, col);
+	printf("col-1=|%c|, col+1=|%c|\n",game->map.saved_map[row][col - 1], game->map.saved_map[row][col + 1] );
+	printf("row-1=|%c|, row+1=|%c|\n",game->map.saved_map[row - 1][col], game->map.saved_map[row + 1][col] );
+	
+ */
 
 
 

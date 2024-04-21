@@ -13,7 +13,7 @@
 #include "../includes/cub3D.h"
 
 /* first and last line must be  one's with/without spaces*/
-void walls_check_save_in_struct(t_game *game)
+void check_walls_save_in_struct(t_game *game)
 {
 	game->map.first_line = 0;
 	game->map.last_line = game->map.rows;
@@ -21,7 +21,7 @@ void walls_check_save_in_struct(t_game *game)
 	{
 		game->map.tmp_line = game->map.saved_map[game->map.first_line];
 		if (!is_empty_tmp_line(game))
-			break ;
+			break;
 		game->map.first_line++;
 	}
 	is_map_north_south_wall(game);
@@ -31,7 +31,7 @@ void walls_check_save_in_struct(t_game *game)
 	{
 		game->map.tmp_line = game->map.saved_map[game->map.last_line];
 		if (!is_empty_tmp_line(game))
-			break ;
+			break;
 		game->map.last_line--;
 	}
 	if (game->map.last_line <= (game->map.first_line + 1))
@@ -41,20 +41,20 @@ void walls_check_save_in_struct(t_game *game)
 
 t_bool is_map_north_south_wall(t_game *game)
 {
-    int x;
-    int ones;
+	int x;
+	int ones;
 
-    x = 0;
-    ones = 0;
-    while (game->map.tmp_line[x])
-    {
-        if (game->map.tmp_line[x] == '1')
-            ones += 1;
-         else if(game->map.tmp_line[x] != ' ')
-            error_map_exit_game(game, "Map: no south/north wall");
-        x++;
-    }
-    if (ones == 0)
-        return (FALSE);
-    return (TRUE);
+	x = 0;
+	ones = 0;
+	while (game->map.tmp_line[x])
+	{
+		if (game->map.tmp_line[x] == '1')
+			ones += 1;
+		else if (game->map.tmp_line[x] != ' ')
+			error_map_exit_game(game, "Map: no south/north wall");
+		x++;
+	}
+	if (ones == 0)
+		return (FALSE);
+	return (TRUE);
 }

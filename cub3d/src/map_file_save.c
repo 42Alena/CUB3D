@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/15 12:53:28 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/21 21:27:02 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 void map_file_read_save(t_game *game)
 {
 	save_map_info_in_struct(game);
+	if (game->player.count != 1)
+		error_map_exit_game(game, "Must be 1 Player with direction  N,S,E or W");
+	if (game->map.last_line  <= (game->map.first_line + 3))
+		error_map_exit_game(game, "Map: not enough lines");
+	if (game->map.cols  <= 5)
+		error_map_exit_game(game, "Map: not enough columns");
 	map_file_allocate_memory(game);
 	fd_open(game);
 	while (game->map.rows < game->map.first_line)
@@ -47,17 +53,6 @@ void map_file_allocate_memory(t_game *game)
 	int	len;
 
 	i = -1;
-	
-	//TODO: MOVE IN PRECHECK
-	printf("game->player.count=%d\n", game->player.count);
-	if (game->player.count != 1)
-		error_map_exit_game(game, "Must be 1 Player with direction  N,S,E or W");
-	if (game->map.last_line  <= (game->map.first_line + 3))
-		error_map_exit_game(game, "Map: not enough lines");
-	if (game->map.cols  <= 5)
-		error_map_exit_game(game, "Map: not enough columns");
-//____________end precheck
-
 	len = game->map.last_line - game->map.first_line;
 	game->map.saved_map = (char **)malloc((len) * sizeof(char *));
 	if (game->map.saved_map == NULL)
