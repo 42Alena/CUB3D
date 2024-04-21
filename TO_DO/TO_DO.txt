@@ -18,20 +18,25 @@ Nice to have
 		printf("W:%d H:%d\n", wall->width, wall->height);
 	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
 		mlx_delete_texture(game->textures.cursor);
+	[]sh: /usr/bin/aplay: No such file or directory
+		sh: /usr/bin/aplay: No such file or directory
+		sh: /usr/bin/aplay: No such file or directory
+		sh: /usr/bin/aplay: No such file or directory
+	[] is now player going throught walls??
+	[] your simple map with 2 as doors is not valid symbol
 
-12-14.04
-[]while gnl: change functions to not exit with error/interrrupt 
+Alena (29.03-22.04, except holidays):
+[x] tested with whole main
+[x]while gnl: change functions to not exit with error/interrrupt 
 [x] solved mistake with dobble free mistake
 [x] added find,save and check for outside walls
-[]TODO: add precheck  for player and precheck for lines
-[]  map_check_middle_lines 
+[x]TODO: add precheck  for player and precheck for lines
+[x]  map_check_middle_lines 
 [x] save player in struct
-[]programm doesn't exit ERROR Map: Detected unsupported symbol
-[] finds and prints no line after last line
+[x]programm doesn't exit ERROR Map: Detected unsupported symbol
+[x] finds and prints no line after last line
 	11111111 1111111 111111111111
  	0
-
-11.04
 [x] much better check before savemap in array
 	[x] check for valid first and last line
 	[x]	check if exact 1 player with allowed directiona
@@ -39,42 +44,28 @@ Nice to have
 	[x] not allowed symbols
 	[x] '0' with spaces
 	[x] finding first and last line
-	[] adjust finding max line in map  for memory allocation
-	[] check lines outside walls
-	[] check player outside map or false position
-
+	[x] adjust finding max line in map  for memory allocation
+	[x] check lines outside walls
+	[x] check player outside map or false position
 Check after save:
 // TODO:ADD CHECK for spaces with 0
 //TODO: adjust finding max line (skippping spaces from right)
-[] check players position y+1 and y-1
-[] check player surrounded by spaces
-[] changed function for save player,
-[] add check for walls after save to saved_map
-
-
-10.04
+[x] check players position y+1 and y-1
+[x] check player surrounded by spaces
+[x] changed function for save player,
+[x] add check for walls after save to saved_map
 [x] change save_map_info_in_struct with multiple while()
 [x] added: skipping spaces between map info and map
-
-09.04
 [x]	added check for map file before save in **saved_map
 [x] map is now saved in **saved_map
-
-08.04
 [x] start from beginn to change parsing
 [x] for map_error_exit added in map_struct fd and fd_open, to close before exit
-
-05.04
 [x]	find map in saved mapfile, check
 [x]	exract map from map file and save back to saved_mp in struct map
 [x] after saving textures and colours from saved_map in struct => delete this information from saved_map
-
-04.04
 [x] change map_file_allocate_memory( ) to clean memory with free_double_array()
 [x] map_file_read_save() add fill with spaces line till map->cols
 [x] found and fixed sgv with free_double_map
-
-03.04
 [x] new function free_game
 [x] new function free_map_struct and added to free_game instead of free_double_array
 [x]  error_map_exit_game: normal free game and map in (void)game;     
@@ -89,30 +80,20 @@ Check after save:
 [x] add conversion from color string in struct to uint
 [x] draw_floor_ceiling(t_game *game, int x): get colours from map struct, after reading from map.cub
 [x] load_textures(t_game *game):  get textures from map struct, after reading from map.cub
-
-02.04
 [x] added: check and save wall_path in struct(in map_visuals.c)
 [x] added: check and save colors in struct(in map_visuals.c)
-
-01.04
 [x] checked game on school Computer
 [x] added minimum posible size for map.cub
 [x] moved init_map and init_player from init_game struct(to not open game window for incorrect input)
 [x] added uint32_t	values in struct  for color cailing and floor, renamed *char colors
 [x] continue work on searching and saving  wall_path (in map_visuals.c)
-
-31.03
 [x] renamed wall_textures in file_names and in function to understandble names (from 1,2 to north, south..)
 [x] added our game_wall_textures in map.cub
 [x] add check file_extention and if not empty file for load textures
 [x] change load wall structures from struct textures in function "load_textures(t_game *game)"
 [x] start work on checking wall_path and files
-
-29.03
 [x] solved mistake in .gitignore, that files were not pushed
 [x] checked with vagrind: check arguments,  check map file(.cub, open)
-
-28.03
 [x] Makefiles(libft,libgnl,cub3D: added for debug -g to CFLAGS
 [x] check arguments,  check map file(.cub, open)
 
