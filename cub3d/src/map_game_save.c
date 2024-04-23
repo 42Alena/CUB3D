@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:17:30 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/21 21:22:43 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:03:51 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void save_map_in_struct(t_game *game)
 			game->map.saved_map[game->map.rows][x] = ' ';
 		game->map.saved_map[game->map.rows][x] = '\0';
 		gnl_free_tmp_line_set_null(game);
-		// printf("%d||%s||\n", game->map.rows ,game->map.saved_map[game->map.rows]);
 		game->map.rows += 1;
 	}
 	game->map.saved_map[game->map.rows] = NULL;
@@ -88,13 +87,18 @@ void check_map_file_characters(t_game *game)
 			game->player.count += 1;
 		else if (c != '0' && c != '1' && c != ' ')
 			error_map_exit_game(game, "Map: Detected unsupported symbol");
+
 		i++;
 	}
 }
 
 void save_map_info_lines_to_struct(t_game *game)
 {
-	game->map.tmp_line = ft_strtrim(game->map.tmp_line, " ");
+	char *tmp;
+	
+	tmp = ft_strtrim(game->map.tmp_line, " ");
+	gnl_free_tmp_line_set_null(game);
+	game->map.tmp_line = tmp;
 	change_char_newline_to_space(game);
 	length_tmp_line(game);
 	if (is_substring("NO ", game->map.tmp_line, 0, 3))

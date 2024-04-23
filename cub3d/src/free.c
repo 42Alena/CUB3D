@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/14 07:46:19 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/23 21:46:57 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void free_saved_map(t_game *game)
         return ;
 	while (game->map.saved_map[i])
 	{	
-		// printf("free||i=%d||%s||\n", i, game->map.saved_map[i]);
-		// free(game->map.saved_map[i]);
+		free(game->map.saved_map[i]);
 		game->map.saved_map[i] = NULL;
 		i++;		
 	}
@@ -49,9 +48,9 @@ void free_saved_map(t_game *game)
 
 void free_map_struct(t_game *game)
 {
-	// free_double_array(game); //must be pointer
-	if (game->map.tmp_line)
-		free(game->map.tmp_line);
+
+	if (game->map.file_path)
+		free(game->map.file_path);
 	if (game->map.no_texture)
 		free(game->map.no_texture);
 	if (game->map.so_texture)

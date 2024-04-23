@@ -12,6 +12,7 @@ Nice to have
 
 
 []  to Daniil: 
+	[] main part only according subject, without any bonus
 	[] add option for normal mode without time pressure
 	[] extra_textures(t_game *game):
 		//TODO: Daniil, do you need hier to print wall->width, wall->height

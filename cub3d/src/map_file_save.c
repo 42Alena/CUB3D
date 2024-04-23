@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/21 21:27:02 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:02:32 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void map_file_read_save(t_game *game)
 		game->map.tmp_line = get_next_line(game->map.fd);
 		if (game->map.tmp_line == NULL)
 			break;
-		if (game->map.tmp_line)
-			free(game->map.tmp_line);
+		gnl_free_tmp_line_set_null(game);
 		game->map.rows++;
 	}
 	save_map_in_struct(game);
@@ -53,7 +52,8 @@ void map_file_allocate_memory(t_game *game)
 	int	len;
 
 	i = -1;
-	len = game->map.last_line - game->map.first_line;
+	len = game->map.last_line - game->map.first_line - 1;
+
 	game->map.saved_map = (char **)malloc((len) * sizeof(char *));
 	if (game->map.saved_map == NULL)
 		error_map_exit_game(game, "Map: memory allocation faled");

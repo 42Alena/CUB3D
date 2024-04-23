@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:36:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/14 09:48:13 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:06:07 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_bool is_substring(char *substring, char *string, int start, int len)
     t_bool  result;
 
     temp = ft_substr(string, start, len);
-    // printf("is_substring:||%s||%s||%s||\n", substring, string,temp);
     if (temp == NULL)
         return FALSE;
     if (ft_strncmp(substring, temp, len) == 0)

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:00:39 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/12 09:32:40 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/23 21:15:41 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 void save_map_color(t_game *game, char **name_color, char c_f)
 {
+	char *tmp;
+	
 	if (*name_color != NULL)
 		error_map_exit_game(game, "Map: double map settings for color");
 	*name_color = ft_substr(game->map.tmp_line, 2, game->map.len_tmp_line - 2);
-	*name_color = ft_strtrim(*name_color, " ");
+	tmp = ft_strtrim(*name_color, " ");
+	free(*name_color);
+	*name_color  = tmp;
 	if (*name_color == NULL)
 		error_map_exit_game(game, "Missing map settings for color");
 	game->map.len_tmp_line = ft_strlen(*name_color);
@@ -38,14 +42,21 @@ uint32_t	get_rgb_from_string(t_game *game, char *rgb_string)
 	int	red;
 	int	green;
 	int blue;
+	char *tmp;
 
 	i = 0;
     splited_colors = ft_split(rgb_string, ',');
 	while (splited_colors[i])
 	{
 		if (i >= 3)
+		{
+			free_double_array(splited_colors);
 			error_map_exit_game(game, "Not valid color");
-		splited_colors[i] = ft_strtrim(splited_colors[i], " ");
+		}
+		tmp = ft_strtrim(splited_colors[i], " ");
+		free(splited_colors[i]);
+		splited_colors[i] = tmp;
+		
 		i++;
 	}
 	red =  get_color_from_string(game, splited_colors, 0);

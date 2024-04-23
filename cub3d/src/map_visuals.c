@@ -33,10 +33,14 @@ void	draw_floor_ceiling(t_game *game, int x)
 
 void wall_file_check_save(t_game *game, char **name_txtr)
 {
+	char *tmp;
+
 	if (*name_txtr != NULL)
 		error_map_exit_game(game, "Map: double map settings for texture");
 	*name_txtr = ft_substr(game->map.tmp_line, 3, game->map.len_tmp_line - 3); 
-	*name_txtr = ft_strtrim(*name_txtr, " ");
+	tmp = ft_strtrim(*name_txtr, " ");
+	free (*name_txtr);
+	*name_txtr = tmp;
 	if (*name_txtr == NULL)
 		error_map_exit_game(game, "Missing file: <wall>.png");
 	game->map.len_tmp_line = ft_strlen(*name_txtr);

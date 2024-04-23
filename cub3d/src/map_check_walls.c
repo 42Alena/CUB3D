@@ -51,7 +51,10 @@ t_bool is_map_north_south_wall(t_game *game)
 		if (game->map.tmp_line[x] == '1')
 			ones += 1;
 		else if (game->map.tmp_line[x] != ' ')
+		{
+			game->map.tmp_line = NULL;
 			error_map_exit_game(game, "Map: no south/north wall");
+		}
 		x++;
 	}
 	if (ones == 0)

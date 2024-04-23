@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:38:59 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/21 21:37:16 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:14:40 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ void check_map(t_game *game)
 	{
 		game->map.tmp_line = game->map.saved_map[row];
 		if (is_empty_tmp_line(game))
+		{
+			game->map.tmp_line = NULL;
 			error_map_exit_game(game, "Map: empty line");
+		}
 		check_maps_characters(game, row);
 		row++;
 	}
+	game->map.tmp_line = NULL;
 }
 
 void check_maps_characters(t_game *game, int row)
@@ -55,6 +59,9 @@ void map_check_floor(t_game *game, int row, int col)
 			(game->map.saved_map[row][col + 1] == ' ') ||\
 			(game->map.saved_map[row + 1][col] == ' ') ||\
 			(game->map.saved_map[row - 1][col] == ' '))
+		{
+			game->map.tmp_line = NULL;
 			error_map_exit_game(game, "Map: Floor is not inside walls");
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/15 13:49:42 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:23:01 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,3 +119,48 @@ printf("ENTERED HIER\n");
  */
 
 
+
+//____Alena____FOR TESTS
+// int main(int argc, char **argv)
+// {
+// 	t_game game;
+
+// 	init_map_structure(&game);
+// 	init_player_structure(&game);
+
+// 	map_file_check(&game, argc, argv);
+// 	map_file_read_save(&game);
+// 	check_map(&game);
+
+	//____TEST_____________________
+	// print_map(&game);
+
+	// print_map(&game);
+	// print_map_structure(&game);
+	// printf("_____MAP_______\n\n");
+	// print_map(&game);
+	// printf("_____END_MAP_______\n\n");
+	// printf("_____MAP_STRUCT______\n\n");
+	// print_map_structure(&game);
+	// printf("_____END_MAP_STRUCT______\n\n");
+	//_____END_TEST______________
+
+	// free_map_struct(&game);
+	// print_map_structure(&game);
+// 	return (EXIT_SUCCESS);
+// }
+
+//---!!!!!--------CONTINUE OF MAIN --------------------
+
+//  init_game_struct(&game);
+// mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
+// mlx_cursor_hook(game.mlx, cursor, &game);
+// mlx_mouse_hook(game.mlx, mouse, &game);
+// mlx_key_hook(game.mlx, key_hook, &game);
+// mlx_loop_hook(game.mlx, ft_hook, &game);
+// system("/usr/bin/aplay -q ./music/main.wav &");
+// system("/usr/bin/aplay -q ./music/hellothere.wav &");
+// mlx_loop(game.mlx);
+// free_game(&game);
+// 	return (EXIT_SUCCESS);
+// }
