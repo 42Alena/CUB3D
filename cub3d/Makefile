@@ -11,7 +11,6 @@ SOURCES_M  := \
     ./src/main.c\
 	./src/game_init.c\
 	./src/game_play.c\
-	./src/map_check_lines.c\
 	./src/map_file_check.c\
 	./src/map_file_save.c\
 	./src/map_game_save.c\

@@ -13,7 +13,7 @@
 #include "../includes/cub3D.h"
 
 /* first and last line must be  one's with/without spaces*/
-void check_walls_save_in_struct(t_game *game)
+void	check_walls_save_in_struct(t_game *game)
 {
 	game->map.first_line = 0;
 	game->map.last_line = game->map.rows;
@@ -21,7 +21,7 @@ void check_walls_save_in_struct(t_game *game)
 	{
 		game->map.tmp_line = game->map.saved_map[game->map.first_line];
 		if (!is_empty_tmp_line(game))
-			break;
+			break ;
 		game->map.first_line++;
 	}
 	is_map_north_south_wall(game);
@@ -31,7 +31,7 @@ void check_walls_save_in_struct(t_game *game)
 	{
 		game->map.tmp_line = game->map.saved_map[game->map.last_line];
 		if (!is_empty_tmp_line(game))
-			break;
+			break ;
 		game->map.last_line--;
 	}
 	if (game->map.last_line <= (game->map.first_line + 1))
@@ -39,10 +39,10 @@ void check_walls_save_in_struct(t_game *game)
 	is_map_north_south_wall(game);
 }
 
-t_bool is_map_north_south_wall(t_game *game)
+t_bool	is_map_north_south_wall(t_game *game)
 {
-	int x;
-	int ones;
+	int	x;
+	int	ones;
 
 	x = 0;
 	ones = 0;

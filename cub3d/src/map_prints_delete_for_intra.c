@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:31:15 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/23 19:23:01 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 00:01:29 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,3 +164,7 @@ printf("ENTERED HIER\n");
 // free_game(&game);
 // 	return (EXIT_SUCCESS);
 // }
+
+// make  && make clean && ./cub3D ./maps/test.cub
+// 	print_map_structure(&game);
+// 	free_map_struct(&game);

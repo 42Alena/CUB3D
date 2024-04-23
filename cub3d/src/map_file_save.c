@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/23 22:02:32 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 00:31:28 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void change_char_newline_to_space(t_game *game)
 	}
 }
 
-void map_file_allocate_memory(t_game *game)
+void	map_file_allocate_memory(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	len;
 
 	i = -1;
@@ -78,18 +78,17 @@ void map_file_allocate_memory(t_game *game)
 	game->map.saved_map[i] = NULL;
 }
 
-t_bool is_map_settings_complete(t_game *game)
+t_bool	is_map_settings_complete(t_game *game)
 {
-	if (game->map.no_texture != NULL &&\
-	 	game->map.so_texture != NULL &&
-		game->map.we_texture != NULL &&\
-		game->map.ea_texture != NULL &&
-		game->map.floor_color_str != NULL &&\
-		game->map.ceiling_color_str != NULL &&\
-		game->map.floor_color_uint != 256 &&\
+	if (game->map.no_texture != NULL && \
+		game->map.so_texture != NULL && \
+		game->map.we_texture != NULL && \
+		game->map.ea_texture != NULL && \
+		game->map.floor_color_str != NULL && \
+		game->map.ceiling_color_str != NULL && \
+		game->map.floor_color_uint != 256 && \
 		game->map.ceiling_color_uint != 256)
 		return (TRUE);
 	else
 		return (FALSE);
 }
-

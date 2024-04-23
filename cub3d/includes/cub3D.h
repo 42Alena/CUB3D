@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/15 18:17:05 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 00:18:01 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ typedef struct s_map
 	char **saved_map;
 	int cols;
 	int rows;
-
-	//__________new
 	char *file_path;
 	t_bool fd_open;
 	int fd;
@@ -72,8 +70,6 @@ typedef struct s_map
 	int middle_line;
 	int last_line;
 	int count_player;
-	//_end new
-
 	char *no_texture;
 	char *so_texture;
 	char *we_texture;
@@ -210,129 +206,126 @@ typedef struct s_game
 
 //___________TEST___FUNCTIONS___DELETE BEFORE PUSH__________
 // map_prints_delete_for_intra.c
-void print_map_structure(t_game *game);
-void print_map_pos_x_y(t_game *game);
-void print_map(t_game *game);
+void		print_map_structure(t_game *game);
+void		print_map_pos_x_y(t_game *game);
+void		print_map(t_game *game);
 //-------------END_TO TEST-------------------------------------------
 
 // in main.c only main
 
 // game_play.c (other functions from main)
-void game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
-void win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
-void gameplay(t_game *game, double time);
-void ft_hook(void *param);
+void		game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
+void		win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
+void		gameplay(t_game *game, double time);
+void		ft_hook(void *param);
 
 //___________map_file_save.c_______________
-void map_file_read_save(t_game *game);
-void change_char_newline_to_space(t_game *game);
-void map_file_allocate_memory(t_game *game);
-t_bool is_map_settings_complete(t_game *game);
+void		map_file_read_save(t_game *game);
+void		change_char_newline_to_space(t_game *game);
+void		map_file_allocate_memory(t_game *game);
+t_bool		is_map_settings_complete(t_game *game);
 
 //______map_game_save.c
-void save_map_in_struct(t_game *game);
-void save_map_info_in_struct(t_game *game);
-void check_map_file_characters(t_game *game);
-void save_map_info_lines_to_struct(t_game *game);
+void		save_map_in_struct(t_game *game);
+void		save_map_info_in_struct(t_game *game);
+void		check_map_file_characters(t_game *game);
+void		save_map_info_lines_to_struct(t_game *game);
 
 //______map_file_check.c
-void map_file_check(t_game *game, int argc, char **argv);
-t_bool is_valid_file(t_game *game, char *file_path);
-void fd_open(t_game *game);
-void fd_close(t_game *game);
-void gnl_free_tmp_line_set_null(t_game *game);
+void		map_file_check(t_game *game, int argc, char **argv);
+t_bool		is_valid_file(t_game *game, char *file_path);
+void		fd_open(t_game *game);
+void		fd_close(t_game *game);
+void		gnl_free_tmp_line_set_null(t_game *game);
 
 //______map_check.c______________
-void check_map(t_game *game);
-void check_maps_characters(t_game *game, int row);
-void map_check_floor(t_game *game, int row, int col);
-
-//_________map_check_lines.c___________
-t_bool is_empty_tmp_line(t_game *game);
+void		check_map(t_game *game);
+void		check_maps_characters(t_game *game, int row);
+void		map_check_floor(t_game *game, int row, int col);
+t_bool		is_empty_tmp_line(t_game *game);
 
 //___________map_check_walls.c____________
-void check_walls_save_in_struct(t_game *game);
-t_bool is_map_north_south_wall(t_game *game);
+void		check_walls_save_in_struct(t_game *game);
+t_bool		is_map_north_south_wall(t_game *game);
 
 //______map_player_save.c________
-void player_check_save(t_game *game, int row, int col);
-void save_player_struct(t_game *game);
-void save_player_dir(t_game *game);
+void		player_check_save(t_game *game, int row, int col);
+void		save_player_struct(t_game *game);
+void		save_player_dir(t_game *game);
 
 //_______map_utils.c_______
-t_bool is_substring(char *substring, char *string, int start, int len);
-void length_tmp_line(t_game *game);
+t_bool		is_substring(char *substring, char *string, int start, int len);
+void		length_tmp_line(t_game *game);
 
 //_______game_init.c_________
-void init_map_structure(t_game *game);
-void init_player_structure(t_game *game);
-void init_game_struct(t_game *game);
+void		init_map_structure(t_game *game);
+void		init_player_structure(t_game *game);
+void		init_game_struct(t_game *game);
 
 // map_visuals.c
-void draw_floor_ceiling(t_game *game, int x);
-void wall_file_check_save(t_game *game, char **name_txtr);
+void		draw_floor_ceiling(t_game *game, int x);
+void		wall_file_check_save(t_game *game, char **name_txtr);
 
-// map_colors.c
-void save_map_color(t_game *game, char **name_color, char c_f);
-uint32_t get_rgb_from_string(t_game *game, char *rgb_string);
-int get_color_from_string(t_game *game, char **splited_colors, int i);
+//____map_colors.c
+void		save_map_color(t_game *game, char **name_color, char c_f);
+uint32_t	get_rgb_from_string(t_game *game, char *rgb_string);
+int			get_color_from_string(t_game *game, char **splited_colors, int i);
 
 //___free.c
-// void free_double_char_pointer_array(char ***array);
-void free_saved_map(t_game *game);
-void free_double_array(char **array);
-void free_map_struct(t_game *game);
-void free_game(t_game *game);
-void free_textures(t_game *game);
-void free_mlx_img_txtr(t_game *game);
+void		free_saved_map(t_game *game);
+void		free_double_array(char **array);
+void		free_map_struct(t_game *game);
+void		free_game(t_game *game);
+void		free_textures(t_game *game);
+void		free_mlx_img_txtr(t_game *game);
 
 // error.c
-void error_game_exit(t_game *game, char *error_msg);
-void error_map_exit_game(t_game *game, char *error_msg);
+void		error_game_exit(t_game *game, char *error_msg);
+void		error_map_exit_game(t_game *game, char *error_msg);
 
 // raycasting.c
-void draw_floor_ceiling(t_game *game, int x);
-void raycasting(t_game *game);
+void		draw_floor_ceiling(t_game *game, int x);
+void		raycasting(t_game *game);
 
 // raycasting_calculations.c
-void calculate_start_end(t_game *game, int tex_height, int tex_width);
-void hit_wall(t_game *game);
-void calculate_step(t_game *game);
-void init_ray(t_game *game, int i, int w);
-void distance_and_height(t_game *game);
+void		calculate_start_end(t_game *game, int tex_height, int tex_width);
+void		hit_wall(t_game *game);
+void		calculate_step(t_game *game);
+void		init_ray(t_game *game, int i, int w);
+void		distance_and_height(t_game *game);
 
 // textures.c
-void load_images(t_game *game);
-void load_textures(t_game *game);
-void extra_textures(t_game *game);
+void		load_images(t_game *game);
+void		load_textures(t_game *game);
+void		extra_textures(t_game *game);
 
 // main_menu.c
-void launch_game(t_game *game);
-void back_to_main_menu(t_game *game);
-void settings(t_game *game);
-int move_speed(t_game *game);
+void		launch_game(t_game *game);
+void		back_to_main_menu(t_game *game);
+void		settings(t_game *game);
+int			move_speed(t_game *game);
 
 // bigmap.c
-void bigmap(t_game *game);
+void		bigmap(t_game *game);
 
 // minimap.c
-void minimap(t_game *game);
+void		minimap(t_game *game);
 
 // sprites.c
-void draw_sprites(t_game *game);
+void		draw_sprites(t_game *game);
 
 // mouse.c
-void cursor(double xpos, double ypos, void *param);
-void mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
+void		cursor(double xpos, double ypos, void *param);
+void		mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 
 // utils.c
-uint32_t *get_color(mlx_texture_t *texture);
-int distance_to_wall(t_player *player, char **saved_map, double x, double y);
-void timer(mlx_image_t *image, int height, int width, double time);
+uint32_t	*get_color(mlx_texture_t *texture);
+int			distance_to_wall(t_player *player, char **saved_map, double x, double y);
+void		timer(mlx_image_t *image, int height, int width, double time);
 
 // key_press
-void key_press(t_game *game);
-void key_hook(mlx_key_data_t keydata, void *param);
-void rotation(t_player *player, double rot_speed);
+void		key_press(t_game *game);
+void		key_hook(mlx_key_data_t keydata, void *param);
+void		rotation(t_player *player, double rot_speed);
 
 #endif
