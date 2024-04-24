@@ -6,32 +6,26 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/15 13:00:30 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 09:45:31 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void init_map_structure(t_game *game)
+void	init_map_structure(t_game *game)
 {
 	game->map.saved_map = NULL;
 	game->map.cols = 0;
 	game->map.rows = 0;
-
-	//___new
 	game->map.file_path = NULL;
 	game->map.fd = -1;
 	game->map.fd_open = FALSE;
-
 	game->map.first_line = 0;
 	game->map.middle_line = 0;
 	game->map.last_line = 0;
 	game->map.tmp_line = NULL;
 	game->map.len_tmp_line = 0;
 	game->map.count_player = 0;
-
-	//end_new
-
 	game->map.no_texture = NULL;
 	game->map.so_texture = NULL;
 	game->map.we_texture = NULL;
@@ -42,7 +36,7 @@ void init_map_structure(t_game *game)
 	game->map.ceiling_color_uint = 256;
 }
 
-void init_player_structure(t_game *game)
+void	init_player_structure(t_game *game)
 {
 	game->player.count = 0;
 	game->player.map_start_dir = 0;
@@ -56,7 +50,7 @@ void init_player_structure(t_game *game)
 	game->player.plane_y = 0;
 }
 
-void init_ray_struct(t_game *game)
+void	init_ray_struct(t_game *game)
 {
 	game->ray.camera_x = 0;
 	game->ray.delta_dist_x = 0;
@@ -82,7 +76,7 @@ void init_ray_struct(t_game *game)
 		error_map_exit_game(game, "Out of memory!");
 }
 
-void init_game_struct(t_game *game)
+void	init_game_struct(t_game *game)
 {
 	game->window_height = 960;
 	game->window_width = 1980;
@@ -99,7 +93,7 @@ void init_game_struct(t_game *game)
 	game->move_speed = INITIAL_MOVE_SPEED;
 	game->mouse.mouse_x = 0;
 	game->mouse.mouse_y = 0;
-	game->mlx =
+	game->mlx = \
 		mlx_init(game->window_width, game->window_height, "CUB3D", true);
 	if (!game->mlx)
 		error_map_exit_game(game, "Could not initialize MLX");

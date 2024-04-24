@@ -12,8 +12,8 @@ Nice to have
 
 
 []  to Daniil: 
-	[] main part only according subject, without any bonus
-	[] add option for normal mode without time pressure
+	[]devide back to main and bonus part
+	[] in main part only according subject, without any bonus	[] add option for normal mode without time pressure
 	[] extra_textures(t_game *game):
 		//TODO: Daniil, do you need hier to print wall->width, wall->height
 		printf("W:%d H:%d\n", wall->width, wall->height);
@@ -26,7 +26,9 @@ Nice to have
 	[] is now player going throught walls??
 	[] your simple map with 2 as doors is not valid symbol
 
-Alena (29.03-22.04, except holidays):
+Alena (29.03-24.04, except holidays):
+[x] norminette
+[x] cleaned memory leaks 
 [x] tested with whole main
 [x]while gnl: change functions to not exit with error/interrrupt 
 [x] solved mistake with dobble free mistake

@@ -6,12 +6,14 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 09:36:06 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 09:59:36 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+/* 	print_map_structure(&game);
+	free_map_struct(&game); */
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -21,10 +23,6 @@ int	main(int argc, char **argv)
 	map_file_check(&game, argc, argv);
 	map_file_read_save(&game);
 	check_map(&game);
-	
-	// print_map_structure(&game);
-	// free_map_struct(&game);
-	
 	init_game_struct(&game);
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);

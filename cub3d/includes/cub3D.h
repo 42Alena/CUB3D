@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 09:34:56 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 09:55:35 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,10 +272,12 @@ void		save_map_color(t_game *game, char **name_color, char c_f);
 uint32_t	get_rgb_from_string(t_game *game, char *rgb_string);
 int			get_color_from_string(t_game *game, char **splited_colors, int i);
 
-// ______free.c
+// ______map_free.c
 void		free_saved_map(t_game *game);
 void		free_double_array(char **array);
 void		free_map_struct(t_game *game);
+
+// ______free.c
 void		free_game(t_game *game);
 void		free_textures(t_game *game);
 void		free_mlx_img_txtr(t_game *game);

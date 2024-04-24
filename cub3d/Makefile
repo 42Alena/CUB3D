@@ -21,6 +21,7 @@ SOURCES_M  := \
 	./src/map_colors.c\
 	./src/map_utils.c\
 	./src/error.c\
+	./src/map_free.c\
 	./src/free.c\
 	./src/raycasting.c\
 	./src/raycasting_calculations.c \

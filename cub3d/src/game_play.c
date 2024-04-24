@@ -6,12 +6,11 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 21:37:23 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/30 21:39:01 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 09:44:08 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
 
 void	game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor)
 {

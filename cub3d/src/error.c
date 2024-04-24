@@ -6,16 +6,15 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:28:58 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/23 22:07:09 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 09:48:21 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-/* IF TMP_LINE pointer without malloc -not free. just set to NULL */
-void error_map_exit_game(t_game *game, char *error_msg)
+void	error_map_exit_game(t_game *game, char *error_msg)
 {
-	int len_error_msg;
+	int	len_error_msg;
 
 	len_error_msg = ft_strlen(error_msg);
 	write(2, "ERROR\n", 6);
@@ -38,9 +37,9 @@ void error_map_exit_game(t_game *game, char *error_msg)
 	exit(EXIT_FAILURE);
 }
 
-void error_game_exit(t_game *game, char *error_msg)
+void	error_game_exit(t_game *game, char *error_msg)
 {
-	int len_error_msg;
+	int	len_error_msg;
 
 	len_error_msg = ft_strlen(error_msg);
 	write(2, "ERROR\n", 6);
