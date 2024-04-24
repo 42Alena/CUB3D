@@ -6,7 +6,7 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 00:18:01 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 09:34:56 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,16 +213,17 @@ void		print_map(t_game *game);
 
 // in main.c only main
 
-// game_play.c (other functions from main)
+//______game_play.c (other functions from main)
 void		game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
 void		win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
 void		gameplay(t_game *game, double time);
 void		ft_hook(void *param);
 
-//___________map_file_save.c_______________
+//______map_file_save.c
 void		map_file_read_save(t_game *game);
 void		change_char_newline_to_space(t_game *game);
 void		map_file_allocate_memory(t_game *game);
+void		cleanup_map_on_allocation_failure(t_game *game, int i);
 t_bool		is_map_settings_complete(t_game *game);
 
 //______map_game_save.c
@@ -238,40 +239,40 @@ void		fd_open(t_game *game);
 void		fd_close(t_game *game);
 void		gnl_free_tmp_line_set_null(t_game *game);
 
-//______map_check.c______________
+//______map_check.c
 void		check_map(t_game *game);
 void		check_maps_characters(t_game *game, int row);
 void		map_check_floor(t_game *game, int row, int col);
 t_bool		is_empty_tmp_line(t_game *game);
 
-//___________map_check_walls.c____________
+//______map_check_walls.c
 void		check_walls_save_in_struct(t_game *game);
 t_bool		is_map_north_south_wall(t_game *game);
 
-//______map_player_save.c________
+//______map_player_save.c
 void		player_check_save(t_game *game, int row, int col);
 void		save_player_struct(t_game *game);
 void		save_player_dir(t_game *game);
 
-//_______map_utils.c_______
+//______map_utils.c
 t_bool		is_substring(char *substring, char *string, int start, int len);
 void		length_tmp_line(t_game *game);
 
-//_______game_init.c_________
+//______game_init.c
 void		init_map_structure(t_game *game);
 void		init_player_structure(t_game *game);
 void		init_game_struct(t_game *game);
 
-// map_visuals.c
+//______map_visuals.c
 void		draw_floor_ceiling(t_game *game, int x);
 void		wall_file_check_save(t_game *game, char **name_txtr);
 
-//____map_colors.c
+//______map_colors.c
 void		save_map_color(t_game *game, char **name_color, char c_f);
 uint32_t	get_rgb_from_string(t_game *game, char *rgb_string);
 int			get_color_from_string(t_game *game, char **splited_colors, int i);
 
-//___free.c
+// ______free.c
 void		free_saved_map(t_game *game);
 void		free_double_array(char **array);
 void		free_map_struct(t_game *game);
@@ -279,7 +280,7 @@ void		free_game(t_game *game);
 void		free_textures(t_game *game);
 void		free_mlx_img_txtr(t_game *game);
 
-// error.c
+//______error.c
 void		error_game_exit(t_game *game, char *error_msg);
 void		error_map_exit_game(t_game *game, char *error_msg);
 

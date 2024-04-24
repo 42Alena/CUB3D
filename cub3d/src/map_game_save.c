@@ -6,32 +6,29 @@
 /*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:17:30 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/23 22:03:51 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/24 08:53:00 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void save_map_in_struct(t_game *game)
+void	save_map_in_struct(t_game *game)
 {
-	int x;
+	int	x;
 	int	i;
-	
+
 	game->map.rows = 0;
 	while (TRUE)
 	{
 		game->map.tmp_line = get_next_line(game->map.fd);
 		if (game->map.tmp_line == NULL)
-			break;
-		i = 0;
+			break ;
+		i = -1;
 		x = 0;
 		game->map.saved_map[game->map.rows][x] = ' ';
 		change_char_newline_to_space(game);
 		while (game->map.tmp_line[++x])
-		{
-			game->map.saved_map[game->map.rows][x] = game->map.tmp_line[i];
-			i++;
-		}
+			game->map.saved_map[game->map.rows][x] = game->map.tmp_line[++i];
 		x -= 1;
 		while (++x < game->map.cols)
 			game->map.saved_map[game->map.rows][x] = ' ';
@@ -42,7 +39,7 @@ void save_map_in_struct(t_game *game)
 	game->map.saved_map[game->map.rows] = NULL;
 }
 
-void save_map_info_in_struct(t_game *game)
+void	save_map_info_in_struct(t_game *game)
 {
 	fd_open(game);
 	while (is_map_settings_complete(game) == FALSE)
@@ -50,17 +47,17 @@ void save_map_info_in_struct(t_game *game)
 		game->map.first_line += 1;
 		game->map.tmp_line = get_next_line(game->map.fd);
 		if (game->map.tmp_line == NULL)
-			break;
+			break ;
 		save_map_info_lines_to_struct(game);
 		gnl_free_tmp_line_set_null(game);
 	}
-	game->map.last_line = game->map.first_line;	
+	game->map.last_line = game->map.first_line;
 	while (TRUE)
 	{
 		game->map.last_line += 1;
 		game->map.tmp_line = get_next_line(game->map.fd);
 		if (game->map.tmp_line == NULL)
-			break;
+			break ;
 		check_map_file_characters(game);
 		length_tmp_line(game);
 		if (game->map.cols < game->map.len_tmp_line)
@@ -71,7 +68,7 @@ void save_map_info_in_struct(t_game *game)
 	fd_close(game);
 }
 
-void check_map_file_characters(t_game *game)
+void	check_map_file_characters(t_game *game)
 {
 	int		i;
 	char	c;
@@ -87,15 +84,14 @@ void check_map_file_characters(t_game *game)
 			game->player.count += 1;
 		else if (c != '0' && c != '1' && c != ' ')
 			error_map_exit_game(game, "Map: Detected unsupported symbol");
-
 		i++;
 	}
 }
 
-void save_map_info_lines_to_struct(t_game *game)
+void	save_map_info_lines_to_struct(t_game *game)
 {
-	char *tmp;
-	
+	char	*tmp;
+
 	tmp = ft_strtrim(game->map.tmp_line, " ");
 	gnl_free_tmp_line_set_null(game);
 	game->map.tmp_line = tmp;
