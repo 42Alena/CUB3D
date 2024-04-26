@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 12:36:30 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:38:26 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,6 +318,7 @@ uint32_t	*get_color(mlx_texture_t *texture);
 int			distance_to_wall(t_player *player, \
 char **saved_map, double x, double y);
 void		timer(mlx_image_t *image, int height, int width, double time);
+void		delete_player_from_map(t_game *game);
 
 // key_press.c
 void		key_press(t_game *game);

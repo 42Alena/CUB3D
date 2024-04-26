@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 12:26:32 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:44:47 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,31 +71,27 @@ void	init_ray_struct(t_game *game)
 	game->ray.tex_num = 0;
 	game->ray.tex_x = 0;
 	game->ray.wall_x = 0;
+	game->ray.map_x = 0;
+	game->ray.map_y = 0;
 	game->ray.z_buffer = malloc(sizeof(double) * (game->window_width + 1));
 	if (!game->ray.z_buffer)
 		error_map_exit_game(game, "Out of memory!");
 }
 
-void	delete_player_from_map(t_game *game)
+void	init_sprite_struct(t_game *game)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map.saved_map[i])
-	{
-		j = 0;
-		while (game->map.saved_map[i][j])
-		{
-			if (game->map.saved_map[i][j] == 'W' \
-			|| game->map.saved_map[i][j] == 'E' \
-			|| game->map.saved_map[i][j] == 'N' \
-			|| game->map.saved_map[i][j] == 'S')
-				game->map.saved_map[i][j] = '0';
-			j++;
-		}
-		i++;
-	}
+	game->sprite.d = 0;
+	game->sprite.draw_end_x = 0;
+	game->sprite.draw_end_y = 0;
+	game->sprite.draw_start_x = 0;
+	game->sprite.draw_start_y = 0;
+	game->sprite.inv_det = 0;
+	game->sprite.sprite_screen_x = 0;
+	game->sprite.sprite_height = 0;
+	game->sprite.sprite_width = 0;
+	game->sprite.transform_x = 0;
+	game->sprite.transform_y = 0;
+	game->sprite.v_move_screen = 0;
 }
 
 void	init_game_struct(t_game *game)
@@ -103,6 +99,7 @@ void	init_game_struct(t_game *game)
 	game->window_height = 960;
 	game->window_width = 1980;
 	init_ray_struct(game);
+	init_sprite_struct(game);
 	load_textures(game);
 	delete_player_from_map(game);
 	game->textures.image = NULL;

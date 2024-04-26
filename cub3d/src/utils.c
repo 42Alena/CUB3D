@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/03/18 11:45:03 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:38:30 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,27 @@ void	timer(mlx_image_t *image, int height, int width, double time)
 					mlx_put_pixel(image, x, y, 0xFF000044);
 			}
 		}
+	}
+}
+
+void	delete_player_from_map(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map.saved_map[i])
+	{
+		j = 0;
+		while (game->map.saved_map[i][j])
+		{
+			if (game->map.saved_map[i][j] == 'W' \
+			|| game->map.saved_map[i][j] == 'E' \
+			|| game->map.saved_map[i][j] == 'N' \
+			|| game->map.saved_map[i][j] == 'S')
+				game->map.saved_map[i][j] = '0';
+			j++;
+		}
+		i++;
 	}
 }
