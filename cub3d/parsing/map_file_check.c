@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_file_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 21:52:02 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 09:41:36 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:39:02 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_bool	is_valid_file(t_game *game, char *temp_file)
 
 	fd = open(temp_file, O_RDONLY);
 	if (fd == -1)
-		error_map_exit_game(game, "Can not open the map");
+		error_map_exit_game(game, "Cannot open the map");
 	bytes_read = read(fd, buffer, sizeof(buffer));
 	if (bytes_read == -1)
 	{
@@ -59,7 +59,7 @@ void	fd_open(t_game *game)
 {
 	game->map.fd = open(game->map.file_path, O_RDONLY);
 	if (game->map.fd == -1)
-		error_map_exit_game(game, "Can not open the map");
+		error_map_exit_game(game, "Cannot open the map");
 	game->map.fd_open = TRUE;
 }
 

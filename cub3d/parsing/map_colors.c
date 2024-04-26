@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:00:39 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 00:06:15 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:15:53 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	save_map_color(t_game *game, char **name_color, char c_f)
 	if (*name_color == NULL)
 		error_map_exit_game(game, "Missing map settings for color");
 	game->map.len_tmp_line = ft_strlen(*name_color);
-	if (game->map.len_tmp_line <= 6)
+	if (game->map.len_tmp_line <= 4)
 		error_map_exit_game(game, "Invalid color texture");
 	if (c_f == 'c')
 		game->map.ceiling_color_uint = \
@@ -55,10 +55,9 @@ uint32_t	get_rgb_from_string(t_game *game, char *rgb_string)
 		free(splited_colors[i]);
 		splited_colors[i] = tmp;
 	}
-	rgb_uint = (uint32_t)(\
-		get_color_from_string(game, splited_colors, 0) << 16 | \
-		get_color_from_string(game, splited_colors, 1) << 8 | \
-		get_color_from_string(game, splited_colors, 2));
+	rgb_uint = get_rgba(get_color_from_string(game, splited_colors, 0), \
+	get_color_from_string(game, splited_colors, 1), \
+	get_color_from_string(game, splited_colors, 2), 255);
 	free_double_array(splited_colors);
 	return (rgb_uint);
 }

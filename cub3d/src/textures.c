@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:11:04 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/03 21:14:57 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:13:48 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ void extra_textures(t_game *game)
 	game->textures.c3po = get_color(wall);
 	game->textures.c3po_w = wall->width;
 	game->textures.c3po_h = wall->height;
-
-	//TODO: Daniil, do you need hier to print wall->width, wall->height?
-	printf("W:%d H:%d\n", wall->width, wall->height);
-
-
 	mlx_delete_texture(wall);
 	wall = mlx_load_png("./textures/c3po2.png");
 	game->textures.c3po2 = get_color(wall);
@@ -50,7 +45,7 @@ void extra_textures(t_game *game)
 void load_textures(t_game *game)
 {
 	mlx_texture_t *wall;
-	
+
 	wall = mlx_load_png(game->map.no_texture);
 	game->textures.wall.north = get_color(wall);
 	game->textures.wall.north_w = wall->width;

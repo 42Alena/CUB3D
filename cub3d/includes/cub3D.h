@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 09:55:35 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:10:36 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,127 +82,129 @@ typedef struct s_map
 
 typedef struct s_sprite
 {
-	double transform_x;
-	double transform_y;
-	double sprite_x;
-	double sprite_y;
-	double inv_det;
-	int v_move_screen;
-	int sprite_screen_x;
-	int sprite_height;
-	int sprite_width;
-	int draw_start_y;
-	int draw_start_x;
-	int draw_end_y;
-	int draw_end_x;
-	int d;
-	int tex_y;
-	int tex_x;
-} t_sprite;
+	double	transform_x;
+	double	transform_y;
+	double	sprite_x;
+	double	sprite_y;
+	double	inv_det;
+	int		v_move_screen;
+	int		sprite_screen_x;
+	int		sprite_height;
+	int		sprite_width;
+	int		draw_start_y;
+	int		draw_start_x;
+	int		draw_end_y;
+	int		draw_end_x;
+	int		d;
+	int		tex_y;
+	int		tex_x; 
+}	t_sprite;
 
 typedef struct s_ray
 {
-	int map_x;
-	int map_y;
-	double camera_x;
-	double step_x;
-	double step_y;
-	double side_dist_x;
-	double side_dist_y;
-	double ray_dir_x;
-	double ray_dir_y;
-	double delta_dist_x;
-	double delta_dist_y;
-	double perp_wall_dist;
-	int hit;
-	int side;
-	int line_height;
-	double draw_start;
-	double draw_end;
-	double wall_x;
-	int tex_x;
-	double step;
-	double *z_buffer;
-	int tex_num;
-} t_ray;
+	int			map_x;
+	int			map_y;
+	double		camera_x;
+	double		step_x;
+	double		step_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			hit;
+	int			side;
+	int			line_height;
+	double		draw_start;
+	double		draw_end;
+	double		wall_x;
+	int			tex_x;
+	double		step;
+	double		*z_buffer;
+	int			tex_num;
+}	t_ray;
 
 typedef struct s_wall
 {
-	u_int32_t *north;
-	int north_w;
-	int north_h;
-	u_int32_t *south;
-	int south_w;
-	int south_h;
-	u_int32_t *west;
-	int west_w;
-	int west_h;
-	u_int32_t *east;
-	int east_w;
-	int east_h;
-} t_wall;
+	u_int32_t		*north;
+	int				north_w;
+	int				north_h;
+	u_int32_t		*south;
+	int				south_w;
+	int				south_h;
+	u_int32_t		*west;
+	int				west_w;
+	int				west_h;
+	u_int32_t		*east;
+	int				east_w;
+	int				east_h;
+}	t_wall;
 
-typedef struct so_textures
+
+typedef struct s_textures
 {
-	mlx_image_t *image;
-	u_int32_t *door;
-	int door_w;
-	int door_h;
-	u_int32_t *door_open;
-	int door_open_w;
-	int door_open_h;
-	u_int32_t *win_image;
-	int win_image_w;
-	int win_image_h;
-	u_int32_t *c3po;
-	int c3po_w;
-	int c3po_h;
-	u_int32_t *c3po2;
-	u_int32_t *r2d2;
-	mlx_texture_t *cursor;
-	mlx_image_t *main_menu;
-	mlx_image_t *end;
-	mlx_image_t *congrats;
-	mlx_image_t *settings05;
-	mlx_image_t *settings1;
-	mlx_image_t *settings2;
-	t_wall wall;
-} t_textures;
+	mlx_image_t		*image;
+	u_int32_t		*door;
+	int				door_w;
+	int				door_h;
+	u_int32_t		*door_open;
+	int				door_open_w;
+	int				door_open_h;
+	u_int32_t		*win_image;
+	int				win_image_w;
+	int				win_image_h;
+	u_int32_t		*c3po;
+	int				c3po_w;
+	int				c3po_h;
+	u_int32_t		*c3po2;
+	u_int32_t		*r2d2;
+	mlx_texture_t	*cursor;
+	mlx_image_t		*main_menu;
+	mlx_image_t		*end;
+	mlx_image_t		*congrats;
+	mlx_image_t		*settings05;
+	mlx_image_t		*settings1;
+	mlx_image_t		*settings2;
+	t_wall			wall;
+}	t_textures;
 
 typedef struct s_player
 {
-	int count;
-	char map_start_dir;
-	int row;
-	char col;
-	double pos_x;
-	double pos_y;
-	double dir_x;
-	double dir_y;
-	double plane_x;
-	double plane_y;
-} t_player;
+	int 		count;
+	char		map_start_dir;
+	int			row;
+	char		col;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+}	t_player;
+
 
 typedef struct s_game
 {
-	mlx_t *mlx;
-	int window_width;
-	int window_height;
-	int is_menu;
-	int is_settings;
-	int is_map;
-	int is_opened;
-	int dead_cursor;
-	int is_win;
-	int end;
-	double move_speed;
-	t_textures textures;
-	t_mouse mouse;
-	t_map map;
-	t_player player;
-	t_sprite sprite;
-	t_ray ray;
-} t_game;
+	mlx_t			*mlx;
+	int				window_width;
+	int				window_height;
+	int				is_menu;
+	int				is_settings;
+	int				is_map;
+	int				is_opened;
+	int				dead_cursor;
+	int				is_win;
+	int				end;
+	double			move_speed;
+	t_textures		textures;
+	t_mouse			mouse;
+	t_map			map;
+	t_player		player;
+	t_sprite		sprite;
+	t_ray			ray;
+}	t_game;
 
 //___________TEST___FUNCTIONS___DELETE BEFORE PUSH__________
 // map_prints_delete_for_intra.c
@@ -330,5 +332,7 @@ void		timer(mlx_image_t *image, int height, int width, double time);
 void		key_press(t_game *game);
 void		key_hook(mlx_key_data_t keydata, void *param);
 void		rotation(t_player *player, double rot_speed);
+
+int	get_rgba(int r, int g, int b, int a);
 
 #endif

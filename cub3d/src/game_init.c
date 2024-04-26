@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 09:45:31 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:37:57 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,33 @@ void	init_ray_struct(t_game *game)
 		error_map_exit_game(game, "Out of memory!");
 }
 
+void	delete_player_from_map(t_game *game)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (game->map.saved_map[i])
+	{
+		j = 0;
+		while (game->map.saved_map[i][j])
+		{
+			if (game->map.saved_map[i][j] == 'W' || game->map.saved_map[i][j] == 'E' \
+			|| game->map.saved_map[i][j] == 'N' || game->map.saved_map[i][j] == 'S')
+				game->map.saved_map[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
+	}
+
 void	init_game_struct(t_game *game)
 {
 	game->window_height = 960;
 	game->window_width = 1980;
 	init_ray_struct(game);
 	load_textures(game);
+	delete_player_from_map(game);
 	game->textures.image = NULL;
 	game->end = FALSE;
 	game->is_win = FALSE;
