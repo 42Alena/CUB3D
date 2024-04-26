@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 21:37:23 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 16:48:02 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:20:21 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	gameplay(t_game *game, double time)
 		mlx_delete_image(game->mlx, game->textures.image);
 	raycasting(game);
 	draw_sprites(game);
-	key_press(game);
+	key_press(game, time);
 	minimap(game);
 	timer(game->textures.image, game->window_height, game->window_width, time);
 	if (game->mouse.mouse_x > game->window_width / 1.1)

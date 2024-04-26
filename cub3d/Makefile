@@ -33,7 +33,8 @@ SOURCES_M  := \
 	./src/main_menu.c\
 	./src/utils.c\
 	./src/floor_ceiling.c\
-	./src/doors.c
+	./src/doors.c\
+	./src/movement.c
 
 OBJECTS := $(SOURCES_M:.c=.o)
 

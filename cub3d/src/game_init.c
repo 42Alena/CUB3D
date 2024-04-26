@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 13:44:47 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:24:31 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	init_game_struct(t_game *game)
 	game->move_speed = INITIAL_MOVE_SPEED;
 	game->mouse.mouse_x = 0;
 	game->mouse.mouse_y = 0;
+	game->last_step_time = 0;
 	game->mlx = \
 		mlx_init(game->window_width, game->window_height, "CUB3D", true);
 	if (!game->mlx)

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 17:07:16 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:10:09 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ typedef struct s_game
 	int				is_win;
 	int				end;
 	double			move_speed;
+	double			last_step_time;
 	t_textures		textures;
 	t_mouse			mouse;
 	t_map			map;
@@ -319,16 +320,20 @@ uint32_t	*get_color(mlx_texture_t *texture);
 int			distance_to_wall(t_player *player, \
 char **saved_map, double x, double y);
 void		delete_player_from_map(t_game *game);
+void		footstep_sound(double *last_step_time, double time, double move_speed);
 void		ft_mlx_put_pixel(mlx_image_t *image, \
 uint32_t x, uint32_t y, uint32_t color);
 
 // key_press.c
-void		key_press(t_game *game);
+void		key_press(t_game *game, double time);
 void		key_hook(mlx_key_data_t keydata, void *param);
 void		rotation(t_player *player, double rot_speed);
 
 // doors.c
 void		door_open_or_closed(t_game *game);
+
+// movement.c
+void		WASD(t_game *game, double time);
 
 int			get_rgba(int r, int g, int b, int a);
 
