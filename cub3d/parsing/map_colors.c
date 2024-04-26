@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:00:39 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 11:15:53 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:06:39 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ uint32_t	get_rgb_from_string(t_game *game, char *rgb_string)
 		tmp = ft_strtrim(splited_colors[i], " ");
 		free(splited_colors[i]);
 		splited_colors[i] = tmp;
+	}
+	if (i != 3)
+	{
+		free_double_array(splited_colors);
+		error_map_exit_game(game, "Not valid color");
 	}
 	rgb_uint = get_rgba(get_color_from_string(game, splited_colors, 0), \
 	get_color_from_string(game, splited_colors, 1), \
