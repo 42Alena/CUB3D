@@ -38,7 +38,7 @@ SOURCES_M  := \
 OBJECTS := $(SOURCES_M:.c=.o)
 
 $(NAME): $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a $(LIBGNL)/libgnl.a  $(OBJECTS)
-		$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a $(FSANITIZE) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) $(LIBGNL)/libgnl.a -o $(NAME)
 
 all: $(NAME)
 

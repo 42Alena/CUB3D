@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:39:20 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/25 15:34:56 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:07:42 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	map_file_allocate_memory(t_game *game)
 
 	i = -1;
 	len = game->map.last_line - game->map.first_line - 1;
-	game->map.saved_map = (char **)malloc((len) * sizeof(char *));
+	game->map.saved_map = (char **)malloc((len + 1) * sizeof(char *));
 	if (game->map.saved_map == NULL)
 		error_map_exit_game(game, "Map: memory allocation faled");
 	while (++i < len)
