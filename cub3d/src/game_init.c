@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 10:37:57 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:26:32 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	init_ray_struct(t_game *game)
 
 void	delete_player_from_map(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (game->map.saved_map[i])
@@ -87,14 +87,16 @@ void	delete_player_from_map(t_game *game)
 		j = 0;
 		while (game->map.saved_map[i][j])
 		{
-			if (game->map.saved_map[i][j] == 'W' || game->map.saved_map[i][j] == 'E' \
-			|| game->map.saved_map[i][j] == 'N' || game->map.saved_map[i][j] == 'S')
+			if (game->map.saved_map[i][j] == 'W' \
+			|| game->map.saved_map[i][j] == 'E' \
+			|| game->map.saved_map[i][j] == 'N' \
+			|| game->map.saved_map[i][j] == 'S')
 				game->map.saved_map[i][j] = '0';
 			j++;
 		}
 		i++;
 	}
-	}
+}
 
 void	init_game_struct(t_game *game)
 {

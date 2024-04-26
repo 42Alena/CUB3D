@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 19:00:39 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 12:06:39 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:20:55 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,42 @@ void	save_map_color(t_game *game, char **name_color, char c_f)
 		get_rgb_from_string(game, game->map.floor_color_str);
 }
 
+uint32_t	get_final_color(t_game *game, char **splitted_colors)
+{
+	uint32_t	rgb_uint;
+
+	rgb_uint = get_rgba(get_color_from_string(game, splitted_colors, 0), \
+	get_color_from_string(game, splitted_colors, 1), \
+	get_color_from_string(game, splitted_colors, 2), 255);
+	free_double_array(splitted_colors);
+	return (rgb_uint);
+}
+
 uint32_t	get_rgb_from_string(t_game *game, char *rgb_string)
 {
 	int			i;
 	char		*tmp;
-	char		**splited_colors;
-	uint32_t	rgb_uint;
+	char		**splitted_colors;
 
 	i = -1;
-	splited_colors = ft_split(rgb_string, ',');
-	while (splited_colors[++i])
+	splitted_colors = ft_split(rgb_string, ',');
+	while (splitted_colors[++i])
 	{
 		if (i >= 3)
 		{
-			free_double_array(splited_colors);
+			free_double_array(splitted_colors);
 			error_map_exit_game(game, "Not valid color");
 		}
-		tmp = ft_strtrim(splited_colors[i], " ");
-		free(splited_colors[i]);
-		splited_colors[i] = tmp;
+		tmp = ft_strtrim(splitted_colors[i], " ");
+		free(splitted_colors[i]);
+		splitted_colors[i] = tmp;
 	}
 	if (i != 3)
 	{
-		free_double_array(splited_colors);
+		free_double_array(splitted_colors);
 		error_map_exit_game(game, "Not valid color");
 	}
-	rgb_uint = get_rgba(get_color_from_string(game, splited_colors, 0), \
-	get_color_from_string(game, splited_colors, 1), \
-	get_color_from_string(game, splited_colors, 2), 255);
-	free_double_array(splited_colors);
-	return (rgb_uint);
+	return (get_final_color(game, splitted_colors));
 }
 
 int	get_color_from_string(t_game *game, char **splited_colors, int i)

@@ -1,6 +1,6 @@
 NAME  = cub3D
 CC  = cc
-CFLAGS  = -Wall -Wextra -Werror -g3  -ffast-math -I./include -I$(LIBMLX)/include
+CFLAGS  = -Wall -Wextra -Werror -ffast-math -I./include -I$(LIBMLX)/include
 FSANITIZE = -fsanitize=address
 LIBMLX := ../lib_mlx42
 LIBFT := ../libft
@@ -32,7 +32,8 @@ SOURCES_M  := \
 	./src/textures.c\
 	./src/main_menu.c\
 	./src/utils.c\
-	./src/floor_ceiling.c
+	./src/floor_ceiling.c\
+	./src/doors.c
 
 OBJECTS := $(SOURCES_M:.c=.o)
 

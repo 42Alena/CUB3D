@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:11:16 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/18 11:19:59 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:13:23 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	choose_color(t_game *game, int x, int y_window)
 			draw_wall(game, &x_window, y_window, 0x808090FF);
 		else if (game->map.saved_map[x][y] && (game->map.saved_map[x][y] == '0' \
 		|| game->map.saved_map[x][y] == ' '))
-			draw_wall(game, &x_window, y_window, 0x737373FF);
+			x_window += WALL_WIDTH;
 		else if (game->map.saved_map[x][y] && (game->map.saved_map[x][y] == '2' \
 		|| game->map.saved_map[x][y] == '3'))
 			draw_wall(game, &x_window, y_window, 0x000000FF);

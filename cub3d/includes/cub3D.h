@@ -6,79 +6,79 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 11:10:36 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:36:30 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include "../../libft/libft.h"
-#include "../../lib_gnl/include/get_next_line.h"
-#include "../../lib_mlx42/include/MLX42/MLX42.h"
+# include "../../libft/libft.h"
+# include "../../lib_gnl/include/get_next_line.h"
+# include "../../lib_mlx42/include/MLX42/MLX42.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <math.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 // minimap and bigmap //
-#define WALL_WIDTH 15
-#define WALL_HEIGHT 15
-#define BIG_WALL_WIDTH 10
-#define BIG_WALL_HEIGHT 10
+# define WALL_WIDTH 15
+# define WALL_HEIGHT 15
+# define BIG_WALL_WIDTH 10
+# define BIG_WALL_HEIGHT 10
 //------------------------//
 
 // game speed                  //
-#define INITIAL_MOVE_SPEED 0.05
-#define ROTATION_SPEED 0.1
-#define TIMER_SPEED 20
+# define INITIAL_MOVE_SPEED 0.05
+# define ROTATION_SPEED 0.1
+# define TIMER_SPEED 20
 //------------------------------//
 
-#define LEFT 0
-#define RIGHT 1
-#define UP 2
-#define DOWN 3
-#define VMOVE 128.0
+# define LEFT 0
+# define RIGHT 1
+# define UP 2
+# define DOWN 3
+# define VMOVE 128.0
 
 typedef enum e_bool
 {
 	FALSE = 0,
 	TRUE = 1
-} t_bool;
+}	t_bool;
 
 typedef struct s_mouse
 {
-	double mouse_x;
-	double mouse_y;
-} t_mouse;
+	double	mouse_x;
+	double	mouse_y;
+}	t_mouse;
 
 typedef struct s_map
 {
-	char **saved_map;
-	int cols;
-	int rows;
-	char *file_path;
-	t_bool fd_open;
-	int fd;
-	char *tmp_line;
-	int len_tmp_line;
-	int first_line;
-	int middle_line;
-	int last_line;
-	int count_player;
-	char *no_texture;
-	char *so_texture;
-	char *we_texture;
-	char *ea_texture;
-	char *floor_color_str;
-	uint32_t floor_color_uint;
-	char *ceiling_color_str;
-	uint32_t ceiling_color_uint;
-} t_map;
+	char		**saved_map;
+	int			cols;
+	int			rows;
+	char		*file_path;
+	t_bool		fd_open;
+	int			fd;
+	char		*tmp_line;
+	int			len_tmp_line;
+	int			first_line;
+	int			middle_line;
+	int			last_line;
+	int			count_player;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	char		*floor_color_str;
+	uint32_t	floor_color_uint;
+	char		*ceiling_color_str;
+	uint32_t	ceiling_color_uint;
+}	t_map;
 
 typedef struct s_sprite
 {
@@ -142,7 +142,6 @@ typedef struct s_wall
 	int				east_h;
 }	t_wall;
 
-
 typedef struct s_textures
 {
 	mlx_image_t		*image;
@@ -172,7 +171,7 @@ typedef struct s_textures
 
 typedef struct s_player
 {
-	int 		count;
+	int			count;
 	char		map_start_dir;
 	int			row;
 	char		col;
@@ -183,7 +182,6 @@ typedef struct s_player
 	double		plane_x;
 	double		plane_y;
 }	t_player;
-
 
 typedef struct s_game
 {
@@ -205,15 +203,6 @@ typedef struct s_game
 	t_sprite		sprite;
 	t_ray			ray;
 }	t_game;
-
-//___________TEST___FUNCTIONS___DELETE BEFORE PUSH__________
-// map_prints_delete_for_intra.c
-void		print_map_structure(t_game *game);
-void		print_map_pos_x_y(t_game *game);
-void		print_map(t_game *game);
-//-------------END_TO TEST-------------------------------------------
-
-// in main.c only main
 
 //______game_play.c (other functions from main)
 void		game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
@@ -321,18 +310,23 @@ void		draw_sprites(t_game *game);
 
 // mouse.c
 void		cursor(double xpos, double ypos, void *param);
-void		mouse(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
+void		mouse(mouse_key_t button, \
+action_t action, modifier_key_t mods, void *param);
 
 // utils.c
 uint32_t	*get_color(mlx_texture_t *texture);
-int			distance_to_wall(t_player *player, char **saved_map, double x, double y);
+int			distance_to_wall(t_player *player, \
+char **saved_map, double x, double y);
 void		timer(mlx_image_t *image, int height, int width, double time);
 
-// key_press
+// key_press.c
 void		key_press(t_game *game);
 void		key_hook(mlx_key_data_t keydata, void *param);
 void		rotation(t_player *player, double rot_speed);
 
-int	get_rgba(int r, int g, int b, int a);
+// doors.c
+void		door_open_or_closed(t_game *game);
+
+int			get_rgba(int r, int g, int b, int a);
 
 #endif

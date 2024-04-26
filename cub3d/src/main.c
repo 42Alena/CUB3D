@@ -6,27 +6,11 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 10:39:18 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:11:43 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-void print_map(t_game *game)
-{
-
-    if (game->map.saved_map == NULL)
-        printf("\n MAP = NULL\n");
-    else
-    {
-        int i = 0;
-        while (game->map.saved_map[i])
-        {
-            printf("%s\n", game->map.saved_map[i]);
-            i++;
-        }
-    }
-}
 
 int	main(int argc, char **argv)
 {
@@ -37,7 +21,6 @@ int	main(int argc, char **argv)
 	map_file_check(&game, argc, argv);
 	map_file_read_save(&game);
 	check_map(&game);
-	print_map(&game);
 	init_game_struct(&game);
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);

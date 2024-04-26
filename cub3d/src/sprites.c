@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:28:06 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/03/24 14:51:51 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:32:57 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	draw_stripe(t_game *game, int stripe, int animation)
 	{
 		game->sprite.d = (y - game->sprite.v_move_screen) \
 		* 256 - game->window_height * 128 + game->sprite.sprite_height * 128;
-		game->sprite.tex_y = \
-		((game->sprite.d * game->textures.c3po_h) / game->sprite.sprite_height) / 256;
+		game->sprite.tex_y = ((game->sprite.d * game->textures.c3po_h) \
+		/ game->sprite.sprite_height) / 256;
 		if (animation == 0)
 			color = game->textures.c3po[game->textures.c3po_w \
 			* game->sprite.tex_y + game->sprite.tex_x];

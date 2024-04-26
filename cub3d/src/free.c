@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 09:55:03 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:23:00 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,5 @@ void	free_mlx_img_txtr(t_game *game)
 		mlx_delete_image(game->mlx, game->textures.end);
 	if (game->textures.congrats)
 		mlx_delete_image(game->mlx, game->textures.congrats);
-	
-	//TODO: add check if cursor exist
 	mlx_delete_texture(game->textures.cursor);
 }
