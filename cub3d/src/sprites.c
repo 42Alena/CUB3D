@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 16:28:06 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/26 12:32:57 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:45:43 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	draw_stripe(t_game *game, int stripe, int animation)
 			color = game->textures.c3po2[game->textures.c3po_w \
 			* game->sprite.tex_y + game->sprite.tex_x];
 		if ((color & 0x00FFFFFF) != 0)
-			mlx_put_pixel(game->textures.image, stripe, y, color);
+			ft_mlx_put_pixel(game->textures.image, stripe, y, color);
 		y++;
 	}
 }

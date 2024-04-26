@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   game_play.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 21:37:23 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/24 09:44:08 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:48:02 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	timer(mlx_image_t *image, int height, int width, double time)
+{
+	int			y;
+	int			x;
+
+	y = -1;
+	while (++y < height)
+	{
+		x = -1;
+		while (++x < width)
+		{
+			if (x < 1700 - time * TIMER_SPEED && x > 1000 && y > 50 && y < 100)
+			{
+				if (time * TIMER_SPEED > 500)
+					ft_mlx_put_pixel(image, x, y, 0xFF000099);
+				else
+					ft_mlx_put_pixel(image, x, y, 0xFF000044);
+			}
+		}
+	}
+}
 
 void	game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor)
 {

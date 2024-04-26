@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 13:38:26 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:44:31 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,6 +327,8 @@ void		rotation(t_player *player, double rot_speed);
 
 // doors.c
 void		door_open_or_closed(t_game *game);
+
+void	ft_mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color);
 
 int			get_rgba(int r, int g, int b, int a);
 

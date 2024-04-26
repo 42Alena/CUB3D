@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 13:38:30 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:51:40 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,6 @@ int	distance_to_wall(t_player *player, char **saved_map, double x, double y)
 	return (TRUE);
 }
 
-void	timer(mlx_image_t *image, int height, int width, double time)
-{
-	int			y;
-	int			x;
-
-	y = -1;
-	while (++y < height)
-	{
-		x = -1;
-		while (++x < width)
-		{
-			if (x < 1700 - time * TIMER_SPEED && x > 1000 && y > 50 && y < 100)
-			{
-				if (time * TIMER_SPEED > 500)
-					mlx_put_pixel(image, x, y, 0xFF000099);
-				else
-					mlx_put_pixel(image, x, y, 0xFF000044);
-			}
-		}
-	}
-}
-
 void	delete_player_from_map(t_game *game)
 {
 	int	i;
@@ -88,4 +66,15 @@ void	delete_player_from_map(t_game *game)
 		}
 		i++;
 	}
+}
+
+void	ft_mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color)
+{
+	uint8_t* pixelstart;
+	
+	pixelstart = &image->pixels[(y * image->width + x) * sizeof(int32_t)];
+	*(pixelstart++) = (uint8_t)(color >> 24); // Alpha
+	*(pixelstart++) = (uint8_t)(color >> 16); // Red
+	*(pixelstart++) = (uint8_t)(color >> 8);  // Green
+	*(pixelstart++) = (uint8_t)(color & 0xFF); // Blue
 }

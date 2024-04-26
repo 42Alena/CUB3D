@@ -2,7 +2,6 @@ NO ./textures/wall_north.png
 SO ./textures/wall_south.png
 WE ./textures/wall_west.png
 EA ./textures/wall_east.png
-
 F 240, 240, 240
 C 10, 10, 10
 
@@ -25,7 +24,7 @@ C 10, 10, 10
 1000001
 1111111
 1110111
-1110111
+1010111
 1111111
 1110111
 1110111

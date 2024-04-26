@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:11:16 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/26 12:13:23 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:45:34 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	draw_wall(t_game *game, int *draw_x, int draw_y, u_int32_t color)
 		x = 0;
 		while (x < WALL_WIDTH)
 		{
-			mlx_put_pixel(game->textures.image, *draw_x + x, draw_y + y, color);
+			ft_mlx_put_pixel(game->textures.image, *draw_x + x, draw_y + y, color);
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/26 12:27:53 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:45:38 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	draw_walls(t_game *game, int x, u_int32_t *texture, int tex_height)
 		tex_y = (int)tex_pos & (tex_height - 1);
 		tex_pos += game->ray.step;
 		color = texture[tex_height * tex_y - game->ray.tex_x];
-		mlx_put_pixel(game->textures.image, x, y++, color);
+		ft_mlx_put_pixel(game->textures.image, x, y++, color);
 	}
 	game->ray.z_buffer[x] = game->ray.perp_wall_dist;
 }
