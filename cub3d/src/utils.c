@@ -6,11 +6,12 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 18:25:01 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 20:12:13 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+#include <time.h>
 
 uint32_t	*get_color(mlx_texture_t *texture)
 {
@@ -68,9 +69,10 @@ void	delete_player_from_map(t_game *game)
 	}
 }
 
-void	footstep_sound(double *last_step_time, double time, double move_speed)
+void	footstep_sound(double *last_step_time, double game_time, double move_speed)
 {
 	double	wait_time;
+	int		num;
 
 	wait_time = 0.5;
 	if (move_speed == INITIAL_MOVE_SPEED)
@@ -79,10 +81,19 @@ void	footstep_sound(double *last_step_time, double time, double move_speed)
 		wait_time = 0.4;
 	else if (move_speed == INITIAL_MOVE_SPEED / 2)
 		wait_time = 0.7;
-	if (time > *last_step_time + wait_time)
+	if (game_time > *last_step_time + wait_time)
 	{
-		*last_step_time = time;
-		system("aplay -q ./music/footstep.wav &");
+		num = rand() % 4;
+		printf("%d\n", num);
+		if (num == 0)
+			system("aplay -q ./music/footstep.wav &");
+		else if (num == 1)
+			system("aplay -q ./music/footstep1.wav &");
+		else if (num == 2)
+			system("aplay -q ./music/footstep2.wav &");
+		else if (num == 3)
+			system("aplay -q ./music/footstep3.wav &");
+		*last_step_time = game_time;
 	}
 }
 

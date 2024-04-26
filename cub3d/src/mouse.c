@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:20:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/26 11:48:36 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 20:24:28 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ modifier_key_t mods, void *param)
 
 	game = param;
 	if (button != 0 || action != 0)
+		return ;
+	if (!game->is_menu && !game->is_settings)
 		return ;
 	if (game->mouse.mouse_x > 700 && game->mouse.mouse_x < 1200 \
 	&& game->mouse.mouse_y > 265 && game->mouse.mouse_y < 360)

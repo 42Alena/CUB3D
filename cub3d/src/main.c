@@ -6,12 +6,12 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 17:41:18 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 20:09:12 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
+#include <time.h>
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	map_file_read_save(&game);
 	check_map(&game);
 	init_game_struct(&game);
+	srand(time(NULL));
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);
 	mlx_mouse_hook(game.mlx, mouse, &game);
