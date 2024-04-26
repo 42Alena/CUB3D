@@ -10,22 +10,6 @@ Nice to have
 [] write custom mlx_put_pixel
 [] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
 
-
-[]  to Daniil: 
-	[]devide back to main and bonus part
-	[] in main part only according subject, without any bonus	[] add option for normal mode without time pressure
-	[] extra_textures(t_game *game):
-		//TODO: Daniil, do you need hier to print wall->width, wall->height
-		printf("W:%d H:%d\n", wall->width, wall->height);
-	[] 	//TODO: add check if cursor exist in free_mlx_img_txtr:
-		mlx_delete_texture(game->textures.cursor);
-	[]sh: /usr/bin/aplay: No such file or directory
-		sh: /usr/bin/aplay: No such file or directory
-		sh: /usr/bin/aplay: No such file or directory
-		sh: /usr/bin/aplay: No such file or directory
-	[] is now player going throught walls??
-	[] your simple map with 2 as doors is not valid symbol
-
 Alena (29.03-24.04, except holidays):
 [x] norminette
 [x] cleaned memory leaks 

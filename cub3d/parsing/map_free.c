@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/25 15:34:58 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:55:29 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ void	free_saved_map(t_game *game)
 		return ;
 	while (game->map.saved_map[i])
 	{
-		free(game->map.saved_map[i]);
+		if (game->map.saved_map[i])
+			free(game->map.saved_map[i]);
 		game->map.saved_map[i] = NULL;
 		i++;
 	}
-	free(game->map.saved_map);
+	if (game->map.saved_map)
+		free(game->map.saved_map);
 	game->map.saved_map = NULL;
 }
 
