@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 16:51:40 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:04:40 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,29 @@ void	delete_player_from_map(t_game *game)
 	}
 }
 
-void	ft_mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color)
+// BIG ENDIAN
+void	ft_mlx_put_pixel(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t clr)
 {
-	uint8_t* pixelstart;
-	
-	pixelstart = &image->pixels[(y * image->width + x) * sizeof(int32_t)];
-	*(pixelstart++) = (uint8_t)(color >> 24); // Alpha
-	*(pixelstart++) = (uint8_t)(color >> 16); // Red
-	*(pixelstart++) = (uint8_t)(color >> 8);  // Green
-	*(pixelstart++) = (uint8_t)(color & 0xFF); // Blue
+	size_t		pixel_offset;
+	uint32_t	*pixel_ptr;
+	uint32_t	new_color;
+
+	new_color = ((clr >> 24) & 0xFF) \
+	| ((clr << 8) & 0xFF0000) \
+	| ((clr >> 8) & 0xFF00) \
+	| ((clr << 24) & 0xFF000000);
+	pixel_offset = (y * img->width + x) * sizeof(uint32_t);
+	pixel_ptr = (uint32_t *)&img->pixels[pixel_offset];
+	*pixel_ptr = new_color;
 }
+
+// LITTLE ENDIAN
+// void	ft_mlx_put_pixel(mlx_image_t* img, uint32_t x, uint32_t y, uint32_t clr)
+// {
+//     size_t pixel_offset;
+//     uint32_t* pixel_ptr;
+
+//     pixel_offset = (y * image->width + x) * sizeof(uint32_t);
+//     pixel_ptr = (uint32_t*)&image->pixels[pixel_offset];
+//     *pixel_ptr = color;
+// }

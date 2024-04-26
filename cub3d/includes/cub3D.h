@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 16:44:31 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:07:16 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ typedef struct s_game
 }	t_game;
 
 //______game_play.c (other functions from main)
+void		timer(mlx_image_t *image, int height, int width, double time);
 void		game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
 void		win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
 void		gameplay(t_game *game, double time);
@@ -317,8 +318,9 @@ action_t action, modifier_key_t mods, void *param);
 uint32_t	*get_color(mlx_texture_t *texture);
 int			distance_to_wall(t_player *player, \
 char **saved_map, double x, double y);
-void		timer(mlx_image_t *image, int height, int width, double time);
 void		delete_player_from_map(t_game *game);
+void		ft_mlx_put_pixel(mlx_image_t *image, \
+uint32_t x, uint32_t y, uint32_t color);
 
 // key_press.c
 void		key_press(t_game *game);
@@ -327,8 +329,6 @@ void		rotation(t_player *player, double rot_speed);
 
 // doors.c
 void		door_open_or_closed(t_game *game);
-
-void	ft_mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color);
 
 int			get_rgba(int r, int g, int b, int a);
 

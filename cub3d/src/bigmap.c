@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:48 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/26 16:44:57 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:05:24 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	draw_bigwall(t_game *game, int *draw_x, int draw_y, u_int32_t color)
 		x = 0;
 		while (x < BIG_WALL_WIDTH)
 		{
-			ft_mlx_put_pixel(game->textures.image, *draw_x + x, draw_y + y, color);
+			ft_mlx_put_pixel(game->textures.image, \
+			*draw_x + x, draw_y + y, color);
 			x++;
 		}
 		y++;
