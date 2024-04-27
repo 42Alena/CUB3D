@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_game_save.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:17:30 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 13:53:54 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:45:31 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	check_map_file_characters(t_game *game)
 		c = game->map.tmp_line[i];
 		if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 			game->player.count += 1;
-		else if (c != '0' && c != '1' && c != ' ' && c != '2' && c != '3')
+		else if (c != '0' && c != '1' && c != ' ')
 			error_map_exit_game(game, "Map: Detected unsupported symbol");
 		i++;
 	}

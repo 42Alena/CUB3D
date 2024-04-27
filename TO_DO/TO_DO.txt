@@ -11,6 +11,8 @@ Nice to have
 [] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
 
 Alena:
+[x] deleted:somebody's change 	else if (c != '0' && c != '1' && c != ' ' && c != '2' && c != '3') in check_map_file_characters(t_game *game)
+[x] fixed double free invalid player position
 [x] norminette
 [x] cleaned memory leaks 
 [x] tested with whole main
