@@ -6,12 +6,11 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/27 12:00:55 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:16:18 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-#include <time.h>
 
 uint32_t	*get_color(mlx_texture_t *texture)
 {
@@ -69,11 +68,14 @@ void	delete_player_from_map(t_game *game)
 	}
 }
 
-void	footstep_sound(double *last_step_t, double game_time, double move_speed)
+void	footstep_sound(double *last_step_t, double game_time, \
+double move_speed, int sound_off)
 {
 	double	wait_time;
 	int		num;
 
+	if (sound_off)
+		return ;
 	wait_time = 0.5;
 	if (move_speed == INITIAL_MOVE_SPEED)
 		wait_time = 0.5;

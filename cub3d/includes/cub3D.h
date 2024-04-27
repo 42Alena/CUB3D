@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/27 12:05:32 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:13:51 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-#include <time.h>
+# include <time.h>
 
 // minimap and bigmap //
 # define WALL_WIDTH 15
@@ -324,7 +324,8 @@ uint32_t	*get_color(mlx_texture_t *texture);
 int			distance_to_wall(t_player *player, \
 char **saved_map, double x, double y);
 void		delete_player_from_map(t_game *game);
-void		footstep_sound(double *last_step_time, double time, double move_speed);
+void		footstep_sound(double *last_step_time, double time, \
+double move_speed, int sound_off);
 void		ft_mlx_put_pixel(mlx_image_t *image, \
 uint32_t x, uint32_t y, uint32_t color);
 

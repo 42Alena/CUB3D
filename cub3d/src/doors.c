@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:31:58 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/26 12:32:05 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:09:09 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	door_open_or_closed(t_game *game)
 	else if ((char)game->ray.tex_num == '2' && is_near(game, '2'))
 	{
 		if (game->is_opened == FALSE)
-			system("aplay -q ./music/door.wav &");
+			if (!game->sound_effects_off)
+				system("aplay -q ./music/door.wav &");
 		game->is_opened = TRUE;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:39:14 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/27 12:05:06 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:11:04 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,21 @@ void	settings(t_game *game)
 	if (game->is_settings == FALSE)
 		return ;
 	if (move_speed(game))
-		system("/usr/bin/aplay -q ./music/click.wav &");
+		if (!game->sound_effects_off)
+			system("/usr/bin/aplay -q ./music/click.wav &");
 }
 
 void	back_to_main_menu(t_game *game)
 {
-	system("/usr/bin/aplay -q ./music/click.wav &");
+	if (!game->sound_effects_off)
+		system("/usr/bin/aplay -q ./music/click.wav &");
 	mlx_image_to_window(game->mlx, game->textures.main_menu, 0, 0);
 	game->is_settings = FALSE;
 }
 
 void	launch_game(t_game *game)
 {
-	if (game->is_settings == FALSE)
+	if (game->is_settings == FALSE && !game->sound_effects_off)
 		system("/usr/bin/aplay -q ./music/c3po.wav &");
 	game->is_menu = FALSE;
 	game->is_settings = FALSE;
@@ -99,5 +101,6 @@ void	launch_game(t_game *game)
 	game->textures.settings1->enabled = FALSE;
 	game->textures.settings05->enabled = FALSE;
 	game->textures.settings2->enabled = FALSE;
-	system("/usr/bin/aplay -q ./music/click.wav &");
+	if (!game->sound_effects_off)
+		system("/usr/bin/aplay -q ./music/click.wav &");
 }
