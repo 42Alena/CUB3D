@@ -10,7 +10,7 @@ Nice to have
 [] write custom mlx_put_pixel
 [] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
 
-Alena (29.03-24.04, except holidays):
+Alena:
 [x] norminette
 [x] cleaned memory leaks 
 [x] tested with whole main

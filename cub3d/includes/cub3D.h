@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/27 12:13:51 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:34:51 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_sprite
 	int		draw_end_x;
 	int		d;
 	int		tex_y;
-	int		tex_x; 
+	int		tex_x;
 }	t_sprite;
 
 typedef struct s_ray
@@ -247,6 +247,7 @@ t_bool		is_map_north_south_wall(t_game *game);
 
 //______map_player_save.c
 void		player_check_save(t_game *game, int row, int col);
+void		check_player_position(t_game *game, int row, int col);
 void		save_player_struct(t_game *game);
 void		save_player_dir(t_game *game);
 
