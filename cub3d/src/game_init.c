@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:02:10 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 17:24:31 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:33:54 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	init_game_struct(t_game *game)
 	game->is_map = FALSE;
 	game->is_settings = FALSE;
 	game->dead_cursor = FALSE;
+	game->music_is_paused = FALSE;
 	game->move_speed = INITIAL_MOVE_SPEED;
 	game->mouse.mouse_x = 0;
 	game->mouse.mouse_y = 0;

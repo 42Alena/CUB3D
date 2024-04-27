@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 18:10:09 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:33:32 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ typedef struct s_game
 	int				dead_cursor;
 	int				is_win;
 	int				end;
+	int				music_is_paused;
 	double			move_speed;
 	double			last_step_time;
 	t_textures		textures;

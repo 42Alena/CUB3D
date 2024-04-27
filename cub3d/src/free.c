@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 07:11:41 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 12:23:00 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:08:06 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	free_game(t_game *game)
 	free_mlx_img_txtr(game);
 	free_textures(game);
 	free(game->ray.z_buffer);
+	system("screen -S music_session -X quit ");
 	system("pkill aplay");
 	if (game->mlx)
 		mlx_terminate(game->mlx);

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 20:12:13 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:39:30 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	footstep_sound(double *last_step_time, double game_time, double move_speed)
 	if (game_time > *last_step_time + wait_time)
 	{
 		num = rand() % 4;
-		printf("%d\n", num);
 		if (num == 0)
 			system("aplay -q ./music/footstep.wav &");
 		else if (num == 1)

@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:20:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/26 20:24:28 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:40:15 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ modifier_key_t mods, void *param)
 	game = param;
 	if (button != 0 || action != 0)
 		return ;
+	if (game->mouse.mouse_x > 1750 && game->mouse.mouse_x < 1800 \
+	&& game->mouse.mouse_y > 50 && game->mouse.mouse_y < 100)
+	{
+		system("screen -S music_session -p 1 -X stuff ' ' ");
+		if (game->music_is_paused == FALSE)
+			game->music_is_paused = TRUE;
+		else if (game->music_is_paused == TRUE)
+			game->music_is_paused = FALSE;
+	}
 	if (!game->is_menu && !game->is_settings)
 		return ;
 	if (game->mouse.mouse_x > 700 && game->mouse.mouse_x < 1200 \
