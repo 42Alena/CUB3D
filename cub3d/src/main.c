@@ -6,12 +6,12 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/27 11:08:49 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:01:44 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-#include <time.h>
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -29,7 +29,8 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, ft_hook, &game);
 	system("screen -dmS music_session");
-	system("screen -S music_session -X screen /usr/bin/aplay -i -q ./music/main.wav");
+	system("screen -S music_session \
+	-X screen /usr/bin/aplay -i -q ./music/main.wav");
 	system("/usr/bin/aplay -q ./music/hellothere.wav &");
 	mlx_loop(game.mlx);
 	free_game(&game);

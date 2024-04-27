@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/27 11:33:32 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:05:32 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+#include <time.h>
 
 // minimap and bigmap //
 # define WALL_WIDTH 15
@@ -196,6 +197,7 @@ typedef struct s_game
 	int				is_win;
 	int				end;
 	int				music_is_paused;
+	int				sound_effects_off;
 	double			move_speed;
 	double			last_step_time;
 	t_textures		textures;
@@ -301,6 +303,7 @@ void		launch_game(t_game *game);
 void		back_to_main_menu(t_game *game);
 void		settings(t_game *game);
 int			move_speed(t_game *game);
+void		pause_music(t_game *game);
 
 // bigmap.c
 void		bigmap(t_game *game);
@@ -334,7 +337,7 @@ void		rotation(t_player *player, double rot_speed);
 void		door_open_or_closed(t_game *game);
 
 // movement.c
-void		WASD(t_game *game, double time);
+void		wasd(t_game *game, double time);
 
 int			get_rgba(int r, int g, int b, int a);
 

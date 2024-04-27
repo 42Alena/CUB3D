@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:38:29 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/26 18:10:43 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:04:04 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	check_collision(t_player *player, char **saved_map, double speed, int dir)
 	return (distance_to_wall(player, saved_map, check_x, check_y));
 }
 
-
 void	move(t_player *player, char **saved_map, double move_speed, int dir)
 {
 	if (!check_collision(player, saved_map, move_speed, dir))
@@ -67,7 +66,7 @@ void	move(t_player *player, char **saved_map, double move_speed, int dir)
 	}
 }
 
-void	WASD(t_game *game, double time)
+void	wasd(t_game *game, double time)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{

@@ -6,38 +6,11 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 21:37:23 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/27 11:38:58 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:04:52 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-// draw a cirle (25 is radius)
-void pause_music(mlx_image_t *image, int height, int width, int is_paused)
-{
-	int			x;
-	int			y;
-	int			center_x;
-	int			center_y;
-	uint32_t	color;
-
-	color = 0x00FF00FF;
-	if (is_paused)
-		color = 0xFF808080;
-	center_x = 1775;
-	center_y = 75;
-	y = -1;
-	while (++y < height)
-	{
-		x = -1;
-		while (++x < width)
-		{
-			if ((x - center_x) * (x - center_x) + (y - center_y) \
-			* (y - center_y) <= 25 * 25)
-				ft_mlx_put_pixel(image, x, y,  color);
-		}
-	}
-}
 
 void	timer(mlx_image_t *image, int height, int width, double time)
 {
@@ -93,7 +66,7 @@ void	gameplay(t_game *game, double time)
 	key_press(game, time);
 	minimap(game);
 	timer(game->textures.image, game->window_height, game->window_width, time);
-	pause_music(game->textures.image, game->window_height, game->window_width, game->music_is_paused);
+	pause_music(game);
 	if (game->mouse.mouse_x > game->window_width / 1.1)
 		rotation(&game->player, ROTATION_SPEED / 2);
 	else if (game->mouse.mouse_x < game->window_width * 1.1 \

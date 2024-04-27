@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:35:01 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/26 17:40:27 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:04:04 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ void	key_press(t_game *game, double time)
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_TAB))
 		pause_menu(game);
 	else
-		WASD(game, time);
+		wasd(game, time);
 }
