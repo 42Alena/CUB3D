@@ -3,12 +3,21 @@ BEFORE PUSH:
 
 Nice to have
 [:((] fix multiple sprites - I tried ...
-[] crouch - change the height of the walls?
-[] stop timer when in menu
-
 [] add credits
-[] write custom mlx_put_pixel
-[] Memory leaks when exit with red cross (how to call free?), with ESC it is fine
+
+
+Daniil:
+[x] turn off sound effects button
+[x] pause main music button
+[x] random footstep sounds(4)
+[x] footstep sounds
+[x] Memory leaks when exit with red cross
+[x] write custom mlx_put_pixel
+[x] fixed mouse press not in the menu
+[x] fix invalid write and conditional jumps
+[x] fix parsing mistake(segfault) in map_colors
+[x] show correct textures based on orientation
+[x] fix floor and ceiling color format
 
 Alena:
 [x] deleted:somebody's change 	else if (c != '0' && c != '1' && c != ' ' && c != '2' && c != '3') in check_map_file_characters(t_game *game)
@@ -86,27 +95,19 @@ Check after save:
 [x] Makefiles(libft,libgnl,cub3D: added for debug -g to CFLAGS
 [x] check arguments,  check map file(.cub, open)
 
-24.03
+Daniil:
 [x] now textures do not have to be the same size (we take their size from them) 
 	no more #define IMAGE_WIDTH, #define SPRITE_WIDTH
-
-18.03
 [x] ALL norminette fixed
 [x] split minimap and bigmap
-
-16.03
 [x] now game is way faster
 [x] I optimized the code by removing unneccesary things  (on the 4 floor game is very slow!)
-
-14.03
 [x] Win the game
 [x] Add game over music and improve game over
 [x] mandatory part deleted, will do it at the end
 [x] EXIT without memory leaks (seems no leaks, but double check!)
 [x] All possibly lost leaks fixed
 [x] fixed alena's memory errors in map save
-
-13.03
 [x] fix image mirroring
 [x] door opening is broken
 [x] player move in the wrong direction on minimap
@@ -115,18 +116,13 @@ Check after save:
 [x] fixed wall opening
 [x] segfault when move to the wall right after start
 [x] improve wall collision
-
-12.03
 [x] lower picture resolution from 1024 to 512
 [x] Added noooo sound at the end and hello there at the begging
 [x] open the big map when m is pressed
 [x] improve minimap (player is always in the middle)
-[x] draw minimap
 [x] Kill music process after end
 [x] Add button sound
 [x] Add background music
-
-11.03
 [x] Add music (I found a way using system("aplay ./path"))
 [x] change cursor after explosion
 [x] shitty ship explosion (game over)
@@ -135,22 +131,16 @@ Check after save:
 [x] change speed in settings
 [x] settings menu
 [x] almost all norminette (variables renamed to snake format)
-
-10.03
 [x] norminette
 [x] split mandatory and bonus part
 [x] added sprite animation
 [x] movement is more smooth(key press is now handled in loop hook, not in key hook)
 [x] door opening improved
-
-09.03
 [x] raycasting split into multiple files
 [x] norminette
 [x] Added lightsaber
 [x] Display door and open it (animation?)
 [x] Added c3po sprite
-
-08.03
 [x] added message from C3PO
 [x] added custom cursor
 [x] removed for loops from raycasting
@@ -160,35 +150,36 @@ Check after save:
 [x] Working play button in the main menu
 [x] Mouse rotation improved
 [x] Added new mouse.c file for mouse functions
-
-07.03
-[x] check player in map
-[x] save player in  struct player 
 [x] Added main menu image (click with mouse to close it)
 [x] improve mouse rotation (rotate even when mouse is not moving)
 [x] rotate player with mouse
-[x] moved textures to new folder
-[x] changed absolute path to relative path to textures.png inf init_game_struct()
-[x] libft must compile with cc, not gcc
-[x] moved all init_ft to new created init_game.c
 [x] A,D keys to go left and right
 [x] -> and <- move the view
 [x] split key_press
 [x] ESC key
 [x] fix wall collision
-
-06.03
-[x] start thinking about main GAME_CONCEPT/IDEA
 [x] basic wall collision
 [x] high resolution images 1024 pixels
 [x] N, S, E, W images logic
 [x] Ceiling and floor images
+[x] split DDA algoritmh
+[x] render real map
+[x] raycasting with generated textures
+[x] player movement up and down
+[x] player rotation
+
+Together:
+[x] draw minimap
+[x] changed absolute path to relative path to textures.png inf init_game_struct()
+[x] check player in map
+[x] save player in  struct player 
+[x] moved textures to new folder
+[x] libft must compile with cc, not gcc
+[x] moved all init_ft to new created init_game.c
+[x] start thinking about main GAME_CONCEPT/IDEA
 [x] raycasting with png images :)))))))))
-[ ] Map from subject with  upper information with textures and  colors:
-	[] parse input in TEXTURES (NO,SO,WE,EA)|COLORS|MAP
-	[] save information in struct
-	[] check if colors for cieling and floor are correct
-	[] convert colors for cieling and floor
+[x] Basic untextured raycasting :))))))))))
+
 
 05.03
 [x] added  get_next_line library to project and Makefile
@@ -196,25 +187,11 @@ Check after save:
 [x] check  programm input 
 [x] check input file 
 [x] correctly save only MAP, without information with textures and  colors  
-[x] split DDA algoritmh
-[x] render real map
-[x] raycasting with generated textures
 
-04.03
-[x] Basic untextured raycasting :))))))))))
-[x] player movement up and down
-[x] player rotation
-
-03.03
-[x]  start programming (implementation Raycasting)
-[x]  start to learn about DDA and Raycasting
-[] Start reading about Raycasting
-	[x] https://www.youtube.com/watch?v=NbSee-XM7WA
-	[x] Lode's Computer Graphics Tutorial: https://lodev.org/cgtutor/raycasting.html
-	[] Raycasting II: Floor and Ceiling: https://lodev.org/cgtutor/raycasting2.html 
-	[] Raycasting III: Sprites: https://lodev.org/cgtutor/raycasting3.html 
 
 1.03 START PROJECT CUB3D :) GOOD LUCK!
+[x]  start programming (implementation Raycasting)
+[x]  start to learn about DDA and Raycasting
 [x] read project subject
 [x] create github CUB3D project
 [x] create TO_DO folder with TO_DO list 
