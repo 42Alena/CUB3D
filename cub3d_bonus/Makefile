@@ -17,18 +17,23 @@ SOURCES_M  := \
 	./parsing/map_colors.c\
 	./parsing/map_utils.c\
 	./parsing/map_free.c\
+	./parsing/error.c\
     ./src/main.c\
 	./src/game_init.c\
 	./src/game_play.c\
-	./src/error.c\
 	./src/free.c\
 	./src/raycasting.c\
 	./src/raycasting_calculations.c \
 	./src/mouse.c\
 	./src/key_press.c\
+	./src/sprites.c\
+	./src/minimap.c\
+	./src/bigmap.c\
 	./src/textures.c\
+	./src/main_menu.c\
 	./src/utils.c\
 	./src/floor_ceiling.c\
+	./src/doors.c\
 	./src/movement.c
 
 OBJECTS := $(SOURCES_M:.c=.o)

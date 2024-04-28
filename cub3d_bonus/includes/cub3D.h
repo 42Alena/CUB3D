@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:37:52 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/28 10:54:10 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:34:51 by akurmyza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_sprite
 	int		draw_end_x;
 	int		d;
 	int		tex_y;
-	int		tex_x; 
+	int		tex_x;
 }	t_sprite;
 
 typedef struct s_ray
@@ -212,7 +212,7 @@ typedef struct s_game
 void		timer(mlx_image_t *image, int height, int width, double time);
 void		game_over(mlx_image_t *end, mlx_t *mlx, int *dead_cursor);
 void		win_screen(mlx_image_t *congrats, mlx_t *mlx, int *dead_cursor);
-void		gameplay(t_game *game);
+void		gameplay(t_game *game, double time);
 void		ft_hook(void *param);
 
 //______map_file_save.c
@@ -247,6 +247,7 @@ t_bool		is_map_north_south_wall(t_game *game);
 
 //______map_player_save.c
 void		player_check_save(t_game *game, int row, int col);
+void		check_player_position(t_game *game, int row, int col);
 void		save_player_struct(t_game *game);
 void		save_player_dir(t_game *game);
 
@@ -330,7 +331,7 @@ void		ft_mlx_put_pixel(mlx_image_t *image, \
 uint32_t x, uint32_t y, uint32_t color);
 
 // key_press.c
-void		key_press(t_game *game);
+void		key_press(t_game *game, double time);
 void		key_hook(mlx_key_data_t keydata, void *param);
 void		rotation(t_player *player, double rot_speed);
 
@@ -338,7 +339,7 @@ void		rotation(t_player *player, double rot_speed);
 void		door_open_or_closed(t_game *game);
 
 // movement.c
-void		wasd(t_game *gam);
+void		wasd(t_game *game, double time);
 
 int			get_rgba(int r, int g, int b, int a);
 

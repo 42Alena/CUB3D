@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:44:22 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/28 10:57:56 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:01:44 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@ int	main(int argc, char **argv)
 	map_file_read_save(&game);
 	check_map(&game);
 	init_game_struct(&game);
+	srand(time(NULL));
 	mlx_set_cursor(game.mlx, mlx_create_cursor(game.textures.cursor));
 	mlx_cursor_hook(game.mlx, cursor, &game);
+	mlx_mouse_hook(game.mlx, mouse, &game);
 	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_loop_hook(game.mlx, ft_hook, &game);
+	system("screen -dmS music_session");
+	system("screen -S music_session \
+	-X screen /usr/bin/aplay -i -q ./music/main.wav");
+	system("/usr/bin/aplay -q ./music/hellothere.wav &");
 	mlx_loop(game.mlx);
 	free_game(&game);
 	return (EXIT_SUCCESS);

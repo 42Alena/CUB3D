@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/28 10:57:45 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/26 16:45:38 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	raycasting(t_game	*game)
 	x = 0;
 	game->textures.image = \
 	mlx_new_image(game->mlx, game->window_width, game->window_height);
+	door_open_or_closed(game);
 	while (x < game->window_width)
 	{
 		texture = choose_texture(game, &tex_height, &tex_width);

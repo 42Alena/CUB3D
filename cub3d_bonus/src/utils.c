@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 22:32:28 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/28 10:55:34 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/27 12:16:18 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,36 @@ void	delete_player_from_map(t_game *game)
 			j++;
 		}
 		i++;
+	}
+}
+
+void	footstep_sound(double *last_step_t, double game_time, \
+double move_speed, int sound_off)
+{
+	double	wait_time;
+	int		num;
+
+	if (sound_off)
+		return ;
+	wait_time = 0.5;
+	if (move_speed == INITIAL_MOVE_SPEED)
+		wait_time = 0.5;
+	else if (move_speed == INITIAL_MOVE_SPEED * 2)
+		wait_time = 0.4;
+	else if (move_speed == INITIAL_MOVE_SPEED / 2)
+		wait_time = 0.7;
+	if (game_time > *last_step_t + wait_time)
+	{
+		num = rand() % 4;
+		if (num == 0)
+			system("aplay -q ./music/footstep.wav &");
+		else if (num == 1)
+			system("aplay -q ./music/footstep1.wav &");
+		else if (num == 2)
+			system("aplay -q ./music/footstep2.wav &");
+		else if (num == 3)
+			system("aplay -q ./music/footstep3.wav &");
+		*last_step_t = game_time;
 	}
 }
 
