@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:17:51 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/28 11:35:00 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/28 11:54:04 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	player_check_save(t_game *game, int row, int col)
 	game->player.map_start_dir = game->map.saved_map[row][col];
 	game->player.row = row;
 	game->player.col = col;
-	game->player.pos_x = col;
-	game->player.pos_y = row;
+	game->player.pos_x = col + 0.2;
+	game->player.pos_y = row + 0.2;
 	save_player_struct(game);
 	if (col > 0 && col < game->map.cols - 1)
 	{
