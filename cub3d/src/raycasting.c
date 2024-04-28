@@ -6,7 +6,7 @@
 /*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:06:47 by dtolmaco          #+#    #+#             */
-/*   Updated: 2024/04/28 10:57:45 by dtolmaco         ###   ########.fr       */
+/*   Updated: 2024/04/28 11:36:22 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ u_int32_t	*choose_wall(t_game *game, int *tex_height, int *tex_width)
 {
 	if (game->ray.side == 0 && game->ray.ray_dir_x > 0)
 	{
-		*tex_height = game->textures.wall.west_h;
-		*tex_width = game->textures.wall.west_w;
-		return (game->textures.wall.west);
-	}
-	else if (game->ray.side == 0 && game->ray.ray_dir_x < 0)
-	{
 		*tex_height = game->textures.wall.east_h;
 		*tex_width = game->textures.wall.east_w;
 		return (game->textures.wall.east);
+	}
+	else if (game->ray.side == 0 && game->ray.ray_dir_x < 0)
+	{
+		*tex_height = game->textures.wall.west_h;
+		*tex_width = game->textures.wall.west_w;
+		return (game->textures.wall.west);
 	}
 	else if (game->ray.side == 1 && game->ray.ray_dir_y > 0)
 	{

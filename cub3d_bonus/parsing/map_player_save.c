@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_player_save.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akurmyza <akurmyza@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtolmaco <dtolmaco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:17:51 by akurmyza          #+#    #+#             */
-/*   Updated: 2024/04/27 19:34:11 by akurmyza         ###   ########.fr       */
+/*   Updated: 2024/04/28 11:35:36 by dtolmaco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ void	save_player_struct(t_game *game)
 
 void	save_player_dir(t_game *game)
 {
-	if (game->player.map_start_dir == 'W')
+	if (game->player.map_start_dir == 'E')
 	{
 		game->player.dir_x = 1;
 		game->player.dir_y = 0;
 	}
-	else if (game->player.map_start_dir == 'E')
+	else if (game->player.map_start_dir == 'W')
 	{
 		game->player.dir_x = -1;
 		game->player.dir_y = 0;
