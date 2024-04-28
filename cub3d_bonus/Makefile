@@ -7,17 +7,17 @@ LIBFT := ../libft
 LIBGNL := ../lib_gnl
 LIBS := $(LIBFT)/libft.a $(LIBGNL)/libgnl.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SOURCES_M  := \
-	./parsing/map_file_check.c\
-	./parsing/map_file_save.c\
-	./parsing/map_game_save.c\
-	./parsing/map_check.c\
-	./parsing/map_check_walls.c\
-	./parsing/map_player_save.c\
-	./parsing/map_visuals.c\
-	./parsing/map_colors.c\
-	./parsing/map_utils.c\
-	./parsing/map_free.c\
-	./parsing/error.c\
+	./src/map_file_check.c\
+	./src/map_file_save.c\
+	./src/map_game_save.c\
+	./src/map_check.c\
+	./src/map_check_walls.c\
+	./src/map_player_save.c\
+	./src/map_visuals.c\
+	./src/map_colors.c\
+	./src/map_utils.c\
+	./src/map_free.c\
+	./src/error.c\
     ./src/main.c\
 	./src/game_init.c\
 	./src/game_play.c\
